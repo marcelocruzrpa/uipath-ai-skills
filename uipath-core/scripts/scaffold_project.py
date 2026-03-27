@@ -546,6 +546,9 @@ if __name__ == "__main__":
                              "If omitted, template default 'ProcessABCQueue' is kept.")
     parser.add_argument("--queue-folder", default=None,
                         help="Orchestrator folder for the queue (written to Config.xlsx Settings sheet).")
+    parser.add_argument("--band", metavar="NN",
+                        help="Target version band (e.g., 25). Resolves baseline "
+                             "dependencies within that band before applying --deps.")
     parser.add_argument("--overwrite", action="store_true",
                         help="Delete and replace existing output directory. Without this flag, "
                              "scaffolding into an existing directory fails safely.")
@@ -565,9 +568,26 @@ if __name__ == "__main__":
             print(f"WARNING: {pkg} version '{clean_ver}' appears to be a prerelease "
                   f"(contains '-'). Use stable versions only.")
 
+    # Resolve band-specific baseline deps (--deps overrides these)
+    band_deps = {}
+    if args.band:
+        try:
+            from resolve_nuget import resolve_packages_in_band, COMMON_PACKAGES
+            print(f"Resolving baseline dependencies for band {args.band}...")
+            band_deps = {pkg: f"[{ver}]"
+                         for pkg, ver in resolve_packages_in_band(COMMON_PACKAGES, args.band).items()}
+        except Exception as e:
+            print(f"WARNING: Could not resolve band {args.band} deps ({e}). "
+                  f"Using template baseline.", file=sys.stderr)
+
+    # Merge: band_deps < template < extra_deps (--deps wins last)
+    merged_deps = dict(band_deps)
+    merged_deps.update(extra_deps)  # --deps overrides band-resolved defaults
+
     try:
         scaffold_project(args.name, args.description, args.output, args.variant,
-                         extra_deps, args.attended, args.lang, args.transaction_type,
+                         merged_deps if merged_deps else extra_deps,
+                         args.attended, args.lang, args.transaction_type,
                          args.queue_name, args.queue_folder, args.overwrite,
                          args.target)
     except FileNotFoundError as e:

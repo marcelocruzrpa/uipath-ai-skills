@@ -128,6 +128,8 @@ EXCLUDED_LINTS = {
     94: "Project-level Object Repository check — requires .objects/ directory + UI XAML files",
     106: "Requires NApplicationCard with desktop FilePath — hard to create minimal test without desktop app context",
     107: "Requires NApplicationCard with desktop FilePath — hard to create minimal test without desktop app context",
+    120: "Version-compat lint — requires target_version_band on FileContext (project-level, not single-file testable)",
+    121: "Version-compat lint — requires target_version_band on FileContext (project-level, not single-file testable)",
 }
 
 # Lints provided by plugin skills — tested only when the plugin is installed.

@@ -42,11 +42,14 @@ class ValidationResult:
 
 class FileContext:
     """Holds file content read once and shared across all validators/lints."""
-    __slots__ = ('filepath', 'content', 'tree', 'lines', 'active_content')
+    __slots__ = ('filepath', 'content', 'tree', 'lines', 'active_content',
+                 'target_version_band')
 
     def __init__(self, filepath: str, content: str | None = None,
-                 tree: ET.Element | None = None):
+                 tree: ET.Element | None = None,
+                 target_version_band: str | None = None):
         self.filepath = filepath
+        self.target_version_band = target_version_band
         if content is None:
             try:
                 with open(filepath, "r", encoding="utf-8-sig") as f:
