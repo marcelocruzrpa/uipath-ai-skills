@@ -24,6 +24,7 @@ Usage:
 
 import json
 import os
+import re
 import shutil
 import sys
 import urllib.request
@@ -31,6 +32,9 @@ import urllib.error
 import zipfile
 import tempfile
 from pathlib import Path
+
+# Whitelist pattern for package/version names to prevent path traversal
+_SAFE_NAME_RE = re.compile(r'^[A-Za-z0-9._-]+$')
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
@@ -156,6 +160,12 @@ def sync_docs(packages: set[str] | None = None, force: bool = False,
 
                 # Extract docs to temp, parse, write profile JSON
                 for ver in sorted(versions):
+                    # Validate package/version names to prevent path traversal
+                    if not _SAFE_NAME_RE.match(pkg) or not _SAFE_NAME_RE.match(ver):
+                        print(f"  SKIP {pkg}/{ver} (invalid characters in name)",
+                              file=sys.stderr)
+                        continue
+
                     ver_prefix = f"{pkg_prefix}{ver}/"
                     ver_entries = [n for n in pkg_entries if n.startswith(ver_prefix)]
 
@@ -173,7 +183,6 @@ def sync_docs(packages: set[str] | None = None, force: bool = False,
                     # Write profile JSON
                     pkg_profiles_dir.mkdir(parents=True, exist_ok=True)
                     profile_path = pkg_profiles_dir / f"{ver}.json"
-                    import json
                     with open(profile_path, "w", encoding="utf-8") as f:
                         json.dump(profile, f, indent=2, sort_keys=True)
 
@@ -201,8 +210,9 @@ def main():
 
     try:
         results = sync_docs(packages=packages, force=args.force, dry_run=args.dry_run)
-    except urllib.error.URLError as e:
-        print(f"ERROR: Network error — {e.reason}", file=sys.stderr)
+    except (urllib.error.URLError, urllib.error.HTTPError) as e:
+        reason = getattr(e, 'reason', None) or str(e)
+        print(f"ERROR: Network error — {reason}", file=sys.stderr)
         print("The local mirror is unchanged. Run again when network is available.",
               file=sys.stderr)
         sys.exit(1)

@@ -227,8 +227,8 @@ def fetch_latest_stable_in_band(package_id: str, band: str) -> tuple[str | None,
     """
     from version_band import is_year_based, independent_cap
 
-    # Check band-specific cache
-    cache_key = f"{package_id}@{band}"
+    # Check band-specific cache (lowercase for consistency with _cache_get)
+    cache_key = f"{package_id.lower()}@{band}"
     cached = _cache_get(cache_key)
     if cached:
         return cached, None

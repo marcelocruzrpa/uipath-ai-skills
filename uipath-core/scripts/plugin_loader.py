@@ -260,6 +260,8 @@ def load_plugins():
         snap_ns = dict(_extra_namespaces)
         snap_known = set(_extra_known_activities)
         snap_key = list(_extra_key_activities)
+        snap_version_gens = {b: dict(g) for b, g in _version_generators.items()}
+        snap_pkg_deps = set(_package_dependencies)
 
         def _restore_registries():
             """Roll back all registries to pre-load snapshot."""
@@ -271,6 +273,8 @@ def load_plugins():
             _extra_namespaces.clear(); _extra_namespaces.update(snap_ns)
             _extra_known_activities.clear(); _extra_known_activities.update(snap_known)
             _extra_key_activities.clear(); _extra_key_activities.extend(snap_key)
+            _version_generators.clear(); _version_generators.update(snap_version_gens)
+            _package_dependencies.clear(); _package_dependencies.update(snap_pkg_deps)
 
         try:
             # Register the package first so relative imports resolve

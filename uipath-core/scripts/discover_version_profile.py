@@ -32,8 +32,9 @@ sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 
 # Pattern to extract Version="VN" from XAML blocks in markdown
+# Uses \s+ to handle one or more whitespace chars between tag name and attributes
 _RE_VERSION_ATTR = re.compile(
-    r'<uix:(\w+)\s[^>]*Version="(V\d+)"'
+    r'<uix:(\w+)\s+[^>]*Version="(V\d+)"'
 )
 
 # Pattern to extract property rows from markdown tables

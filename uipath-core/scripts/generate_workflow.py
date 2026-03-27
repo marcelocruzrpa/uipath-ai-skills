@@ -710,19 +710,17 @@ def _setup_version_band(band: str | None) -> None:
     if band is None:
         return
 
+    # Validate band format
+    from version_band import validate_band, UnsupportedBandError, MIN_SUPPORTED_BANDS
+    validate_band(band)
+
     # Check minimum supported bands
-    from version_band import MIN_SUPPORTED_BANDS
     for package, min_band in MIN_SUPPORTED_BANDS.items():
-        try:
-            if int(band) < int(min_band):
-                raise ValueError(
-                    f"Version band {band} is below minimum supported band "
-                    f"{min_band} for {package}"
-                )
-        except ValueError as e:
-            if "below minimum" in str(e):
-                raise
-            # Non-numeric band — skip check
+        if int(band) < int(min_band):
+            raise UnsupportedBandError(
+                f"Version band {band} is below minimum supported band "
+                f"{min_band} for {package}"
+            )
 
     # Load plugin version generators for this band
     from plugin_loader import get_version_generators

@@ -80,6 +80,19 @@ BAND_PROFILE_VERSIONS = {
         "UiPath.Persistence.Activities":   None,
         "UiPath.FormActivityLibrary":      None,
     },
+    "26": {
+        "UiPath.System.Activities":        "26.2",
+        "UiPath.UIAutomation.Activities":  "26.2",
+        "UiPath.Excel.Activities":         "3.5",
+        "UiPath.Mail.Activities":          "2.8",
+        "UiPath.Testing.Activities":       "26.2",
+        # packages without upstream docs yet:
+        "UiPath.WebAPI.Activities":        None,
+        "UiPath.PDF.Activities":           None,
+        "UiPath.Database.Activities":      None,
+        "UiPath.Persistence.Activities":   None,
+        "UiPath.FormActivityLibrary":      None,
+    },
 }
 
 
@@ -149,6 +162,24 @@ class ProjectVersion:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+class UnsupportedBandError(ValueError):
+    """Raised when a version band is below the minimum supported."""
+    pass
+
+
+def validate_band(band: str) -> str:
+    """Validate that *band* is a numeric version band string.
+
+    Returns the band unchanged if valid.
+    Raises ``ValueError`` if *band* is not a non-negative integer string.
+    """
+    if not band or not band.isdigit():
+        raise ValueError(
+            f"Invalid version band {band!r}: must be a numeric string (e.g., '25', '26')"
+        )
+    return band
+
 
 def is_year_based(package: str) -> bool:
     """Return ``True`` if *package* uses year-based versioning."""

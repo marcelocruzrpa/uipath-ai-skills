@@ -38,6 +38,7 @@ import os
 import re
 import shutil
 import sys
+import urllib.error
 import uuid
 from pathlib import Path
 
@@ -576,7 +577,8 @@ if __name__ == "__main__":
             print(f"Resolving baseline dependencies for band {args.band}...")
             band_deps = {pkg: f"[{ver}]"
                          for pkg, ver in resolve_packages_in_band(COMMON_PACKAGES, args.band).items()}
-        except Exception as e:
+        except (ImportError, FileNotFoundError, json.JSONDecodeError,
+                urllib.error.URLError, OSError) as e:
             print(f"WARNING: Could not resolve band {args.band} deps ({e}). "
                   f"Using template baseline.", file=sys.stderr)
 
