@@ -37,6 +37,8 @@ _scaffold_hooks = []        # list of callables
 _extra_namespaces = {}      # prefix -> xmlns URI
 _extra_known_activities = set()  # activity local names for IdRef checks
 _extra_key_activities = []  # prefixed activity names for DisplayName checks
+_version_generators = {}    # {band: {gen_name: callable}} — band-specific overrides
+_package_dependencies = set()  # plugin-declared package dependencies
 _loaded = False
 _load_failures = []  # list of (skill_name, error_str) tuples
 
@@ -141,6 +143,52 @@ def get_extra_key_activities():
 def get_ui_generators():
     """Return set of gen names that require uix: namespace (UI activities)."""
     return set(_ui_generators)
+
+
+def get_version_generators(band: str) -> dict:
+    """Return {gen_name: callable} for generators registered for *band*.
+
+    Falls back to an empty dict if no overrides exist for the band.
+    """
+    return dict(_version_generators.get(band, {}))
+
+
+def get_package_dependencies() -> set:
+    """Return the set of all plugin-declared package dependencies."""
+    return set(_package_dependencies)
+
+
+# ---------------------------------------------------------------------------
+# Plugin API v2 registration (additive — v1 plugins still work unchanged)
+# ---------------------------------------------------------------------------
+
+def register_version_generators(package: str, band: str, generators: dict):
+    """Register band-specific generator overrides.
+
+    Args:
+        package: The UiPath package these generators belong to
+            (e.g., "UiPath.UIAutomation.Activities").
+        band: The version band (e.g., "24").
+        generators: Dict of {gen_name: callable} overrides.
+    """
+    band_gens = _version_generators.setdefault(band, {})
+    for name, fn in generators.items():
+        if name in band_gens:
+            warnings.warn(f"[plugin_loader] Duplicate version generator for band {band}: '{name}'")
+        band_gens[name] = fn
+
+
+def register_package_dependencies(*packages: str):
+    """Declare UiPath package dependencies for a plugin skill.
+
+    Called by plugins so that sync_upstream_docs.py can discover
+    which upstream docs to mirror.
+
+    Args:
+        *packages: One or more UiPath package names
+            (e.g., "UiPath.Persistence.Activities").
+    """
+    _package_dependencies.update(packages)
 
 
 # ---------------------------------------------------------------------------

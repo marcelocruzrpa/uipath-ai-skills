@@ -35,6 +35,12 @@ WARNING: The package is called UiPath.WebAPI.Activities (NOT UiPath.Web.Activiti
          UiPath.Web.Activities does NOT exist on any NuGet feed.
 
 NEVER assume version numbers. ALWAYS query the feed.
+
+    # Resolve packages within a specific version band
+    python3 resolve_nuget.py --band 25 UiPath.System.Activities UiPath.Excel.Activities
+
+    # Resolve all common packages for a band
+    python3 resolve_nuget.py --band 25 --all
 """
 
 import json
@@ -177,6 +183,97 @@ def fetch_latest_stable(package_id: str) -> tuple[str | None, str | None]:
     return version, None
 
 
+def _fetch_all_stable(package_id: str) -> tuple[list[str] | None, str | None]:
+    """Fetch all stable versions for a package from the NuGet feed.
+
+    Returns: (sorted_versions_list, error_message)
+    """
+    url = NUGET_FEED.format(pkg=package_id.lower())
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+            data = json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return None, f"package not found (404)"
+        return None, f"HTTP {e.code}: {e.reason}"
+    except urllib.error.URLError as e:
+        return None, f"network error: {e.reason}"
+    except Exception as e:
+        return None, f"error: {e}"
+
+    versions = data.get("versions", [])
+    if not versions:
+        return None, "no versions found"
+
+    stable = [v for v in versions if "-" not in v]
+    if not stable:
+        return None, f"no stable versions (all {len(versions)} are prerelease)"
+
+    stable.sort(key=_semver_key)
+    return stable, None
+
+
+def fetch_latest_stable_in_band(package_id: str, band: str) -> tuple[str | None, str | None]:
+    """Fetch the latest stable version within a specific version band.
+
+    For year-based packages (System, UIAutomation, Testing):
+        filters to versions where major == band (e.g., band "25" -> 25.x.x)
+    For independent packages (Excel, Mail, PDF, etc.):
+        uses INDEPENDENT_PACKAGE_CAPS from version_band.py
+
+    Uses band-specific cache keys to avoid conflicts with unbanded resolution.
+    Returns: (version, error_message)
+    """
+    from version_band import is_year_based, independent_cap
+
+    # Check band-specific cache
+    cache_key = f"{package_id}@{band}"
+    cached = _cache_get(cache_key)
+    if cached:
+        return cached, None
+
+    all_stable, error = _fetch_all_stable(package_id)
+    if all_stable is None:
+        return None, error
+
+    if is_year_based(package_id):
+        in_band = [v for v in all_stable if v.split(".")[0] == band]
+    else:
+        cap = independent_cap(package_id, band)
+        if cap:
+            in_band = [v for v in all_stable if v.startswith(cap)]
+        else:
+            # No cap defined — use all stable versions
+            in_band = all_stable
+
+    if not in_band:
+        return None, f"no stable versions in band {band}"
+
+    in_band.sort(key=_semver_key)
+    version = in_band[-1]
+
+    _cache_put(cache_key, version)
+    return version, None
+
+
+def resolve_packages_in_band(package_ids: list[str], band: str) -> dict[str, str]:
+    """Resolve latest stable versions within a band for a list of packages.
+
+    Returns: dict of {package_id: version} for successful resolutions.
+    Prints errors to stderr for failed resolutions.
+    """
+    results = {}
+    for pkg in package_ids:
+        version, error = fetch_latest_stable_in_band(pkg, band)
+        if version:
+            results[pkg] = version
+            print(f"  {pkg}: {version} (band {band})")
+        else:
+            print(f"  {pkg}: ERROR — {error}", file=sys.stderr)
+    return results
+
+
 def resolve_packages(package_ids: list[str]) -> dict[str, str]:
     """Resolve latest stable versions for a list of packages.
     
@@ -273,16 +370,22 @@ def validate_project_json(filepath: str) -> bool:
     return all_valid
 
 
-def add_packages_to_project(filepath: str, package_ids: list[str]) -> bool:
+def add_packages_to_project(filepath: str, package_ids: list[str],
+                            band: str | None = None) -> bool:
     """Resolve and add/update packages in a project.json.
 
     Resolves the latest stable version for each package and adds or updates
     the dependency in the project.json file. Skips packages already at the
     latest version and refuses to downgrade manually pinned newer versions.
 
+    When *band* is not provided, attempts to auto-detect the project's band
+    from existing dependencies so new packages are resolved within the same
+    version band.
+
     Args:
         filepath: Path to project.json or a directory containing it.
         package_ids: List of NuGet package IDs to add/update.
+        band: Optional version band to resolve within.
 
     Returns True if all packages were resolved successfully.
     """
@@ -298,10 +401,27 @@ def add_packages_to_project(filepath: str, package_ids: list[str]) -> bool:
 
     deps = pj.setdefault("dependencies", {})
 
+    # Auto-detect band from existing project deps if not explicitly provided
+    if band is None:
+        from version_band import detect_project_version, is_year_based
+        try:
+            pv = detect_project_version(path.parent)
+            # Use UIAutomation band, fall back to System band
+            detected = (pv.band_for("UiPath.UIAutomation.Activities")
+                        or pv.band_for("UiPath.System.Activities"))
+            if detected:
+                band = detected
+                print(f"  (auto-detected project band: {band})")
+        except (FileNotFoundError, ValueError):
+            pass
+
     all_ok = True
     changes = []
     for pkg in package_ids:
-        version, error = fetch_latest_stable(pkg)
+        if band:
+            version, error = fetch_latest_stable_in_band(pkg, band)
+        else:
+            version, error = fetch_latest_stable(pkg)
         if not version:
             print(f"  ERROR: {pkg} — {error}", file=sys.stderr)
             all_ok = False
@@ -344,6 +464,8 @@ def main():
                         help="Output in --deps format for scaffold_project.py")
     parser.add_argument("--add", metavar="PROJECT_DIR_OR_JSON",
                         help="Add/update resolved packages in a project.json file")
+    parser.add_argument("--band", metavar="NN",
+                        help="Resolve within a specific version band (e.g., 25)")
     parser.add_argument("--validate", metavar="PROJECT_JSON",
                         help="Validate dependency versions in a project.json file")
     parser.add_argument("--no-cache", action="store_true", dest="no_cache",
@@ -395,11 +517,15 @@ def main():
 
     if args.add:
         print("Resolving and adding packages to project.json...")
-        ok = add_packages_to_project(args.add, packages)
+        ok = add_packages_to_project(args.add, packages, band=args.band)
         sys.exit(0 if ok else 1)
 
-    print("Resolving latest stable versions from UiPath NuGet feed...")
-    results = resolve_packages(packages)
+    if args.band:
+        print(f"Resolving latest stable versions in band {args.band}...")
+        results = resolve_packages_in_band(packages, args.band)
+    else:
+        print("Resolving latest stable versions from UiPath NuGet feed...")
+        results = resolve_packages(packages)
 
     if args.deps and results:
         deps_str = ",".join(f"{pkg}:[{ver}]" for pkg, ver in results.items())
