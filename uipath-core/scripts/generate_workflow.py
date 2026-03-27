@@ -174,6 +174,13 @@ _ALL_CHILD_KEYS = ("children", "try_children", "then_children", "else_children",
 _OBJ_REPO_LOOKUP = None  # Set by _build_obj_repo_lookup() when --project-dir is provided
 _VAR_TYPE_LOOKUP = {}    # {var_name: xaml_type} — set by generate_workflow() for type inference
 
+# ---------------------------------------------------------------------------
+# Version-band overlay (module-level state, set before generation)
+# ---------------------------------------------------------------------------
+
+_VERSION_BAND = None           # Target version band string (e.g., "25"), or None for latest
+_VERSION_OVERLAY = {}          # {gen_name: _GenEntry} — band-specific generator overrides
+
 # Generators that have a 'selector' arg and accept obj_repo
 _SELECTOR_BASED_GENS = {
     "ntypeinto", "nclick", "ncheck", "nselectitem", "nhover",
@@ -686,6 +693,54 @@ def _idref_prefix(gen: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Version-band setup
+# ---------------------------------------------------------------------------
+
+def _setup_version_band(band: str | None) -> None:
+    """Configure the version-band overlay for generation.
+
+    Call before generate_workflow(). When *band* is set, generators registered
+    via register_version_generators() for that band take precedence over the
+    base registry. When *band* is ``None``, no overlay is applied (latest).
+    """
+    global _VERSION_BAND, _VERSION_OVERLAY
+    _VERSION_BAND = band
+    _VERSION_OVERLAY = {}
+
+    if band is None:
+        return
+
+    # Check minimum supported bands
+    from version_band import MIN_SUPPORTED_BANDS
+    for package, min_band in MIN_SUPPORTED_BANDS.items():
+        try:
+            if int(band) < int(min_band):
+                raise ValueError(
+                    f"Version band {band} is below minimum supported band "
+                    f"{min_band} for {package}"
+                )
+        except ValueError as e:
+            if "below minimum" in str(e):
+                raise
+            # Non-numeric band — skip check
+
+    # Load plugin version generators for this band
+    from plugin_loader import get_version_generators
+    plugin_overrides = get_version_generators(band)
+    for gen_name, fn in plugin_overrides.items():
+        entry = _REGISTRY.get(gen_name)
+        if entry:
+            _VERSION_OVERLAY[gen_name] = _GenEntry(
+                fn=fn, idref=entry.idref,
+                required=entry.required, container=entry.container,
+            )
+        else:
+            _VERSION_OVERLAY[gen_name] = _GenEntry(
+                fn=fn, idref=_derive_idref_prefix(gen_name),
+            )
+
+
+# ---------------------------------------------------------------------------
 # Main dispatch function
 # ---------------------------------------------------------------------------
 
@@ -764,8 +819,8 @@ def _generate_activity(spec: dict, scope_id: str, counter: _IdRefCounter,
             indent=indent,
         )
 
-    # Unified dispatch: check registry first
-    entry = _REGISTRY.get(gen)
+    # Unified dispatch: check version overlay first, then base registry
+    entry = _VERSION_OVERLAY.get(gen) or _REGISTRY.get(gen)
     if entry:
         if entry.container:
             return entry.fn(spec, args, scope_id, counter, indent)
@@ -788,11 +843,21 @@ def _generate_activity(spec: dict, scope_id: str, counter: _IdRefCounter,
 # Full workflow assembly
 # ---------------------------------------------------------------------------
 
-def generate_workflow(spec: dict) -> str:
+def generate_workflow(spec: dict, version_band: str | None = None) -> str:
     """Generate a complete .xaml workflow from a JSON spec.
+
+    Args:
+        spec: The workflow JSON specification.
+        version_band: Optional target version band. When set, generators
+            registered for that band override the defaults. Precedence:
+            *version_band* parameter > ``spec["version_band"]`` > ``None``.
 
     Returns the complete XAML string.
     """
+    # Resolve version band: explicit parameter > spec key > None (latest)
+    effective_band = version_band or spec.get("version_band")
+    _setup_version_band(effective_band)
+
     class_name = spec["class_name"]
     arguments = spec.get("arguments", [])
     variables = spec.get("variables", [])
@@ -1040,6 +1105,23 @@ def main():
     # --- Load spec ---
     spec = _load_spec(spec_path)
 
+    # --- Resolve version band ---
+    # Precedence: spec.version_band > auto-detected from --project-dir > None (latest)
+    detected_band = None
+    if project_dir and "version_band" not in spec:
+        try:
+            from version_band import detect_project_version
+            pv = detect_project_version(project_dir)
+            detected_band = (pv.band_for("UiPath.UIAutomation.Activities")
+                             or pv.band_for("UiPath.System.Activities"))
+            if detected_band:
+                print(f"  [VERSION] Auto-detected band {detected_band} from project", file=sys.stderr)
+            # Warn about unsupported packages
+            for pkg, band, min_band in pv.unsupported_packages():
+                print(f"  WARNING: {pkg} band {band} is below minimum supported band {min_band}", file=sys.stderr)
+        except (FileNotFoundError, ValueError):
+            pass
+
     # --- Validate spec structure ---
     validation_errors = _validate_spec(spec)
     if validation_errors:
@@ -1050,7 +1132,7 @@ def main():
 
     # --- Generate XAML ---
     try:
-        xaml = generate_workflow(spec)
+        xaml = generate_workflow(spec, version_band=detected_band)
     except KeyError as e:
         print(f"ERROR: Missing required field in activity spec: {e}", file=sys.stderr)
         print("  Check that all activities have required 'args' fields for their generator type.", file=sys.stderr)
