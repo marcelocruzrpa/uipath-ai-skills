@@ -44,9 +44,9 @@ def _get_skill_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-def _get_mirror_dir() -> Path:
-    """Return the local mirror directory for activity docs."""
-    return _get_skill_root() / "references" / "activity-docs"
+def _get_profiles_dir() -> Path:
+    """Return the directory for checked-in version profile JSON."""
+    return _get_skill_root() / "references" / "version-profiles"
 
 
 def _discover_packages() -> set[str]:
@@ -82,17 +82,20 @@ def _download_upstream_zip(dest: Path) -> None:
 
 def sync_docs(packages: set[str] | None = None, force: bool = False,
               dry_run: bool = False) -> dict[str, list[str]]:
-    """Sync activity docs from upstream for the given packages.
+    """Download upstream docs, extract version profiles, write JSON.
+
+    Raw markdown docs are transient — downloaded to a temp directory,
+    parsed by discover_version_profile.py, and discarded. Only the
+    extracted profile JSON is written to references/version-profiles/.
 
     Args:
         packages: Set of package names to sync. If None, auto-discovers.
-        force: Re-download even if local mirror exists.
+        force: Re-extract even if profile JSON already exists.
         dry_run: Print what would be synced without downloading.
 
     Returns:
-        Dict of {package: [version_dirs_synced]} for packages that had
-        upstream docs. Packages without upstream docs are skipped with
-        a warning.
+        Dict of {package: [versions_profiled]} for packages that had
+        upstream docs.
     """
     if packages is None:
         packages = _discover_packages()
@@ -103,13 +106,16 @@ def sync_docs(packages: set[str] | None = None, force: bool = False,
             print(f"  {pkg}")
         return {}
 
-    mirror_dir = _get_mirror_dir()
+    profiles_dir = _get_profiles_dir()
     results = {}
 
     # Download upstream ZIP to temp location
     with tempfile.TemporaryDirectory() as tmpdir:
         zip_path = Path(tmpdir) / "skills-main.zip"
         _download_upstream_zip(zip_path)
+
+        # Import profile extractor
+        from discover_version_profile import extract_profile
 
         with zipfile.ZipFile(zip_path) as zf:
             # Find which packages have upstream docs
@@ -139,30 +145,39 @@ def sync_docs(packages: set[str] | None = None, force: bool = False,
                     if parts:
                         versions.add(parts[0])
 
-                # Extract to local mirror
-                dest_pkg_dir = mirror_dir / pkg
-                if dest_pkg_dir.exists() and not force:
-                    existing_versions = {d.name for d in dest_pkg_dir.iterdir() if d.is_dir()}
-                    new_versions = versions - existing_versions
-                    if not new_versions:
-                        print(f"  OK   {pkg} (up to date: {', '.join(sorted(versions))})")
+                # Check if profiles already exist
+                pkg_profiles_dir = profiles_dir / pkg
+                if pkg_profiles_dir.exists() and not force:
+                    existing = {p.stem for p in pkg_profiles_dir.glob("*.json")}
+                    if versions <= existing:
+                        print(f"  OK   {pkg} (profiles up to date: {', '.join(sorted(versions))})")
                         results[pkg] = sorted(versions)
                         continue
 
-                # Clear and re-extract
-                if dest_pkg_dir.exists():
-                    shutil.rmtree(dest_pkg_dir)
-                dest_pkg_dir.mkdir(parents=True, exist_ok=True)
+                # Extract docs to temp, parse, write profile JSON
+                for ver in sorted(versions):
+                    ver_prefix = f"{pkg_prefix}{ver}/"
+                    ver_entries = [n for n in pkg_entries if n.startswith(ver_prefix)]
 
-                extracted = 0
-                for entry in pkg_entries:
-                    rel_path = entry[len(pkg_prefix):]
-                    dest_file = dest_pkg_dir / rel_path
-                    dest_file.parent.mkdir(parents=True, exist_ok=True)
-                    dest_file.write_bytes(zf.read(entry))
-                    extracted += 1
+                    # Extract to temp subdirectory
+                    tmp_ver_dir = Path(tmpdir) / "docs" / pkg / ver
+                    for entry in ver_entries:
+                        rel = entry[len(ver_prefix):]
+                        dest = tmp_ver_dir / rel
+                        dest.parent.mkdir(parents=True, exist_ok=True)
+                        dest.write_bytes(zf.read(entry))
 
-                print(f"  SYNC {pkg} ({', '.join(sorted(versions))}) — {extracted} files")
+                    # Extract profile
+                    profile = extract_profile(tmp_ver_dir)
+
+                    # Write profile JSON
+                    pkg_profiles_dir.mkdir(parents=True, exist_ok=True)
+                    profile_path = pkg_profiles_dir / f"{ver}.json"
+                    import json
+                    with open(profile_path, "w", encoding="utf-8") as f:
+                        json.dump(profile, f, indent=2, sort_keys=True)
+
+                print(f"  SYNC {pkg} ({', '.join(sorted(versions))}) — profiles extracted")
                 results[pkg] = sorted(versions)
 
     return results
@@ -196,7 +211,7 @@ def main():
         sys.exit(1)
 
     if results:
-        print(f"\nSynced {len(results)} package(s) to {_get_mirror_dir()}")
+        print(f"\nExtracted profiles for {len(results)} package(s) to {_get_profiles_dir()}")
 
 
 if __name__ == "__main__":

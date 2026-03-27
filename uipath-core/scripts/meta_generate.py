@@ -62,8 +62,8 @@ def _get_activities_dir() -> Path:
     return _get_scripts_dir() / "generate_activities"
 
 
-def _get_docs_dir() -> Path:
-    return _get_scripts_dir().parent / "references" / "activity-docs"
+def _get_profiles_dir() -> Path:
+    return _get_scripts_dir().parent / "references" / "version-profiles"
 
 
 def _load_overrides() -> dict:
@@ -98,20 +98,11 @@ def _load_overrides() -> dict:
     return overrides
 
 
-def _extract_canonical_xaml(doc_path: Path) -> list[str]:
-    """Extract canonical XAML blocks from a markdown activity doc.
-
-    Returns list of XAML strings found in ```xml blocks.
-    """
-    if not doc_path.exists():
-        return []
-    content = doc_path.read_text(encoding="utf-8")
-    blocks = re.findall(r'```xml\s*\n(.*?)```', content, re.DOTALL)
-    return blocks
-
-
 def generate_activity_profile(package: str, version: str) -> dict:
-    """Generate a comprehensive profile for all activities in a package version.
+    """Load a version profile from checked-in JSON and apply overrides.
+
+    Reads from references/version-profiles/{package}/{version}.json
+    (extracted by sync_upstream_docs.py / discover_version_profile.py).
 
     Args:
         package: Package name (e.g., "UiPath.UIAutomation.Activities")
@@ -123,20 +114,20 @@ def generate_activity_profile(package: str, version: str) -> dict:
             "NTypeInto": {
                 "version_attr": "V5",
                 "properties": [...],
-                "canonical_xaml": [str, ...],
                 "override": {...} or None,
             },
             ...
         }
     """
-    from discover_version_profile import extract_profile
-
-    doc_dir = _get_docs_dir() / package / version
-    if not doc_dir.is_dir():
-        print(f"  WARNING: {doc_dir} does not exist", file=sys.stderr)
+    profile_path = _get_profiles_dir() / package / f"{version}.json"
+    if not profile_path.exists():
+        print(f"  WARNING: Profile not found: {profile_path}", file=sys.stderr)
+        print(f"  Run sync_upstream_docs.py to extract profiles.", file=sys.stderr)
         return {}
 
-    profile = extract_profile(doc_dir)
+    with open(profile_path, "r", encoding="utf-8") as f:
+        profile = json.load(f)
+
     overrides = _load_overrides()
 
     result = {}
@@ -144,15 +135,9 @@ def generate_activity_profile(package: str, version: str) -> dict:
         version_attrs = act_data.get("version_attrs", {})
         primary_version = version_attrs.get(act_name)
 
-        # Load canonical XAML from the doc
-        doc_name = act_data.get("doc_name", act_name)
-        activities_dir = doc_dir / "activities"
-        canonical = _extract_canonical_xaml(activities_dir / f"{doc_name}.md")
-
         entry = {
             "version_attr": primary_version,
             "properties": act_data.get("properties", []),
-            "canonical_xaml": canonical,
             "override": overrides.get(act_name.lower()),
         }
         result[act_name] = entry

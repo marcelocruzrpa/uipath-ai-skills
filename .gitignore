@@ -21,5 +21,8 @@ Thumbs.db
 .idea/
 *.swp
 
+# Transient upstream docs (downloaded by sync_upstream_docs.py, not committed)
+**/references/activity-docs/
+
 # Claude Code
 .claude/
