@@ -1,0 +1,85 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strSapConnection" Type="InArgument(x:String)" />
+    <x:Property Name="in_strCredentialAssetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMaterialNumber" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ui:UiElement" Name="uiSAP" />
+          <Variable x:TypeArguments="x:String" Name="strDescription" />
+          <Variable x:TypeArguments="x:String" Name="strBaseUoM" />
+          <Variable x:TypeArguments="x:String" Name="strMaterialGroup" />
+          <Variable x:TypeArguments="x:String" Name="strGrossWeight" />
+          <Variable x:TypeArguments="x:String" Name="strNetWeight" />
+          <Variable x:TypeArguments="x:String" Name="strWeightUnit" />
+          <Variable x:TypeArguments="x:String" Name="strDivision" />
+        </Sequence.Variables>
+            <ui:LogMessage DisplayName="Log Message Start Main - MM03 Display Material" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] Main - MM03 Display Material&quot;]" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SAP_Launch" WorkflowFileName="Workflows\SAP\SAP_Launch.xaml" UnSafe="False" sap:VirtualizedContainerService.HintSize="400,100" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_strSapConnection">[in_strSapConnection]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_strCredentialAssetName">[in_strCredentialAssetName]</InArgument>
+                <OutArgument x:TypeArguments="ui:UiElement" x:Key="out_uiSAP">[uiSAP]</OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SAP_NavigateToMaterial" WorkflowFileName="Workflows\SAP\SAP_NavigateToMaterial.xaml" UnSafe="False" sap:VirtualizedContainerService.HintSize="400,100" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InOutArgument x:TypeArguments="ui:UiElement" x:Key="io_uiSAP">[uiSAP]</InOutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_strMaterialNumber">[in_strMaterialNumber]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="SAP_ReadBasicData" WorkflowFileName="Workflows\SAP\SAP_ReadBasicData.xaml" UnSafe="False" sap:VirtualizedContainerService.HintSize="400,100" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InOutArgument x:TypeArguments="ui:UiElement" x:Key="io_uiSAP">[uiSAP]</InOutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strDescription">[strDescription]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strBaseUoM">[strBaseUoM]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strMaterialGroup">[strMaterialGroup]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strGrossWeight">[strGrossWeight]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strNetWeight">[strNetWeight]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strWeightUnit">[strWeightUnit]</OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_strDivision">[strDivision]</OutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:LogMessage DisplayName="Log Message End Main - MM03 Display Material" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] Main - MM03 Display Material&quot;]" />
+  </Sequence>
+</Activity>

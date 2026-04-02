@@ -1,0 +1,100 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_ReadItemTable"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common"
+  xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_uiSAP" Type="InOutArgument(ui:UiElement)" />
+    <x:Property Name="out_strFirstMaterial" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strFirstQuantity" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strFirstDescription" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_ReadItemTable" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message Start SAP_ReadItemTable" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] SAP_ReadItemTable&quot;]" />
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="SAP - Display Sales Order" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1094,2802" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_uiSAP]" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[io_uiSAP]" ScopeGuid="dd4fe182-330f-4e0e-8f47-1cdcab3474f5" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <uix:NGetText DisplayName="Get Text 'Material (Row 1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="dd4fe182-330f-4e0e-8f47-1cdcab3474f5" TextString="[out_strFirstMaterial]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG' tableRow='0' colTooltip='Material' /&gt;" Guid="5f8f94b9-5751-4783-b6f7-700fce1b229f" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Quantity (Row 1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="dd4fe182-330f-4e0e-8f47-1cdcab3474f5" TextString="[out_strFirstQuantity]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG' tableRow='0' colTooltip='Order Quantity' /&gt;" Guid="f8c12393-467b-437b-863a-2e17caa83017" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Description (Row 1)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="dd4fe182-330f-4e0e-8f47-1cdcab3474f5" TextString="[out_strFirstDescription]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG' tableRow='0' colTooltip='Description' /&gt;" Guid="b2c5c566-a178-4a9f-abe7-adf5044a613e" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.FilePath>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.FilePath>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+            <ui:LogMessage DisplayName="Log Message End SAP_ReadItemTable" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] SAP_ReadItemTable&quot;]" />
+  </Sequence>
+</Activity>

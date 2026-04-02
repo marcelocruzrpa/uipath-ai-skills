@@ -1,0 +1,129 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_ReadOrderHeader"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common"
+  xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_uiSAP" Type="InOutArgument(ui:UiElement)" />
+    <x:Property Name="out_strNetValue" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strCurrency" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strPONumber" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSoldToParty" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strSoldToName" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strPaymentTerms" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strIncoterms" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_ReadOrderHeader" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message Start SAP_ReadOrderHeader" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] SAP_ReadOrderHeader&quot;]" />
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="SAP - Display Sales Order" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1094,2802" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_uiSAP]" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[io_uiSAP]" ScopeGuid="0e1c2f45-ff70-44cc-b467-00a84b7503ef" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <uix:NGetText DisplayName="Get Text 'Net Value'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strNetValue]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUBSCREEN_HEADER:SAPMV45A:4021/txtVBAK-NETWR' /&gt;" Guid="87d79f4b-ad3d-47e5-aebd-9cca3c1dc620" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Currency'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strCurrency]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUBSCREEN_HEADER:SAPMV45A:4021/ctxtVBAK-WAERK' /&gt;" Guid="7d568d0c-426f-4f30-bbbe-de23bd30e8f5" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'PO Number'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strPONumber]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUBSCREEN_HEADER:SAPMV45A:4021/txtVBKD-BSTKD' /&gt;" Guid="60f02c43-f3a5-4e7a-acca-f5b6a419b47c" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Sold-To Party'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strSoldToParty]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUAGV-KUNNR' /&gt;" Guid="94a91b9a-69c1-40dc-b090-a0f1183864ff" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Sold-To Name'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strSoldToName]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/txtKUAGV-TXTPA' /&gt;" Guid="424ddfbe-cfc7-4fd9-87a6-fa959692e37c" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Sales' Tab" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1058,198" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01' /&gt;" Guid="8ed4b2a1-aa49-48f5-b38d-96cf1e9a03dd" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <uix:NGetText DisplayName="Get Text 'Payment Terms'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strPaymentTerms]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/ssubHEADER_FRAME:SAPMV45A:4440/ctxtVBKD-ZTERM' /&gt;" Guid="98440447-38d8-499f-b385-c54f8a71e994" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Incoterms'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_7" ScopeIdentifier="0e1c2f45-ff70-44cc-b467-00a84b7503ef" TextString="[out_strIncoterms]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/ssubHEADER_FRAME:SAPMV45A:4440/ctxtVBKD-INCO1' /&gt;" Guid="2986e6f2-c2c0-40ee-be85-6e769898d241" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.FilePath>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.FilePath>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+            <ui:LogMessage DisplayName="Log Message End SAP_ReadOrderHeader" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] SAP_ReadOrderHeader&quot;]" />
+  </Sequence>
+</Activity>

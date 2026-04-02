@@ -1,0 +1,121 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_NavigateToMaterial"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common"
+  xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities"
+  xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_uiSAP" Type="InOutArgument(ui:UiElement)" />
+    <x:Property Name="in_strMaterialNumber" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_NavigateToMaterial" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message Start SAP_NavigateToMaterial" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] SAP_NavigateToMaterial&quot;]" />
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="SAP - MM03" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1094,2802" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_uiSAP]" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[io_uiSAP]" ScopeGuid="c9278efe-caea-43bc-9f4f-34ad2ed6e200" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" ClipboardMode="Never" DisplayName="Type Into 'Material Number'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1058,250" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="c9278efe-caea-43bc-9f4f-34ad2ed6e200" Text="[in_strMaterialNumber]" Version="V5">
+                  <uix:NTypeInto.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/ctxtRMMG1-MATNR' /&gt;" Guid="8bae70ad-5855-4f89-86aa-11f23c518983" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NTypeInto.Target>
+                  <uix:NTypeInto.VerifyOptions>
+                    <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                      <uix:VerifyExecutionTypeIntoOptions.Retry>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                        <InArgument x:TypeArguments="x:Double" />
+                      </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    </uix:VerifyExecutionTypeIntoOptions>
+                  </uix:NTypeInto.VerifyOptions>
+                </uix:NTypeInto>
+<uix:NSAPClickToolbarButton DisplayName="Click Toolbar Button 'Enter'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,195" sap2010:WorkflowViewState.IdRef="NSAPClickToolbarButton_1" Item="Enter" ScopeIdentifier="c9278efe-caea-43bc-9f4f-34ad2ed6e200" Version="V5">
+  <uix:NSAPClickToolbarButton.Items>
+    <scg:List x:TypeArguments="x:String" Capacity="12">
+      <x:String>Enter</x:String>
+      <x:String>Close Command Field</x:String>
+      <x:String xml:space="preserve">Save   (Ctrl+S)</x:String>
+      <x:String xml:space="preserve">Back   (F3)</x:String>
+      <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+      <x:String xml:space="preserve">Cancel   (F12)</x:String>
+      <x:String xml:space="preserve">Print   (Ctrl+P)</x:String>
+      <x:String xml:space="preserve">Find   (Ctrl+F)</x:String>
+      <x:String>New GUI Window</x:String>
+      <x:String>Generates shortcut</x:String>
+      <x:String xml:space="preserve">Help   (F1)</x:String>
+      <x:String>Customize Local Layout (Alt+F12)</x:String>
+    </scg:List>
+  </uix:NSAPClickToolbarButton.Items>
+  <uix:NSAPClickToolbarButton.Target>
+    <uix:TargetAnchorable ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id=&#x27;tbar[0]/btn[0]&#x27; /&gt;" Guid="529c2a6f-3253-452a-a8ef-30885322ebe3" ScopeSelectorArgument="&lt;wnd app=&#x27;saplogon.exe&#x27; cls=&#x27;SAP_FRONTEND_SESSION&#x27; /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+  </uix:NSAPClickToolbarButton.Target>
+</uix:NSAPClickToolbarButton>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.FilePath>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.FilePath>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+            <ui:LogMessage DisplayName="Log Message End SAP_NavigateToMaterial" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] SAP_NavigateToMaterial&quot;]" />
+  </Sequence>
+</Activity>

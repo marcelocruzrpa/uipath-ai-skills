@@ -1,0 +1,757 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_ME21N_CreatePO" this:SAP_ME21N_CreatePO.in_str_PurchaseOrg="ESCA" this:SAP_ME21N_CreatePO.in_str_SupplierSite="CHD6" this:SAP_ME21N_CreatePO.in_str_PoType="IC Stock trsp. order" this:SAP_ME21N_CreatePO.in_str_PurchaseGroup="273" this:SAP_ME21N_CreatePO.in_str_ItemSite="1530" this:SAP_ME21N_CreatePO.in_str_ItemArticle="CRLI000439" this:SAP_ME21N_CreatePO.in_str_ItemPoQuantity="1" this:SAP_ME21N_CreatePO.in_str_OrderReason="Free-of-ch: NFC Card printing" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.SAP;assembly=UiPath.UiAutomation.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_str_PoNumber" Type="OutArgument(x:String)" />
+    <x:Property Name="out_str_StatusBarMessageText" Type="OutArgument(x:String)" />
+    <x:Property Name="in_str_PurchaseOrg" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_SupplierSite" Type="InArgument(x:String)" />
+    <x:Property Name="io_uiEl_SAP" Type="InOutArgument(ui:UiElement)" />
+    <x:Property Name="in_str_PoType" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_PurchaseGroup" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_ItemSite" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_ItemArticle" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_ItemPoQuantity" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_OrderReason" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1206,5655</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Core.Activities.SAP</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Richemont.SAP.SAPLogon.Library_Windows</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_ME21N_CreatePO" sap:VirtualizedContainerService.HintSize="1280,7988" sap2010:WorkflowViewState.IdRef="Sequence_21">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message SAP Create PO Start" sap:VirtualizedContainerService.HintSize="1280,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;[START] Create PO on SAP&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Application: Create Purchase Order" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1280,7649" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_uiEl_SAP]" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[io_uiEl_SAP]" ScopeGuid="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1246,7479" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ui:UiElement" Name="uiEl_HeaderToggle" />
+              <Variable x:TypeArguments="ui:UiElement" Name="uiEl_ItemOverviewToggle" />
+              <Variable x:TypeArguments="s:String[]" Name="arr_StatusBarMessageData" />
+              <Variable x:TypeArguments="x:String" Name="str_StatusBarMessageType" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message Check PO Header" sap:VirtualizedContainerService.HintSize="1212,177" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Check if it's needed to open the PO header...&quot;]" />
+            <Pick sap2010:Annotation.AnnotationText="The header might appear collapesed/closed. If it's the case, it should be open to fill required fields." DisplayName="Pick (Handle Header)" sap:VirtualizedContainerService.HintSize="1212,1188" sap2010:WorkflowViewState.IdRef="Pick_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <PickBranch DisplayName="PickBranch (Header open)" sap:VirtualizedContainerService.HintSize="542,1078" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+                <PickBranch.Trigger>
+                  <uix:NCheckState DisplayName="Check App State 'Org. Data'" EnableIfExists="False" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,413" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="1219, 173, 81, 22" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11' check:text='Org. Data' /&gt;" Guid="97e38be7-ed30-4388-8462-d5edb1156def" InformativeScreenshot="9f45328a3dced3c13c4a2a513a251878.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </PickBranch.Trigger>
+                <ui:LogMessage DisplayName="Log Message Header Already Open" sap:VirtualizedContainerService.HintSize="452,145" sap2010:WorkflowViewState.IdRef="LogMessage_13" Message="[&quot;The header is already open&quot;]" />
+              </PickBranch>
+              <PickBranch DisplayName="PickBranch (Header Collapsed)" sap:VirtualizedContainerService.HintSize="542,1078" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+                <PickBranch.Trigger>
+                  <uix:NCheckState sap2010:Annotation.AnnotationText="If header toggle it's found on the expected state by this activity, we should click on it to open the PO header, in order to be able to fill required data." DisplayName="Check App State 'Header Toggle'" EnableIfExists="False" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,474" sap2010:WorkflowViewState.IdRef="NCheckState_1" OutUiElement="[uiEl_HeaderToggle]" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="287, 171, 20, 21" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0016/subSUB1:SAPLMEVIEWS:1100/subSUB1:SAPLMEVIEWS:4000' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0016/subSUB1:SAPLMEVIEWS:1100/subSUB1:SAPLMEVIEWS:4000' /&gt;" Guid="a7157733-9f74-4947-b720-12bb3175d113" InformativeScreenshot="6109aa8902ec8730e46f4ae1bd5f106d.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                    </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NCheckState>
+                </PickBranch.Trigger>
+                <Sequence sap:VirtualizedContainerService.HintSize="452,403" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message Click To Open Header" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_14" Message="[&quot;Click to open header...&quot;]" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click (Header Toggle)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="NClick_6" InUiElement="[uiEl_HeaderToggle]" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" Version="V3" />
+                </Sequence>
+              </PickBranch>
+            </Pick>
+            <uix:NSelectItem DisplayName="Select Item 'Reason for ordering'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1212,57" sap2010:WorkflowViewState.IdRef="NSelectItem_1" Item="[in_str_PoType]" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+              <uix:NSelectItem.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="50">
+                  <x:String>Dummy purchase order</x:String>
+                  <x:String>Standard PO DFPS</x:String>
+                  <x:String>DFPS, Int. Ord. Type</x:String>
+                  <x:String>Framework order</x:String>
+                  <x:String>Do not use - not Gem</x:String>
+                  <x:String>Enh. Rets to Vendor</x:String>
+                  <x:String>Enh. Rets STO CC</x:String>
+                  <x:String>Do not use - not Gem</x:String>
+                  <x:String>Enh. Rets STO IC</x:String>
+                  <x:String>PO submission manuf.</x:String>
+                  <x:String>PO Free of Charge</x:String>
+                  <x:String>PO RTV FOC</x:String>
+                  <x:String>SC Repair</x:String>
+                  <x:String xml:space="preserve">Req.  pur.  validat.</x:String>
+                  <x:String>SC Manufacture</x:String>
+                  <x:String>Outsourced Manuf.</x:String>
+                  <x:String>PO no stock material</x:String>
+                  <x:String>IC subcontracting</x:String>
+                  <x:String>IC Special Order</x:String>
+                  <x:String>IC ATO Order</x:String>
+                  <x:String>OTC technical RFC</x:String>
+                  <x:String>Automatic PO</x:String>
+                  <x:String>Richemont Ret ARM PO</x:String>
+                  <x:String>Bumblebee PO Non Stk</x:String>
+                  <x:String>CS Stk trsp or. auto</x:String>
+                  <x:String>PO Exch. movements</x:String>
+                  <x:String>CS Stk trsp or. man.</x:String>
+                  <x:String>ZISP</x:String>
+                  <x:String>Log.Stk tsfr Auto</x:String>
+                  <x:String>YNAP stock PO</x:String>
+                  <x:String>Richemont stand. PO</x:String>
+                  <x:String>Richemont PO RTV</x:String>
+                  <x:String>Richemont rush PO</x:String>
+                  <x:String>Consignment in</x:String>
+                  <x:String>Richemont subcontr.</x:String>
+                  <x:String>IC Stock trsp. order</x:String>
+                  <x:String>Third party Ext.supl</x:String>
+                  <x:String>IC Consignment order</x:String>
+                  <x:String>IC PO STO virtual</x:String>
+                  <x:String>Richemont Call-off</x:String>
+                  <x:String>IC STO double-tier</x:String>
+                  <x:String>IC STO Manufacturing</x:String>
+                  <x:String>Tr. intraco intersit</x:String>
+                  <x:String>IntraCo Csgmnt Trsf</x:String>
+                  <x:String>Stock transfer order</x:String>
+                  <x:String>PO STO plant abroad</x:String>
+                  <x:String>Transfer. Brasil</x:String>
+                  <x:String>STO EC plant abroad</x:String>
+                  <x:String>WIA Stock Transfer</x:String>
+                  <x:String xml:space="preserve"> </x:String>
+                </scg:List>
+              </uix:NSelectItem.Items>
+              <uix:NSelectItem.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="315, 149, 146, 20" DesignTimeScaleFactor="1" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART' /&gt;" Guid="3582ed86-834b-41f9-a73e-fe827ded9324" InformativeScreenshot="0feb5e1508080f94d238e0cf9a913ae4.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+              </uix:NSelectItem.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NSelectItem>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into Supplier'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1212,57" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Text="[in_str_SupplierSite]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="658, 149, 195, 20" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD' /&gt;" Guid="8c9b2611-f1df-4741-b70a-63080bf7c648" InformativeScreenshot="92608c87af730525821c53159737acd4.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.VerifyOptions>
+                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears" Retry="True" Timeout="3" />
+              </uix:NTypeInto.VerifyOptions>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NTypeInto>
+            <Sequence DisplayName="Fill Org. Data tab" sap:VirtualizedContainerService.HintSize="1212,993" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message Open Org. Data Tab" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Opening Org. Data tab...&quot;]" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Org. Data'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,190" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="1219, 173, 81, 22" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11' check:text='Org. Data' /&gt;" Guid="b020e543-9f6c-49a6-a873-287b08684294" InformativeScreenshot="334c6d7d79c6f79ff375803a6d04cbfe.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Purch. Org.'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,288" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Text="[in_str_PurchaseOrg]" Version="V3">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="427, 215, 48, 20" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11/ssubTABSTRIPCONTROL2SUB:SAPLMEGUI:1221/ctxtMEPO1222-EKORG' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11/ssubTABSTRIPCONTROL2SUB:SAPLMEGUI:1221/ctxtMEPO1222-EKORG' /&gt;" Guid="483c33a4-d991-4cf7-92e4-23f6ce4378aa" InformativeScreenshot="33c2423ce16ffb08f96e7ce03d8a555a.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" ExpectedText="[in_str_PurchaseOrg]" Mode="Appears" Retry="True" Timeout="2" />
+                </uix:NTypeInto.VerifyOptions>
+              </uix:NTypeInto>
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Purch. Group'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,244" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="HardwareEvents" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Text="[in_str_PurchaseGroup + &quot;[k(Enter)]&quot;]" Version="V3">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="427, 237, 27, 20" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11/ssubTABSTRIPCONTROL2SUB:SAPLMEGUI:1221/ctxtMEPO1222-EKGRP' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT11/ssubTABSTRIPCONTROL2SUB:SAPLMEGUI:1221/ctxtMEPO1222-EKGRP' /&gt;" Guid="416b4821-9488-42c7-bb3e-891d71ebfd95" InformativeScreenshot="7abb26a2e81bdcda129e8b2197daae54.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                </uix:NTypeInto.Target>
+              </uix:NTypeInto>
+            </Sequence>
+            <Sequence DisplayName="Set Order Reason" sap:VirtualizedContainerService.HintSize="1212,882" sap2010:WorkflowViewState.IdRef="Sequence_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message Open Richemont Data tab" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_18" Message="[&quot;Opening 'Richemont Data' tab...&quot;]" />
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Richemont Data'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,190" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V4">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="919, 183, 115, 22" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT7' /&gt;" Guid="419dbf36-47c9-4b32-828a-700e6d9090a4" InformativeScreenshot="c3f0e82ada342facf7d75c59737c9798.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <ui:LogMessage DisplayName="Log Message Set Order Reason" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_19" Message="[&quot;Set order reason...&quot;]" />
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Reason for Ord.'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,244" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="HardwareEvents" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Text="[in_str_OrderReason]" Version="V4">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable DesignTimeRectangle="435, 247, 41, 20" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT7/ssubTABSTRIPCONTROL2SUB:SAPLZGEMGUIPOEX:0100/ctxtEKKO-ZZBSGRU' /&gt;" Guid="4ef50110-275d-4c5c-a467-5bf4c02b2fbf" InformativeScreenshot="7f803c7ec3766211a87a77d143772a39.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                </uix:NTypeInto.Target>
+              </uix:NTypeInto>
+            </Sequence>
+            <Sequence DisplayName="Fill Item Overview" sap:VirtualizedContainerService.HintSize="1212,1505" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message Check PO Item Overview" sap:VirtualizedContainerService.HintSize="1178,177" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Check if it's needed to open the PO Item Overview section...&quot;]" />
+              <Pick DisplayName="Pick (Handle Item Overview)" sap:VirtualizedContainerService.HintSize="1178,893" sap2010:WorkflowViewState.IdRef="Pick_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <PickBranch DisplayName="PickBranch (Item cell)" sap:VirtualizedContainerService.HintSize="542,814" sap2010:WorkflowViewState.IdRef="PickBranch_4">
+                  <PickBranch.Trigger>
+                    <uix:NCheckState DisplayName="Check App State 'Article cell'" EnableIfExists="False" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,413" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="410, 413, 88, 20" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211' tableCol='4' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211' /&gt;" Guid="0f5b0a3d-fe4b-44f2-a21e-ef4bf44da88b" InformativeScreenshot="9b0b240b6caa97100a611251ddce18d4.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                      </uix:NCheckState.Target>
+                    </uix:NCheckState>
+                  </PickBranch.Trigger>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,145" sap2010:WorkflowViewState.IdRef="LogMessage_15" Message="[&quot;The item overview it's already open...&quot;]" />
+                </PickBranch>
+                <PickBranch DisplayName="PickBranch (Item Overview collapsed)" sap:VirtualizedContainerService.HintSize="542,814" sap2010:WorkflowViewState.IdRef="PickBranch_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <PickBranch.Trigger>
+                    <uix:NCheckState sap2010:Annotation.AnnotationText="If item overview toggle it's found on the expected state by this activity, we should click on it to open the PO header, in order to be able to fill item data." DisplayName="Check App State 'Item Overview toggle'" EnableIfExists="False" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,474" sap2010:WorkflowViewState.IdRef="NCheckState_2" OutUiElement="[uiEl_ItemOverviewToggle]" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="287, 391, 20, 21" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB1:SAPLMEVIEWS:4001' /&gt;" Guid="b046b003-bcdb-46b3-a12d-b658ab11a1e9" InformativeScreenshot="0a8d68cc6ccdb4e3403fd268a874f692.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" SearchSteps="Selector" Version="V4" />
+                      </uix:NCheckState.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheckState>
+                  </PickBranch.Trigger>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click (Item Overview Toggle)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,139" sap2010:WorkflowViewState.IdRef="NClick_3" InUiElement="[uiEl_ItemOverviewToggle]" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" Version="V3" />
+                </PickBranch>
+              </Pick>
+              <ui:LogMessage DisplayName="Log Message Fill Item Info" sap:VirtualizedContainerService.HintSize="1178,177" sap2010:WorkflowViewState.IdRef="LogMessage_16" Message="[&quot;Filling item info...&quot;]" />
+              <ui:CellScope TableRow="{x:Null}" UiElement="{x:Null}" ColumnName="&lt;sap tableCol='4' /&gt;" DisplayName="Table Cell Scope 'Article'" sap:VirtualizedContainerService.HintSize="942,57" sap2010:WorkflowViewState.IdRef="CellScope_1" RowNumber="First Empty Row">
+                <ui:CellScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into (Article table cell)" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="NTypeInto_7" Text="[in_str_ItemArticle]" Version="V3" />
+                  </ActivityAction>
+                </ui:CellScope.Body>
+                <ui:CellScope.ColumnNames>
+                  <scg:List x:TypeArguments="x:String" Capacity="38">
+                    <x:String>&lt;sap tableCol='0' /&gt;</x:String>
+                    <x:String>&lt;sap tableCol='1' /&gt;</x:String>
+                    <x:String>Acct Assignment Cat.</x:String>
+                    <x:String>Item Category</x:String>
+                    <x:String>&lt;sap tableCol='4' /&gt;</x:String>
+                    <x:String>Merchandise Category</x:String>
+                    <x:String>Short Text</x:String>
+                    <x:String>Order Quantity</x:String>
+                    <x:String>Order Unit</x:String>
+                    <x:String>Deliv. date category</x:String>
+                    <x:String>Delivery Date</x:String>
+                    <x:String>Net Order Price</x:String>
+                    <x:String>Currency</x:String>
+                    <x:String>Price unit</x:String>
+                    <x:String>Order Price Unit</x:String>
+                    <x:String>Batch</x:String>
+                    <x:String>Site</x:String>
+                    <x:String>Storage Location</x:String>
+                    <x:String>Req. Tracking Number</x:String>
+                    <x:String>Requisitioner</x:String>
+                    <x:String>&lt;sap tableCol='20' /&gt;</x:String>
+                    <x:String>Purchasing info rec.</x:String>
+                    <x:String>Returns Item</x:String>
+                    <x:String>Free of Charge</x:String>
+                    <x:String>&lt;sap tableCol='24' /&gt;</x:String>
+                    <x:String>Purchase Requisition</x:String>
+                    <x:String>Item of requisition</x:String>
+                    <x:String>Outline agreement</x:String>
+                    <x:String>Princ.agreement item</x:String>
+                    <x:String>RFQ</x:String>
+                    <x:String>&lt;sap tableCol='30' /&gt;</x:String>
+                    <x:String>Purchasing Document</x:String>
+                    <x:String>&lt;sap tableCol='32' /&gt;</x:String>
+                    <x:String>Higher-Level Item</x:String>
+                    <x:String>Subitem Category</x:String>
+                    <x:String>Fixed Date and Qty</x:String>
+                    <x:String>Issuing Storage Loc.</x:String>
+                    <x:String>Subcontracting type</x:String>
+                  </scg:List>
+                </ui:CellScope.ColumnNames>
+                <ui:CellScope.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="770678fd-bb2d-4b30-b2b6-01aa04f5155d" InformativeScreenshot="12ddb44f4cee02936218dbf173a5732e" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:CellScope.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CellScope>
+              <ui:CellScope TableRow="{x:Null}" UiElement="{x:Null}" ColumnName="Order Quantity" DisplayName="Table Cell Scope 'PO Quantity'" sap:VirtualizedContainerService.HintSize="942,57" sap2010:WorkflowViewState.IdRef="CellScope_2" RowNumber="First Empty Row">
+                <ui:CellScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into (PO quantity table cell)" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="NTypeInto_6" Text="[in_str_ItemPoQuantity]" Version="V3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NTypeInto>
+                  </ActivityAction>
+                </ui:CellScope.Body>
+                <ui:CellScope.ColumnNames>
+                  <scg:List x:TypeArguments="x:String" Capacity="38">
+                    <x:String>&lt;sap tableCol='0' /&gt;</x:String>
+                    <x:String>&lt;sap tableCol='1' /&gt;</x:String>
+                    <x:String>Acct Assignment Cat.</x:String>
+                    <x:String>Item Category</x:String>
+                    <x:String>&lt;sap tableCol='4' /&gt;</x:String>
+                    <x:String>Merchandise Category</x:String>
+                    <x:String>Short Text</x:String>
+                    <x:String>Order Quantity</x:String>
+                    <x:String>Order Unit</x:String>
+                    <x:String>Deliv. date category</x:String>
+                    <x:String>Delivery Date</x:String>
+                    <x:String>Net Order Price</x:String>
+                    <x:String>Currency</x:String>
+                    <x:String>Price unit</x:String>
+                    <x:String>Order Price Unit</x:String>
+                    <x:String>Batch</x:String>
+                    <x:String>Site</x:String>
+                    <x:String>Storage Location</x:String>
+                    <x:String>Req. Tracking Number</x:String>
+                    <x:String>Requisitioner</x:String>
+                    <x:String>&lt;sap tableCol='20' /&gt;</x:String>
+                    <x:String>Purchasing info rec.</x:String>
+                    <x:String>Returns Item</x:String>
+                    <x:String>Free of Charge</x:String>
+                    <x:String>&lt;sap tableCol='24' /&gt;</x:String>
+                    <x:String>Purchase Requisition</x:String>
+                    <x:String>Item of requisition</x:String>
+                    <x:String>Outline agreement</x:String>
+                    <x:String>Princ.agreement item</x:String>
+                    <x:String>RFQ</x:String>
+                    <x:String>&lt;sap tableCol='30' /&gt;</x:String>
+                    <x:String>Purchasing Document</x:String>
+                    <x:String>&lt;sap tableCol='32' /&gt;</x:String>
+                    <x:String>Higher-Level Item</x:String>
+                    <x:String>Subitem Category</x:String>
+                    <x:String>Fixed Date and Qty</x:String>
+                    <x:String>Issuing Storage Loc.</x:String>
+                    <x:String>Subcontracting type</x:String>
+                  </scg:List>
+                </ui:CellScope.ColumnNames>
+                <ui:CellScope.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ce29a354-5aea-4d2a-8fdc-2c1eba9bca51" InformativeScreenshot="3ea39607a2b67ff97550fef2b54dc52f" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:CellScope.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CellScope>
+              <ui:CellScope TableRow="{x:Null}" UiElement="{x:Null}" ColumnName="Site" DisplayName="Table Cell Scope 'Site'" sap:VirtualizedContainerService.HintSize="942,50" sap2010:WorkflowViewState.IdRef="CellScope_3" RowNumber="First Empty Row">
+                <ui:CellScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into (Site table cell)" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334,198" sap2010:WorkflowViewState.IdRef="NTypeInto_5" Text="[in_str_ItemSite]" Version="V3" />
+                  </ActivityAction>
+                </ui:CellScope.Body>
+                <ui:CellScope.ColumnNames>
+                  <scg:List x:TypeArguments="x:String" Capacity="38">
+                    <x:String>&lt;sap tableCol='0' /&gt;</x:String>
+                    <x:String>&lt;sap tableCol='1' /&gt;</x:String>
+                    <x:String>Acct Assignment Cat.</x:String>
+                    <x:String>Item Category</x:String>
+                    <x:String>&lt;sap tableCol='4' /&gt;</x:String>
+                    <x:String>Merchandise Category</x:String>
+                    <x:String>Short Text</x:String>
+                    <x:String>Order Quantity</x:String>
+                    <x:String>Order Unit</x:String>
+                    <x:String>Deliv. date category</x:String>
+                    <x:String>Delivery Date</x:String>
+                    <x:String>Net Order Price</x:String>
+                    <x:String>Currency</x:String>
+                    <x:String>Price unit</x:String>
+                    <x:String>Order Price Unit</x:String>
+                    <x:String>Batch</x:String>
+                    <x:String>Site</x:String>
+                    <x:String>Storage Location</x:String>
+                    <x:String>Req. Tracking Number</x:String>
+                    <x:String>Requisitioner</x:String>
+                    <x:String>&lt;sap tableCol='20' /&gt;</x:String>
+                    <x:String>Purchasing info rec.</x:String>
+                    <x:String>Returns Item</x:String>
+                    <x:String>Free of Charge</x:String>
+                    <x:String>&lt;sap tableCol='24' /&gt;</x:String>
+                    <x:String>Purchase Requisition</x:String>
+                    <x:String>Item of requisition</x:String>
+                    <x:String>Outline agreement</x:String>
+                    <x:String>Princ.agreement item</x:String>
+                    <x:String>RFQ</x:String>
+                    <x:String>&lt;sap tableCol='30' /&gt;</x:String>
+                    <x:String>Purchasing Document</x:String>
+                    <x:String>&lt;sap tableCol='32' /&gt;</x:String>
+                    <x:String>Higher-Level Item</x:String>
+                    <x:String>Subitem Category</x:String>
+                    <x:String>Fixed Date and Qty</x:String>
+                    <x:String>Issuing Storage Loc.</x:String>
+                    <x:String>Subcontracting type</x:String>
+                  </scg:List>
+                </ui:CellScope.ColumnNames>
+                <ui:CellScope.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6a06c008-8f3b-4f5b-99b8-d24ea7bf7e97" InformativeScreenshot="ebd868eaddf14ab9ebdf7dcd6a60a4f4" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;&lt;sap id='usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:CellScope.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:CellScope>
+            </Sequence>
+            <ui:LogMessage DisplayName="Log Message Click Save" sap:VirtualizedContainerService.HintSize="1212,177" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;Click 'Save' to create PO&quot;]" />
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Button Save (Ctrl+S)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1212,190" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="229, 40, 22, 22" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='tbar[0]/btn[11]' /&gt;" FuzzySelectorArgument="&lt;sap id='tbar[0]/btn[11]' /&gt;" Guid="7ac3c5ca-e969-4875-9b3a-9fdd8d7ef250" InformativeScreenshot="8ce1065592236f1335af7eec78605892.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Standard Order*' /&gt;" SearchSteps="Selector" Version="V4" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:LogMessage DisplayName="Log Message Check If Popup Appears" sap:VirtualizedContainerService.HintSize="1212,177" sap2010:WorkflowViewState.IdRef="LogMessage_9" Message="[&quot;Checking if confirmation popup appears...&quot;]" />
+            <uix:NCheckState DisplayName="Check App State 'Save Document' (Popup)" EnableIfNotExists="False" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="1212,773" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,418" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message Checking Popup" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_17" Message="[&quot;Popup found. Handling it properly...&quot;]" />
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Save'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,181" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="40c6f71c-a144-4aec-8ecb-e6f6a48fb33c" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="3, 119, 146, 22" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/btnSPOP-VAROPTION1' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/btnSPOP-VAROPTION1' check:text='Save' /&gt;" Guid="88fe77bb-3700-42d8-b96d-7ed5931be1c2" InformativeScreenshot="2e4b91f6ab7200ee3b8af262c8c34d76.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='*/* Save Incomplete Document' idx='*' /&gt;" SearchSteps="Selector" Version="V4" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="3, 119, 146, 22" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/btnSPOP-VAROPTION1' /&gt;" FuzzySelectorArgument="&lt;sap id='usr/btnSPOP-VAROPTION1' check:text='Save' /&gt;" Guid="b97b0de0-5a48-447c-8850-f05dcdba687b" InformativeScreenshot="01485645104c075d9f475567b4372a7b.png" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='#32770' title='*/* Save Incomplete Document' idx='*' /&gt;" SearchSteps="Selector" Version="V4" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <ui:LogMessage DisplayName="Log Message Read SAP Status Bar" sap:VirtualizedContainerService.HintSize="1212,177" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Reading SAP status bar...&quot;]" />
+            <ucas:ReadStatusbar ContinueOnError="{x:Null}" MessageId="{x:Null}" MessageNumber="{x:Null}" DisplayName="Read Status Bar" sap:VirtualizedContainerService.HintSize="1212,301" sap2010:WorkflowViewState.IdRef="ReadStatusbar_1" MessageData="[arr_StatusBarMessageData]" MessageText="[out_str_StatusBarMessageText]" MessageType="[str_StatusBarMessageType]">
+              <ucas:ReadStatusbar.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="87e0e82c-c676-4517-9459-abec2bbb8deb" InformativeScreenshot="81f841723ddc779f380cf8c58f49d4c8" Selector="&lt;sap id='sbar/pane[0]' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ucas:ReadStatusbar.Target>
+            </ucas:ReadStatusbar>
+            <If Condition="[Not str_StatusBarMessageType.Equals(&quot;E&quot;)]" DisplayName="If PO created successfully" sap:VirtualizedContainerService.HintSize="1212,763" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,403" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message PO Created Successfully" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="LogMessage_11" Message="[&quot;PO was created successfully. Fetching the PO number....&quot;]" />
+                  <Assign DisplayName="Assign | Fetch SAP PO number" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_str_PoNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[arr_StatusBarMessageData.Last]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,228" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message PO creation failed" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="LogMessage_12" Message="[&quot;Purchase order creation failed. &quot; + out_str_StatusBarMessageText]" />
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="236, 36, 1720, 1160" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE8SURBVFhHYxgFo2AUjIJBAxxrVls61ay5T2dcC7Ue7AAnoMB/emHHmjWz7KtXMkGtp68DgJbPsCtfzQi1GgLo5QCg5dMcy1cgLH//5UcECG89fa+5dsnR/5Ti0nkH/ztWrcJuefWaKXYVq1B9/v7Lz//Uwk/ffP6f3LX2v335cmyWT7KqQPI5DGAziBwMsjy+ddl/m6IFQMtWo1s+wbZ4CablIIDNMFLxk9ef/se1LMVuec2aPrMStGBHBtgMJAWDLI8FWV6M1fIeqDW4AdCQxSB89f7LfWsPXfm/9uBlknBsCzDYsVlevboLagVxwKZovotd6ZL/diWLScL25cuwWL6mA2os8QBoCFXKAWCwt0GNJA1QqSBqhhpHOqDUAUCfN0KNIg8AHaAJNGg+mTgXaswoGAWjYBSQCBgYAMLf0dVJBbU9AAAAAElFTkSuQmCC" InformativeScreenshot="15fb3d07a7a02ffec401adfa5d421757.png" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' title='*/* Create Purchase Order' /&gt;" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+    <ui:LogMessage DisplayName="Log Message SAP Create PO Start" sap:VirtualizedContainerService.HintSize="1154,141" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;[END] Create PO on SAP&quot;]" />
+  </Sequence>
+</Activity>

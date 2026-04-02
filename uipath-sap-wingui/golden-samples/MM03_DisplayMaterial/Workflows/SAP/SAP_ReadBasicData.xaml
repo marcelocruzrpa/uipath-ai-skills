@@ -1,0 +1,129 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_ReadBasicData"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common"
+  xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_uiSAP" Type="InOutArgument(ui:UiElement)" />
+    <x:Property Name="out_strDescription" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strBaseUoM" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strMaterialGroup" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strGrossWeight" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strNetWeight" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strWeightUnit" Type="OutArgument(x:String)" />
+    <x:Property Name="out_strDivision" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_ReadBasicData" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message Start SAP_ReadBasicData" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] SAP_ReadBasicData&quot;]" />
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="SAP - Display Material" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="1094,2802" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="[io_uiSAP]" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[io_uiSAP]" ScopeGuid="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Basic Data 1' Tab" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="1058,198" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" Version="V5">
+                  <uix:NClick.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01' /&gt;" Guid="2393c433-52aa-4961-a6ef-4dc55a8a5be7" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NClick.Target>
+                </uix:NClick>
+                <uix:NGetText DisplayName="Get Text 'Description'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strDescription]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB1:SAPLMGD1:1002/txtMAKT-MAKTX' /&gt;" Guid="957dd2cf-15f0-479b-b10f-2924029e0a21" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Base UoM'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strBaseUoM]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB2:SAPLMGD1:2001/ctxtMARA-MEINS' /&gt;" Guid="b4362cd9-eb57-44e8-9dab-10ac891c7cbc" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Material Group'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strMaterialGroup]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB2:SAPLMGD1:2001/ctxtMARA-MATKL' /&gt;" Guid="e4dbd9a0-9c28-477d-9348-56d4732b591d" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Gross Weight'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strGrossWeight]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB4:SAPLMGD1:2007/txtMARA-BRGEW' /&gt;" Guid="875cec27-79e2-4a52-a2e6-c2292a2a31a9" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Net Weight'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_5" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strNetWeight]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB4:SAPLMGD1:2007/txtMARA-NTGEW' /&gt;" Guid="9eeb5f08-029d-4de1-83fb-fe6ac57ca6bc" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Weight Unit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_6" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strWeightUnit]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB4:SAPLMGD1:2007/ctxtMARA-GEWEI' /&gt;" Guid="d192e7b4-fa91-4602-8ee9-c2b2d2f8b310" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                <uix:NGetText DisplayName="Get Text 'Division'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGetText_7" ScopeIdentifier="71e0e47d-80fa-4e49-b0ae-42789f3bd6b5" TextString="[out_strDivision]" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB2:SAPLMGD1:2001/ctxtMARA-SPART' /&gt;" Guid="1e5050bb-b557-4fef-857b-057f33c2a2d9" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                  </uix:NGetText.Target>
+                </uix:NGetText>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;">
+                  <uix:TargetApp.Arguments>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.Arguments>
+                  <uix:TargetApp.FilePath>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.FilePath>
+                  <uix:TargetApp.WorkingDirectory>
+                    <InArgument x:TypeArguments="x:String" />
+                  </uix:TargetApp.WorkingDirectory>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+            <ui:LogMessage DisplayName="Log Message End SAP_ReadBasicData" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] SAP_ReadBasicData&quot;]" />
+  </Sequence>
+</Activity>

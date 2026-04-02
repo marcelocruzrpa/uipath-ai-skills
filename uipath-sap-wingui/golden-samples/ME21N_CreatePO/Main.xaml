@@ -1,0 +1,51 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strSapConnection" Type="InArgument(x:String)" />
+    <x:Property Name="in_strCredentialAssetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_strClient" Type="InArgument(x:String)" />
+    <x:Property Name="in_strLanguage" Type="InArgument(x:String)" />
+    <x:Property Name="in_strVendor" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPurchOrg" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPurchGroup" Type="InArgument(x:String)" />
+    <x:Property Name="in_strMaterial" Type="InArgument(x:String)" />
+    <x:Property Name="in_strQuantity" Type="InArgument(x:String)" />
+    <x:Property Name="in_strPlant" Type="InArgument(x:String)" />
+    <x:Property Name="out_strPoNumber" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="400,800" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <ui:LogMessage DisplayName="Log Start" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;[START] Main — Create Purchase Order ME21N&quot;]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="False" DisplayName="Invoke SAP_Launch" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\SAP\SAP_Launch.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strSapConnection">[in_strSapConnection]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strCredentialAssetName">[in_strCredentialAssetName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strClient">[in_strClient]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strLanguage">[in_strLanguage]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="False" DisplayName="Invoke SAP_FillPOHeader" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\SAP\SAP_FillPOHeader.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strVendor">[in_strVendor]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPurchOrg">[in_strPurchOrg]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPurchGroup">[in_strPurchGroup]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="False" DisplayName="Invoke SAP_FillItemTable" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\SAP\SAP_FillItemTable.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strMaterial">[in_strMaterial]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strQuantity">[in_strQuantity]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_strPlant">[in_strPlant]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="False" DisplayName="Invoke SAP_SaveAndExtractPO" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\SAP\SAP_SaveAndExtractPO.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_strPoNumber">[out_strPoNumber]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="False" DisplayName="Invoke SAP_Close" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\SAP\SAP_Close.xaml" />
+    <ui:LogMessage DisplayName="Log End" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[String.Format(&quot;[END] Main — PO created: {0}&quot;, out_strPoNumber)]" />
+  </Sequence>
+</Activity>

@@ -1,0 +1,88 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SAP_SaveAndExtractPO" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_strPoNumber" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>SAP_SaveAndExtractPO_1</sap2010:WorkflowViewState.IdRef>
+  <Sequence DisplayName="SAP_SaveAndExtractPO" sap:VirtualizedContainerService.HintSize="488,900" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strStatusBarMsg" />
+      <Variable x:TypeArguments="x:String" Name="strStatusBarMsgType" />
+      <Variable x:TypeArguments="s:String[]" Name="arrStatusBarMsgData" />
+    </Sequence.Variables>
+    <ui:LogMessage DisplayName="Log Start" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;[START] SAP_SaveAndExtractPO&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="SAP Easy Access" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,700" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Never]" ScopeGuid="e4d5c6b7-a8f9-0123-defa-345678901234" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,600" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NSAPClickToolbarButton DisplayName="Click Toolbar Button 'Save   (Ctrl+S)'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,195" sap2010:WorkflowViewState.IdRef="NSAPClickToolbarButton_1" Item="Save   (Ctrl+S)" ScopeIdentifier="e4d5c6b7-a8f9-0123-defa-345678901234" Version="V5">
+              <uix:NSAPClickToolbarButton.Items>
+                <scg:List x:TypeArguments="x:String" Capacity="12">
+                  <x:String>Enter</x:String>
+                  <x:String>Close Command Field</x:String>
+                  <x:String xml:space="preserve">Save   (Ctrl+S)</x:String>
+                  <x:String xml:space="preserve">Back   (F3)</x:String>
+                  <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+                  <x:String xml:space="preserve">Cancel   (F12)</x:String>
+                </scg:List>
+              </uix:NSAPClickToolbarButton.Items>
+              <uix:NSAPClickToolbarButton.Target>
+                <uix:TargetAnchorable ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id='tbar[0]/btn[11]' /&gt;" ScopeSelectorArgument="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+              </uix:NSAPClickToolbarButton.Target>
+            </uix:NSAPClickToolbarButton>
+            <uix:NSAPReadStatusbar MessageId="{x:Null}" MessageNumber="{x:Null}" DisplayName="Read Status Bar" sap:VirtualizedContainerService.HintSize="452,227" sap2010:WorkflowViewState.IdRef="NSAPReadStatusbar_1" MessageData="[arrStatusBarMsgData]" MessageText="[strStatusBarMsg]" MessageType="[strStatusBarMsgType]" ScopeIdentifier="e4d5c6b7-a8f9-0123-defa-345678901234" Version="V5" />
+            <If Condition="[Not strStatusBarMsgType.Equals(&quot;E&quot;)]" DisplayName="If Status OK" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Success — Extract PO Number" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Assign DisplayName="Extract PO Number" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[out_strPoNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[arrStatusBarMsgData.Last]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:LogMessage DisplayName="Log PO Number" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;PO created successfully: {0}&quot;, out_strPoNumber)]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Throw DisplayName="Throw SAP Error" sap2010:WorkflowViewState.IdRef="Throw_1" Exception="[New UiPath.Core.Activities.BusinessRuleException(strStatusBarMsg)]" />
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;" Version="V2">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.FilePath>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.FilePath>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+    <ui:LogMessage DisplayName="Log End" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;[END] SAP_SaveAndExtractPO&quot;]" />
+  </Sequence>
+</Activity>
