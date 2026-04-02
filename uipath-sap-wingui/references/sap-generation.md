@@ -22,30 +22,51 @@ These compose with ALL core generators (`log_message`, `retryscope`, `getrobotcr
 
 **Python-only helpers** (not usable as JSON `"gen"` values): `gen_sap_status_bar_check`, `gen_sap_type_into_cell`
 
-**Example JSON spec — SAP_FillPOHeader.xaml (action workflow):**
-
-Action workflows attach to the existing SAP session via `napplicationcard_attach` (core container), then use SAP generators inside.
+**Example JSON spec — SAP_CallTransaction.xaml (generic navigation):**
 
 ```json
 {
-  "class_name": "SAP_FillPOHeader",
+  "class_name": "SAP_CallTransaction",
   "arguments": [
     {"name": "io_uiSAP", "direction": "InOut", "type": "UiElement"},
-    {"name": "in_strTransaction", "direction": "In", "type": "String"},
-    {"name": "in_strVendor", "direction": "In", "type": "String"}
+    {"name": "in_strTransaction", "direction": "In", "type": "String"}
   ],
   "activities": [
-    {"gen": "log_message", "args": {"message_expr": "\"[START] SAP_FillPOHeader\""}},
+    {"gen": "log_message", "args": {"message_expr": "\"[START] SAP_CallTransaction\""}},
     {"gen": "napplicationcard_attach",
-     "args": {"display_name": "SAP Easy Access", "ui_element_variable": "io_uiSAP", "desktop": true,
+     "args": {"display_name": "SAP - Navigate", "ui_element_variable": "io_uiSAP", "desktop": true,
               "target_app_selector": "<wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' />"},
      "children": [
        {"gen": "sap_call_transaction", "args": {"transaction": "in_strTransaction", "prefix": "/n"}},
+       {"gen": "sap_click_toolbar", "args": {"item": "Enter"}}
+     ]},
+    {"gen": "log_message", "args": {"message_expr": "\"[END] SAP_CallTransaction\""}}
+  ]
+}
+```
+
+**Example JSON spec — SAP_CreatePurchaseOrder.xaml (action workflow):**
+
+Action workflows attach to the existing SAP session via `napplicationcard_attach` (core container). **Navigation (CallTransaction) is a separate workflow** — the action workflow assumes it's already on the correct screen. All field interactions within the transaction belong in one workflow.
+
+```json
+{
+  "class_name": "SAP_CreatePurchaseOrder",
+  "arguments": [
+    {"name": "io_uiSAP", "direction": "InOut", "type": "UiElement"},
+    {"name": "in_strVendor", "direction": "In", "type": "String"}
+  ],
+  "activities": [
+    {"gen": "log_message", "args": {"message_expr": "\"[START] SAP_CreatePurchaseOrder\""}},
+    {"gen": "napplicationcard_attach",
+     "args": {"display_name": "SAP - Create Purchase Order", "ui_element_variable": "io_uiSAP", "desktop": true,
+              "target_app_selector": "<wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' />"},
+     "children": [
        {"gen": "ntypeinto", "args": {"display_name": "Type Into 'Vendor'",
         "selector": "<sap id='usr/ctxtEKKO-LIFNR' />", "text_variable": "in_strVendor"}},
        {"gen": "sap_click_toolbar", "args": {"item": "Enter"}}
      ]},
-    {"gen": "log_message", "args": {"message_expr": "\"[END] SAP_FillPOHeader\""}}
+    {"gen": "log_message", "args": {"message_expr": "\"[END] SAP_CreatePurchaseOrder\""}}
   ]
 }
 ```
@@ -134,29 +155,23 @@ sap_scope = gen_sap_logon(
 # Arguments: in_strCredentialAssetName, in_strConnection, in_strSapLogonPath, out_UISAP (UiElement)
 ```
 
-### Recipe 2: Generate Action Workflow (Attach + Navigate + Field Interactions)
+### Recipe 2: Generate Action Workflow (Field Interactions Only)
 
-Action workflows use `NApplicationCard` (from uipath-core) — NOT `NSAPLogon`. `NSAPLogon` is only for the launch/open scenario.
+Action workflows use `NApplicationCard` (from uipath-core) — NOT `NSAPLogon`. **Navigation (CallTransaction) is a separate workflow** — the action workflow assumes it's already on the correct screen. All field interactions within the transaction belong in one workflow.
 
 ```python
-# SAP_FillPOHeader.xaml — attaches via NApplicationCard, navigates to tcode, fills fields
+# SAP_CreatePurchaseOrder.xaml — attaches via NApplicationCard, fills fields (already on ME21N)
 from generate_activities import gen_napplicationcard
 scope_guid = _guid()
-
-navigate = gen_sap_call_transaction(
-    transaction='in_strTransaction',     # ARGUMENT — never hardcode
-    prefix='/n',
-    scope_id=scope_guid,
-)
 
 # NTypeInto, NSelectItem from uipath-core generators — use selectors from inspection
 # type_vendor = gen_ntypeinto(text='in_strVendor', selector=SELECTOR_FROM_INSPECTION, ...)
 # enter = gen_sap_click_toolbar(item='Enter', scope_id=scope_guid)
 
-body = '\n'.join([indent_xml(navigate, 4), indent_xml(type_vendor, 4), indent_xml(enter, 4)])
+body = '\n'.join([indent_xml(type_vendor, 4), indent_xml(enter, 4)])
 
 sap_scope = gen_napplicationcard(
-    display_name='SAP Easy Access',
+    display_name='SAP - Create Purchase Order',
     open_mode='Never',           # ATTACH ONLY — SAP_Launch.xaml already opened it
     close_mode='Never',
     scope_guid=scope_guid,

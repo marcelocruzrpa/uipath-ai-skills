@@ -5,11 +5,11 @@ from ._xml_utils import _selector_xml, _viewstate_block
 
 def gen_ntypeinto(display_name, selector, text_variable, id_ref, scope_id,
                   is_secure=False, empty_field_mode="SingleLine",
-                  obj_repo=None, indent="            "):
+                  obj_repo=None, scope_selector=None, indent="            "):
     if not (empty_field_mode in ("SingleLine", "MultiLine", "None")):
         raise ValueError(f"Invalid EmptyFieldMode '{empty_field_mode}'")
     text_attr = f'SecureText="[{text_variable}]"' if is_secure else f'Text="[{text_variable}]"'
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     hs = _hs("NTypeInto")
     dn = _escape_xml_attr(display_name)
     i, i2, i3, i4, i5 = indent, indent+"  ", indent+"    ", indent+"      ", indent+"        "
@@ -36,12 +36,12 @@ def gen_ntypeinto(display_name, selector, text_variable, id_ref, scope_id,
 
 def gen_nclick(display_name, selector, id_ref, scope_id,
                click_type="Single", mouse_button="Left",
-               obj_repo=None, indent="            "):
+               obj_repo=None, scope_selector=None, indent="            "):
     if not (click_type in ("Single", "Double")):
         raise ValueError(f"Invalid click_type: {click_type}. Must be one of: Single, Double")
     if not (mouse_button in ("Left", "Right", "Middle")):
         raise ValueError(f"Invalid mouse_button: {mouse_button}. Must be one of: Left, Right, Middle")
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     hs = _hs("NClick")
     dn = _escape_xml_attr(display_name)
     i, i2, i3 = indent, indent+"  ", indent+"    "
@@ -58,7 +58,7 @@ def gen_nclick(display_name, selector, id_ref, scope_id,
 
 def gen_ncheck(display_name, selector, id_ref, scope_id,
                action="Check",
-               obj_repo=None, indent="            "):
+               obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Check/Uncheck (uix:NCheck) activity for checkboxes.
 
     Unlike NClick (which toggles), NCheck is idempotent:
@@ -69,7 +69,7 @@ def gen_ncheck(display_name, selector, id_ref, scope_id,
     """
     if action not in ("Check", "Uncheck", "Toggle"):
         raise ValueError(f"Invalid action: {action}. Must be one of: Check, Uncheck, Toggle")
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     hs = _hs("NCheck")
     dn = _escape_xml_attr(display_name)
     i, i2, i3 = indent, indent+"  ", indent+"    "
@@ -86,7 +86,7 @@ def gen_ncheck(display_name, selector, id_ref, scope_id,
 
 def gen_nhover(display_name, selector, id_ref, scope_id,
                hover_time=None, cursor_motion_type="Instant",
-               obj_repo=None, indent="            "):
+               obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Hover (uix:NHover) activity.
 
     Args:
@@ -100,7 +100,7 @@ def gen_nhover(display_name, selector, id_ref, scope_id,
     """
     if not (cursor_motion_type in ("Instant", "Smooth")):
         raise ValueError(f"Invalid cursor_motion_type: {cursor_motion_type}. Must be one of: Instant, Smooth")
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     hs = _hs("NHover")
     dn = _escape_xml_attr(display_name)
     i, i2, i3 = indent, indent+"  ", indent+"    "
@@ -145,7 +145,7 @@ def gen_nkeyboardshortcuts(display_name, shortcuts, id_ref, scope_id,
                            activate_before=True,
                            click_before_mode="None",
                            interaction_mode="HardwareEvents",
-                           obj_repo=None, indent="            "):
+                           obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Keyboard Shortcuts (uix:NKeyboardShortcuts) activity.
 
     Args:
@@ -183,7 +183,7 @@ def gen_nkeyboardshortcuts(display_name, shortcuts, id_ref, scope_id,
     if not selector:
         return f'{indent}<uix:NKeyboardShortcuts {attrs} />'
 
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     i2, i3 = indent + "  ", indent + "    "
     return f"""{indent}<uix:NKeyboardShortcuts {attrs}>
 {i2}<uix:NKeyboardShortcuts.Target>
@@ -197,19 +197,19 @@ def gen_nkeyboardshortcuts(display_name, shortcuts, id_ref, scope_id,
 # ---------------------------------------------------------------------------
 
 def gen_ndoubleclick(display_name, selector, id_ref, scope_id,
-                     mouse_button="Left", obj_repo=None, indent="            "):
+                     mouse_button="Left", obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Double Click activity (NClick with ClickType='Double')."""
     return gen_nclick(display_name, selector, id_ref, scope_id,
                       click_type="Double", mouse_button=mouse_button,
-                      obj_repo=obj_repo, indent=indent)
+                      obj_repo=obj_repo, scope_selector=scope_selector, indent=indent)
 
 
 def gen_nrightclick(display_name, selector, id_ref, scope_id,
-                    obj_repo=None, indent="            "):
+                    obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Right Click activity (NClick with MouseButton='Right')."""
     return gen_nclick(display_name, selector, id_ref, scope_id,
                       click_type="Single", mouse_button="Right",
-                      obj_repo=obj_repo, indent=indent)
+                      obj_repo=obj_repo, scope_selector=scope_selector, indent=indent)
 
 
 # ---------------------------------------------------------------------------
@@ -218,7 +218,7 @@ def gen_nrightclick(display_name, selector, id_ref, scope_id,
 
 def gen_ngettext(display_name, output_variable, id_ref, scope_id,
                  selector="", in_ui_element="",
-                 obj_repo=None, indent="            "):
+                 obj_repo=None, scope_selector=None, indent="            "):
     if not (bool(selector) != bool(in_ui_element)):
         raise ValueError("Provide exactly one of selector or in_ui_element")
     hs = _hs("NGetText")
@@ -226,7 +226,7 @@ def gen_ngettext(display_name, output_variable, id_ref, scope_id,
     i, i2, i3 = indent, indent+"  ", indent+"    "
     if in_ui_element:
         return f'{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{in_ui_element}]" ScopeIdentifier="{scope_id}" TextString="[{output_variable}]" Version="V5" />'
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     return f"""{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" ScopeIdentifier="{scope_id}" TextString="[{output_variable}]" Version="V5">
 {i2}<uix:NGetText.Target>
 {i3}{target}
@@ -242,8 +242,8 @@ def gen_ncheckstate(display_name, selector, id_ref, scope_id,
                     if_exists_idref, if_not_exists_idref,
                     if_exists_body="", if_not_exists_body="",
                     out_ui_element="",
-                    obj_repo=None, indent="            "):
-    target = _selector_xml(selector, obj_repo=obj_repo)
+                    obj_repo=None, scope_selector=None, indent="            "):
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     out_attr = f' OutUiElement="[{out_ui_element}]"' if out_ui_element else ""
     hs = _hs("NCheckState")
     dn = _escape_xml_attr(display_name)
@@ -273,7 +273,7 @@ def gen_ncheckstate(display_name, selector, id_ref, scope_id,
 
 def gen_nselectitem(display_name, selector, item_variable, id_ref, scope_id,
                     static_items=None,
-                    obj_repo=None, indent="            "):
+                    obj_repo=None, scope_selector=None, indent="            "):
     """Generate NSelectItem — dropdown selection.
 
     Args:
@@ -286,7 +286,7 @@ def gen_nselectitem(display_name, selector, item_variable, id_ref, scope_id,
     if not (item_variable is not None and item_variable != ""):
         raise ValueError("item_variable is REQUIRED — NSelectItem rejects Item={x:Null}. "
                          "Use a variable name or a quoted literal like 'Completed'")
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     dn = _escape_xml_attr(display_name)
     i, i2, i3, i4 = indent, indent+"  ", indent+"    ", indent+"      "
 
@@ -327,7 +327,7 @@ def gen_nselectitem(display_name, selector, item_variable, id_ref, scope_id,
 def gen_nmousescroll(display_name, selector, id_ref, scope_id,
                      direction="Down", movement_units=3,
                      interaction_mode="HardwareEvents",
-                     obj_repo=None, indent="            "):
+                     obj_repo=None, scope_selector=None, indent="            "):
     """Generate a Mouse Scroll (uix:NMouseScroll) activity.
 
     Args:
@@ -345,7 +345,7 @@ def gen_nmousescroll(display_name, selector, id_ref, scope_id,
         raise ValueError(f"Invalid direction: {direction}. Must be one of: Down, Up, Left, Right")
     if not (interaction_mode in ("HardwareEvents", "SimulateClick", "ChromiumApi", "SameAsCard")):
         raise ValueError(f"Invalid interaction_mode: {interaction_mode}. Must be one of: HardwareEvents, SimulateClick, ChromiumApi, SameAsCard")
-    target = _selector_xml(selector, obj_repo=obj_repo)
+    target = _selector_xml(selector, obj_repo=obj_repo, scope_selector=scope_selector)
     hs = _hs("NMouseScroll")
     dn = _escape_xml_attr(display_name)
     i = indent

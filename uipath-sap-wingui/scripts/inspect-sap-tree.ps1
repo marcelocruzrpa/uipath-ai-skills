@@ -32,6 +32,10 @@
     ClassName of the SAP window (typically 'SAP_FRONTEND_SESSION').
 .PARAMETER ProcessName
     Process name to match. Defaults to 'saplogon.exe'.
+.PARAMETER Transaction
+    Optional SAP transaction code to navigate to before inspecting.
+    Executes /n{Transaction} via SAP COM API, waits for screen change,
+    then inspects. Example: -Transaction ME21N
 .PARAMETER MaxElements
     Maximum number of SAP controls to output. Default: 300.
 .PARAMETER OutputFormat
@@ -46,6 +50,7 @@ param(
     [string]$WindowTitle = "",
     [string]$WindowClass = "",
     [string]$ProcessName = "saplogon.exe",
+    [string]$Transaction = "",
     [int]$MaxElements = 300,
     [ValidateSet("tree", "flat", "selectors", "json")]
     [string]$OutputFormat = "selectors"
@@ -165,6 +170,8 @@ If Not IsObject(application) Then
 End If
 Set connection = application.Children(0)
 Set session = connection.Children(0)
+
+' @@NAVIGATE@@
 
 WScript.Echo "META|" & session.Info.Transaction & "|" & session.Info.SystemName & "|" & session.ActiveWindow.Text
 
@@ -298,6 +305,19 @@ End If
 
 WScript.Echo "DONE|" & elCount
 '@
+
+# Inject transaction navigation if -Transaction provided
+if ($Transaction -ne "") {
+    $navVbs = @"
+' Navigate to transaction /n$Transaction
+session.FindById("wnd[0]/tbar[0]/okcd").Text = "/n$Transaction"
+session.FindById("wnd[0]").sendVKey 0
+WScript.Sleep 1000
+"@
+    $vbsCode = $vbsCode -replace "' @@NAVIGATE@@", $navVbs
+} else {
+    $vbsCode = $vbsCode -replace "' @@NAVIGATE@@", ""
+}
 
 Set-Content -Path $vbsTmp -Value $vbsCode -Encoding ASCII
 

@@ -82,10 +82,10 @@ Read the relevant reference BEFORE generating any SAP XAML.
 
 ### Core Principles
 1. **Main.xaml orchestrates only** — InvokeWorkflowFile calls, no SAP activities, no business logic
-2. **One focused task per workflow** — `SAP_Launch.xaml`, `SAP_FillPOHeader.xaml`, `SAP_FillItemTable.xaml`, `SAP_SaveAndExtractPO.xaml` are separate files
+2. **Same transaction = same workflow** — all steps within a single SAP transaction belong in ONE action workflow. E.g., `SAP_CreatePurchaseOrder.xaml` contains: CallTransaction → fill header → fill items → Save → StatusBar check. Only split when switching transactions or apps.
 3. **≤150 lines per file** — if a workflow exceeds this, split it
 4. **Credentials retrieved where used** — GetRobotCredential goes inside `SAP_Launch.xaml`, pass only `in_strCredentialAssetName` (the Orchestrator asset name string)
-5. **Log bookends on every workflow** — first and last activity: `LogMessage "[START/END] SAP_ActionName"`
+5. **Log bookends + intermediate logs** — first/last activity: `LogMessage "[START/END] SAP_ActionName"`. Also add log messages **between each logical step** (e.g., "Filling PO header...", "Filling item table...", "Saving purchase order..."). SAP transactions are long-running — intermediate logs pinpoint where failures occur.
 
 ### SAP Folder Structure
 ```
@@ -93,15 +93,18 @@ ProjectRoot/
 ├── Main.xaml                               # Orchestration only
 ├── Workflows/
 │   ├── SAP/                                # All SAP workflows in SAP/ subfolder
-│   │   ├── SAP_Launch.xaml                  # NSAPLogon(Always) + NSAPLogin ONLY (no transaction)
-│   │   ├── SAP_FillPOHeader.xaml           # NApplicationCard(Never) + CallTransaction + header fields
-│   │   ├── SAP_FillItemTable.xaml          # NApplicationCard(Never) + table cell interactions
-│   │   ├── SAP_SaveAndExtractPO.xaml       # NApplicationCard(Never) + Save + StatusBar + popup
+│   │   ├── SAP_Launch.xaml                  # NSAPLogon(Always) + NSAPLogin ONLY
+│   │   ├── SAP_CallTransaction.xaml        # Generic: NApplicationCard(Never) + NSAPCallTransaction
+│   │   ├── SAP_CreatePurchaseOrder.xaml    # NApplicationCard(Never) + header + items + Save + StatusBar
 │   │   └── SAP_Close.xaml                  # NApplicationCard(CloseMode=Always)
 │   └── Utils/
 │       └── Process_ValidateData.xaml       # No UI — data validation only
 └── Framework/                              # REFramework files (if applicable)
 ```
+
+> **Same transaction = same workflow.** All field interactions within ME21N (fill header, fill table, save, status bar) belong in `SAP_CreatePurchaseOrder.xaml`. Do NOT split into `SAP_FillPOHeader.xaml` + `SAP_FillItemTable.xaml` + `SAP_SaveAndExtractPO.xaml`.
+
+> **Navigation is a separate orchestration step.** `SAP_CallTransaction.xaml` is a generic reusable workflow that takes `in_strTransaction` as an argument. Main.xaml calls it before the action workflow. The action workflow assumes it's already on the correct screen.
 
 ### SAP Launch Pattern (Login Inside Launch)
 `SAP_Launch.xaml` is the SAP equivalent of `AppName_Launch.xaml`. It handles ONLY:
@@ -129,7 +132,7 @@ secstrPassword            (SecureString) — from GetRobotCredential
 All input values come from the caller — **nothing is hardcoded in the workflow**. `out_UISAP` is the session UiElement reference output by `NSAPLogin.OutUiElement`, passed to action workflows.
 
 ### SAP Action Workflow Pattern (Attach Only)
-All action workflows (`SAP_FillPOHeader.xaml`, `SAP_FillItemTable.xaml`, etc.) use `NApplicationCard` with `OpenMode="Never"` — they attach to the already-open SAP session, never launch it.
+All action workflows (e.g., `SAP_CreatePurchaseOrder.xaml`) use `NApplicationCard` with `OpenMode="Never"` — they attach to the already-open SAP session, never launch it.
 
 **Why NApplicationCard, not NSAPLogon?** Real UiPath Studio uses `NApplicationCard` for attach-to-existing-session workflows. `NSAPLogon` is reserved for the launch/open scenario (with `OpenMode="Always"`). SAP activities (`NSAPCallTransaction`, `NSAPClickToolbarButton`, etc.) work correctly inside `NApplicationCard` — they reference the scope via `ScopeIdentifier` matching `NApplicationCard.ScopeGuid`.
 
@@ -145,14 +148,14 @@ full = gen_napplicationcard(
 )
 ```
 
-**Each action workflow does ONE focused task:**
+**Each action workflow covers field interactions only (already on correct screen):**
 
 | Workflow | Does | Does NOT |
 |---|---|---|
-| `SAP_FillPOHeader.xaml` | Fill header fields (Order Type, Vendor, Org Data) | Fill table, Save, Login |
-| `SAP_FillItemTable.xaml` | Fill one or more table rows | Fill header, Save, Login |
-| `SAP_SaveAndExtractPO.xaml` | Save + popup handling + StatusBar + extract PO# | Fill anything, Login |
-| `SAP_ReadMaterial.xaml` | Navigate to MM03, read fields, navigate back | Login, Save |
+| `SAP_CallTransaction.xaml` | Generic: NSAPCallTransaction with `in_strTransaction` arg + Enter | Field interactions, Login, Close |
+| `SAP_CreatePurchaseOrder.xaml` | Fill header → fill items → Save → StatusBar check → extract PO# | Navigate (CallTransaction), Login, Close |
+| `SAP_ReadMaterial.xaml` | Read Basic Data fields → Back | Navigate, Login, Close |
+| `SAP_DisplaySalesOrder.xaml` | Read header + items → Back | Navigate, Login, Close |
 
 ### SAP Close Pattern
 `SAP_Close.xaml` uses `NApplicationCard` (from uipath-core) with `CloseMode="Always"`, `OpenMode="Never"`. This is the SAP equivalent of `App_Close.xaml`.
@@ -164,28 +167,26 @@ In REFramework: `SAP_Close.xaml` is invoked from `CloseAllApplications.xaml` onl
 | Workflow type | Scope activity | OpenMode | CloseMode |
 |---|---|---|---|
 | `SAP_Launch.xaml` | `NSAPLogon` | Always | Never |
-| Action workflows (`SAP_Fill*.xaml`, `SAP_Save*.xaml`) | `NApplicationCard` | Never | Never |
+| Action workflows (e.g., `SAP_CreatePurchaseOrder.xaml`) | `NApplicationCard` | Never | Never |
 | `SAP_Close.xaml` | `NApplicationCard` | Never | Always |
 
 **Key rule:** `NSAPLogon` is ONLY for launch/open. All attach-to-existing-session workflows use `NApplicationCard`. SAP activities (`NSAPCallTransaction`, `NSAPClickToolbarButton`, etc.) work inside both — they reference the scope via `ScopeIdentifier` matching the parent's `ScopeGuid`.
 
 ### Orchestration Example (Main.xaml or Process.xaml)
 ```
-Main.xaml — variables: dt_Items (DataTable)
-  ├── InvokeWorkflow: Workflows\SAP\SAP_Launch.xaml          (NSAPLogon scope)
-  │     (in_strSapConnection, in_strCredentialAssetName, in_strClient, in_strLanguage)
-  ├── InvokeWorkflow: Workflows\SAP\SAP_FillPOHeader.xaml   (NApplicationCard scope)
-  │     (in_strTransaction="ME21N", in_strVendor, in_strPurchOrg, in_strPurchGroup)
-  │     ↑ First action workflow navigates to the transaction
-  ├── ForEachRow in dt_Items:
-  │   └── InvokeWorkflow: Workflows\SAP\SAP_FillItemTable.xaml  (NApplicationCard scope)
-  │         (in_strMaterial, in_strQuantity, in_strPlant)
-  ├── InvokeWorkflow: Workflows\SAP\SAP_SaveAndExtractPO.xaml   (NApplicationCard scope)
-  │     (out_strPoNumber)
-  └── InvokeWorkflow: Workflows\SAP\SAP_Close.xaml              (NApplicationCard scope)
+Main.xaml
+  ├── InvokeWorkflow: Workflows\SAP\SAP_Launch.xaml                (NSAPLogon scope)
+  │     (in_strSapConnection, in_strCredentialAssetName, in_strSapLogonPath, out_uiSAP)
+  ├── InvokeWorkflow: Workflows\SAP\SAP_CallTransaction.xaml       (NApplicationCard scope)
+  │     (io_uiSAP, in_strTransaction="ME21N")
+  │     ↑ Generic — reusable for any transaction code
+  ├── InvokeWorkflow: Workflows\SAP\SAP_CreatePurchaseOrder.xaml   (NApplicationCard scope)
+  │     (io_uiSAP, in_strVendor, in_strMaterial, in_strQuantity, in_strPlant, out_strPONumber)
+  │     ↑ Already on ME21N screen — fills header → items → Save → StatusBar
+  └── InvokeWorkflow: Workflows\SAP\SAP_Close.xaml                 (NApplicationCard scope)
 ```
 
-**Note:** `SAP_FillPOHeader.xaml` starts with `NSAPCallTransaction` to navigate to ME21N, then fills header fields. This keeps Launch reusable — a different process using VA01 would pass a different transaction to its own action workflow.
+**Note:** `SAP_CallTransaction.xaml` is generic — it takes `in_strTransaction` and navigates via NSAPCallTransaction. The action workflow does NOT contain CallTransaction — it starts with field interactions. A different process using VA01 would pass a different transaction code to the same `SAP_CallTransaction.xaml`.
 
 ### What NOT To Do
 ```
@@ -210,18 +211,17 @@ WRONG — everything in one workflow:
     └── NApplicationCard (Close)
 
 ALSO WRONG — using NSAPLogon for attach:
-  SAP_FillPOHeader.xaml
+  SAP_ActionWorkflow.xaml
     ├── NSAPLogon (OpenMode="Never")   ← WRONG: use NApplicationCard for attach
-    ├── NSAPCallTransaction
+    ├── NTypeInto (fields)
     └── ...
 
-CORRECT — decomposed into focused sub-workflows:
-  Main.xaml (orchestration only — ~30 lines)
-    ├── InvokeWorkflow: SAP_Launch.xaml           (~50 lines — NSAPLogon open + login ONLY)
-    ├── InvokeWorkflow: SAP_FillPOHeader.xaml    (~60 lines — NApplicationCard + CallTransaction + header)
-    ├── InvokeWorkflow: SAP_FillItemTable.xaml   (~60 lines — NApplicationCard + table cells)
-    ├── InvokeWorkflow: SAP_SaveAndExtractPO.xaml (~50 lines — NApplicationCard + Save + StatusBar)
-    └── InvokeWorkflow: SAP_Close.xaml           (~20 lines — NApplicationCard close)
+CORRECT — decomposed by concern:
+  Main.xaml (orchestration only — ~25 lines)
+    ├── InvokeWorkflow: SAP_Launch.xaml                (~50 lines — NSAPLogon open + login ONLY)
+    ├── InvokeWorkflow: SAP_CallTransaction.xaml       (~30 lines — generic, in_strTransaction="ME21N")
+    ├── InvokeWorkflow: SAP_CreatePurchaseOrder.xaml   (~100 lines — NApplicationCard + header + items + Save + StatusBar)
+    └── InvokeWorkflow: SAP_Close.xaml                 (~20 lines — NApplicationCard close)
 ```
 
 ---
@@ -262,9 +262,11 @@ CORRECT — decomposed into focused sub-workflows:
 | **`references/sap-cheat-sheet.md`** | **Generator signatures, usage examples, common mistakes, selector patterns, workflow patterns** |
 | `references/sap-inspection-reference.md` | Inspection script documentation |
 | `scripts/inspect-sap-tree.ps1` | SAP GUI COM inspection script |
-| `golden-samples/ME21N_CreatePO/` | Decomposed ME21N golden samples (6 files — generator output) |
-| `golden-samples/SAP_ME21N_CreatePO.xaml` | Real Studio export — complete single-task action workflow (NApplicationCard attach, real selectors) |
+| `golden-samples/SAP_Launch.xaml` | Real Studio export — NSAPLogon + NSAPLogin |
 | `golden-samples/SAP_CallTransaction.xaml` | Real Studio export — NApplicationCard attach + NSAPCallTransaction |
+| `golden-samples/VA03_DisplaySalesOrder/` | Read-only pattern — header + item table (real EH8 selectors) |
+| `golden-samples/SE16N_DataBrowser/` | Query + results pattern — enter table, execute, read hits |
+| `golden-samples/MM03_DisplayMaterial/` | Multi-tab read pattern — navigate, read Basic Data 1 fields |
 
 ## Known Core Lint False Positives
 
@@ -276,7 +278,7 @@ When running `uipath-core`'s `validate_xaml` on SAP workflows, these are expecte
 | lint 45 | "navigate" in filename | Browser heuristic, not SAP | Ignore, or avoid "navigate" in filename |
 | lint 69 | `_Launch.xaml` missing Pick/NCheckState login validation | Browser-specific pattern — SAP's NSAPLogin throws on auth failure natively via COM | Ignore — add NSAPReadStatusbar after NSAPCallTransaction instead |
 
-Always run **both** validators. Ignore the two false positives above from core lint.
+> **lint 94 (Object Repository) is NOT a false positive for SAP.** SAP selectors (`<sap id='...'/>`) belong in `.objects/`. Write `selectors.json` during inspection, then run `generate_object_repository.py`.
 
 ---
 

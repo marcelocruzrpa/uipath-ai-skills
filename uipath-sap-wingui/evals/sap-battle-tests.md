@@ -289,14 +289,13 @@ Battle test scenarios for validating the `uipath-sap-wingui` skill. Each scenari
 
 **What the agent should do:**
 1. Scaffold the project with `scaffold_project.py`
-2. Plan decomposition: `SAP_Launch.xaml`, `SAP_FillPOHeader.xaml`, `SAP_FillItemTable.xaml`, `SAP_SaveAndExtractPO.xaml`, `SAP_Close.xaml`
-3. Generate `SAP_Launch.xaml` first (no inspection needed — login + navigate are selector-free)
-4. Inspect ME21N for header field selectors → generate `SAP_FillPOHeader.xaml`
-5. May need re-inspection after tab clicks (Org. Data tab)
-6. Inspect for table structure → generate `SAP_FillItemTable.xaml`
-7. Generate `SAP_SaveAndExtractPO.xaml` (Save toolbar + StatusBar are selector-free)
-8. Generate `SAP_Close.xaml`
-9. Generate `Main.xaml` orchestrating via InvokeWorkflowFile
+2. Plan decomposition: `SAP_Launch.xaml`, `SAP_CallTransaction.xaml`, `SAP_CreatePurchaseOrder.xaml`, `SAP_Close.xaml`
+3. Generate `SAP_Launch.xaml` first (no inspection needed — login is selector-free)
+4. Generate `SAP_CallTransaction.xaml` (generic — no inspection needed, uses NSAPCallTransaction)
+5. Inspect ME21N (`inspect-sap-tree.ps1 -Transaction ME21N`) for header + table selectors
+6. Generate `SAP_CreatePurchaseOrder.xaml` — fill header + fill items + Save + StatusBar (no CallTransaction)
+7. Generate `SAP_Close.xaml`
+8. Generate `Main.xaml` orchestrating via InvokeWorkflowFile
 
 **Expected project structure:**
 ```
@@ -306,17 +305,18 @@ SAP_CreatePO/
 └── Workflows/
     └── SAP/
         ├── SAP_Launch.xaml                       # NSAPLogon(Always) + GetCred + NSAPLogin ONLY
-        ├── SAP_FillPOHeader.xaml                # NApplicationCard(Never) + header fields + Org Data tab
-        ├── SAP_FillItemTable.xaml               # NApplicationCard(Never) + table cell interactions
-        ├── SAP_SaveAndExtractPO.xaml            # NApplicationCard(Never) + Save + popup + StatusBar
+        ├── SAP_CallTransaction.xaml             # Generic: NApplicationCard(Never) + NSAPCallTransaction
+        ├── SAP_CreatePurchaseOrder.xaml          # NApplicationCard(Never) + header + items + Save + StatusBar
         └── SAP_Close.xaml                       # NApplicationCard(CloseMode=Always)
 ```
 
-**Reference:** Golden samples in `golden-samples/ME21N_CreatePO/` implement this exact scenario.
+**Reference:** `golden-samples/SAP_Launch.xaml` and `golden-samples/SAP_CallTransaction.xaml` are real Studio exports showing the launch and navigation patterns.
 
 **Validation checkpoints:**
 - [ ] Agent ran inspection(s) before generating field interactions
-- [ ] **Decomposed into 5+ separate .xaml files** (not one monolith)
+- [ ] **Navigation is a separate generic workflow** — `SAP_CallTransaction.xaml` with `in_strTransaction` argument
+- [ ] **Action workflow does NOT contain CallTransaction** — starts with field interactions
+- [ ] **Same transaction = same workflow** — all ME21N field interactions in `SAP_CreatePurchaseOrder.xaml`
 - [ ] **Main.xaml contains ONLY InvokeWorkflowFile calls** — no SAP activities
 - [ ] **SAP_Launch.xaml uses NSAPLogon with OpenMode="Always"** — the only file that opens SAP
 - [ ] **All other SAP_*.xaml use NApplicationCard with OpenMode="Never"** — attach only
@@ -324,8 +324,7 @@ SAP_CreatePO/
 - [ ] Each workflow has Log bookends ([START] / [END])
 - [ ] Correct activity types throughout
 - [ ] NSAPTableCellScope for table cells with InUiElement pattern
-- [ ] Status bar check after Save (in SAP_SaveAndExtractPO.xaml)
-- [ ] Popup handling present (in SAP_SaveAndExtractPO.xaml)
+- [ ] Status bar check after Save
 - [ ] All ScopeIdentifiers consistent within each file
 - [ ] Lint passes with 0 errors on all files
 - [ ] No guessed selectors

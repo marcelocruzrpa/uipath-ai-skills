@@ -26,11 +26,10 @@ from .generators import (
     gen_sap_select_menu_item,
     gen_sap_read_statusbar,
     gen_sap_table_cell_scope,
-    # gen_sap_status_bar_check and gen_sap_type_into_cell are Python-only
-    # convenience helpers (not registered as generators). status_bar_check
-    # returns a tuple (xml, condition) which is incompatible with the JSON
-    # spec dispatch in generate_workflow.py. Import them directly when needed:
-    #   from extensions.generators import gen_sap_status_bar_check, gen_sap_type_into_cell
+    gen_sap_type_into_cell,
+    # gen_sap_status_bar_check is Python-only (returns a tuple, not XML string).
+    # Import directly when needed:
+    #   from extensions.generators import gen_sap_status_bar_check
 )
 from .lint_rules import lint_sap_wingui
 
@@ -43,6 +42,7 @@ register_generator("sap_click_toolbar", gen_sap_click_toolbar, display_name="NSA
 register_generator("sap_select_menu_item", gen_sap_select_menu_item, display_name="NSAPSelectMenuItem", requires_ui_namespace=True)
 register_generator("sap_read_statusbar", gen_sap_read_statusbar, display_name="NSAPReadStatusbar", requires_ui_namespace=True)
 register_generator("sap_table_cell_scope", gen_sap_table_cell_scope, display_name="NSAPTableCellScope", requires_ui_namespace=True)
+register_generator("sap_type_into_cell", gen_sap_type_into_cell, display_name="NSAPTableCellScope", requires_ui_namespace=True)
 # gen_sap_status_bar_check returns (xml, condition_expr) tuple — not compatible
 # with JSON spec dispatch. gen_sap_type_into_cell is a Python composition helper.
 # Both are importable from .generators but NOT registered as spec generators.

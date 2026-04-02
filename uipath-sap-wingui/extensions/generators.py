@@ -627,8 +627,9 @@ def gen_sap_type_into_cell(
     scope_id=None,
     cell_var_name=None,
     display_name=None,
-    cell_scope_id_ref="NSAPTableCellScope_1",
-    type_into_id_ref="NTypeInto_1",
+    id_ref="NSAPTableCellScope_1",
+    cell_scope_id_ref=None,
+    type_into_id_ref=None,
 ):
     """Convenience: Generate NSAPTableCellScope wrapping an NTypeInto.
 
@@ -649,6 +650,14 @@ def gen_sap_type_into_cell(
         cell_scope_id_ref: IdRef for cell scope
         type_into_id_ref: IdRef for type into
     """
+    if cell_scope_id_ref is None:
+        cell_scope_id_ref = id_ref
+    if type_into_id_ref is None:
+        # Derive from id_ref: NSAPTableCellScope_3 → NTypeInto_Cell_3
+        # Uses "Cell" prefix to avoid collision with standalone NTypeInto IdRefs
+        suffix = id_ref.rsplit("_", 1)[-1] if "_" in id_ref else "1"
+        type_into_id_ref = f"NTypeInto_Cell_{suffix}"
+
     if cell_var_name is None:
         safe_col = column_name.replace(" ", "").replace(".", "")[:20]
         cell_var_name = f"uiEl{safe_col}Cell"

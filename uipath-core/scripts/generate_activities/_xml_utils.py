@@ -7,7 +7,7 @@ fragments consumed by the individual activity generator modules.
 from ._helpers import _uuid, _escape_xml_attr, _normalize_selector_quotes, _hs
 
 
-def _selector_xml(selector: str, obj_repo: dict = None) -> str:
+def _selector_xml(selector: str, obj_repo: dict = None, scope_selector: str = None) -> str:
     """Generate TargetAnchorable XML element.
 
     Args:
@@ -16,6 +16,10 @@ def _selector_xml(selector: str, obj_repo: dict = None) -> str:
             - reference: "LibraryId/ElementId" (from generate_object_repository)
             - content_hash: ContentHash string
             - guid: Fixed GUID (must match Object Repository entry)
+        scope_selector: Optional window/app selector for ScopeSelectorArgument.
+            Required for SAP selectors (<sap id='...'/>)  inside NApplicationCard —
+            without it, UiPath can't resolve which application the element belongs to.
+            Example: "<wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' />"
     """
     selector = _normalize_selector_quotes(selector)
     escaped = _escape_xml_attr(selector)
@@ -28,7 +32,11 @@ def _selector_xml(selector: str, obj_repo: dict = None) -> str:
             extra_attrs += f' ContentHash="{ch}"'
         if ref:
             extra_attrs += f' Reference="{ref}"'
-    return f'<uix:TargetAnchorable{extra_attrs} ElementVisibilityArgument="Interactive" FullSelectorArgument="{escaped}" Guid="{guid}" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />'
+    scope_attr = ""
+    if scope_selector:
+        scope_sel = _normalize_selector_quotes(scope_selector)
+        scope_attr = f' ScopeSelectorArgument="{_escape_xml_attr(scope_sel)}"'
+    return f'<uix:TargetAnchorable{extra_attrs} ElementVisibilityArgument="Interactive" FullSelectorArgument="{escaped}" Guid="{guid}"{scope_attr} SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />'
 
 
 def _viewstate_block(id_ref: str, is_expanded: bool = True) -> str:
