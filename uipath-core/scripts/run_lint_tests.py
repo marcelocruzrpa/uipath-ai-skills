@@ -135,6 +135,26 @@ EXCLUDED_LINTS = {
 PLUGIN_TESTS = [
     # (filename, expected_substring, severity)
     ("bad_persistence_subworkflow.xaml", "AC-26", "ERROR"),
+    # SAP WinGUI lint rules
+    ("bad_sap_scope_mismatch.xaml", "SAP-007", "ERROR"),
+    ("bad_sap_decomposition.xaml", "SAP-008", "WARN"),
+    ("bad_SAP_Launch_tcode.xaml", "SAP-009", "ERROR"),
+    ("bad_sap_login_missing_attrs.xaml", "SAP-011", "ERROR"),
+    ("bad_sap_transaction_empty.xaml", "SAP-012", "ERROR"),
+    ("bad_sap_transaction_empty.xaml", "SAP-013", "ERROR"),
+    ("bad_sap_toolbar_no_target.xaml", "SAP-014", "ERROR"),
+    ("bad_sap_tablecell_missing.xaml", "SAP-016", "ERROR"),
+    ("bad_sap_tablecell_missing.xaml", "SAP-017", "ERROR"),
+    ("bad_sap_tablecell_missing.xaml", "SAP-018", "ERROR"),
+    ("bad_sap_tablecell_missing.xaml", "SAP-019", "ERROR"),
+    ("bad_sap_statusbar_missing.xaml", "SAP-020", "ERROR"),
+    ("bad_sap_statusbar_missing.xaml", "SAP-021", "ERROR"),
+    ("bad_sap_statusbar_missing.xaml", "SAP-022", "WARN"),
+    ("bad_sap_selector_format.xaml", "SAP-023", "WARN"),
+    ("bad_sap_legacy_activity.xaml", "SAP-024", "WARN"),
+    ("bad_sap_tablecell_target.xaml", "SAP-028", "WARN"),
+    ("bad_sap_securestring_prefix.xaml", "SAP-029", "ERROR"),
+    ("bad_sap_hardcoded_literals.xaml", "SAP-030", "WARN"),
 ]
 
 

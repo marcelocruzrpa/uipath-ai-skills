@@ -50,9 +50,10 @@
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="strStatusMessage" />
           <Variable x:TypeArguments="x:String" Name="strStatusType" />
+          <Variable x:TypeArguments="s:String[]" Name="arrStatusData" />
         </Sequence.Variables>
             <ui:LogMessage DisplayName="Log Message Start Test_SAPWinGUI" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] Test_SAPWinGUI&quot;]" />
-<uix:NSAPLogon AttachMode="ByInstance" CloseMode="Never" DelayBetweenRetries="0.5" DisplayName="SAP Logon" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,989" sap2010:WorkflowViewState.IdRef="NSAPLogon_1" InteractionMode="Simulate" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Always]" Retries="5" ScopeGuid="UUID_001" Version="V2" WindowResize="Maximize">
+<uix:NSAPLogon AttachMode="ByInstance" CloseMode="Never" DelayBetweenRetries="0.5" DisplayName="SAP Logon" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,989" sap2010:WorkflowViewState.IdRef="NSAPLogon_1" Retries="5" ScopeGuid="UUID_001" Version="V2" WindowResize="Maximize">
   <uix:NSAPLogon.Body>
     <ActivityAction x:TypeArguments="x:Object">
       <ActivityAction.Argument>
@@ -76,10 +77,39 @@
     </ActivityFunc>
   </uix:NSAPLogon.OCREngine>
   <uix:NSAPLogon.TargetApp>
-    <uix:TargetApp Area="0, 0, 0, 0" Arguments="[in_strSapConnection]" FilePath="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" Selector="&lt;wnd app=&#x27;saplogon.exe&#x27; cls=&#x27;SAP_FRONTEND_SESSION&#x27; /&gt;" Version="V2" />
+    <uix:TargetApp Area="0, 0, 0, 0" Arguments="[in_strSapConnection]" FilePath="[in_strSapLogonPath]" Selector="&lt;wnd app=&#x27;saplogon.exe&#x27; cls=&#x27;SAP_FRONTEND_SESSION&#x27; /&gt;" Version="V2">
+      <uix:TargetApp.WorkingDirectory>
+        <InArgument x:TypeArguments="x:String" />
+      </uix:TargetApp.WorkingDirectory>
+    </uix:TargetApp>
   </uix:NSAPLogon.TargetApp>
 </uix:NSAPLogon>
-<uix:NSAPReadStatusbar MessageId="{x:Null}" MessageNumber="{x:Null}" DisplayName="Read Status Bar" sap:VirtualizedContainerService.HintSize="452,227" sap2010:WorkflowViewState.IdRef="NSAPReadStatusbar_1" MessageData="[arrStatusBarMsgData]" MessageText="[strStatusMessage]" MessageType="[strStatusType]" ScopeIdentifier="UUID_002" Version="V5" />
+<uix:NSAPLogin Client="[strClient]" DisplayName="SAP Login" sap:VirtualizedContainerService.HintSize="452,328" sap2010:WorkflowViewState.IdRef="NSAPLogin_1" IsSecure="True" Language="[strLanguage]" Option="Single" ScopeIdentifier="UUID_002" SecurePassword="[secstrPassword]" Username="[strUsername]" Version="V5" />
+<uix:NSAPCallTransaction DisplayName="Call Transaction" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="NSAPCallTransaction_1" Prefix="/n" ScopeIdentifier="UUID_002" Transaction="[in_strTransaction]" Version="V5" />
+<uix:NSAPClickToolbarButton DisplayName="Click Toolbar Button 'Enter'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,195" sap2010:WorkflowViewState.IdRef="NSAPClickToolbarButton_1" Item="Enter" ScopeIdentifier="UUID_002" Version="V5">
+  <uix:NSAPClickToolbarButton.Items>
+    <scg:List x:TypeArguments="x:String" Capacity="12">
+      <x:String>Enter</x:String>
+      <x:String>Close Command Field</x:String>
+      <x:String xml:space="preserve">Save   (Ctrl+S)</x:String>
+      <x:String xml:space="preserve">Back   (F3)</x:String>
+      <x:String xml:space="preserve">Exit   (Shift+F3)</x:String>
+      <x:String xml:space="preserve">Cancel   (F12)</x:String>
+      <x:String xml:space="preserve">Print   (Ctrl+P)</x:String>
+      <x:String xml:space="preserve">Find   (Ctrl+F)</x:String>
+      <x:String>New GUI Window</x:String>
+      <x:String>Generates shortcut</x:String>
+      <x:String xml:space="preserve">Help   (F1)</x:String>
+      <x:String>Customize Local Layout (Alt+F12)</x:String>
+    </scg:List>
+  </uix:NSAPClickToolbarButton.Items>
+  <uix:NSAPClickToolbarButton.Target>
+    <uix:TargetAnchorable ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;sap id=&#x27;tbar[0]/btn[0]&#x27; /&gt;" Guid="UUID_003" ScopeSelectorArgument="&lt;wnd app=&#x27;saplogon.exe&#x27; cls=&#x27;SAP_FRONTEND_SESSION&#x27; /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+  </uix:NSAPClickToolbarButton.Target>
+</uix:NSAPClickToolbarButton>
+<uix:NSAPSelectMenuItem DisplayName="Select Menu Item 'System/Status...'" sap:VirtualizedContainerService.HintSize="452,123" sap2010:WorkflowViewState.IdRef="NSAPSelectMenuItem_1" Item="System/Status..." ScopeIdentifier="UUID_002" Version="V5">
+</uix:NSAPSelectMenuItem>
+<uix:NSAPReadStatusbar MessageId="{x:Null}" MessageNumber="{x:Null}" DisplayName="Read Status Bar" sap:VirtualizedContainerService.HintSize="452,227" sap2010:WorkflowViewState.IdRef="NSAPReadStatusbar_1" MessageData="[arrStatusData]" MessageText="[strStatusMessage]" MessageType="[strStatusType]" ScopeIdentifier="UUID_002" Version="V5" />
             <ui:LogMessage DisplayName="Log Message End Test_SAPWinGUI" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] Test_SAPWinGUI&quot;]" />
   </Sequence>
 </Activity>

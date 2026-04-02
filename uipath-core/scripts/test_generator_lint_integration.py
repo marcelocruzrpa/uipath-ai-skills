@@ -398,6 +398,7 @@ SPECS = {
         "variables": [
             {"name": "strStatusMessage", "type": "String"},
             {"name": "strStatusType", "type": "String"},
+            {"name": "arrStatusData", "type": "Array_String"},
         ],
         "activities": [
             {"gen": "log_message", "args": {"message_expr": "\"[START] Test_SAPWinGUI\"", "level": "Info"}},
@@ -406,12 +407,54 @@ SPECS = {
                 "sap_connection": "in_strSapConnection",
                 "body_content": "",
             }},
+            {"gen": "sap_login", "args": {
+                "username": "strUsername",
+                "secure_password": "secstrPassword",
+                "client": "strClient",
+                "language": "strLanguage",
+            }},
+            {"gen": "sap_call_transaction", "args": {
+                "transaction": "in_strTransaction",
+                "prefix": "/n",
+            }},
+            {"gen": "sap_click_toolbar", "args": {"item": "Enter"}},
+            {"gen": "sap_select_menu_item", "args": {"item": "System/Status..."}},
             {"gen": "sap_read_statusbar", "args": {
                 "display_name": "Read Status Bar",
                 "message_text": "strStatusMessage",
                 "message_type": "strStatusType",
+                "message_data": "arrStatusData",
             }},
             {"gen": "log_message", "args": {"message_expr": "\"[END] Test_SAPWinGUI\"", "level": "Info"}},
+        ]
+    },
+
+    "sap_action_workflow": {
+        "class_name": "SAP_FillHeader",
+        "arguments": [
+            {"name": "io_uiSAP", "direction": "InOut", "type": "UiElement"},
+            {"name": "in_strTransaction", "direction": "In", "type": "String"},
+            {"name": "in_strVendor", "direction": "In", "type": "String"},
+        ],
+        "variables": [
+            {"name": "strStatusMsg", "type": "String"},
+            {"name": "strStatusType", "type": "String"},
+        ],
+        "activities": [
+            {"gen": "log_message", "args": {"message_expr": "\"[START] SAP_FillHeader\"", "level": "Info"}},
+            {"gen": "napplicationcard_attach",
+             "args": {"display_name": "SAP Easy Access", "ui_element_variable": "io_uiSAP", "desktop": True,
+                      "target_app_selector": "<wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' />"},
+             "children": [
+                 {"gen": "sap_call_transaction", "args": {"transaction": "in_strTransaction", "prefix": "/n"}},
+                 {"gen": "ntypeinto", "args": {"display_name": "Type Into 'Vendor'",
+                  "selector": "<sap id='usr/ctxtEKKO-LIFNR' />", "text_variable": "in_strVendor"}},
+                 {"gen": "sap_click_toolbar", "args": {"item": "Enter"}},
+                 {"gen": "sap_click_toolbar", "args": {"item": "Save"}},
+                 {"gen": "sap_read_statusbar", "args": {
+                     "message_text": "strStatusMsg", "message_type": "strStatusType"}}
+             ]},
+            {"gen": "log_message", "args": {"message_expr": "\"[END] SAP_FillHeader\"", "level": "Info"}},
         ]
     },
 

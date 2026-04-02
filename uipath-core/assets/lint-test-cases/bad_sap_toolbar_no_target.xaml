@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Test_SAP"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation">
+  <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <!-- SAP-014: No TargetAnchorable child, SAP-015: No Items List child -->
+    <uix:NSAPLogon DisplayName="SAP Logon" ScopeGuid="aaaaaaaa-1111-2222-3333-444444444444" OpenMode="Always" sap2010:WorkflowViewState.IdRef="NSAPLogon_1">
+      <uix:NSAPClickToolbarButton DisplayName="Click Toolbar" ScopeIdentifier="aaaaaaaa-1111-2222-3333-444444444444" sap2010:WorkflowViewState.IdRef="NSAPClickToolbarButton_1" />
+    </uix:NSAPLogon>
+  </Sequence>
+</Activity>

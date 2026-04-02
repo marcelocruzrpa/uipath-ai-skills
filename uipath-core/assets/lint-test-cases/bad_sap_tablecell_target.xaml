@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Test_SAP"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uix"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation">
+  <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <!-- SAP-028: NTypeInto inside TableCellScope uses Target instead of InUiElement -->
+    <uix:NApplicationCard DisplayName="SAP" ScopeGuid="aaaaaaaa-1111-2222-3333-444444444444" sap2010:WorkflowViewState.IdRef="NApplicationCard_1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <uix:NSAPTableCellScope DisplayName="Table Cell Scope" ScopeIdentifier="aaaaaaaa-1111-2222-3333-444444444444" ColumnName="MATNR" RowType="FirstEmptyRow" sap2010:WorkflowViewState.IdRef="NSAPTableCellScope_1">
+              <uix:NSAPTableCellScope.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <uix:NTypeInto DisplayName="Type Into" Text="test" ScopeIdentifier="aaaaaaaa-1111-2222-3333-444444444444" sap2010:WorkflowViewState.IdRef="NTypeInto_1">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable FullSelectorArgument="&lt;sap id='usr/field' /&gt;" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NSAPTableCellScope.Body>
+              <uix:NSAPTableCellScope.Target>
+                <uix:TargetAnchorable FullSelectorArgument="&lt;sap id='usr/tblTABLE' /&gt;" />
+              </uix:NSAPTableCellScope.Target>
+            </uix:NSAPTableCellScope>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
