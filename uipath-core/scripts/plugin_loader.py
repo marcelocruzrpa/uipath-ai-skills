@@ -37,6 +37,11 @@ _scaffold_hooks = []        # list of callables
 _extra_namespaces = {}      # prefix -> xmlns URI
 _extra_known_activities = set()  # activity local names for IdRef checks
 _extra_key_activities = []  # prefixed activity names for DisplayName checks
+_hallucination_patterns = []    # list of (wrong_attr, correct_attr, context_hint)
+_common_packages = []           # list of NuGet package ID strings
+_battle_test_graders = {}       # suite_name -> callable(scenario, project_dir) -> GradeResult
+_test_specs = {}                # spec_name -> spec dict (generator integration tests)
+_lint_test_fixtures = []        # list of (filename, expected_substr, severity, fixture_dir)
 _loaded = False
 _load_failures = []  # list of (skill_name, error_str) tuples
 
@@ -99,6 +104,52 @@ def register_key_activities(*names):
     _extra_key_activities.extend(names)
 
 
+def register_hallucination_pattern(wrong_attr, correct_attr, context_hint):
+    """Register a hallucinated-property detection pattern.
+
+    Args:
+        wrong_attr: Wrong attribute string to detect (e.g. "TaskObject=")
+        correct_attr: Correct attribute name (e.g. "TaskOutput/TaskInput")
+        context_hint: Activity context (e.g. "CreateFormTask/WaitForFormTask")
+    """
+    _hallucination_patterns.append((wrong_attr, correct_attr, context_hint))
+
+
+def register_common_packages(*package_ids):
+    """Register NuGet package IDs for resolve_nuget --all resolution."""
+    _common_packages.extend(package_ids)
+
+
+def register_battle_test_grader(suite_name, grader_fn):
+    """Register a battle test grading function for a suite (e.g. 'ac').
+
+    The grader_fn must accept (scenario: int, project_dir: Path) -> GradeResult.
+    """
+    _battle_test_graders[suite_name] = grader_fn
+
+
+def register_test_spec(name, spec):
+    """Register a generator integration test spec.
+
+    Args:
+        name: Spec name (e.g. "action_center_form_task")
+        spec: Dict with class_name, arguments, variables, activities
+    """
+    _test_specs[name] = spec
+
+
+def register_lint_test_fixture(filename, expected_substr, severity, fixture_dir):
+    """Register a lint test fixture file provided by this plugin.
+
+    Args:
+        filename: XAML fixture filename (e.g. "bad_persistence_subworkflow.xaml")
+        expected_substr: Expected substring in lint output (e.g. "AC-26")
+        severity: Expected severity (e.g. "ERROR")
+        fixture_dir: Absolute path to the directory containing the fixture file
+    """
+    _lint_test_fixtures.append((filename, expected_substr, severity, str(fixture_dir)))
+
+
 # ---------------------------------------------------------------------------
 # Query API (called by core scripts)
 # ---------------------------------------------------------------------------
@@ -141,6 +192,31 @@ def get_extra_key_activities():
 def get_ui_generators():
     """Return set of gen names that require uix: namespace (UI activities)."""
     return set(_ui_generators)
+
+
+def get_hallucination_patterns():
+    """Return list of (wrong_attr, correct_attr, context_hint) from plugins."""
+    return list(_hallucination_patterns)
+
+
+def get_common_packages():
+    """Return list of NuGet package ID strings from plugins."""
+    return list(_common_packages)
+
+
+def get_battle_test_graders():
+    """Return dict of suite_name -> grader callable from plugins."""
+    return dict(_battle_test_graders)
+
+
+def get_test_specs():
+    """Return dict of spec_name -> spec dict from plugins."""
+    return dict(_test_specs)
+
+
+def get_lint_test_fixtures():
+    """Return list of (filename, expected_substr, severity, fixture_dir) from plugins."""
+    return list(_lint_test_fixtures)
 
 
 # ---------------------------------------------------------------------------
@@ -212,6 +288,11 @@ def load_plugins():
         snap_ns = dict(_extra_namespaces)
         snap_known = set(_extra_known_activities)
         snap_key = list(_extra_key_activities)
+        snap_hallucination = list(_hallucination_patterns)
+        snap_packages = list(_common_packages)
+        snap_graders = dict(_battle_test_graders)
+        snap_specs = dict(_test_specs)
+        snap_lint_fixtures = list(_lint_test_fixtures)
 
         def _restore_registries():
             """Roll back all registries to pre-load snapshot."""
@@ -223,6 +304,11 @@ def load_plugins():
             _extra_namespaces.clear(); _extra_namespaces.update(snap_ns)
             _extra_known_activities.clear(); _extra_known_activities.update(snap_known)
             _extra_key_activities.clear(); _extra_key_activities.extend(snap_key)
+            _hallucination_patterns.clear(); _hallucination_patterns.extend(snap_hallucination)
+            _common_packages.clear(); _common_packages.extend(snap_packages)
+            _battle_test_graders.clear(); _battle_test_graders.update(snap_graders)
+            _test_specs.clear(); _test_specs.update(snap_specs)
+            _lint_test_fixtures.clear(); _lint_test_fixtures.extend(snap_lint_fixtures)
 
         try:
             # Register the package first so relative imports resolve

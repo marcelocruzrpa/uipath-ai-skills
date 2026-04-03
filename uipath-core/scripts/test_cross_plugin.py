@@ -69,6 +69,11 @@ def test_plugin_loader_integrity() -> TestResult:
         plugin_loader._extra_known_activities.clear()
         plugin_loader._extra_key_activities.clear()
         plugin_loader._load_failures.clear()
+        plugin_loader._hallucination_patterns.clear()
+        plugin_loader._common_packages.clear()
+        plugin_loader._battle_test_graders.clear()
+        plugin_loader._test_specs.clear()
+        plugin_loader._lint_test_fixtures.clear()
 
         failures = plugin_loader.load_plugins()
 
@@ -435,6 +440,11 @@ def test_api_version_mismatch() -> TestResult:
         plugin_loader._extra_known_activities.clear()
         plugin_loader._extra_key_activities.clear()
         plugin_loader._load_failures.clear()
+        plugin_loader._hallucination_patterns.clear()
+        plugin_loader._common_packages.clear()
+        plugin_loader._battle_test_graders.clear()
+        plugin_loader._test_specs.clear()
+        plugin_loader._lint_test_fixtures.clear()
 
         # Remove cached plugin modules so load_plugins() re-discovers them
         for key in list(sys.modules):
