@@ -141,9 +141,15 @@ def lint_hallucinated_property_names(ctx: FileContext, result: ValidationResult)
     HALLUCINATED = [
         ("OrderByColumnName=", "ColumnName",  "SortDataTable"),
         ("OrderByType=",       "SortOrder",   "SortDataTable"),
-        ("TaskObject=",        "TaskOutput/TaskInput", "CreateFormTask/WaitForFormTask"),
         ("ClickBeforeTyping=", "ClickBeforeMode",  "NTypeInto — use ClickBeforeMode=\"Single\""),
     ]
+
+    # Merge plugin-provided hallucination patterns (e.g. Action Center)
+    try:
+        from plugin_loader import get_hallucination_patterns
+        HALLUCINATED.extend(get_hallucination_patterns())
+    except ImportError:
+        pass
 
     found = []
     for wrong, correct, context in HALLUCINATED:

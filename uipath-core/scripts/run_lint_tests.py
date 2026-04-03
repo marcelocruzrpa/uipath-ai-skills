@@ -132,10 +132,15 @@ EXCLUDED_LINTS = {
 
 # Lints provided by plugin skills — tested only when the plugin is installed.
 # These are excluded from stale-exclusion checks when the plugin isn't loaded.
-PLUGIN_TESTS = [
-    # (filename, expected_substring, severity)
-    ("bad_persistence_subworkflow.xaml", "AC-26", "ERROR"),
-]
+# Populated dynamically from plugin_loader.
+PLUGIN_TESTS = []
+try:
+    from plugin_loader import load_plugins, get_lint_test_fixtures
+    load_plugins()
+    for filename, expected_substr, severity, _fixture_dir in get_lint_test_fixtures():
+        PLUGIN_TESTS.append((filename, expected_substr, severity))
+except ImportError:
+    pass
 
 
 def get_tested_lint_numbers() -> set[int]:
@@ -236,6 +241,26 @@ def check_lint_coverage() -> tuple[bool, list[str]]:
     return ok, msgs
 
 
+def _resolve_plugin_fixture(filename: str) -> str | None:
+    """Resolve a plugin lint test fixture file path.
+
+    Checks core TEST_DIR first, then plugin-registered fixture directories.
+    """
+    core_path = os.path.join(TEST_DIR, filename)
+    if os.path.exists(core_path):
+        return core_path
+    try:
+        from plugin_loader import get_lint_test_fixtures
+        for fn, _, _, fixture_dir in get_lint_test_fixtures():
+            if fn == filename:
+                plugin_path = os.path.join(fixture_dir, filename)
+                if os.path.exists(plugin_path):
+                    return plugin_path
+    except ImportError:
+        pass
+    return None
+
+
 def run_lint(filepath: str) -> str:
     """Run validate_xaml --lint on a file and return output."""
     result = subprocess.run(
@@ -283,8 +308,8 @@ def main():
     if active_plugin_tests:
         total += len(active_plugin_tests)
         for filename, expected_substr, severity in active_plugin_tests:
-            filepath = os.path.join(TEST_DIR, filename)
-            if not os.path.exists(filepath):
+            filepath = _resolve_plugin_fixture(filename)
+            if not filepath or not os.path.exists(filepath):
                 print(f"  SKIP  {filename} — file not found")
                 continue
             output = run_lint(filepath)

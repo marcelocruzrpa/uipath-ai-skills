@@ -32,6 +32,28 @@ if str(SCRIPTS_DIR) not in sys.path:
 from generate_workflow import generate_workflow
 from test_generator_lint_integration import SPECS
 
+# Determine which specs came from plugins and their snapshot directories
+_PLUGIN_SPEC_NAMES = set()
+_PLUGIN_SNAPSHOT_DIRS = {}  # spec_name -> Path to snapshot dir
+try:
+    from plugin_loader import get_test_specs
+    _PLUGIN_SPEC_NAMES = set(get_test_specs().keys())
+    # Derive snapshot dirs from plugin roots — each plugin's __init__.py
+    # registers specs, and the snapshot dir is <plugin_root>/assets/generator-snapshots/
+    import plugin_loader
+    for child in sorted(SKILL_DIR.parent.iterdir()):
+        ext_init = child / "extensions" / "__init__.py"
+        if ext_init.exists() and child.name != SKILL_DIR.name:
+            snap_dir = child / "assets" / "generator-snapshots"
+            if snap_dir.exists():
+                # Map specs from this plugin to its snapshot dir
+                for name in _PLUGIN_SPEC_NAMES:
+                    candidate = snap_dir / f"{name}.xaml"
+                    if candidate.exists():
+                        _PLUGIN_SNAPSHOT_DIRS[name] = snap_dir
+except ImportError:
+    pass
+
 # Skip specs that intentionally fail generation
 SKIP_SPECS = {"delay_and_misc"}
 
@@ -65,8 +87,18 @@ def generate_and_normalize(spec: dict) -> str:
 
 
 def golden_path(spec_name: str) -> Path:
-    """Path to golden file for a spec."""
+    """Path to golden file for a spec — searches core and plugin dirs."""
+    # Check plugin snapshot dir first for plugin-originated specs
+    if spec_name in _PLUGIN_SNAPSHOT_DIRS:
+        return _PLUGIN_SNAPSHOT_DIRS[spec_name] / f"{spec_name}.xaml"
     return SNAPSHOTS_DIR / f"{spec_name}.xaml"
+
+
+def _target_dir(spec_name: str) -> Path:
+    """Directory to write golden files for a spec."""
+    if spec_name in _PLUGIN_SNAPSHOT_DIRS:
+        return _PLUGIN_SNAPSHOT_DIRS[spec_name]
+    return SNAPSHOTS_DIR
 
 
 def update_golden_files():
@@ -78,13 +110,15 @@ def update_golden_files():
             continue
         try:
             normalized = generate_and_normalize(spec)
-            path = golden_path(name)
+            target = _target_dir(name)
+            target.mkdir(parents=True, exist_ok=True)
+            path = target / f"{name}.xaml"
             path.write_text(normalized, encoding="utf-8")
             print(f"  UPDATED  {name}")
             updated += 1
         except Exception as e:
             print(f"  ERROR    {name}: {e}")
-    print(f"\n{updated} golden files written to {SNAPSHOTS_DIR}")
+    print(f"\n{updated} golden files updated")
 
 
 def run_tests(verbose: bool = False) -> tuple[int, int]:

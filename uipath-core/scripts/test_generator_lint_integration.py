@@ -366,30 +366,6 @@ SPECS = {
         ]
     },
 
-    "action_center_form_task": {
-        "class_name": "Test_ActionCenter",
-        "arguments": [],
-        "variables": [
-            {"name": "fdtTaskData", "type": "FormTaskData"},
-            {"name": "strTaskAction", "type": "String"},
-        ],
-        "activities": [
-            {"gen": "log_message", "args": {"message_expr": "\"[START] Test_ActionCenter\"", "level": "Info"}},
-            {"gen": "create_form_task", "args": {
-                "task_title_expr": "\"Review Invoice\"",
-                "task_output_variable": "fdtTaskData",
-                "form_layout_json": "{\"components\":[{\"type\":\"textfield\",\"key\":\"invoiceId\",\"label\":\"Invoice ID\"}]}",
-                "display_name": "Create Form Task",
-            }},
-            {"gen": "wait_for_form_task", "args": {
-                "task_input_variable": "fdtTaskData",
-                "task_action_variable": "strTaskAction",
-                "display_name": "Wait for Form Task and Resume",
-            }},
-            {"gen": "log_message", "args": {"message_expr": "\"[END] Test_ActionCenter\"", "level": "Info"}},
-        ]
-    },
-
     "sap_wingui_workflow": {
         "class_name": "Test_SAPWinGUI",
         "arguments": [
@@ -439,6 +415,14 @@ SPECS = {
         ]
     },
 }
+
+# Merge plugin-provided test specs (e.g. Action Center)
+try:
+    from plugin_loader import load_plugins, get_test_specs
+    load_plugins()
+    SPECS.update(get_test_specs())
+except ImportError:
+    pass
 
 
 # ---------------------------------------------------------------------------

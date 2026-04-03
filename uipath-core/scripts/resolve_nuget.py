@@ -64,9 +64,15 @@ COMMON_PACKAGES = [
     "UiPath.PDF.Activities",
     "UiPath.WebAPI.Activities",        # NOT Web.Activities (doesn't exist)
     "UiPath.Database.Activities",
-    "UiPath.Persistence.Activities", # Action Center (CreateFormTask, WaitForFormTask)
-    "UiPath.FormActivityLibrary",    # Form designer UI — always pair with Persistence
 ]
+
+# Merge plugin-provided packages (e.g. Action Center Persistence + FormActivityLibrary)
+try:
+    from plugin_loader import load_plugins, get_common_packages
+    load_plugins()
+    COMMON_PACKAGES.extend(get_common_packages())
+except ImportError:
+    pass
 
 # Common wrong package names → correct names (auto-corrected with warning)
 PACKAGE_ALIASES = {
