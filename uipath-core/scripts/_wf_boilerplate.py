@@ -23,7 +23,7 @@ def _build_namespaces(has_ui: bool, has_datatable: bool, has_securestring: bool 
 
     Args:
         extra_namespaces: Optional dict of {prefix: uri} for plugin-registered
-                          namespaces (e.g., upaf for Action Center, ucas for SAP).
+                          namespaces (e.g., upaf for Tasks, ucas for SAP).
     """
     if has_ui and has_datatable:
         # DataTable crosses framework boundary → sd must be Data
@@ -47,7 +47,7 @@ def _build_namespaces(has_ui: bool, has_datatable: bool, has_securestring: bool 
         uwah = ('  xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities"\n'
                 '  xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities"\n')
 
-    # Plugin-registered namespaces (Action Center, SAP, etc.)
+    # Plugin-registered namespaces (Tasks, SAP, etc.)
     extra = ''
     if extra_namespaces:
         for prefix, uri in sorted(extra_namespaces.items()):

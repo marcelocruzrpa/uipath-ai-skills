@@ -11,7 +11,7 @@ Usage:
     python3 scripts/grade_battle_test.py <project_dir> --suite sap --scenario 7
     python3 scripts/grade_battle_test.py <project_dir> --suite ac --scenario 2
 
-Suites: core, sap, ac (action-center)
+Suites: core, sap, ac (tasks)
 """
 
 import argparse
@@ -543,7 +543,7 @@ def main():
 
     graders = {"core": grade_core, "sap": grade_sap}
 
-    # Merge plugin-provided battle test graders (e.g. Action Center "ac")
+    # Merge plugin-provided battle test graders (e.g. Tasks "ac")
     try:
         sys.path.insert(0, str(SCRIPT_DIR))
         from plugin_loader import load_plugins, get_battle_test_graders

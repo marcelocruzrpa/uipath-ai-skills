@@ -58,7 +58,7 @@ PREFIX_TO_XMLNS = {
     "uix": "http://schemas.uipath.com/workflow/activities/uix",
     "umab": "clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities",
     "isactr": "http://schemas.uipath.com/workflow/integration-service-activities/isactr",
-    # "upaf" (Action Center) -- loaded via plugin_loader
+    # "upaf" (Tasks) -- loaded via plugin_loader
 }
 
 # Activities that must have IdRef
@@ -74,7 +74,7 @@ NEEDS_IDREF = {
     # uix: prefixed
     "NApplicationCard", "NClick", "NTypeInto", "NGoToUrl", "NSelectItem",
     "NCheckState", "NGetText", "NGetUrl",
-    # Action Center (CreateFormTask, WaitForFormTaskAndResume) -- loaded via plugin_loader
+    # Tasks (CreateFormTask, WaitForFormTaskAndResume) -- loaded via plugin_loader
     # HTTP
     "HttpClient",
     # File system

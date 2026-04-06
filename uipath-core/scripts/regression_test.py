@@ -654,7 +654,7 @@ def test_generator_smoke() -> TestResult:
             gen_database_connect, gen_execute_query, gen_execute_non_query,
             gen_take_screenshot_and_save, gen_read_pdf_text, gen_read_pdf_with_ocr,
             gen_send_mail, gen_get_imap_mail, gen_save_mail_attachments,
-            # gen_create_form_task, gen_wait_for_form_task → moved to plugin (uipath-action-center)
+            # gen_create_form_task, gen_wait_for_form_task → moved to plugin (uipath-tasks)
             gen_break, gen_continue, gen_kill_process,
             gen_terminate_workflow, gen_add_log_fields, gen_remove_log_fields,
             gen_should_stop,
@@ -669,7 +669,7 @@ def test_generator_smoke() -> TestResult:
         t.fail(f"Cannot import generators: {e}")
         return t
 
-    # Load plugin generators (Action Center, etc.) — soft skip if not present
+    # Load plugin generators (Tasks, etc.) — soft skip if not present
     gen_create_form_task = None
     gen_wait_for_form_task = None
     try:
@@ -679,7 +679,7 @@ def test_generator_smoke() -> TestResult:
         gen_create_form_task = plugin_gens.get("create_form_task")
         gen_wait_for_form_task = plugin_gens.get("wait_for_form_task")
         if not gen_create_form_task or not gen_wait_for_form_task:
-            t.ok("Plugin generators not present (Action Center plugin not installed) — skipping plugin smoke tests")
+            t.ok("Plugin generators not present (Tasks plugin not installed) — skipping plugin smoke tests")
             gen_create_form_task = None
             gen_wait_for_form_task = None
     except Exception as e:

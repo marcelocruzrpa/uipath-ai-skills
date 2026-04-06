@@ -416,7 +416,7 @@ SPECS = {
     },
 }
 
-# Merge plugin-provided test specs (e.g. Action Center)
+# Merge plugin-provided test specs (e.g. Tasks)
 try:
     from plugin_loader import load_plugins, get_test_specs
     load_plugins()

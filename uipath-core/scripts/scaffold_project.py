@@ -432,7 +432,7 @@ def scaffold_project(name: str, description: str, output_dir: str,
     if extra_deps:
         pj["dependencies"].update(extra_deps)
 
-    # Run plugin scaffold hooks (e.g. Action Center persistence support)
+    # Run plugin scaffold hooks (e.g. Tasks persistence support)
     from plugin_loader import load_plugins, get_scaffold_hooks
     load_plugins()
     for hook in get_scaffold_hooks():

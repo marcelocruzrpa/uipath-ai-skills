@@ -66,7 +66,7 @@ COMMON_PACKAGES = [
     "UiPath.Database.Activities",
 ]
 
-# Merge plugin-provided packages (e.g. Action Center Persistence + FormActivityLibrary)
+# Merge plugin-provided packages (e.g. Tasks Persistence + FormActivityLibrary)
 try:
     from plugin_loader import load_plugins, get_common_packages
     load_plugins()

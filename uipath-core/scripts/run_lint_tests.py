@@ -72,7 +72,7 @@ TESTS = [
     # --- New lint coverage tests ---
     ("bad_inline_result_extractdata.xaml", "lint 17", "ERROR"),
     ("bad_targetanchorable_child.xaml", "lint 23", "ERROR"),
-    # AC-26 (persistence in sub-workflows) → moved to uipath-action-center plugin
+    # AC-26 (persistence in sub-workflows) → moved to uipath-tasks plugin
     ("bad_invoke_code_datatable.xaml", "lint 27", "WARN"),
     ("bad_element_type.xaml", "lint 28", "ERROR"),
     ("bad_nselectitem_interactionmode.xaml", "lint 30", "ERROR"),

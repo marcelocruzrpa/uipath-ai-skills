@@ -5,7 +5,7 @@ Validation functions accept the registry and child keys as parameters
 to avoid circular imports with generate_workflow.py.
 """
 
-from utils import TYPE_MAP_BASE
+from utils import TYPE_MAP_BASE, KNOWN_XMLNS_PREFIXES
 from _wf_types import _check_type_field
 
 
@@ -131,6 +131,15 @@ def _validate_spec(spec: dict, registry: dict, log_message_required: tuple,
 
     # --- Argument type validation ---
     _VALID_SHORT_TYPES = set(TYPE_MAP_BASE.keys()) | {"DataTable", "DataRow"}
+    _all_xmlns = KNOWN_XMLNS_PREFIXES
+    try:
+        from plugin_loader import get_type_mappings, get_extra_namespaces
+        _VALID_SHORT_TYPES |= set(get_type_mappings().keys())
+        plugin_prefixes = tuple(f"{p}:" for p in get_extra_namespaces())
+        if plugin_prefixes:
+            _all_xmlns = KNOWN_XMLNS_PREFIXES + plugin_prefixes
+    except ImportError:
+        pass
     if "arguments" in spec and isinstance(spec["arguments"], list):
         for i, arg in enumerate(spec["arguments"]):
             if not isinstance(arg, dict):
@@ -142,7 +151,8 @@ def _validate_spec(spec: dict, registry: dict, log_message_required: tuple,
             if "direction" in arg and arg["direction"] not in ("In", "Out", "InOut"):
                 errors.append(f"arguments[{i}]: direction must be In/Out/InOut, got '{arg['direction']}'")
             if "type" in arg:
-                _check_type_field(arg["type"], f"arguments[{i}]", _VALID_SHORT_TYPES, errors)
+                _check_type_field(arg["type"], f"arguments[{i}]", _VALID_SHORT_TYPES, errors,
+                                  all_xmlns_prefixes=_all_xmlns)
 
     if "variables" in spec and isinstance(spec["variables"], list):
         for i, var in enumerate(spec["variables"]):
@@ -153,6 +163,7 @@ def _validate_spec(spec: dict, registry: dict, log_message_required: tuple,
                 if req not in var:
                     errors.append(f"variables[{i}]: missing required field '{req}'")
             if "type" in var:
-                _check_type_field(var["type"], f"variables[{i}]", _VALID_SHORT_TYPES, errors)
+                _check_type_field(var["type"], f"variables[{i}]", _VALID_SHORT_TYPES, errors,
+                                  all_xmlns_prefixes=_all_xmlns)
 
     return errors

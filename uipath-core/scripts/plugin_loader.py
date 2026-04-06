@@ -42,6 +42,7 @@ _common_packages = []           # list of NuGet package ID strings
 _battle_test_graders = {}       # suite_name -> callable(scenario, project_dir) -> GradeResult
 _test_specs = {}                # spec_name -> spec dict (generator integration tests)
 _lint_test_fixtures = []        # list of (filename, expected_substr, severity, fixture_dir)
+_type_mappings = {}             # short_type -> xaml_type (e.g. "FormTaskData" -> "upaf:FormTaskData")
 _loaded = False
 _load_failures = []  # list of (skill_name, error_str) tuples
 
@@ -132,7 +133,7 @@ def register_test_spec(name, spec):
     """Register a generator integration test spec.
 
     Args:
-        name: Spec name (e.g. "action_center_form_task")
+        name: Spec name (e.g. "tasks_form_task")
         spec: Dict with class_name, arguments, variables, activities
     """
     _test_specs[name] = spec
@@ -148,6 +149,19 @@ def register_lint_test_fixture(filename, expected_substr, severity, fixture_dir)
         fixture_dir: Absolute path to the directory containing the fixture file
     """
     _lint_test_fixtures.append((filename, expected_substr, severity, str(fixture_dir)))
+
+
+def register_type_mapping(short_type, xaml_type):
+    """Register a short type name → XAML type mapping for variable/argument declarations.
+
+    Allows plugin types to use short names in JSON specs (e.g. "FormTaskData")
+    that get resolved to prefixed XAML types (e.g. "upaf:FormTaskData").
+
+    Args:
+        short_type: Short type name used in JSON specs (e.g. "FormTaskData")
+        xaml_type: Full XAML type with namespace prefix (e.g. "upaf:FormTaskData")
+    """
+    _type_mappings[short_type] = xaml_type
 
 
 # ---------------------------------------------------------------------------
@@ -219,6 +233,11 @@ def get_lint_test_fixtures():
     return list(_lint_test_fixtures)
 
 
+def get_type_mappings():
+    """Return dict of short_type -> xaml_type from plugins."""
+    return dict(_type_mappings)
+
+
 # ---------------------------------------------------------------------------
 # Discovery
 # ---------------------------------------------------------------------------
@@ -257,8 +276,8 @@ def load_plugins():
         sys.path.insert(0, scripts_dir)
 
     # Scan sibling directories at the same level as uipath-core-alpha.
-    # Skills like uipath-action-center live alongside core in the parent
-    # directory (e.g. uipath-ai-skills/uipath-action-center/).
+    # Skills like uipath-tasks live alongside core in the parent
+    # directory (e.g. uipath-ai-skills/uipath-tasks/).
     skill_root = core_root.parent  # e.g. uipath-ai-skills/
 
     for child in sorted(skill_root.iterdir()):
@@ -293,6 +312,7 @@ def load_plugins():
         snap_graders = dict(_battle_test_graders)
         snap_specs = dict(_test_specs)
         snap_lint_fixtures = list(_lint_test_fixtures)
+        snap_type_mappings = dict(_type_mappings)
 
         def _restore_registries():
             """Roll back all registries to pre-load snapshot."""
@@ -309,6 +329,7 @@ def load_plugins():
             _battle_test_graders.clear(); _battle_test_graders.update(snap_graders)
             _test_specs.clear(); _test_specs.update(snap_specs)
             _lint_test_fixtures.clear(); _lint_test_fixtures.extend(snap_lint_fixtures)
+            _type_mappings.clear(); _type_mappings.update(snap_type_mappings)
 
         try:
             # Register the package first so relative imports resolve

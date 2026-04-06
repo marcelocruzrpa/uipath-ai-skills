@@ -182,8 +182,10 @@ def gen_foreach(collection_variable, id_ref, body_content, body_sequence_idref,
     Args:
         collection_variable: Variable name (no brackets), e.g. "listItems"
         item_variable: Iterator variable name (default "currentItem")
-        item_type: XAML type, e.g. "x:String", "x:Int32", "njl:JToken"
+        item_type: XAML type, e.g. "x:String", "x:Int32", "njl:JToken".
+                   Short forms (e.g. "String") are normalized to prefixed form (e.g. "x:String").
     """
+    item_type = _normalize_type_arg(item_type)
     dn = _escape_xml_attr(display_name)
     i, i2, i3, i4, i5, i6 = (indent, indent+"  ", indent+"    ",
                                indent+"      ", indent+"        ", indent+"          ")

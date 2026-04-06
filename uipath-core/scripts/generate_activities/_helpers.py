@@ -104,10 +104,19 @@ _ARRAY_TYPE_FIXES = {
 def _normalize_type_arg(type_arg: str) -> str:
     """Normalize x:TypeArguments value -- fix unresolved shortnames and invalid array types.
 
-    Handles two classes of issues:
+    Handles three classes of issues:
     1. Unresolved shortnames from specs (e.g. "Dictionary" -> "scg:Dictionary(x:String, x:Object)")
     2. Invalid x: array types (e.g. "x:String[]" -> "s:String[]")
+    3. Plugin type mappings (e.g. "FormTaskData" -> "upaf:FormTaskData")
     """
     if type_arg in TYPE_MAP_BASE:
         return TYPE_MAP_BASE[type_arg]
+    # Check plugin type mappings
+    try:
+        from plugin_loader import get_type_mappings
+        plugin_types = get_type_mappings()
+        if type_arg in plugin_types:
+            return plugin_types[type_arg]
+    except ImportError:
+        pass
     return _ARRAY_TYPE_FIXES.get(type_arg, type_arg)

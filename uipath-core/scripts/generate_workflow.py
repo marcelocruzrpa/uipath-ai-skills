@@ -70,7 +70,7 @@ Supported generators (gen field) — 93 core (plus plugin extensions):
       read_pdf_text, read_pdf_with_ocr, send_mail, get_imap_mail,
       save_mail_attachments
   Database: database_connect, execute_query, execute_non_query
-  Action Center: create_form_task, wait_for_form_task (via plugin)
+  Tasks: create_form_task, wait_for_form_task (via plugin)
   Dialogs: input_dialog, message_box
   Workflow: log_message, comment, comment_out
   Misc: break, continue, kill_process, terminate_workflow,
@@ -137,7 +137,7 @@ from generate_activities import (
     gen_database_connect, gen_execute_query, gen_execute_non_query,
     # HTTP/JSON
     gen_net_http_request, gen_deserialize_json,
-    # Action Center — loaded via plugin (see plugin_loader)
+    # Tasks — loaded via plugin (see plugin_loader)
     # Dialogs
     gen_input_dialog, gen_message_box,
     # Misc
@@ -152,12 +152,16 @@ from _wf_types import DIRECTION_MAP, _type_map, _normalize_argument_type, _check
 from _wf_boilerplate import _build_namespaces, _build_arguments_xml, _build_variables_xml
 from _wf_validation import _validate_activities as _validate_activities_impl, _validate_spec as _validate_spec_impl
 
-# Plugin system — load skill extensions (Action Center, etc.)
-from plugin_loader import load_plugins, get_generators, get_display_name_map, get_extra_namespaces, get_ui_generators
+# Plugin system — load skill extensions (Tasks, etc.)
+from plugin_loader import load_plugins, get_generators, get_display_name_map, get_extra_namespaces, get_ui_generators, get_type_mappings
 load_plugins()
 
 # Build full xmlns prefix list (core + plugin-registered prefixes)
 _ALL_XMLNS_PREFIXES = KNOWN_XMLNS_PREFIXES + tuple(f"{p}:" for p in get_extra_namespaces())
+
+# Merge plugin type mappings into type map (e.g. "FormTaskData" -> "upaf:FormTaskData")
+_EXTENDED_TYPE_MAP = dict(TYPE_MAP_BASE)
+_EXTENDED_TYPE_MAP.update(get_type_mappings())
 
 # ---------------------------------------------------------------------------
 # Child keys that contain nested activity lists (single source of truth)
@@ -803,10 +807,10 @@ def generate_workflow(spec: dict) -> str:
     _VAR_TYPE_LOOKUP = {}
     for v in variables:
         raw_type = v.get("type", "String")
-        _VAR_TYPE_LOOKUP[v["name"]] = TYPE_MAP_BASE.get(raw_type, raw_type)
+        _VAR_TYPE_LOOKUP[v["name"]] = _EXTENDED_TYPE_MAP.get(raw_type, raw_type)
     for a in arguments:
         raw_type = a.get("type", "String")
-        _VAR_TYPE_LOOKUP[a["name"]] = TYPE_MAP_BASE.get(raw_type, raw_type)
+        _VAR_TYPE_LOOKUP[a["name"]] = _EXTENDED_TYPE_MAP.get(raw_type, raw_type)
 
     counter = _IdRefCounter()
 
@@ -846,11 +850,18 @@ def generate_workflow(spec: dict) -> str:
     )
     has_http = bool(all_gen_names & http_gens)
     type_map = _type_map()
+    type_map.update(get_type_mappings())  # Merge plugin type mappings
 
-    # Collect plugin namespaces when plugin generators appear in the spec
+    # Collect plugin namespaces when plugin generators or plugin types are used
     plugin_gens = get_generators()
     used_plugin_gens = all_gen_names & set(plugin_gens.keys())
-    extra_ns = get_extra_namespaces() if used_plugin_gens else None
+    plugin_ns_map = get_extra_namespaces()
+    plugin_prefixes = {f"{p}:" for p in plugin_ns_map}
+    uses_plugin_types = any(
+        any(str(a.get("type", "")).startswith(p) for p in plugin_prefixes)
+        for a in arguments + variables
+    ) if plugin_prefixes else False
+    extra_ns = plugin_ns_map if (used_plugin_gens or uses_plugin_types) else None
 
     namespaces = _build_namespaces(has_ui, has_datatable, has_securestring, has_http,
                                     extra_namespaces=extra_ns)
@@ -907,6 +918,21 @@ def generate_workflow(spec: dict) -> str:
         xml += '      <x:String>System.Data</x:String>\n'
     if has_http:
         xml += '      <x:String>UiPath.Web.Activities.Http</x:String>\n'
+    # Plugin CLR namespaces for VB.NET expression compilation
+    if extra_ns:
+        _seen_ns = set()
+        _seen_asm = set()
+        for uri in extra_ns.values():
+            # Extract CLR namespace and assembly from xmlns URI
+            # Format: "clr-namespace:Some.Namespace;assembly=Some.Assembly"
+            parts = uri.split(";")
+            clr_ns = parts[0].replace("clr-namespace:", "") if parts else ""
+            asm = parts[1].replace("assembly=", "") if len(parts) > 1 else ""
+            if clr_ns and clr_ns not in _seen_ns:
+                xml += f'      <x:String>{clr_ns}</x:String>\n'
+                _seen_ns.add(clr_ns)
+            if asm and asm not in _seen_asm:
+                _seen_asm.add(asm)
     xml += '    </sco:Collection>\n'
     xml += '  </TextExpression.NamespacesForImplementation>\n'
     xml += '  <TextExpression.ReferencesForImplementation>\n'
@@ -919,6 +945,10 @@ def generate_workflow(spec: dict) -> str:
         xml += '      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>\n'
     if has_http:
         xml += '      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>\n'
+    # Plugin assembly references
+    if extra_ns:
+        for asm in sorted(_seen_asm):
+            xml += f'      <AssemblyReference>{asm}</AssemblyReference>\n'
     xml += '    </sco:Collection>\n'
     xml += '  </TextExpression.ReferencesForImplementation>\n'
 

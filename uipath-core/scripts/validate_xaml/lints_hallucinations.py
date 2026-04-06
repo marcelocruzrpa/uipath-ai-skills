@@ -144,7 +144,7 @@ def lint_hallucinated_property_names(ctx: FileContext, result: ValidationResult)
         ("ClickBeforeTyping=", "ClickBeforeMode",  "NTypeInto — use ClickBeforeMode=\"Single\""),
     ]
 
-    # Merge plugin-provided hallucination patterns (e.g. Action Center)
+    # Merge plugin-provided hallucination patterns (e.g. Tasks)
     try:
         from plugin_loader import get_hallucination_patterns
         HALLUCINATED.extend(get_hallucination_patterns())

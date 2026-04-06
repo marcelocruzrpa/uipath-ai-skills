@@ -81,16 +81,24 @@ def _normalize_argument_type(raw_type: str, type_map: dict,
     return raw_type
 
 
-def _check_type_field(raw_type: str, location: str, valid_shorts: set, errors: list):
-    """Validate a type field in a spec, catching hallucinated long-form types."""
+def _check_type_field(raw_type: str, location: str, valid_shorts: set, errors: list,
+                      all_xmlns_prefixes: tuple = None):
+    """Validate a type field in a spec, catching hallucinated long-form types.
+
+    Args:
+        all_xmlns_prefixes: Optional extended prefix tuple (core + plugin).
+            Falls back to KNOWN_XMLNS_PREFIXES if not provided.
+    """
+    if all_xmlns_prefixes is None:
+        all_xmlns_prefixes = KNOWN_XMLNS_PREFIXES
     if not isinstance(raw_type, str) or not raw_type.strip():
         errors.append(f"{location}: 'type' must be a non-empty string")
         return
     # Short forms are always fine (they go through TYPE_MAP)
     if raw_type in valid_shorts:
         return
-    # Already-prefixed types are fine (x:String, sd:DataTable, etc.)
-    if any(raw_type.startswith(p) for p in KNOWN_XMLNS_PREFIXES):
+    # Already-prefixed types are fine (x:String, sd:DataTable, upaf:FormTaskData, etc.)
+    if any(raw_type.startswith(p) for p in all_xmlns_prefixes):
         return
     # Catch hallucinated Dictionary long forms
     if re.match(r'(?:scg:)?Dictionary\s*\(', raw_type):
