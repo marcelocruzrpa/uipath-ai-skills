@@ -189,7 +189,7 @@ Excel/PDF/Email: `read_range`, `write_range`, `write_cell`, `read_pdf_text`, `re
 
 Database: `database_connect`, `execute_query`, `execute_non_query`
 
-Action Center: `create_form_task`, `wait_for_form_task`
+Tasks: `create_form_task`, `wait_for_form_task`
 
 SAP WinGUI: `sap_logon`, `sap_login`, `sap_call_transaction`, `sap_click_toolbar`, `sap_select_menu_item`, `sap_read_statusbar`, `sap_table_cell_scope`, `sap_status_bar_check`, `sap_type_into_cell`
 
@@ -289,7 +289,7 @@ Containers (named children): `try_catch` (`try_children`, `finally_children`, `a
 | `gen_read_pdf_with_ocr()` | ReadPDFWithOCR | ActivityFunc delegate with sd:Image/sd1:Rectangle types, ui:GoogleOCR engine, Image=[Image] binding |
 | `gen_send_mail()` | SendMail | Integration Service connection, AttachmentsBackup/ConnectionDetailsBackupSlot boilerplate, ~15 {x:Null} props |
 | `gen_build_data_table()` | BuildDataTable | XSD schema in TableInfo attribute (NOT child elements!), self-closing tag. Prevents lint 48 hallucinations |
-| `gen_create_form_task()` | CreateFormTask | Action Center form with {} JSON escape, FormData direction-typed bindings, TaskOutput (NOT TaskObject!), ~15 {x:Null} props |
+| `gen_create_form_task()` | CreateFormTask | Tasks form with {} JSON escape, FormData direction-typed bindings, TaskOutput (NOT TaskObject!), ~15 {x:Null} props |
 | `gen_wait_for_form_task()` | WaitForFormTaskAndResume | Persistence point — MUST be in Main.xaml. TaskInput (NOT TaskObject!), paired with CreateFormTask |
 | `gen_get_imap_mail()` | GetIMAPMailMessages | Integration Service email, ConnectionDetailsBackupSlot boilerplate, ~12 {x:Null} props |
 | `gen_save_mail_attachments()` | SaveMailAttachments | Correct IEnumerable(x:String) output type (NOT List(String)!), filter wildcard |

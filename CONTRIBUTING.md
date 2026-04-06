@@ -173,7 +173,7 @@ There are two skill types. Choose based on what the skill does:
 
 ### A) Plugin skill (UiPath Studio development)
 
-Use this when the skill generates XAML, adds lint rules, or modifies scaffolded projects. All UiPath Studio dev skills should extend uipath-core. See `uipath-action-center` and `uipath-sap-wingui` for reference.
+Use this when the skill generates XAML, adds lint rules, or modifies scaffolded projects. All UiPath Studio dev skills should extend uipath-core. See `uipath-tasks` and `uipath-sap-wingui` for reference.
 
 **Directory structure:**
 

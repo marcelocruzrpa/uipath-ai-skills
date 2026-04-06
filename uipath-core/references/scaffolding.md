@@ -25,7 +25,7 @@ Template selection, NuGet mapping, validation, and project scaffolding. Core rul
 | Web scraping, Extract Table Data, pagination | `simple-sequence/WebScraping_Sequence1.xaml` |
 | StateMachine (REFramework) | `stripped/REFramework_Main.xaml` |
 
-**No template?** If the user needs an activity not in any template (e.g., HTTP Request, Invoke Code), use the closest template for the overall structure, then insert activity XAML from the relevant `references/xaml-*.md` file (see SKILL.md routing table). For Action Center form tasks, see the **uipath-action-center** skill.
+**No template?** If the user needs an activity not in any template (e.g., HTTP Request, Invoke Code), use the closest template for the overall structure, then insert activity XAML from the relevant `references/xaml-*.md` file (see SKILL.md routing table). For Tasks form tasks, see the **uipath-tasks** skill.
 
 **Large template files:** Use stripped excerpts in `assets/stripped/` (visual metadata removed, 50-70% smaller). E.g., `stripped/FormFilling_Main.xaml` is 26KB vs 94KB original. Full originals needed only for `--golden` validation.
 
@@ -67,7 +67,7 @@ When generating a workflow INSIDE an existing project (project.json already exis
 **Common missed dependencies (causes "activity not found" in Studio):**
 - HTTP/REST API workflows → `UiPath.WebAPI.Activities`
 - Email workflows → `UiPath.Mail.Activities`
-- Action Center / Form tasks → `UiPath.Persistence.Activities` + `UiPath.FormActivityLibrary` (both required — Persistence for runtime, FormActivityLibrary for form designer)
+- Tasks / Form tasks → `UiPath.Persistence.Activities` + `UiPath.FormActivityLibrary` (both required — Persistence for runtime, FormActivityLibrary for form designer)
 - Database queries → `UiPath.Database.Activities`
 - UI automation (clicks, types) → `UiPath.UIAutomation.Activities`
 

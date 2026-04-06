@@ -57,7 +57,7 @@ FormLayout="{&quot;components&quot;:[...]}"
 <!-- CORRECT — {} escape prefix -->
 FormLayout="{}{&quot;components&quot;:[...]}"
 ```
-This applies to ANY attribute whose value starts with `{` but is NOT a XAML markup extension. Most commonly: `FormLayout` (Action Center forms) and any attribute holding inline JSON.
+This applies to ANY attribute whose value starts with `{` but is NOT a XAML markup extension. Most commonly: `FormLayout` (Tasks forms) and any attribute holding inline JSON.
 
 ## Namespace Declarations
 

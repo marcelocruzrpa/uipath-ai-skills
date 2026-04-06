@@ -1,6 +1,6 @@
 # Orchestrator & Services
 
-GetRobotAsset, GetRobotCredential, AddQueueItem, GetQueueItem, SetTransactionStatus, HTTP Request. Action Center (CreateFormTask, WaitForFormTask) → **decoupled to uipath-action-center skill**.
+GetRobotAsset, GetRobotCredential, AddQueueItem, GetQueueItem, SetTransactionStatus, HTTP Request. Tasks (CreateFormTask, WaitForFormTask) → **decoupled to uipath-tasks skill**.
 
 ## Contents
   - [Get Robot Asset (GetRobotAsset)](#get-robot-asset-getrobotasset)
@@ -9,7 +9,7 @@ GetRobotAsset, GetRobotCredential, AddQueueItem, GetQueueItem, SetTransactionSta
   - [Get Queue Item (GetQueueItem)](#get-queue-item-getqueueitem)
   - [Set Transaction Status (SetTransactionStatus)](#set-transaction-status-settransactionstatus)
   - [HTTP Request (NetHttpRequest)](#http-request-nethttprequest)
-- [Action Center Activities (Form Tasks)](#action-center-activities-form-tasks) → **Decoupled to uipath-action-center skill**
+- [Tasks Activities (Form Tasks)](#tasks-activities-form-tasks) → **Decoupled to uipath-tasks skill**
 
 
 ### Get Robot Asset (GetRobotAsset)
@@ -284,10 +284,10 @@ Notes:
 - Log messages bracket the operation for traceability in Orchestrator logs
 
 
-## Action Center Activities (Form Tasks)
+## Tasks Activities (Form Tasks)
 
-> **→ Fully decoupled to dedicated skill: `uipath-action-center`**
+> **→ Fully decoupled to dedicated skill: `uipath-tasks`**
 >
-> All Action Center code — generators, lint rules, scaffold hooks, and documentation — lives in `uipath-action-center/`. Loaded automatically via `plugin_loader.py`.
+> All Tasks code — generators, lint rules, scaffold hooks, and documentation — lives in `uipath-tasks/`. Loaded automatically via `plugin_loader.py`.
 >
-> Read `uipath-action-center/SKILL.md` and `uipath-action-center/references/action-center.md`.
+> Read `uipath-tasks/SKILL.md` and `uipath-tasks/references/tasks.md`.

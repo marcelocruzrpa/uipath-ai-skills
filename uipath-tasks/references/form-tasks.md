@@ -1,14 +1,25 @@
-# Action Center Activities (Form Tasks)
+# Tasks Activities (Form Tasks)
 
-CreateFormTask, WaitForFormTaskAndResume — human-in-the-loop form approval via UiPath Action Center.
+CreateFormTask, WaitForFormTaskAndResume — human-in-the-loop form approval via UiPath Tasks.
+
+## Action Types Comparison
+
+| Type | Namespace Prefix | UI in Tasks | Data Type | Use Case | Reference |
+|------|-----------------|-------------------|-----------|----------|-----------|
+| Form Task | `upaf:` | form.io form | `FormTaskData` | Human fills form, reviews data | This file |
+| External Task | `upae:` | None (no UI) | `ExternalTaskData` | External system resolves via API | `external-tasks.md` |
+| App Task | (future) | UiPath App | `AppTaskData` | Rich app UI, actionable notifications | (not yet implemented) |
+
+**Task Management** activities (CompleteTask, AssignTasks, GetFormTasks) work with any task type. See `task-management.md`.
 
 ## Contents
+- [Action Types Comparison](#action-types-comparison)
 - [Prerequisites](#prerequisites)
 - [Create Form Task](#create-form-task)
 - [FormData Bindings](#formdata-bindings)
 - [Form.io Component Reference](#formio-component-reference)
 - [Wait for Form Task and Resume](#wait-for-form-task-and-resume)
-- [Typical Action Center Pattern](#typical-action-center-pattern)
+- [Typical Tasks Pattern](#typical-tasks-pattern)
 - [Shadow Task Pattern](#shadow-task-pattern)
 
 ## Prerequisites
@@ -30,7 +41,7 @@ Variable for task object: `<Variable x:TypeArguments="upaf:FormTaskData" Name="t
 
 ## Create Form Task
 
-Creates an Action Center task with a form.io-based form layout that a human user can fill in.
+Creates an Tasks task with a form.io-based form layout that a human user can fill in.
 
 → **Use `gen_create_form_task()`** from this skill's `extensions/generators.py` (auto-loaded via uipath-core's plugin system) — generates correct XAML deterministically.
 
@@ -160,7 +171,7 @@ button      — submit/action button
 
 ## Wait for Form Task and Resume
 
-Suspends the workflow (releases the robot) until a human user submits the form in Action Center.
+Suspends the workflow (releases the robot) until a human user submits the form in Tasks.
 The workflow resumes automatically after submission.
 
 → **Use `gen_wait_for_form_task()`** from this skill's `extensions/generators.py` (auto-loaded via uipath-core's plugin system) — generates correct XAML deterministically.
@@ -196,7 +207,7 @@ gen_wait_for_form_task(
 )
 ```
 
-## Typical Action Center Pattern
+## Typical Tasks Pattern
 ```
 1. Check if task is needed (If condition)
 2. LogMessage → "Creating AC task..."
@@ -206,7 +217,7 @@ gen_wait_for_form_task(
      FormData binds workflow variables to form fields
      → [taskObj]
 4. WaitForFormTaskAndResume → [taskObj]
-     (robot released — human completes form in Action Center)
+     (robot released — human completes form in Tasks)
 5. Process user input from InOutArgument/OutArgument variables
 ```
 
@@ -224,12 +235,12 @@ This avoids blocking: the shadow task doesn't delay creation of the main task.
 
 ## Validation & Lint Rules
 
-These lint rules live in uipath-core's `validate_xaml` and apply to Action Center workflows:
+These lint rules live in uipath-core's `validate_xaml` and apply to Tasks workflows:
 
 | Lint | Severity | What it checks |
 |---|---|---|
-| 10 | Warning | CreateFormTask count must match WaitForFormTaskAndResume count |
-| 26 | Error | Persistence activities (WaitForFormTaskAndResume) must be in Main.xaml only |
+| AC-10 | Warning | CreateFormTask count must match WaitForFormTaskAndResume count |
+| AC-26 | Error | Persistence activities (WaitForFormTaskAndResume) must be in Main.xaml only |
 
 Additional checks within lint 10:
 - `TaskOutput="{x:Null}"` — warns that task data won't be captured
@@ -237,6 +248,6 @@ Additional checks within lint 10:
 
 ## Config.xlsx Keys (Typical)
 
-Action Center workflows commonly need these keys in Config.xlsx (Settings sheet):
+Tasks workflows commonly need these keys in Config.xlsx (Settings sheet):
 - `ActionCatalogName` — Action Catalog name in Orchestrator
 - `DUStorageBucket` — Document Understanding storage bucket (if using file attachments)

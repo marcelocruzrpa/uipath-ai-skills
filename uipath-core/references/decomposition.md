@@ -186,7 +186,7 @@ Main.xaml  — variable: uiDesktopApp (type: UiElement)
 ```
 Each `NavigateTo` workflow clicks the tab and verifies it loaded (NCheckState). Each `Fill` workflow only types into fields — no tab clicks.
 
-**Pattern: Email Processing (PO Approval with Action Center)**
+**Pattern: Email Processing (PO Approval with Tasks)**
 ```
 Main.xaml
   ├── InvokeWorkflow: Workflows\Email\Email_GetMessages.xaml        (in_intTop, out_listMails)

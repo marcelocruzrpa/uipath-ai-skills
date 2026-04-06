@@ -1,4 +1,4 @@
-"""Action Center scaffold hook — auto-enables persistence support.
+"""Tasks scaffold hook — auto-enables persistence support.
 
 When UiPath.Persistence.Activities is in project dependencies,
 sets "supportsPersistence": true in project.json runtimeOptions.

@@ -149,7 +149,7 @@ python3 scripts/validate_xaml <project_or_file> --lint --fix   # auto-fix common
 |-------|--------|-------------|
 | **[uipath-core](./uipath-core/)** | Released | XAML generation, REFramework scaffolding, selector generation, lint validation |
 | uipath-sap-wingui | Planned | SAP GUI for Windows automation |
-| uipath-action-center | Planned | Human-in-the-loop form tasks and approval workflows |
+| uipath-tasks | Planned | Human-in-the-loop form tasks and approval workflows |
 | uipath-du | Planned | Taxonomy, extraction, classification, validation pipelines |
 
 Plugin skills extend the core through `plugin_loader.py` (API version 1) - registering generators, lint rules, scaffold hooks, and namespaces that the core engine auto-discovers at runtime.
@@ -268,7 +268,7 @@ No setup needed — `inspect-ui-tree.ps1` ships with the skill.
 
 **Lint rules target LLM hallucination patterns.** The 71 lint rules aren't generic XML validators - they specifically catch the mistakes LLMs make when generating UiPath XAML.
 
-**Plugin architecture for extensibility.** Domain-specific capabilities (SAP, Action Center, etc) are added as plugins that register their own generators, lint rules, and scaffold hooks without modifying core code.
+**Plugin architecture for extensibility.** Domain-specific capabilities (SAP, Tasks, etc) are added as plugins that register their own generators, lint rules, and scaffold hooks without modifying core code.
 
 ---
 
@@ -437,7 +437,7 @@ uipath-ai-skills/
 |       \-- lint-test-cases/                  # 105 bad/good XAML test files
 |
 |-- uipath-sap-wingui/                         # (planned)
-|-- uipath-action-center/                      # (planned)
+|-- uipath-tasks/                      # (planned)
 \-- uipath-du/            # (planned)
 ```
 

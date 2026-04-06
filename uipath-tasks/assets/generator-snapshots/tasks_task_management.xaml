@@ -1,0 +1,62 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Test_TaskManagement"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib"
+  xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common"
+  xmlns:ui="http://schemas.uipath.com/workflow/activities"
+  xmlns:upae="clr-namespace:UiPath.Persistence.Activities.ExternalTask;assembly=UiPath.Persistence.Activities"
+  xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities"
+  xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Persistence.Activities.FormTask</x:String>
+      <x:String>UiPath.Persistence.Activities.ExternalTask</x:String>
+      <x:String>UiPath.Persistence.Activities.Tasks</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Test_TaskManagement" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+        <Sequence.Variables>
+          <Variable x:TypeArguments="scg:List(upaf:FormTaskData)" Name="lstFormTasks" />
+        </Sequence.Variables>
+            <ui:LogMessage DisplayName="Log Message Start Test_TaskManagement" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;[START] Test_TaskManagement&quot;]" />
+            <upaf:GetFormTasks Expand="{x:Null}" OrderBy="{x:Null}" Reference="{x:Null}" Select="{x:Null}" Skip="{x:Null}" TaskCatalogName="{x:Null}" TimeoutMs="{x:Null}" Top="{x:Null}" DisplayName="Get Pending Form Tasks" Filter="Status eq 'Pending'" sap2010:WorkflowViewState.IdRef="GetFormTasks_1" TaskObjects="[lstFormTasks]" />
+            <upat:CompleteTask Data="{x:Null}" TimeoutMs="{x:Null}" Action="Completed" DisplayName="Complete First Task" sap2010:WorkflowViewState.IdRef="CompleteTask_1" TaskId="[lstFormTasks(0).Id.Value]" />
+            <upat:AssignTasks FailedTaskAssignments="{x:Null}" Group="{x:Null}" TaskUserAssignments="{x:Null}" TimeoutMs="{x:Null}" UserId="{x:Null}" DisplayName="Assign Task to Reviewer" EnableMultipleAssignments="False" sap2010:WorkflowViewState.IdRef="AssignTasks_1" MigrateV144="False" TaskAssignmentType="Assign" TaskId="[lstFormTasks(0).Id.Value]" UserNameOrEmail="reviewer@company.com">
+              <upat:AssignTasks.AssignmentCriteria>
+                <upat:Criteria Description="SingleUserDescription" Id="SingleUser" Name="Activity_AssignTasks_AssignmentCriteria_SingleUserName" />
+              </upat:AssignTasks.AssignmentCriteria>
+            </upat:AssignTasks>
+            <ui:LogMessage DisplayName="Log Message End Test_TaskManagement" sap:VirtualizedContainerService.HintSize="1058,179" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;[END] Test_TaskManagement&quot;]" />
+  </Sequence>
+</Activity>

@@ -1,7 +1,8 @@
-"""Action Center lint rules — moved from uipath-core validate_xaml.py.
+"""Tasks lint rules — moved from uipath-core validate_xaml.py.
 
 AC-10: CreateFormTask / WaitForFormTaskAndResume count mismatch
 AC-11: FormData keys don't match form.io component keys
+AC-12: CreateExternalTask / WaitForExternalTaskAndResume count mismatch
 AC-26: Persistence activities in non-Main workflow
 """
 
@@ -10,15 +11,15 @@ import re
 from html import unescape
 
 
-def lint_action_center(ctx, result):
-    """AC-10: Action Center CreateFormTask should have matching WaitForFormTaskAndResume."""
+def lint_tasks(ctx, result):
+    """AC-10: CreateFormTask should have matching WaitForFormTaskAndResume."""
     content = ctx.active_content
 
     create_count = len(re.findall(r'<upaf:CreateFormTask[\s>]', content))
     wait_count = len(re.findall(r'<upaf:WaitForFormTaskAndResume[\s>]', content))
 
     if create_count == 0:
-        return  # No Action Center activities
+        return  # No Tasks activities
 
     if wait_count == 0:
         result.warn(
@@ -31,7 +32,7 @@ def lint_action_center(ctx, result):
             f"some tasks may not be awaited (OK if using shadow task pattern)"
         )
     else:
-        result.ok(f"Action Center: {create_count} CreateFormTask, {wait_count} WaitForFormTask")
+        result.ok(f"Tasks: {create_count} CreateFormTask, {wait_count} WaitForFormTask")
 
     # Check FormData bindings: key names should be non-empty
     form_data_keys = re.findall(
@@ -105,10 +106,17 @@ def lint_formdata_key_mismatch(ctx, result):
     if not form_keys:
         return
 
-    # Extract FormData x:Key values
+    # Extract FormData x:Key values — scoped to CreateFormTask.FormData blocks
+    # to avoid false positives from CreateExternalTask.TaskData entries
+    formdata_section = re.search(
+        r'<upaf:CreateFormTask\.FormData>(.*?)</upaf:CreateFormTask\.FormData>',
+        content, re.DOTALL
+    )
+    if not formdata_section:
+        return
     formdata_keys = set(re.findall(
         r'<(?:InArgument|OutArgument|InOutArgument)[^>]*x:Key="([^"]+)"',
-        content
+        formdata_section.group(1)
     ))
 
     # Compare
@@ -126,6 +134,38 @@ def lint_formdata_key_mismatch(ctx, result):
             f"[AC-11] Form.io component(s) without FormData binding: "
             f"{', '.join(sorted(in_form_not_data))}. "
             f"Data won't flow to/from these fields unless bound."
+        )
+
+
+def lint_external_task(ctx, result):
+    """AC-12: CreateExternalTask should have matching WaitForExternalTaskAndResume."""
+    content = ctx.active_content
+
+    create_count = len(re.findall(r'<upae:CreateExternalTask[\s>]', content))
+    wait_count = len(re.findall(r'<upae:WaitForExternalTaskAndResume[\s>]', content))
+
+    if create_count == 0:
+        return  # No external task activities
+
+    if wait_count == 0:
+        result.warn(
+            f"[AC-12] {create_count} CreateExternalTask(s) but no WaitForExternalTaskAndResume — "
+            f"external tasks will be created but workflow won't wait for completion"
+        )
+    elif wait_count < create_count:
+        result.warn(
+            f"[AC-12] {create_count} CreateExternalTask(s) but only {wait_count} WaitForExternalTaskAndResume — "
+            f"some tasks may not be awaited"
+        )
+    else:
+        result.ok(f"External Task: {create_count} CreateExternalTask, {wait_count} WaitForExternalTask")
+
+    # Check that TaskOutput variable is captured
+    create_no_output = re.findall(r'<upae:CreateExternalTask\b[^>]*TaskOutput="\{x:Null\}"', content)
+    if create_no_output:
+        result.warn(
+            f"[AC-12] {len(create_no_output)} CreateExternalTask(s) with TaskOutput={{x:Null}} — "
+            f"task data won't be captured for WaitForExternalTaskAndResume"
         )
 
 
@@ -148,6 +188,11 @@ def lint_persistence_in_subworkflow(ctx, result):
     persistence_activities = [
         "WaitForFormTaskAndResume",
         "WaitForFormTaskCompletion",
+        "WaitForExternalTaskAndResume",
+        "WaitForAppTaskAndResume",
+        "WaitForJobAndResume",
+        "WaitForQueueItemAndResume",
+        "ResumeAfterDelay",
         "WaitForItemEvent",
         "ResumeBookmark",
     ]

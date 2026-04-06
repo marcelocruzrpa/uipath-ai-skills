@@ -32,7 +32,7 @@ Generate production-quality UiPath automation artifacts using real Studio-export
 | Write an expression (VB.NET/C#) | `expr-foundations.md` (start here for any expression task) |
 | Decomposition / project structure | `decomposition.md` → Decomposition rules (Universal 1-8, Browser 9-13, Desktop 14) |
 | Fix a user's .xaml file | `skill-guide.md` → Example 6 |
-| Action Center, form tasks | **→ uipath-action-center skill** (read its `SKILL.md`) |
+| Tasks, form tasks | **→ uipath-tasks skill** (read its `SKILL.md`) |
 
 ### Activity-Specific Reference
 
@@ -104,7 +104,7 @@ Before generating ANY XAML, determine project context:
 3. **Write expressions** — VB.NET and C# for UiPath activities (LINQ, DataTable, JSON, DateTime, etc.)
 4. **Build selectors** — strict, fuzzy, dynamic, wildcard, regex selectors for web/desktop/SAP
 5. **HTTP API integration** — OAuth token flows, retry policies, query parameters, response handling
-6. **Action Center tasks** — **→ Fully decoupled to uipath-action-center skill** (generators, lint rules, scaffold hooks all live in `uipath-action-center/extensions/`, loaded via `plugin_loader.py`)
+6. **Tasks tasks** — **→ Fully decoupled to uipath-tasks skill** (generators, lint rules, scaffold hooks all live in `uipath-tasks/extensions/`, loaded via `plugin_loader.py`)
 7. **UI automation** — NApplicationCard, NClick, NTypeInto, NSelectItem, NGetText, Extract Table Data, Check App State — **via `scripts/generate_activities`**
 8. **Error handling & workflow** — TryCatch, RetryScope, Throw/Rethrow, InvokeWorkflowFile, AddQueueItem, GetRobotCredential, BuildDataTable, IfElseIfV2, MultipleAssign — **via `scripts/generate_activities`**
 9. **File system operations** — Copy/Move/Delete files, Create Directory, Path Exists
@@ -119,7 +119,7 @@ Before generating ANY XAML, determine project context:
 | `references/xaml-data.md` | BuildDataTable, AddDataRow, FilterDataTable, MergeDataTable, SortDataTable, OutputDataTable, JoinDataTables, LookupDataTable, DeserializeJSON, file system ops |
 | `references/xaml-error-handling.md` | TryCatch, Throw/Rethrow, exception types, RetryScope (incl. NCheckState condition) |
 | `references/xaml-invoke.md` | InvokeWorkflowFile, InvokeCode, InvokeMethod |
-| `references/xaml-orchestrator.md` | GetRobotAsset, GetRobotCredential, AddQueueItem, GetQueueItem, SetTransactionStatus, HTTP Request. **Action Center → uipath-action-center skill** |
+| `references/xaml-orchestrator.md` | GetRobotAsset, GetRobotCredential, AddQueueItem, GetQueueItem, SetTransactionStatus, HTTP Request. **Tasks → uipath-tasks skill** |
 | `references/xaml-integrations.md` | Excel Classic Workbook (ReadRange, WriteRange, WriteCell), Email/Integration Service (GetIMAP, SendMail), PDF (ReadPDFText, ReadPDFWithOCR) |
 | `references/xaml-ui-automation.md` | Selector construction, dynamic selectors, fuzzy/regex, anchor targeting, desktop frameworks, Version table. **For XAML generation use generators** — this file is for selector guidance and activity property reference. **Large file — use grep or line-range reads.** |
 | `references/expr-foundations.md` | VB.NET + C# expression syntax, null safety patterns. Read first for any expression task |
@@ -152,7 +152,7 @@ Before generating ANY XAML, determine project context:
 | `scripts/scaffold_project.py` | Scaffold UiPath projects (sequence / dispatcher / performer). Customizes Config.xlsx. Dispatcher replaces GetQueueItem with DataTable row indexing. |
 | `scripts/config_xlsx_manager.py` | Add/list/validate Config.xlsx keys. Cross-references XAML Config() refs vs actual sheets. |
 | `scripts/modify_framework.py` | Insert InvokeWorkflowFile into framework files, replace SCAFFOLD.* markers, **wire UiElement argument chain** (`wire-uielement`), **add variables with auto type normalization** (`add-variables`), **replace placeholder expressions** (`set-expression`). ⛔ G-8: Never Edit/Write .xaml directly — use this script or `generate_workflow.py`. |
-| `scripts/generate_activities` | **Deterministic XAML generators** for 94 core activities. Locks down enums, versions, child elements. MANDATORY for NTypeInto, NClick, NGetText, NCheckState, NApplicationCard, etc. Plugin skills add more (e.g., Action Center, SAP WinGUI). |
+| `scripts/generate_activities` | **Deterministic XAML generators** for 94 core activities. Locks down enums, versions, child elements. MANDATORY for NTypeInto, NClick, NGetText, NCheckState, NApplicationCard, etc. Plugin skills add more (e.g., Tasks, SAP WinGUI). |
 | `scripts/generate_workflow.py` | **Generate complete .xaml files from JSON specs.** 94 core generators + plugin generators loaded via `plugin_loader.py`. Covers ALL activities including Pick login validation, TryCatch, ForEachRow, NExtractData, NCheckState. **Pass `--project-dir <project>` to auto-wire Object Repository references** (`Reference=`/`ContentHash=` on TargetAnchorable) from `.objects/refs.json`. ⛔ Do NOT write .xaml by hand — use this CLI instead. |
 | `scripts/generate_object_repository.py` | **Generate Object Repository** (`.objects/` tree). CLI: `python3 generate_object_repository.py --from-selectors selectors.json --project-dir <dir>`. Reads `selectors.json` (written during Playwright inspection) with full app/screen/element hierarchy. Lint 94 is ERROR — project cannot pass validation without populated Object Repository. |
 | `scripts/inspect-ui-tree.ps1` | **Windows-only.** Inspect desktop app UI tree via UIA API. Run via Bash (`powershell -File`). |

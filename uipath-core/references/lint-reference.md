@@ -46,7 +46,7 @@ Validation rules for `scripts/validate_xaml --lint`. Search by lint number to fi
 
 | Lint | What it catches | Fix reference |
 |---|---|---|
-| 26 | Persistence activities in sub-workflows *(uipath-action-center plugin)* | Move to Main.xaml — persistence bookmarks only work in entry-point |
+| 26 | Persistence activities in sub-workflows *(uipath-tasks plugin)* | Move to Main.xaml — persistence bookmarks only work in entry-point |
 | 27 | InvokeCode creates DataTable AND adds columns | Use Variable Default + AddDataColumn activities instead. Reserve InvokeCode for LINQ/GroupBy |
 | 36 | API/network activities without RetryScope | Wrap in RetryScope (Rule 13). Exception: NetHttpRequest has built-in retry |
 | 37 | Hardcoded URLs in NGoToUrl/NApplicationCard/NetHttpRequest | URLs from Config.xlsx (Rule 3) |

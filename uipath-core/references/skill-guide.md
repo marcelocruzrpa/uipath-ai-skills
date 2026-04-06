@@ -84,9 +84,9 @@ Select row).CopyToDataTable()
 3. Save spec to disk → `python3 scripts/generate_workflow.py spec.json Api_FetchData.xaml` (Rules G-1, G-2)
 4. Validate: `python3 scripts/validate_xaml Api_FetchData.xaml --lint`
 
-### Example 5: "Create an Action Center task with a form for address parsing"
+### Example 5: "Create an Tasks task with a form for address parsing"
 
-1. Read **uipath-action-center** skill → `references/action-center.md`
+1. Read **uipath-tasks** skill → `references/tasks.md`
 2. Copy CreateFormTask pattern, define form.io JSON schema with datagrid for addresses
 3. Add WaitForFormTaskAndResume after creation
 4. Bind DataTable via InOutArgument for two-way data flow

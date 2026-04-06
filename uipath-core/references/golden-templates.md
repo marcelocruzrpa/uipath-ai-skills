@@ -159,7 +159,7 @@ The templates above cover structural patterns (sequences, branching, loops, TryC
 | Invoke Code (inline C#/VB.NET), Invoke Method | `xaml-invoke.md` |
 | HTTP Request (OAuth, retry, query params) | `xaml-orchestrator.md` |
 | GetRobotAsset, GetRobotCredential, AddQueueItem | `xaml-orchestrator.md` |
-| CreateFormTask, WaitForFormTaskAndResume | **uipath-action-center** skill → `references/action-center.md` |
+| CreateFormTask, WaitForFormTaskAndResume | **uipath-tasks** skill → `references/tasks.md` |
 | Data Service (Entity, Query, Create, Update) | `xaml-orchestrator.md` |
 | Excel ReadRange, WriteRange, WriteCell | `xaml-integrations.md` |
 | Email (Integration Service), PDF ReadPDFText/ReadPDFWithOCR | `xaml-integrations.md` |
