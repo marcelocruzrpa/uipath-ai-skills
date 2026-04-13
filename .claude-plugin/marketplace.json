@@ -2,7 +2,7 @@
   "name": "uipath-ai-skills",
   "owner": { "name": "marcelocruzrpa" },
   "metadata": {
-    "description": "AI skills for generating production-quality UiPath Studio projects from natural language — 94 deterministic Python generators, 71 lint rules, and real Studio-exported templates.",
+    "description": "AI skills for generating production-quality UiPath Studio projects from natural language.",
     "version": "1.0.0"
   },
   "plugins": [
@@ -12,6 +12,13 @@
       "source": "./",
       "strict": false,
       "skills": ["./uipath-core"]
+    },
+    {
+      "name": "uipath-tasks",
+      "description": "Generates UiPath Tasks workflows — Form Tasks, External Tasks, and Task Management activities for human-in-the-loop, system-in-the-loop, and recovery patterns. Plugs into uipath-core via plugin_loader.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./uipath-tasks"]
     }
   ]
 }
