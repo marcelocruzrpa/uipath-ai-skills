@@ -118,7 +118,7 @@ def gen_create_form_task(task_title_expr, task_output_variable, form_layout_json
         f'{bucket} '
         f'BulkFormLayoutGuid="{bulk_form_layout_guid}" '
         f'DisplayName="{dn}" '
-        f'EnableBulkEdit="False" EnableDynamicForms="False" EnableV2="False" '
+        f'EnableBulkEdit="False" EnableDynamicForms="True" EnableV2="False" '
         f'FormLayout="{form_layout_attr}" '
         f'FormLayoutGuid="{form_layout_guid}" '
         f'GenerateInputFields="True" '

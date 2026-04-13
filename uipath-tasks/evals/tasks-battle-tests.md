@@ -11,7 +11,7 @@ Battle test scenarios for validating the `uipath-tasks` skill. Each scenario tes
 
 **Universal pass criteria (all scenarios):**
 1. XAML generated via `generate_workflow.py` with `create_form_task` / `wait_for_form_task` gen values (Rule G-1)
-2. Persistence activities (`WaitForFormTaskAndResume`, `CreateFormTask`+wait) in Main.xaml ONLY (Rule A-2, Lint 26)
+2. Persistence activities (`WaitForFormTaskAndResume`, `CreateFormTask`+wait) live in an entry point — `Main.xaml` by default, or another workflow declared in `project.json.entryPoints[]` (e.g. a HITL sample registered as a secondary entry point). Sub-workflows never (Rule A-2, Lint AC-26).
 3. Both NuGet packages present: `UiPath.Persistence.Activities` AND `UiPath.FormActivityLibrary`
 4. `supportsPersistence: true` in project.json `runtimeOptions`
 5. FormData keys match form.io component keys
@@ -293,3 +293,58 @@ Battle test scenarios for validating the `uipath-tasks` skill. Each scenario tes
 - [ ] Persistence activities in Main.xaml only
 - [ ] Task ID pattern: `fdtTaskData.Id.Value` for Assign/Complete
 - [ ] Lint passes with 0 errors
+
+---
+
+## Scenario 9: Multi-Entry-Point HITL on an REFramework Dispatcher
+
+**Context:** Drawn from the CCSH_Dispatcher battle test (session `59a78a01-f766-4f15-9957-59446d99fd57`). An existing REFramework dispatcher project already has `Main.xaml` wired to Orchestrator queues. A HITL Invoice Approval sample must be added as a **standalone entry point** (`HITL_InvoiceApproval.xaml` at project root) without touching `Main.xaml` or `Framework/*`.
+
+**PDD:**
+
+> **Process Name:** HITL Invoice Approval (sample on CCSH_Dispatcher)
+>
+> **Description:** Add a self-contained Form Task sample to an existing REFramework dispatcher. The dispatcher's transaction loop must stay independent of any human gate. The sample is run by explicitly selecting the second entry point in Studio or Orchestrator.
+>
+> **Form Fields:**
+> - Invoice Number / Vendor / Amount (read-only, pre-populated from seeded demo data)
+> - Line Items (editable DataGrid, DataTable InOut)
+> - Decision (dropdown: Approve / Reject) — required
+> - Reviewer Notes (textarea)
+>
+> **Constraints:**
+> - No edits to `Main.xaml`, `Framework/*`, `Data/Config.xlsx`, `selectors.json`, or `Tests/`.
+> - Add two NuGet packages: `UiPath.Persistence.Activities` + `UiPath.FormActivityLibrary`.
+> - Flip `runtimeOptions.supportsPersistence` to `true`.
+> - Append `HITL_InvoiceApproval.xaml` to `project.json.entryPoints[]` alongside `Main.xaml`.
+
+**Prompt:** "Add a Human-in-the-Loop Invoice Approval sample to this REFramework dispatcher project as a new standalone entry point, without modifying Main.xaml or the Framework folder."
+
+**What the agent should do:**
+- Recognize that a secondary entry point is the correct place for persistence activities when `Main.xaml` is off-limits
+- Generate `HITL_InvoiceApproval.xaml` at the project root (not under `Workflows/`) via `generate_workflow.py`
+- Register the new file in `project.json.entryPoints[]` (keeping `Main.xaml` as the default)
+- Use `create_form_task` + `wait_for_form_task` generators; wrap the create in `RetryScope`
+- Seed demo data via `BuildDataTable` + `AddDataRow`
+- Flip `supportsPersistence: true` via the `enable_persistence_support` scaffold hook (or manually)
+
+**Validation checkpoints:**
+- [ ] `HITL_InvoiceApproval.xaml` added as a second entry in `project.json.entryPoints[]`, Main still default
+- [ ] Both NuGet packages present; `supportsPersistence: true`
+- [ ] `CreateFormTask` wrapped in `RetryScope`
+- [ ] `WaitForFormTaskAndResume` in `HITL_InvoiceApproval.xaml` — the **secondary** entry point — passes AC-26 (regression test for the false-positive fix)
+- [ ] AC-10 does not warn on `EnableDynamicForms` (default now `True`)
+- [ ] AC-11 does not warn on datagrid column keys (`SKU`, `Description`, `Qty`, `LineTotal`) or decoration components (`htmlelement`, `columns`)
+- [ ] No edits to `Main.xaml`, `Framework/*`, `Tests/`, `Data/Config.xlsx`
+- [ ] Lint passes with 0 errors and no AC-10/AC-11/AC-26 warnings
+
+**Expected lint output:**
+```
+SUMMARY: 1/1 files passed, 0 errors, 0 AC-* warnings
+```
+(Out-of-scope warnings from `uipath-core` such as unused plugin xmlns prefixes or variable naming conventions may still appear — tracked separately.)
+
+**Known to catch:** This scenario is the regression test for the three uipath-tasks fixes landed in `feature/action-center-skill` after the CCSH_Dispatcher battle test:
+- **G1** — AC-26 false positive on declared secondary entry points
+- **G2** — `EnableDynamicForms="False"` default
+- **G3** — AC-11 false positives on datagrid children and decoration components

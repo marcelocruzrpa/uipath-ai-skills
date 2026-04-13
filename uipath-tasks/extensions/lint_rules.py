@@ -7,8 +7,26 @@ AC-26: Persistence activities in non-Main workflow
 """
 
 import json
+import os
 import re
 from html import unescape
+
+
+# form.io component types that are layout/decoration and do NOT bind to
+# FormData. Keys on these components (e.g. a heading's `header` key or a
+# `columns` container's own key) are not missing bindings — they're not
+# data-bearing in the first place. AC-11 must skip them to avoid noise.
+_NON_DATA_FORMIO_TYPES = frozenset({
+    "button",
+    "htmlelement",
+    "content",
+    "columns",
+    "panel",
+    "well",
+    "fieldset",
+    "tabs",
+    "table",
+})
 
 
 def lint_tasks(ctx, result):
@@ -87,15 +105,20 @@ def lint_formdata_key_mismatch(ctx, result):
     except (json.JSONDecodeError, ValueError):
         return  # Can't parse — skip silently
 
-    # Extract form.io component keys (recursive, skip buttons)
+    # Extract form.io component keys — only the data-bearing ones.
+    # Skip layout/decoration types (see _NON_DATA_FORMIO_TYPES). Do not
+    # recurse into datagrid children: a datagrid is bound to FormData via
+    # its own key (as a DataTable), and its inner `components` array is a
+    # column schema, not a flat list of top-level bindings.
     def extract_keys(components):
         keys = set()
         for comp in components:
             key = comp.get("key", "")
             comp_type = comp.get("type", "")
-            if key and comp_type != "button":
+            if key and comp_type not in _NON_DATA_FORMIO_TYPES:
                 keys.add(key)
-            # Recurse into nested components (columns, panels, etc.)
+            if comp_type == "datagrid":
+                continue  # inner components are column defs, not bindings
             for sub in comp.get("components", []):
                 keys.update(extract_keys([sub]))
             for col in comp.get("columns", []):
@@ -169,20 +192,81 @@ def lint_external_task(ctx, result):
         )
 
 
+def _current_file_is_entry_point(ctx):
+    """True if ctx.filepath is declared in the nearest project.json's entryPoints[].
+
+    Walks up from ctx.filepath looking for project.json (same pattern as
+    uipath-core/scripts/validate_xaml/lints_framework.py). Returns False when
+    no project.json is found, when it can't be parsed, or when the current
+    file's basename doesn't match any entry point.
+
+    Comparing by basename is intentional: UiPath project.json entryPoints store
+    relative paths from the project root, and HITL/secondary entry points
+    typically live at the project root (a persistence-point workflow must be an
+    entry point, so it cannot be buried in a subdirectory).
+    """
+    try:
+        filepath = ctx.filepath
+    except Exception:
+        return False
+    if not filepath:
+        return False
+
+    # ctx.filepath can be a relative path (when validate_xaml is invoked with
+    # a bare filename from the project dir) — abspath it so os.path.dirname
+    # returns something we can walk up from.
+    filepath = os.path.abspath(filepath)
+    project_dir = os.path.dirname(filepath)
+    while project_dir and not os.path.isfile(os.path.join(project_dir, "project.json")):
+        parent = os.path.dirname(project_dir)
+        if parent == project_dir:
+            return False
+        project_dir = parent
+    if not project_dir:
+        return False
+
+    project_json_path = os.path.join(project_dir, "project.json")
+    try:
+        with open(project_json_path, encoding="utf-8") as f:
+            project = json.load(f)
+    except (OSError, json.JSONDecodeError, ValueError):
+        return False
+
+    entry_points = project.get("entryPoints") or []
+    if not isinstance(entry_points, list):
+        return False
+
+    current_basename = os.path.basename(filepath)
+    for ep in entry_points:
+        if not isinstance(ep, dict):
+            continue
+        ep_path = ep.get("filePath") or ep.get("FilePath") or ""
+        if os.path.basename(ep_path) == current_basename:
+            return True
+    return False
+
+
 def lint_persistence_in_subworkflow(ctx, result):
-    """AC-26: Persistence (wait-and-resume) activities must be in Main.xaml only.
+    """AC-26: Persistence (wait-and-resume) activities must be in an entry point.
 
     Activities like WaitForFormTaskAndResume are persistence points that
-    suspend/serialize the workflow. They only work in the entry-point file.
+    suspend/serialize the workflow. They only work in entry-point files —
+    Main.xaml by default, plus any additional workflow declared in
+    `project.json.entryPoints[]` (e.g. a HITL sample registered as a second
+    entry point alongside Main).
     """
     try:
         content = ctx.active_content
     except Exception:
         return
 
-    # Check x:Class — if it's Main, persistence activities are fine
+    # Check x:Class — Main.xaml always passes (fast path + no project.json needed)
     class_match = re.search(r'x:Class="([^"]+)"', content)
     if class_match and class_match.group(1) == "Main":
+        return
+
+    # Secondary entry point declared in project.json → also passes
+    if _current_file_is_entry_point(ctx):
         return
 
     persistence_activities = [
@@ -201,9 +285,10 @@ def lint_persistence_in_subworkflow(ctx, result):
         # Match as XML element: <prefix:ActivityName or <ActivityName
         if re.search(rf'<\w*:?{activity}[\s/>]', content):
             result.error(
-                f"[AC-26] Persistence activity '{activity}' found in non-Main workflow "
+                f"[AC-26] Persistence activity '{activity}' found in non-entry-point workflow "
                 f"(x:Class='{class_match.group(1) if class_match else '?'}'). "
-                f"Wait-and-resume activities MUST be in Main.xaml — the persistence "
-                f"bookmark context only exists in the entry-point file. Move '{activity}' "
-                f"to Main.xaml and keep only non-persistence logic in sub-workflows."
+                f"Wait-and-resume activities MUST be in an entry-point file — Main.xaml "
+                f"or another workflow declared in project.json entryPoints[]. The persistence "
+                f"bookmark context only exists in entry points. Move '{activity}' to an entry "
+                f"point or register this file as one."
             )
