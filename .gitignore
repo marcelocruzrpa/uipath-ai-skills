@@ -22,3 +22,4 @@ Thumbs.db
 
 # Claude Code
 .claude/
+.omc/
