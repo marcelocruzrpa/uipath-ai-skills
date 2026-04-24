@@ -1,0 +1,52 @@
+{
+  "activities": {
+    "InvokeCode": {
+      "doc_name": "InvokeCode",
+      "name": "InvokeCode",
+      "properties": [],
+      "version_attrs": {},
+      "xaml_template": "<ui:InvokeCode Code=\"{x:Null}\" ContinueOnError=\"{x:Null}\">\n\n  <ui:InvokeCode.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeCode.Arguments>\n\n</ui:InvokeCode>",
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "class_name": "UiPath.Core.Activities.InvokeCode"
+    },
+    "InvokeWorkflowFile": {
+      "doc_name": "InvokeWorkflowFile",
+      "name": "InvokeWorkflowFile",
+      "properties": [],
+      "version_attrs": {},
+      "xaml_template": "<ui:InvokeWorkflowFile ArgumentsVariable=\"{x:Null}\" WorkflowFileName=\"{x:Null}\" UnSafe=\"False\">\n\n  <ui:InvokeWorkflowFile.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeWorkflowFile.Arguments>\n\n</ui:InvokeWorkflowFile>",
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "class_name": "UiPath.Core.Activities.InvokeWorkflowFile"
+    },
+    "LogMessage": {
+      "doc_name": "LogMessage",
+      "name": "LogMessage",
+      "properties": [],
+      "version_attrs": {},
+      "xaml_template": "<ui:LogMessage Message=\"{x:Null}\" />",
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "class_name": "UiPath.Core.Activities.LogMessage"
+    }
+  },
+  "source": "UiPath/skills@main/UiPath.System.Activities/26.2",
+  "version_notes": null
+}

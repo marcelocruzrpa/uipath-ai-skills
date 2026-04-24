@@ -1,0 +1,247 @@
+{
+  "activities": {
+    "Assign": {
+      "doc_name": "Assign",
+      "name": "Assign",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.Assign",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "To",
+        "Value"
+      ],
+      "xaml_template": "<sa:Assign DisplayName=\"Assign\">\n\n  <sa:Assign.To>\n\n    <OutArgument x:TypeArguments=\"x:Object\" />\n\n  </sa:Assign.To>\n\n  <sa:Assign.Value>\n\n    <InArgument x:TypeArguments=\"x:Object\" />\n\n  </sa:Assign.Value>\n\n</sa:Assign>"
+    },
+    "Delay": {
+      "doc_name": "Delay",
+      "name": "Delay",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.Delay",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [],
+      "xaml_template": "<sa:Delay DisplayName=\"Delay\" Duration=\"[TimeSpan.FromSeconds(1)]\" />"
+    },
+    "DoWhile": {
+      "doc_name": "DoWhile",
+      "name": "DoWhile",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.DoWhile",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<sa:DoWhile DisplayName=\"Do While\" Condition=\"[False]\">\n\n  <sa:DoWhile.Body>\n\n    <Sequence DisplayName=\"Body\" />\n\n  </sa:DoWhile.Body>\n\n</sa:DoWhile>"
+    },
+    "ForEach": {
+      "doc_name": "ForEach",
+      "name": "ForEach",
+      "properties": [
+        "DisplayName",
+        "Name",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.ForEach`1",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<sa:ForEach x:TypeArguments=\"x:Object\" DisplayName=\"For Each\">\n\n  <sa:ForEach.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"item\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Body\" />\n\n    </ActivityAction>\n\n  </sa:ForEach.Body>\n\n</sa:ForEach>"
+    },
+    "If": {
+      "doc_name": "If",
+      "name": "If",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.If",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Then",
+        "Else"
+      ],
+      "xaml_template": "<sa:If DisplayName=\"If\" Condition=\"[True]\">\n\n  <sa:If.Then>\n\n    <Sequence DisplayName=\"Then\" />\n\n  </sa:If.Then>\n\n  <sa:If.Else>\n\n    <Sequence DisplayName=\"Else\" />\n\n  </sa:If.Else>\n\n</sa:If>"
+    },
+    "InvokeCode": {
+      "doc_name": "InvokeCode",
+      "name": "InvokeCode",
+      "properties": [
+        "Code",
+        "ContinueOnError",
+        "DisplayName",
+        "IdRef",
+        "Key",
+        "Language",
+        "Regex",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "xaml_template": "<ui:InvokeCode Code=\"{x:Null}\" ContinueOnError=\"{x:Null}\">\n\n  <ui:InvokeCode.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeCode.Arguments>\n\n</ui:InvokeCode>",
+      "class_name": "UiPath.Core.Activities.InvokeCode",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true
+    },
+    "InvokeWorkflowFile": {
+      "doc_name": "InvokeWorkflowFile",
+      "name": "InvokeWorkflowFile",
+      "properties": [
+        "DisplayName",
+        "Key",
+        "TypeArguments",
+        "UnSafe",
+        "WorkflowFileName"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "xaml_template": "<ui:InvokeWorkflowFile ArgumentsVariable=\"{x:Null}\" WorkflowFileName=\"{x:Null}\" UnSafe=\"False\">\n\n  <ui:InvokeWorkflowFile.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeWorkflowFile.Arguments>\n\n</ui:InvokeWorkflowFile>",
+      "class_name": "UiPath.Core.Activities.InvokeWorkflowFile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true
+    },
+    "LogMessage": {
+      "doc_name": "LogMessage",
+      "name": "LogMessage",
+      "properties": [
+        "DisplayName",
+        "Level",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:LogMessage Message=\"{x:Null}\" />",
+      "class_name": "UiPath.Core.Activities.LogMessage",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true
+    },
+    "Switch": {
+      "doc_name": "Switch",
+      "name": "Switch",
+      "properties": [
+        "DisplayName",
+        "Key",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.Switch`1",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Cases",
+        "Default"
+      ],
+      "xaml_template": "<sa:Switch x:TypeArguments=\"x:Int32\" DisplayName=\"Switch\">\n\n  <sa:Switch.Cases>\n\n  </sa:Switch.Cases>\n\n  <sa:Switch.Default>\n\n    <Sequence DisplayName=\"Default\" />\n\n  </sa:Switch.Default>\n\n</sa:Switch>"
+    },
+    "Throw": {
+      "doc_name": "Throw",
+      "name": "Throw",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.Throw",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [],
+      "xaml_template": "<sa:Throw DisplayName=\"Throw\" Exception=\"[New Exception(&quot;message&quot;)]\" />"
+    },
+    "TryCatch": {
+      "doc_name": "TryCatch",
+      "name": "TryCatch",
+      "properties": [
+        "DisplayName",
+        "Level",
+        "Name",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.TryCatch",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Try",
+        "Catches",
+        "Finally"
+      ],
+      "xaml_template": "<sa:TryCatch DisplayName=\"Try Catch\">\n\n  <sa:TryCatch.Try>\n\n    <Sequence DisplayName=\"Try\" />\n\n  </sa:TryCatch.Try>\n\n  <sa:TryCatch.Catches>\n\n    <sa:Catch x:TypeArguments=\"x:Exception\">\n\n      <sa:Catch.Action>\n\n        <ActivityAction x:TypeArguments=\"x:Exception\">\n\n          <ActivityAction.Argument>\n\n            <DelegateInArgument x:TypeArguments=\"x:Exception\" Name=\"exception\" />\n\n          </ActivityAction.Argument>\n\n          <Sequence DisplayName=\"Catch\" />\n\n        </ActivityAction>\n\n      </sa:Catch.Action>\n\n    </sa:Catch>\n\n  </sa:TryCatch.Catches>\n\n  <sa:TryCatch.Finally>\n\n    <Sequence DisplayName=\"Finally\" />\n\n  </sa:TryCatch.Finally>\n\n</sa:TryCatch>"
+    },
+    "While": {
+      "doc_name": "While",
+      "name": "While",
+      "properties": [
+        "DisplayName",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "class_name": "System.Activities.Statements.While",
+      "clr_namespace": "System.Activities.Statements",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": false,
+      "namespace_prefix": "sa",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<sa:While DisplayName=\"While\" Condition=\"[True]\">\n\n  <sa:While.Body>\n\n    <Sequence DisplayName=\"Body\" />\n\n  </sa:While.Body>\n\n</sa:While>"
+    }
+  },
+  "source": "UiPath/skills@main/UiPath.System.Activities/25.10",
+  "version_notes": null
+}

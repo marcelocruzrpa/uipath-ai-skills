@@ -1,0 +1,322 @@
+{
+  "activities": {
+    "AppendRange": {
+      "doc_name": "AppendRange",
+      "name": "AppendRange",
+      "properties": [
+        "DataTable",
+        "DisplayName",
+        "SheetName",
+        "WorkbookPath",
+        "WorkbookPathResource"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:AppendRange DataTable=\"{x:Null}\" SheetName=\"{x:Null}\" />",
+      "class_name": "UiPath.Excel.Activities.AppendRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "AutoFillX": {
+      "doc_name": "AutoFillX",
+      "name": "AutoFillX",
+      "properties": [
+        "StartRange"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:AutoFillX StartRange=\"{x:Null}\" />",
+      "class_name": "UiPath.Excel.Activities.Business.AutoFillX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ChangeDataRangeModification": {
+      "doc_name": "ChangeDataRangeModification",
+      "name": "ChangeDataRangeModification",
+      "properties": [
+        "ueabc"
+      ],
+      "version_attrs": {},
+      "clr_namespace": null,
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": null,
+      "harvestable": true
+    },
+    "ExcelApplicationCard": {
+      "doc_name": "ExcelApplicationCard",
+      "name": "ExcelApplicationCard",
+      "properties": [
+        "DisplayName",
+        "Name",
+        "Password",
+        "ReadFormatting",
+        "ResizeWindow",
+        "SensitivityLabel",
+        "SensitivityOperation",
+        "TypeArguments",
+        "WorkbookPath"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ExcelApplicationCard ReadFormatting=\"{x:Null}\" SensitivityLabel=\"{x:Null}\" WorkbookPath=\"{x:Null}\" ResizeWindow=\"None\" SensitivityOperation=\"None\">\n\n  <ueab:ExcelApplicationCard.Body>\n\n    <ActivityAction x:TypeArguments=\"ue:IWorkbookQuickHandle\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"ue:IWorkbookQuickHandle\" Name=\"Excel\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ExcelApplicationCard.Body>\n\n</ueab:ExcelApplicationCard>",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelApplicationCard",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ExcelForEachRowX": {
+      "doc_name": "ExcelForEachRowX",
+      "name": "ExcelForEachRowX",
+      "properties": [
+        "DisplayName",
+        "EmptyRowBehavior",
+        "HasHeaders",
+        "Name",
+        "Range",
+        "SaveAfterEachRow",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ExcelForEachRowX Range=\"{x:Null}\" EmptyRowBehavior=\"Stop\" HasHeaders=\"False\" SaveAfterEachRow=\"False\">\n\n  <ueab:ExcelForEachRowX.Body>\n\n    <ActivityAction x:TypeArguments=\"ue:CurrentRowQuickHandle, x:Int32\">\n\n      <ActivityAction.Argument1>\n\n        <DelegateInArgument x:TypeArguments=\"ue:CurrentRowQuickHandle\" Name=\"CurrentRow\" />\n\n      </ActivityAction.Argument1>\n\n      <ActivityAction.Argument2>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument2>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ExcelForEachRowX.Body>\n\n</ueab:ExcelForEachRowX>",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelForEachRowX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ExcelProcessScopeX": {
+      "doc_name": "ExcelProcessScopeX",
+      "name": "ExcelProcessScopeX",
+      "properties": [
+        "DisplayAlerts",
+        "DisplayName",
+        "ExistingProcessAction",
+        "FileConflictResolution",
+        "LaunchMethod",
+        "LaunchTimeout",
+        "MacroSettings",
+        "Name",
+        "ProcessMode",
+        "ShowExcelWindow",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ExcelProcessScopeX DisplayAlerts=\"{x:Null}\" ExistingProcessAction=\"{x:Null}\" FileConflictResolution=\"{x:Null}\" LaunchMethod=\"{x:Null}\" LaunchTimeout=\"{x:Null}\" MacroSettings=\"{x:Null}\" ProcessMode=\"{x:Null}\" ShowExcelWindow=\"{x:Null}\">\n\n  <ueab:ExcelProcessScopeX.Body>\n\n    <ActivityAction x:TypeArguments=\"ui:IExcelProcess\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"ui:IExcelProcess\" Name=\"ExcelProcessScopeTag\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ExcelProcessScopeX.Body>\n\n</ueab:ExcelProcessScopeX>",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelProcessScopeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "FilterPivotTableX": {
+      "doc_name": "FilterPivotTableX",
+      "name": "FilterPivotTableX",
+      "properties": [
+        "ueabf"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:FilterPivotTableX ColumnName=\"{x:Null}\" FilterArgument=\"{x:Null}\" Table=\"{x:Null}\" ClearFilter=\"False\" />",
+      "class_name": "UiPath.Excel.Activities.Business.FilterPivotTableX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "FilterX": {
+      "doc_name": "FilterX",
+      "name": "FilterX",
+      "properties": [
+        "ueabf"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:FilterX ColumnName=\"{x:Null}\" FilterArgument=\"{x:Null}\" Range=\"{x:Null}\" ClearFilter=\"False\" HasHeaders=\"True\" />",
+      "class_name": "UiPath.Excel.Activities.Business.FilterX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ForEachRow": {
+      "doc_name": "ForEachRow",
+      "name": "ForEachRow",
+      "properties": [
+        "ColumnNames",
+        "CurrentIndex",
+        "DataTable",
+        "DisplayName",
+        "Name",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:ForEachRow ColumnNames=\"{x:Null}\" CurrentIndex=\"{x:Null}\" DataTable=\"{x:Null}\">\n\n  <ui:ForEachRow.Body>\n\n    <ActivityAction x:TypeArguments=\"sd:DataRow\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:DataRow\" Name=\"CurrentRow\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Body\" />\n\n    </ActivityAction>\n\n  </ui:ForEachRow.Body>\n\n</ui:ForEachRow>",
+      "class_name": "UiPath.Core.Activities.ForEachRow",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true
+    },
+    "ForEachSheetX": {
+      "doc_name": "ForEachSheetX",
+      "name": "ForEachSheetX",
+      "properties": [
+        "DisplayName",
+        "Name",
+        "TypeArguments",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ForEachSheetX Workbook=\"{x:Null}\">\n\n  <ueab:ForEachSheetX.Body>\n\n    <ActivityAction x:TypeArguments=\"ue:WorksheetQuickHandle, x:Int32\">\n\n      <ActivityAction.Argument1>\n\n        <DelegateInArgument x:TypeArguments=\"ue:WorksheetQuickHandle\" Name=\"CurrentSheet\" />\n\n      </ActivityAction.Argument1>\n\n      <ActivityAction.Argument2>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument2>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ForEachSheetX.Body>\n\n</ueab:ForEachSheetX>",
+      "class_name": "UiPath.Excel.Activities.Business.ForEachSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "InsertExcelChartX": {
+      "doc_name": "InsertExcelChartX",
+      "name": "InsertExcelChartX",
+      "properties": [
+        "ueabc"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:InsertExcelChartX InsertIntoSheet=\"{x:Null}\" InsertedChart=\"{x:Null}\" Range=\"{x:Null}\" ChartCategory=\"Column\" ChartHeight=\"211\" ChartType=\"xlColumnClustered\" ChartWidth=\"355\" Left=\"60\" Top=\"20\" />",
+      "class_name": "UiPath.Excel.Activities.Business.InsertExcelChartX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ReadRange": {
+      "doc_name": "ReadRange",
+      "name": "ReadRange",
+      "properties": [
+        "AddHeaders",
+        "DataTable",
+        "DisplayName",
+        "Range",
+        "SheetName",
+        "WorkbookPath",
+        "WorkbookPathResource"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadRange DataTable=\"{x:Null}\" Range=\"{x:Null}\" SheetName=\"{x:Null}\" AddHeaders=\"True\" />",
+      "class_name": "UiPath.Excel.Activities.ReadRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "ReadRangeX": {
+      "doc_name": "ReadRangeX",
+      "name": "ReadRangeX",
+      "properties": [
+        "DisplayName",
+        "Range",
+        "SaveTo"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ReadRangeX Range=\"{x:Null}\" SaveTo=\"{x:Null}\" />",
+      "class_name": "UiPath.Excel.Activities.Business.ReadRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "UpdateChartX": {
+      "doc_name": "UpdateChartX",
+      "name": "UpdateChartX",
+      "properties": [
+        "ueabc"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:UpdateChartX Chart=\"{x:Null}\">\n\n  <ueab:UpdateChartX.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:UpdateChartX.Body>\n\n</ueab:UpdateChartX>",
+      "class_name": "UiPath.Excel.Activities.Business.UpdateChartX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "WriteRange": {
+      "doc_name": "WriteRange",
+      "name": "WriteRange",
+      "properties": [
+        "DataTable",
+        "DisplayName",
+        "SheetName",
+        "StartingCell",
+        "WorkbookPath",
+        "WorkbookPathResource"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:WriteRange DataTable=\"{x:Null}\" SheetName=\"{x:Null}\" StartingCell=\"{x:Null}\" />",
+      "class_name": "UiPath.Excel.Activities.WriteRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "WriteRangeX": {
+      "doc_name": "WriteRangeX",
+      "name": "WriteRangeX",
+      "properties": [
+        "Destination",
+        "DisplayName",
+        "IgnoreEmptySource",
+        "Source"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:WriteRangeX Destination=\"{x:Null}\" Source=\"{x:Null}\" IgnoreEmptySource=\"False\" />",
+      "class_name": "UiPath.Excel.Activities.Business.WriteRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    }
+  },
+  "source": "UiPath/skills@main/UiPath.Excel.Activities/3.4",
+  "version_notes": null
+}

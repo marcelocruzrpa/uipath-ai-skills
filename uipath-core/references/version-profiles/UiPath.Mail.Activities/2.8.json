@@ -1,0 +1,168 @@
+{
+  "activities": {
+    "ForEachEmailX": {
+      "doc_name": "ForEachEmailX",
+      "name": "ForEachEmailX",
+      "properties": [
+        "Capacity",
+        "Criteria",
+        "DateEqualsFilter",
+        "DateFilter",
+        "DisplayName",
+        "IncludeSubfolders",
+        "LogicalOperator",
+        "Mails",
+        "Name",
+        "NumberOfEmailsLimit",
+        "Operator",
+        "RetrieveAttachments",
+        "TypeArguments",
+        "UnreadOnly",
+        "Value",
+        "WithAttachmentsOnly"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<umab:ForEachEmailX MailFilter=\"{x:Null}\" Mails=\"{x:Null}\" IncludeSubfolders=\"False\" NumberOfEmailsLimit=\"100\" UnreadOnly=\"False\" WithAttachmentsOnly=\"False\">\n\n  <umab:ForEachEmailX.Body>\n\n    <ActivityAction x:TypeArguments=\"snm:MailMessage, x:Int32\">\n\n      <ActivityAction.Argument1>\n\n        <DelegateInArgument x:TypeArguments=\"snm:MailMessage\" Name=\"CurrentMail\" />\n\n      </ActivityAction.Argument1>\n\n      <ActivityAction.Argument2>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument2>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </umab:ForEachEmailX.Body>\n\n</umab:ForEachEmailX>",
+      "class_name": "UiPath.Mail.Activities.Business.ForEachEmailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "GetOutlookMailMessages": {
+      "doc_name": "GetOutlookMailMessages",
+      "name": "GetOutlookMailMessages",
+      "properties": [
+        "Account",
+        "DisplayName",
+        "Filter",
+        "FilterByMessageIds",
+        "GetAttachements",
+        "MailFolder",
+        "MarkAsRead",
+        "Messages",
+        "OnlyUnreadMessages",
+        "OrderByDate",
+        "TimeoutMS",
+        "Top"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<ui:GetOutlookMailMessages Account=\"{x:Null}\" Filter=\"{x:Null}\" FilterByMessageIds=\"{x:Null}\" Messages=\"{x:Null}\" TimeoutMS=\"{x:Null}\" ConnectionMode=\"Undefined\" GetAttachements=\"False\" MailFolder=\"Inbox\" MarkAsRead=\"False\" OnlyUnreadMessages=\"True\" OrderByDate=\"NewestFirst\" Top=\"30\" UseISConnection=\"False\">\n\n  <ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>\n\n</ui:GetOutlookMailMessages>",
+      "class_name": "UiPath.Mail.Outlook.Activities.GetOutlookMailMessages",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "MoveOutlookMessage": {
+      "doc_name": "MoveOutlookMessage",
+      "name": "MoveOutlookMessage",
+      "properties": [
+        "Account",
+        "DisplayName",
+        "MailFolder",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:MoveOutlookMessage Account=\"{x:Null}\" MailFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" />",
+      "class_name": "UiPath.Mail.Outlook.Activities.MoveOutlookMessage",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "OutlookApplicationCard": {
+      "doc_name": "OutlookApplicationCard",
+      "name": "OutlookApplicationCard",
+      "properties": [
+        "Account",
+        "AccountMismatchBehavior",
+        "DisplayName",
+        "Name",
+        "TypeArguments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<umab:OutlookApplicationCard Account=\"{x:Null}\" AccountMismatchBehavior=\"UseDefaultEmailAccount\">\n\n  <umab:OutlookApplicationCard.Body>\n\n    <ActivityAction x:TypeArguments=\"um:IMailQuickHandle\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"um:IMailQuickHandle\" Name=\"Outlook\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </umab:OutlookApplicationCard.Body>\n\n</umab:OutlookApplicationCard>",
+      "class_name": "UiPath.Mail.Activities.Business.OutlookApplicationCard",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "SaveMailAttachments": {
+      "doc_name": "SaveMailAttachments",
+      "name": "SaveMailAttachments",
+      "properties": [
+        "Attachments",
+        "DisplayName",
+        "ExcludeInlineAttachments",
+        "FolderPath",
+        "Message",
+        "OverwriteExisting",
+        "ResourceAttachments"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SaveMailAttachments Attachments=\"{x:Null}\" FolderPath=\"{x:Null}\" Message=\"{x:Null}\" ResourceAttachments=\"{x:Null}\" ExcludeInlineAttachments=\"False\" OverwriteExisting=\"False\" />",
+      "class_name": "UiPath.Mail.Activities.SaveMailAttachments",
+      "clr_namespace": "UiPath.Mail.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    },
+    "SendOutlookMail": {
+      "doc_name": "SendOutlookMail",
+      "name": "SendOutlookMail",
+      "properties": [
+        "Account",
+        "Bcc",
+        "Body",
+        "Capacity",
+        "Cc",
+        "ContinueOnError",
+        "DisplayName",
+        "Importance",
+        "IsBodyHtml",
+        "IsDraft",
+        "MailMessage",
+        "ReplyTo",
+        "Sensitivity",
+        "StoredValue",
+        "Subject",
+        "TimeoutMS",
+        "To",
+        "TypeArguments",
+        "UseISConnection"
+      ],
+      "version_attrs": {},
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot",
+        "Files"
+      ],
+      "xaml_template": "<ui:SendOutlookMail Account=\"{x:Null}\" Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" ContinueOnError=\"{x:Null}\" MailMessage=\"{x:Null}\" ReplyTo=\"{x:Null}\" Subject=\"{x:Null}\" TimeoutMS=\"{x:Null}\" To=\"{x:Null}\" UseRichTextEditor=\"{x:Null}\" ConnectionMode=\"Undefined\" Importance=\"Normal\" IsBodyHtml=\"False\" IsDraft=\"False\" Sensitivity=\"Normal\" UseISConnection=\"False\">\n\n  <ui:SendOutlookMail.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:SendOutlookMail.ConnectionDetailsBackupSlot>\n\n  <ui:SendOutlookMail.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </ui:SendOutlookMail.Files>\n\n</ui:SendOutlookMail>",
+      "class_name": "UiPath.Mail.Outlook.Activities.SendOutlookMail",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true
+    }
+  },
+  "source": "UiPath/skills@main/UiPath.Mail.Activities/2.8",
+  "version_notes": null
+}

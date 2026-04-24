@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "owner": "uipath-tasks plugin",
+    "notes": "Plugin-owned profile for UiPath.Persistence.Activities. Registered via plugin_loader.register_version_profile(). Ground-truth XAML is NOT harvested — templates are omitted (harvestable=false) because Studio IPC harvest is a follow-up. Activity list mirrors what uipath-tasks/extensions/generators.py emits."
+  },
+  "activities": {
+    "CreateFormTask": {
+      "doc_name": "CreateFormTask",
+      "name": "CreateFormTask",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upaf",
+      "child_elements": ["FormData"],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.FormTask.CreateFormTask",
+      "clr_namespace": "UiPath.Persistence.Activities.FormTask",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "WaitForFormTaskAndResume": {
+      "doc_name": "WaitForFormTaskAndResume",
+      "name": "WaitForFormTaskAndResume",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upaf",
+      "child_elements": [],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.FormTask.WaitForFormTaskAndResume",
+      "clr_namespace": "UiPath.Persistence.Activities.FormTask",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "GetFormTasks": {
+      "doc_name": "GetFormTasks",
+      "name": "GetFormTasks",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upaf",
+      "child_elements": [],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.FormTask.GetFormTasks",
+      "clr_namespace": "UiPath.Persistence.Activities.FormTask",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "CreateExternalTask": {
+      "doc_name": "CreateExternalTask",
+      "name": "CreateExternalTask",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upae",
+      "child_elements": ["TaskData"],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.ExternalTask.CreateExternalTask",
+      "clr_namespace": "UiPath.Persistence.Activities.ExternalTask",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "WaitForExternalTaskAndResume": {
+      "doc_name": "WaitForExternalTaskAndResume",
+      "name": "WaitForExternalTaskAndResume",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upae",
+      "child_elements": [],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.ExternalTask.WaitForExternalTaskAndResume",
+      "clr_namespace": "UiPath.Persistence.Activities.ExternalTask",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "CompleteTask": {
+      "doc_name": "CompleteTask",
+      "name": "CompleteTask",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upat",
+      "child_elements": [],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.Tasks.CompleteTask",
+      "clr_namespace": "UiPath.Persistence.Activities.Tasks",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    },
+    "AssignTasks": {
+      "doc_name": "AssignTasks",
+      "name": "AssignTasks",
+      "properties": [],
+      "version_attrs": {},
+      "namespace_prefix": "upat",
+      "child_elements": ["AssignmentCriteria"],
+      "xaml_template": "",
+      "class_name": "UiPath.Persistence.Activities.Tasks.AssignTasks",
+      "clr_namespace": "UiPath.Persistence.Activities.Tasks",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": false
+    }
+  }
+}

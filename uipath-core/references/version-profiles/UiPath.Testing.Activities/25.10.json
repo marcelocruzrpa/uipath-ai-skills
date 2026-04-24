@@ -1,0 +1,446 @@
+{
+  "activities": {
+    "Address": {
+      "child_elements": [],
+      "doc_name": "Address",
+      "name": "Address",
+      "namespace_prefix": "utat",
+      "properties": [
+        "AddressResult",
+        "City",
+        "Country"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:Address AddressResult=\"{x:Null}\" City=\"{x:Null}\" Country=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.Address"
+    },
+    "AttachDocument": {
+      "child_elements": [],
+      "doc_name": "AttachDocument",
+      "name": "AttachDocument",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "FilePath",
+        "Tags"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:AttachDocument ContinueOnError=\"{x:Null}\" FilePath=\"{x:Null}\" Tags=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.AttachDocument"
+    },
+    "BulkAddTestDataQueue": {
+      "child_elements": [],
+      "doc_name": "BulkAddTestDataQueue",
+      "name": "BulkAddTestDataQueue",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "QueueItemsDataTable",
+        "QueueName",
+        "TimeoutMs"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:BulkAddTestDataQueue ContinueOnError=\"{x:Null}\" QueueItemsDataTable=\"{x:Null}\" QueueName=\"{x:Null}\" TimeoutMs=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.BulkAddTestDataQueue"
+    },
+    "ComparePdfDocuments": {
+      "child_elements": [],
+      "doc_name": "ComparePdfDocuments",
+      "name": "ComparePdfDocuments",
+      "namespace_prefix": "uta",
+      "properties": [
+        "BaselinePath",
+        "ComparisonType",
+        "ContinueOnFailure",
+        "Differences",
+        "IgnoreIdenticalItems",
+        "IgnoreImagesLocation",
+        "IncludeImages",
+        "OutputFolderPath",
+        "Result",
+        "Rules",
+        "RulesList",
+        "SemanticDifferences",
+        "TargetPath"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:ComparePdfDocuments BaselinePath=\"{x:Null}\" Differences=\"{x:Null}\" Result=\"{x:Null}\" Rules=\"{x:Null}\" RulesList=\"{x:Null}\" SemanticDifferences=\"{x:Null}\" TargetPath=\"{x:Null}\" ComparisonType=\"Line\" ContinueOnFailure=\"True\" IgnoreIdenticalItems=\"True\" IgnoreImagesLocation=\"False\" IncludeImages=\"True\" OutputFolderPath=\".\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.ComparePdfDocuments"
+    },
+    "CompareText": {
+      "child_elements": [],
+      "doc_name": "CompareText",
+      "name": "CompareText",
+      "namespace_prefix": "uta",
+      "properties": [
+        "BaselineText",
+        "ComparisonType",
+        "ContinueOnFailure",
+        "Differences",
+        "OutputFilePath",
+        "Result",
+        "Rules",
+        "RulesList",
+        "SemanticDifferences",
+        "TargetText",
+        "WordSeparators"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:CompareText BaselineText=\"{x:Null}\" Differences=\"{x:Null}\" Result=\"{x:Null}\" Rules=\"{x:Null}\" RulesList=\"{x:Null}\" SemanticDifferences=\"{x:Null}\" TargetText=\"{x:Null}\" WordSeparators=\"{x:Null}\" ComparisonType=\"Line\" ContinueOnFailure=\"True\" OutputFilePath=\"differences.html\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.CompareText"
+    },
+    "CreateComparisonRule": {
+      "child_elements": [],
+      "doc_name": "CreateComparisonRule",
+      "name": "CreateComparisonRule",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ComparisonRule",
+        "ComparisonRuleType",
+        "ContinueOnError",
+        "Pattern",
+        "RuleName",
+        "UsePlaceholder"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:CreateComparisonRule ComparisonRule=\"{x:Null}\" Pattern=\"{x:Null}\" RuleName=\"{x:Null}\" ComparisonRuleType=\"RegexRule\" ContinueOnError=\"False\" UsePlaceholder=\"True\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.CreateComparisonRule"
+    },
+    "DeleteTestDataQueueItems": {
+      "child_elements": [],
+      "doc_name": "DeleteTestDataQueueItems",
+      "name": "DeleteTestDataQueueItems",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "TestDataQueueItems",
+        "TimeoutMs"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:DeleteTestDataQueueItems ContinueOnError=\"{x:Null}\" TestDataQueueItems=\"{x:Null}\" TimeoutMs=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.DeleteTestDataQueueItems"
+    },
+    "GetTestDataQueueItem": {
+      "child_elements": [],
+      "doc_name": "GetTestDataQueueItem",
+      "name": "GetTestDataQueueItem",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "MarkConsumed",
+        "Output",
+        "QueueName",
+        "TimeoutMs"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:GetTestDataQueueItem ContinueOnError=\"{x:Null}\" Output=\"{x:Null}\" QueueName=\"{x:Null}\" TimeoutMs=\"{x:Null}\" MarkConsumed=\"True\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.GetTestDataQueueItem"
+    },
+    "GetTestDataQueueItems": {
+      "child_elements": [],
+      "doc_name": "GetTestDataQueueItems",
+      "name": "GetTestDataQueueItems",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "IdFilter",
+        "QueueName",
+        "Skip",
+        "TestDataQueueItemStatus",
+        "TestDataQueueItems",
+        "TimeoutMs",
+        "Top"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:GetTestDataQueueItems ContinueOnError=\"{x:Null}\" IdFilter=\"{x:Null}\" QueueName=\"{x:Null}\" Skip=\"{x:Null}\" TestDataQueueItems=\"{x:Null}\" TimeoutMs=\"{x:Null}\" Top=\"{x:Null}\" TestDataQueueItemStatus=\"All\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.GetTestDataQueueItems"
+    },
+    "GivenName": {
+      "child_elements": [],
+      "doc_name": "GivenName",
+      "name": "GivenName",
+      "namespace_prefix": "utat",
+      "properties": [
+        "GivenNameResult"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:GivenName GivenNameResult=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.GivenName"
+    },
+    "LastName": {
+      "child_elements": [],
+      "doc_name": "LastName",
+      "name": "LastName",
+      "namespace_prefix": "utat",
+      "properties": [
+        "LastNameResult"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:LastName LastNameResult=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.LastName"
+    },
+    "MockActivity": {
+      "child_elements": [],
+      "doc_name": "MockActivity",
+      "name": "MockActivity",
+      "namespace_prefix": "utam",
+      "properties": [
+        "MockedActivityIdRef"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utam:MockActivity MockedActivityIdRef=\"{x:Null}\">\n\n  <Sequence />\n\n</utam:MockActivity>",
+      "clr_namespace": "UiPath.Testing.Activities.Mocks",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.Mocks.MockActivity"
+    },
+    "NewAddTestDataQueueItem": {
+      "child_elements": [
+        "ItemInformation"
+      ],
+      "doc_name": "NewAddTestDataQueueItem",
+      "name": "NewAddTestDataQueueItem",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ContinueOnError",
+        "ItemInformation",
+        "QueueName",
+        "TimeoutMs"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:NewAddTestDataQueueItem ContinueOnError=\"{x:Null}\" QueueName=\"{x:Null}\" TimeoutMs=\"{x:Null}\">\n\n  <uta:NewAddTestDataQueueItem.ItemInformation>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, InArgument\" />\n\n  </uta:NewAddTestDataQueueItem.ItemInformation>\n\n</uta:NewAddTestDataQueueItem>",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.NewAddTestDataQueueItem"
+    },
+    "RandomDate": {
+      "child_elements": [],
+      "doc_name": "RandomDate",
+      "name": "RandomDate",
+      "namespace_prefix": "utat",
+      "properties": [
+        "MaxDate",
+        "MinDate",
+        "Output"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:RandomDate MaxDate=\"{x:Null}\" MinDate=\"{x:Null}\" Output=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.RandomDate"
+    },
+    "RandomNumber": {
+      "child_elements": [],
+      "doc_name": "RandomNumber",
+      "name": "RandomNumber",
+      "namespace_prefix": "utat",
+      "properties": [
+        "Decimals",
+        "Max",
+        "Min",
+        "Output"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:RandomNumber Decimals=\"{x:Null}\" Max=\"{x:Null}\" Min=\"{x:Null}\" Output=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.RandomNumber"
+    },
+    "RandomString": {
+      "child_elements": [],
+      "doc_name": "RandomString",
+      "name": "RandomString",
+      "namespace_prefix": "utat",
+      "properties": [
+        "Case",
+        "Length",
+        "Output"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:RandomString Output=\"{x:Null}\" Case=\"LowerCase\" Length=\"10\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.RandomString"
+    },
+    "RandomValue": {
+      "child_elements": [],
+      "doc_name": "RandomValue",
+      "name": "RandomValue",
+      "namespace_prefix": "utat",
+      "properties": [
+        "FilePath",
+        "Value"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<utat:RandomValue FilePath=\"{x:Null}\" Value=\"{x:Null}\" />",
+      "clr_namespace": "UiPath.Testing.Activities.TestData",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.TestData.RandomValue"
+    },
+    "VerifyControlAttribute": {
+      "child_elements": [
+        "ActivityToTest",
+        "ArgumentsBridgeActivity"
+      ],
+      "doc_name": "VerifyControlAttribute",
+      "name": "VerifyControlAttribute",
+      "namespace_prefix": "uta",
+      "properties": [
+        "ActivityToTest",
+        "AlternativeVerificationTitle",
+        "ArgumentsBridgeActivity",
+        "ContinueOnFailure",
+        "Expression",
+        "KeepScreenshots",
+        "Operator",
+        "OutputArgument",
+        "OutputMessageFormat",
+        "Result",
+        "ScreenshotsPath",
+        "TakeScreenshotInCaseOfFailingAssertion",
+        "TakeScreenshotInCaseOfSucceedingAssertion"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:VerifyControlAttribute AlternativeVerificationTitle=\"{x:Null}\" Expression=\"{x:Null}\" KeepScreenshots=\"{x:Null}\" OutputArgument=\"{x:Null}\" OutputMessageFormat=\"{x:Null}\" Result=\"{x:Null}\" ScreenshotsPath=\"{x:Null}\" ContinueOnFailure=\"True\" Operator=\"Equality\" TakeScreenshotInCaseOfFailingAssertion=\"True\" TakeScreenshotInCaseOfSucceedingAssertion=\"False\">\n\n  <uta:VerifyControlAttribute.ActivityToTest>\n\n    <ActivityAction />\n\n  </uta:VerifyControlAttribute.ActivityToTest>\n\n  <uta:VerifyControlAttribute.ArgumentsBridgeActivity>\n\n    <ActivityFunc x:TypeArguments=\"x:Object\">\n\n      <uta:ArgumentsBridge Input=\"{x:Null}\" />\n\n    </ActivityFunc>\n\n  </uta:VerifyControlAttribute.ArgumentsBridgeActivity>\n\n</uta:VerifyControlAttribute>",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.VerifyControlAttribute"
+    },
+    "VerifyExpression": {
+      "child_elements": [],
+      "doc_name": "VerifyExpression",
+      "name": "VerifyExpression",
+      "namespace_prefix": "uta",
+      "properties": [
+        "AlternativeVerificationTitle",
+        "ContinueOnFailure",
+        "Expression",
+        "KeepScreenshots",
+        "OutputMessageFormat",
+        "Result",
+        "ScreenshotsPath",
+        "TakeScreenshotInCaseOfFailingAssertion",
+        "TakeScreenshotInCaseOfSucceedingAssertion"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:VerifyExpression AlternativeVerificationTitle=\"{x:Null}\" Expression=\"{x:Null}\" KeepScreenshots=\"{x:Null}\" OutputMessageFormat=\"{x:Null}\" Result=\"{x:Null}\" ScreenshotsPath=\"{x:Null}\" ContinueOnFailure=\"True\" TakeScreenshotInCaseOfFailingAssertion=\"False\" TakeScreenshotInCaseOfSucceedingAssertion=\"False\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.VerifyExpression"
+    },
+    "VerifyExpressionWithOperator": {
+      "child_elements": [],
+      "doc_name": "VerifyExpressionWithOperator",
+      "name": "VerifyExpressionWithOperator",
+      "namespace_prefix": "uta",
+      "properties": [
+        "AlternativeVerificationTitle",
+        "ContinueOnFailure",
+        "FirstExpression",
+        "KeepScreenshots",
+        "Operator",
+        "OutputMessageFormat",
+        "Result",
+        "ScreenshotsPath",
+        "SecondExpression",
+        "TakeScreenshotInCaseOfFailingAssertion",
+        "TakeScreenshotInCaseOfSucceedingAssertion"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:VerifyExpressionWithOperator AlternativeVerificationTitle=\"{x:Null}\" FirstExpression=\"{x:Null}\" KeepScreenshots=\"{x:Null}\" OutputMessageFormat=\"{x:Null}\" Result=\"{x:Null}\" ScreenshotsPath=\"{x:Null}\" SecondExpression=\"{x:Null}\" ContinueOnFailure=\"True\" Operator=\"Equality\" TakeScreenshotInCaseOfFailingAssertion=\"False\" TakeScreenshotInCaseOfSucceedingAssertion=\"False\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.VerifyExpressionWithOperator"
+    },
+    "VerifyRange": {
+      "child_elements": [],
+      "doc_name": "VerifyRange",
+      "name": "VerifyRange",
+      "namespace_prefix": "uta",
+      "properties": [
+        "AlternativeVerificationTitle",
+        "ContinueOnFailure",
+        "Expression",
+        "KeepScreenshots",
+        "LowerLimit",
+        "OutputMessageFormat",
+        "Result",
+        "ScreenshotsPath",
+        "TakeScreenshotInCaseOfFailingAssertion",
+        "TakeScreenshotInCaseOfSucceedingAssertion",
+        "UpperLimit",
+        "VerificationType"
+      ],
+      "version_attrs": {},
+      "xaml_template": "<uta:VerifyRange AlternativeVerificationTitle=\"{x:Null}\" Expression=\"{x:Null}\" KeepScreenshots=\"{x:Null}\" LowerLimit=\"{x:Null}\" OutputMessageFormat=\"{x:Null}\" Result=\"{x:Null}\" ScreenshotsPath=\"{x:Null}\" UpperLimit=\"{x:Null}\" ContinueOnFailure=\"True\" TakeScreenshotInCaseOfFailingAssertion=\"False\" TakeScreenshotInCaseOfSucceedingAssertion=\"False\" VerificationType=\"is within\" />",
+      "clr_namespace": "UiPath.Testing.Activities",
+      "source_package": "UiPath.Testing.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "class_name": "UiPath.Testing.Activities.VerifyRange"
+    }
+  },
+  "source": "UiPath/skills@main/UiPath.Testing.Activities/25.10",
+  "version_notes": null
+}
