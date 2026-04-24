@@ -38,6 +38,7 @@ import os
 import re
 import shutil
 import sys
+import urllib.error
 import uuid
 from pathlib import Path
 
@@ -339,7 +340,8 @@ def scaffold_project(name: str, description: str, output_dir: str,
                      transaction_type: str = "DataRow",
                      queue_name: str = None, queue_folder: str = None,
                      overwrite: bool = False,
-                     target: str = "both"):
+                     target: str = "both",
+                     version_band: str = None):
     """Scaffold a new UiPath project from real templates."""
     skill_dir = get_skill_dir()
 
@@ -437,6 +439,9 @@ def scaffold_project(name: str, description: str, output_dir: str,
     load_plugins()
     for hook in get_scaffold_hooks():
         hook(pj)
+
+    if version_band:
+        pj["versionBand"] = version_band
 
     pj["runtimeOptions"]["isAttended"] = attended
     pj["expressionLanguage"] = expression_lang
@@ -546,6 +551,9 @@ if __name__ == "__main__":
                              "If omitted, template default 'ProcessABCQueue' is kept.")
     parser.add_argument("--queue-folder", default=None,
                         help="Orchestrator folder for the queue (written to Config.xlsx Settings sheet).")
+    parser.add_argument("--band", metavar="NN", default=None,
+                        help="Target version band (e.g., 25 or 26). Stamps versionBand into "
+                             "project.json and resolves baseline dependencies within the band.")
     parser.add_argument("--overwrite", action="store_true",
                         help="Delete and replace existing output directory. Without this flag, "
                              "scaffolding into an existing directory fails safely.")
@@ -565,11 +573,48 @@ if __name__ == "__main__":
             print(f"WARNING: {pkg} version '{clean_ver}' appears to be a prerelease "
                   f"(contains '-'). Use stable versions only.")
 
+    # Resolve band-specific baseline deps when --band is set. --deps still wins.
+    band_deps = {}
+    if args.band:
+        try:
+            from version_band import validate_band
+            validate_band(args.band)
+            from resolve_nuget import resolve_packages_in_band, COMMON_PACKAGES
+            print(f"Resolving baseline dependencies for band {args.band}...")
+            band_deps = {pkg: f"[{ver}]"
+                         for pkg, ver in resolve_packages_in_band(COMMON_PACKAGES, args.band).items()}
+        except (ImportError, FileNotFoundError, json.JSONDecodeError,
+                urllib.error.URLError, OSError) as e:
+            print(f"WARNING: Could not resolve band {args.band} deps ({e}). "
+                  f"Using template baseline.", file=sys.stderr)
+
+    merged_deps = dict(band_deps)
+    merged_deps.update(extra_deps)
+
+    # If --band was not explicit, derive it from the resolved year-based deps.
+    # This keeps project.json's versionBand in sync with what was actually
+    # pinned, so lints 120-124 engage on downstream edits without the caller
+    # having to pass --band. Stays silent (no stamping) when no year-based
+    # dep is present so sequence scaffolds with bare deps remain opt-in.
+    effective_band = args.band
+    if effective_band is None and merged_deps:
+        try:
+            from version_band import derive_band_from_deps, UnsupportedBandError
+            effective_band = derive_band_from_deps(merged_deps)
+            if effective_band:
+                print(f"Derived versionBand={effective_band} from resolved dependencies.")
+        except UnsupportedBandError as e:
+            print(f"WARNING: {e}. versionBand will be omitted.", file=sys.stderr)
+        except (ImportError, ValueError) as e:
+            print(f"WARNING: Could not derive versionBand from deps ({e}). "
+                  f"versionBand will be omitted.", file=sys.stderr)
+
     try:
         scaffold_project(args.name, args.description, args.output, args.variant,
-                         extra_deps, args.attended, args.lang, args.transaction_type,
+                         merged_deps if merged_deps else extra_deps,
+                         args.attended, args.lang, args.transaction_type,
                          args.queue_name, args.queue_folder, args.overwrite,
-                         args.target)
+                         args.target, effective_band)
     except FileNotFoundError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         sys.exit(1)
