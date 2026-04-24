@@ -800,7 +800,29 @@ def _generate_activity(spec: dict, scope_id: str, counter: _IdRefCounter,
                               id_ref=id_ref, scope_id=scope_id,
                               indent=indent, project_root=_PROJECT_ROOT)
 
-    raise ValueError(f"Unknown generator: {gen}")
+    # Final fallback: try the data-driven generator (annotation corpus).
+    # Lets activities described purely in references/annotations/*.json be
+    # emitted without a hand-written gen_* function. Wraps WizardOnly /
+    # MissingScope / ReviewNeeded errors as ValueError("Cannot generate ...")
+    # so the dispatcher always raises a single, user-friendly exception type.
+    try:
+        from generate_activities._data_driven import (
+            gen_from_annotation,
+            MissingScopeError,
+            ReviewNeededError,
+            WizardOnlyActivityError,
+        )
+    except ImportError:
+        raise ValueError(f"Unknown generator: {gen}")
+
+    try:
+        id_ref = counter.next(_idref_prefix(gen))
+        return gen_from_annotation(gen, args, id_ref=id_ref, scope_id=scope_id, indent=indent)
+    except KeyError:
+        # No annotation entry — preserve the original "Unknown generator" message
+        raise ValueError(f"Unknown generator: {gen}")
+    except (WizardOnlyActivityError, MissingScopeError, ReviewNeededError) as e:
+        raise ValueError(f"Cannot generate {gen!r}: {e}") from e
 
 
 # ---------------------------------------------------------------------------
