@@ -1,0 +1,7 @@
+<Activity x:Class="DatabaseTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:DatabaseTransaction ContinueOnError="{x:Null}" DatabaseConnection="{x:Null}" UseTransaction="True">
+    <ui:DatabaseTransaction.Body>
+      <Sequence DisplayName="Do" />
+    </ui:DatabaseTransaction.Body>
+  </ui:DatabaseTransaction>
+</Activity>

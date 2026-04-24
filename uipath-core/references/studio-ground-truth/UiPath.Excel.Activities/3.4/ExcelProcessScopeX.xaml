@@ -1,0 +1,12 @@
+<Activity x:Class="ExcelProcessScopeX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}">
+    <ueab:ExcelProcessScopeX.Body>
+      <ActivityAction x:TypeArguments="ui:IExcelProcess">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ueab:ExcelProcessScopeX.Body>
+  </ueab:ExcelProcessScopeX>
+</Activity>

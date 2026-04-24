@@ -1,0 +1,3 @@
+<Activity x:Class="ExtractPDFPageRange" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <upap:ExtractPDFPageRange FileName="{x:Null}" OutputFileName="{x:Null}" Range="{x:Null}" />
+</Activity>

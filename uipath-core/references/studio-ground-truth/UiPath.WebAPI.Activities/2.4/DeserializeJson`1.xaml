@@ -1,0 +1,3 @@
+<Activity x:Class="DeserializeJson&lt;JObject&gt;" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonObject="{x:Null}" JsonSample="{x:Null}" JsonString="{x:Null}" Settings="{x:Null}" />
+</Activity>

@@ -1,0 +1,3 @@
+<Activity x:Class="NKeyboardTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NKeyboardTrigger Enabled="True" SchedulingMode="Sequential" TriggerId="10ae2088-35bc-4444-94e7-38d1d82537c8" />
+</Activity>

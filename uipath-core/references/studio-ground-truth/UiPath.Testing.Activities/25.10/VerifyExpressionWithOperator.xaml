@@ -1,0 +1,3 @@
+<Activity x:Class="VerifyExpressionWithOperator" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:VerifyExpressionWithOperator AlternativeVerificationTitle="{x:Null}" FirstExpression="{x:Null}" KeepScreenshots="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" SecondExpression="{x:Null}" ContinueOnFailure="True" Operator="Equality" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False" />
+</Activity>

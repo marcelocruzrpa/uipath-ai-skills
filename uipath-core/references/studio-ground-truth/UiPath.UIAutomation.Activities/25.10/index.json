@@ -1,0 +1,294 @@
+{
+  "package": "UiPath.UIAutomation.Activities",
+  "version": "25.10",
+  "concrete_version": "25.10.30",
+  "harvested_at": "2026-04-22T06:26:12+00:00",
+  "activities": {
+    "NApplicationCard": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NApplicationCard",
+      "size": 1277
+    },
+    "NCheck": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NCheck",
+      "size": 288
+    },
+    "NCheckState": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NCheckState",
+      "size": 281
+    },
+    "NClick": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NClick",
+      "size": 353
+    },
+    "NGetText": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NGetText",
+      "size": 277
+    },
+    "NKeyboardShortcuts": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NKeyboardShortcuts",
+      "size": 375
+    },
+    "NSelectItem": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSelectItem",
+      "size": 299
+    },
+    "NSetText": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSetText",
+      "size": 277
+    },
+    "NTypeInto": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NTypeInto",
+      "size": 301
+    },
+    "NUITask": {
+      "status": "ok",
+      "class_name": "UiPath.Semantic.Activities.NUITask",
+      "size": 241
+    },
+    "ApplicationEventTrigger": {
+      "status": "unresolved"
+    },
+    "ExtractUIData": {
+      "status": "unresolved"
+    },
+    "GetAttribute": {
+      "status": "unresolved"
+    },
+    "GoogleCloudOCR": {
+      "status": "ok",
+      "class_name": "UiPath.Core.Activities.GoogleCloudOCR",
+      "size": 564
+    },
+    "GoogleOCR": {
+      "status": "ok",
+      "class_name": "UiPath.Core.Activities.GoogleOCR",
+      "size": 537
+    },
+    "MicrosoftAzureComputerVisionOCR": {
+      "status": "ok",
+      "class_name": "UiPath.Core.Activities.MicrosoftAzureComputerVisionOCR",
+      "size": 575
+    },
+    "NAccessibilityCheck": {
+      "status": "unresolved"
+    },
+    "NBlockUserInput": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NBlockUserInput",
+      "size": 257
+    },
+    "NBrowserDialogScope": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NBrowserDialogScope",
+      "size": 290
+    },
+    "NBrowserFilePickerScope": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NBrowserFilePickerScope",
+      "size": 273
+    },
+    "NCheckElement": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NCheckElement",
+      "size": 305
+    },
+    "NClickTrigger": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NClickTrigger",
+      "size": 345
+    },
+    "NClosePopup": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NClosePopup",
+      "size": 327
+    },
+    "NDragAndDrop": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NDragAndDrop",
+      "size": 285
+    },
+    "NElementScope": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NElementScope",
+      "size": 357
+    },
+    "NExtractDataGeneric": {
+      "status": "unresolved"
+    },
+    "NExtractFormDataGeneric": {
+      "status": "unresolved"
+    },
+    "NFillForm": {
+      "status": "ok",
+      "class_name": "UiPath.Semantic.Activities.NFillForm",
+      "size": 279
+    },
+    "NFindElements": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NFindElements",
+      "size": 347
+    },
+    "NForEachUiElement": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NForEachUiElement",
+      "size": 1330
+    },
+    "NGetBrowserData": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NGetBrowserData",
+      "size": 280
+    },
+    "NGetClipboard": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NGetClipboard",
+      "size": 305
+    },
+    "NGetUrl": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NGetUrl",
+      "size": 263
+    },
+    "NGoToUrl": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NGoToUrl",
+      "size": 243
+    },
+    "NHighlight": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NHighlight",
+      "size": 294
+    },
+    "NHover": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NHover",
+      "size": 273
+    },
+    "NInjectJsScript": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NInjectJsScript",
+      "size": 329
+    },
+    "NKeyboardTrigger": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NKeyboardTrigger",
+      "size": 351
+    },
+    "NMouseScroll": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NMouseScroll",
+      "size": 355
+    },
+    "NNavigateBrowser": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NNavigateBrowser",
+      "size": 259
+    },
+    "NSAPCallTransaction": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPCallTransaction",
+      "size": 306
+    },
+    "NSAPClickPictureOnScreen": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPClickPictureOnScreen",
+      "size": 309
+    },
+    "NSAPClickToolbarButton": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPClickToolbarButton",
+      "size": 321
+    },
+    "NSAPExpandALVHierarchicalTable": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPExpandALVHierarchicalTable",
+      "size": 364
+    },
+    "NSAPExpandALVTree": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPExpandALVTree",
+      "size": 295
+    },
+    "NSAPExpandTree": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPExpandTree",
+      "size": 305
+    },
+    "NSAPLogin": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPLogin",
+      "size": 261
+    },
+    "NSAPLogon": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPLogon",
+      "size": 1228
+    },
+    "NSAPReadStatusbar": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPReadStatusbar",
+      "size": 376
+    },
+    "NSAPSelectDatesInCalendar": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPSelectDatesInCalendar",
+      "size": 311
+    },
+    "NSAPSelectMenuItem": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPSelectMenuItem",
+      "size": 279
+    },
+    "NSAPTableCellScope": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSAPTableCellScope",
+      "size": 705
+    },
+    "NSetBrowserData": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSetBrowserData",
+      "size": 280
+    },
+    "NSetClipboard": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSetClipboard",
+      "size": 303
+    },
+    "NSetFocus": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSetFocus",
+      "size": 279
+    },
+    "NSetRuntimeBrowser": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NSetRuntimeBrowser",
+      "size": 263
+    },
+    "NSetValue": {
+      "status": "unresolved"
+    },
+    "NTakeScreenshot": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NTakeScreenshot",
+      "size": 311
+    },
+    "NUnblockUserInput": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NUnblockUserInput",
+      "size": 295
+    },
+    "NWindowOperation": {
+      "status": "ok",
+      "class_name": "UiPath.UIAutomationNext.Activities.NWindowOperation",
+      "size": 293
+    }
+  }
+}

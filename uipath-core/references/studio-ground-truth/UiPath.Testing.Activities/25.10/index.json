@@ -1,0 +1,113 @@
+{
+  "package": "UiPath.Testing.Activities",
+  "version": "25.10",
+  "concrete_version": "25.10.2",
+  "harvested_at": "2026-04-22T07:17:52+00:00",
+  "activities": {
+    "Address": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.Address",
+      "size": 337
+    },
+    "AttachDocument": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.AttachDocument",
+      "size": 343
+    },
+    "BulkAddTestDataQueue": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.BulkAddTestDataQueue",
+      "size": 392
+    },
+    "ComparePdfDocuments": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.ComparePdfDocuments",
+      "size": 592
+    },
+    "CompareText": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.CompareText",
+      "size": 537
+    },
+    "CreateComparisonRule": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.CreateComparisonRule",
+      "size": 434
+    },
+    "DeleteTestDataQueueItems": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.DeleteTestDataQueueItems",
+      "size": 378
+    },
+    "GetTestDataQueueItem": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.GetTestDataQueueItem",
+      "size": 399
+    },
+    "GetTestDataQueueItems": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.GetTestDataQueueItems",
+      "size": 474
+    },
+    "GivenName": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.GivenName",
+      "size": 308
+    },
+    "LastName": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.LastName",
+      "size": 305
+    },
+    "MockActivity": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.Mocks.MockActivity",
+      "size": 355
+    },
+    "NewAddTestDataQueueItem": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.NewAddTestDataQueueItem",
+      "size": 652
+    },
+    "RandomDate": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.RandomDate",
+      "size": 339
+    },
+    "RandomNumber": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.RandomNumber",
+      "size": 355
+    },
+    "RandomString": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.RandomString",
+      "size": 334
+    },
+    "RandomValue": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.TestData.RandomValue",
+      "size": 322
+    },
+    "VerifyControlAttribute": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.VerifyControlAttribute",
+      "size": 1023
+    },
+    "VerifyExpression": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.VerifyExpression",
+      "size": 571
+    },
+    "VerifyExpressionWithOperator": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.VerifyExpressionWithOperator",
+      "size": 648
+    },
+    "VerifyRange": {
+      "status": "ok",
+      "class_name": "UiPath.Testing.Activities.VerifyRange",
+      "size": 634
+    }
+  }
+}

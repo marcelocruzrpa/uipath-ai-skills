@@ -1,0 +1,3 @@
+<Activity x:Class="GetTestDataQueueItems" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:GetTestDataQueueItems ContinueOnError="{x:Null}" IdFilter="{x:Null}" QueueName="{x:Null}" Skip="{x:Null}" TestDataQueueItems="{x:Null}" TimeoutMs="{x:Null}" Top="{x:Null}" TestDataQueueItemStatus="All" />
+</Activity>

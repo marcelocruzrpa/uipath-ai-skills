@@ -1,0 +1,12 @@
+<Activity x:Class="VerifyControlAttribute" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:VerifyControlAttribute AlternativeVerificationTitle="{x:Null}" Expression="{x:Null}" KeepScreenshots="{x:Null}" OutputArgument="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" ContinueOnFailure="True" Operator="Equality" TakeScreenshotInCaseOfFailingAssertion="True" TakeScreenshotInCaseOfSucceedingAssertion="False">
+    <uta:VerifyControlAttribute.ActivityToTest>
+      <ActivityAction />
+    </uta:VerifyControlAttribute.ActivityToTest>
+    <uta:VerifyControlAttribute.ArgumentsBridgeActivity>
+      <ActivityFunc x:TypeArguments="x:Object">
+        <uta:ArgumentsBridge Input="{x:Null}" />
+      </ActivityFunc>
+    </uta:VerifyControlAttribute.ArgumentsBridgeActivity>
+  </uta:VerifyControlAttribute>
+</Activity>

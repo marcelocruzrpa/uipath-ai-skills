@@ -1,0 +1,12 @@
+<Activity x:Class="ForEachRow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="{x:Null}">
+    <ui:ForEachRow.Body>
+      <ActivityAction x:TypeArguments="sd:DataRow">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Body" />
+      </ActivityAction>
+    </ui:ForEachRow.Body>
+  </ui:ForEachRow>
+</Activity>

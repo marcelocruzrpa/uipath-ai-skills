@@ -1,0 +1,48 @@
+{
+  "package": "UiPath.Database.Activities",
+  "version": "2.0",
+  "concrete_version": "2.0.0",
+  "harvested_at": "2026-04-22T07:22:18+00:00",
+  "activities": {
+    "BulkInsert": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.BulkInsert",
+      "size": 327
+    },
+    "BulkUpdate": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.BulkUpdate",
+      "size": 327
+    },
+    "DatabaseConnect": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.DatabaseConnect",
+      "size": 281
+    },
+    "DatabaseDisconnect": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.DatabaseDisconnect",
+      "size": 287
+    },
+    "DatabaseTransaction": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.DatabaseTransaction",
+      "size": 473
+    },
+    "ExecuteNonQuery": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.ExecuteNonQuery",
+      "size": 619
+    },
+    "ExecuteQuery": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.ExecuteQuery",
+      "size": 598
+    },
+    "InsertDataTable": {
+      "status": "ok",
+      "class_name": "UiPath.Database.Activities.InsertDataTable",
+      "size": 337
+    }
+  }
+}

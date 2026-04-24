@@ -1,0 +1,19 @@
+<Activity x:Class="HttpClient" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" EndPoint="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" BodyFormat="application/xml" EnableSSLVerification="True" Method="GET" TimeoutMS="6000">
+    <ui:HttpClient.Attachments>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+    </ui:HttpClient.Attachments>
+    <ui:HttpClient.Cookies>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+    </ui:HttpClient.Cookies>
+    <ui:HttpClient.Headers>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+    </ui:HttpClient.Headers>
+    <ui:HttpClient.Parameters>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+    </ui:HttpClient.Parameters>
+    <ui:HttpClient.UrlSegments>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+    </ui:HttpClient.UrlSegments>
+  </ui:HttpClient>
+</Activity>

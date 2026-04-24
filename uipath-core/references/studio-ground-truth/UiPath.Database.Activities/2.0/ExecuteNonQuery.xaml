@@ -1,0 +1,7 @@
+<Activity x:Class="ExecuteNonQuery" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" Sql="{x:Null}" TimeoutMS="{x:Null}">
+    <ui:ExecuteNonQuery.Parameters>
+      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+    </ui:ExecuteNonQuery.Parameters>
+  </ui:ExecuteNonQuery>
+</Activity>

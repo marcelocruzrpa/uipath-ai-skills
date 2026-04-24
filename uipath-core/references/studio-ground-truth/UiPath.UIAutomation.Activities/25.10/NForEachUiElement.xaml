@@ -1,0 +1,18 @@
+<Activity x:Class="NForEachUiElement" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NForEachUiElement ExtractDataSettings="{x:Null}" ExtractMetadata="{x:Null}" MaximumResults="{x:Null}" LimitExtractionTo="Rows">
+    <uix:NForEachUiElement.Body>
+      <ActivityAction x:TypeArguments="x:Int32">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </uix:NForEachUiElement.Body>
+    <uix:NForEachUiElement.Variables>
+      <sco:Collection x:TypeArguments="Variable" />
+    </uix:NForEachUiElement.Variables>
+    <uix:NForEachUiElement.VariablesMetadata>
+      <scg:Dictionary x:TypeArguments="x:String, scg:List(uuam:VariableMetadata)" />
+    </uix:NForEachUiElement.VariablesMetadata>
+  </uix:NForEachUiElement>
+</Activity>

@@ -1,0 +1,12 @@
+<Activity x:Class="NSAPTableCellScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NSAPTableCellScope ColumnNames="{x:Null}" RowType="{x:Null}" HealingAgentBehavior="SameAsCard">
+    <uix:NSAPTableCellScope.Body>
+      <ActivityAction x:TypeArguments="x:Object">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </uix:NSAPTableCellScope.Body>
+  </uix:NSAPTableCellScope>
+</Activity>

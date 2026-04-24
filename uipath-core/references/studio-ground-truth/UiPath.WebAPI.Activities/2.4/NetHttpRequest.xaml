@@ -1,0 +1,9 @@
+<Activity x:Class="NetHttpRequest" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" FormDataParts="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" RequestUrl="{x:Null}" ResourceFiles="{x:Null}" RetryStatusCodes="{x:Null}" TextPayload="{x:Null}" AuthenticationType="None" ContinueOnError="True" DisableSslVerification="False" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" PreferRetryAfterValue="True" RequestBodyType="None" RetryCount="3" RetryPolicyType="Basic" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+    <uwah:NetHttpRequest.TimeoutInMiliseconds>
+      <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+        <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+      </InArgument>
+    </uwah:NetHttpRequest.TimeoutInMiliseconds>
+  </uwah:NetHttpRequest>
+</Activity>

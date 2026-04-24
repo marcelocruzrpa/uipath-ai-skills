@@ -1,0 +1,58 @@
+{
+  "package": "UiPath.WebAPI.Activities",
+  "version": "2.4",
+  "concrete_version": "2.4.0",
+  "harvested_at": "2026-04-22T07:21:13+00:00",
+  "activities": {
+    "DeserializeJsonArray": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.DeserializeJsonArray",
+      "size": 304
+    },
+    "DeserializeJson`1": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.DeserializeJson`1",
+      "size": 454
+    },
+    "DeserializeXml": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.DeserializeXml",
+      "size": 293
+    },
+    "ExecuteXPath": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.ExecuteXPath",
+      "size": 316
+    },
+    "GetNodes": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.GetNodes",
+      "size": 301
+    },
+    "GetXMLNodeAttributes": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.GetXMLNodeAttributes",
+      "size": 310
+    },
+    "GetXMLNodes": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.GetXMLNodes",
+      "size": 307
+    },
+    "HttpClient": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.HttpClient",
+      "size": 1679
+    },
+    "NetHttpRequest": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.Http.NetHttpRequest",
+      "size": 1789
+    },
+    "SerializeJson": {
+      "status": "ok",
+      "class_name": "UiPath.Web.Activities.JSON.SerializeJson",
+      "size": 320
+    }
+  }
+}

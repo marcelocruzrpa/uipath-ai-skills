@@ -1,0 +1,5 @@
+<Activity x:Class="MockActivity" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:utam="clr-namespace:UiPath.Testing.Activities.Mocks;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <utam:MockActivity MockedActivityIdRef="{x:Null}">
+    <Sequence />
+  </utam:MockActivity>
+</Activity>

@@ -1,0 +1,3 @@
+<Activity x:Class="CompareText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:CompareText BaselineText="{x:Null}" Differences="{x:Null}" Result="{x:Null}" Rules="{x:Null}" RulesList="{x:Null}" SemanticDifferences="{x:Null}" TargetText="{x:Null}" WordSeparators="{x:Null}" ComparisonType="Line" ContinueOnFailure="True" OutputFilePath="differences.html" />
+</Activity>

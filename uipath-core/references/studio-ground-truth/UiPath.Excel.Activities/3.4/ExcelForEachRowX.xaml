@@ -1,0 +1,15 @@
+<Activity x:Class="ExcelForEachRowX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:ExcelForEachRowX Range="{x:Null}" EmptyRowBehavior="Stop" HasHeaders="False" SaveAfterEachRow="False">
+    <ueab:ExcelForEachRowX.Body>
+      <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
+        <ActivityAction.Argument1>
+          <DelegateInArgument x:TypeArguments="ue:CurrentRowQuickHandle" Name="CurrentRow" />
+        </ActivityAction.Argument1>
+        <ActivityAction.Argument2>
+          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+        </ActivityAction.Argument2>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ueab:ExcelForEachRowX.Body>
+  </ueab:ExcelForEachRowX>
+</Activity>

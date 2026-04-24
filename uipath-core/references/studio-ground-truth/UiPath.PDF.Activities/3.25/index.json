@@ -1,0 +1,58 @@
+{
+  "package": "UiPath.PDF.Activities",
+  "version": "3.25",
+  "concrete_version": "3.25.2",
+  "harvested_at": "2026-04-22T07:20:08+00:00",
+  "activities": {
+    "ExportPDFPageAsImage": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.ExportPDFPageAsImage",
+      "size": 373
+    },
+    "ExtractImagesFromPDF": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.ExtractImagesFromPDF",
+      "size": 338
+    },
+    "ExtractPDFPageRange": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.ExtractPDFPageRange",
+      "size": 351
+    },
+    "GetPDFPageCount": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.GetPDFPageCount",
+      "size": 321
+    },
+    "JoinPDF": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.JoinPDF",
+      "size": 310
+    },
+    "ManagePDFPassword": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.PDF.ManagePDFPassword",
+      "size": 330
+    },
+    "ReadPDFText": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.ReadPDFText",
+      "size": 321
+    },
+    "ReadPDFWithOCR": {
+      "status": "ok",
+      "class_name": "UiPath.PDF.Activities.ReadPDFWithOCR",
+      "size": 934
+    },
+    "ReadXPSText": {
+      "status": "ok",
+      "class_name": "UiPath.XPS.Activities.ReadXPSText",
+      "size": 291
+    },
+    "ReadXPSWithOCR": {
+      "status": "ok",
+      "class_name": "UiPath.XPS.Activities.ReadXPSWithOCR",
+      "size": 919
+    }
+  }
+}

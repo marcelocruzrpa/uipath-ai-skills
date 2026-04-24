@@ -1,0 +1,3 @@
+<Activity x:Class="ComparePdfDocuments" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:ComparePdfDocuments BaselinePath="{x:Null}" Differences="{x:Null}" Result="{x:Null}" Rules="{x:Null}" RulesList="{x:Null}" SemanticDifferences="{x:Null}" TargetPath="{x:Null}" ComparisonType="Line" ContinueOnFailure="True" IgnoreIdenticalItems="True" IgnoreImagesLocation="False" IncludeImages="True" OutputFolderPath="." />
+</Activity>

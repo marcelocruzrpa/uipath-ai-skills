@@ -1,0 +1,3 @@
+<Activity x:Class="SerializeJson" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uwaj:SerializeJson InputObject="{x:Null}" Settings="{x:Null}" />
+</Activity>

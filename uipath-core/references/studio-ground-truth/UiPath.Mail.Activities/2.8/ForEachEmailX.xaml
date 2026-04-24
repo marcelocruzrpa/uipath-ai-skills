@@ -1,0 +1,15 @@
+<Activity x:Class="ForEachEmailX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:ForEachEmailX MailFilter="{x:Null}" Mails="{x:Null}" IncludeSubfolders="False" NumberOfEmailsLimit="100" UnreadOnly="False" WithAttachmentsOnly="False">
+    <umab:ForEachEmailX.Body>
+      <ActivityAction x:TypeArguments="snm:MailMessage, x:Int32">
+        <ActivityAction.Argument1>
+          <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="CurrentMail" />
+        </ActivityAction.Argument1>
+        <ActivityAction.Argument2>
+          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+        </ActivityAction.Argument2>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </umab:ForEachEmailX.Body>
+  </umab:ForEachEmailX>
+</Activity>

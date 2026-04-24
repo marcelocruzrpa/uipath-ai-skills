@@ -1,0 +1,3 @@
+<Activity x:Class="VerifyRange" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:VerifyRange AlternativeVerificationTitle="{x:Null}" Expression="{x:Null}" KeepScreenshots="{x:Null}" LowerLimit="{x:Null}" OutputMessageFormat="{x:Null}" Result="{x:Null}" ScreenshotsPath="{x:Null}" UpperLimit="{x:Null}" ContinueOnFailure="True" TakeScreenshotInCaseOfFailingAssertion="False" TakeScreenshotInCaseOfSucceedingAssertion="False" VerificationType="is within" />
+</Activity>

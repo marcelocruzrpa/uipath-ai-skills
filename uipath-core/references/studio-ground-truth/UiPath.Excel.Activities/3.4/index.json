@@ -1,0 +1,86 @@
+{
+  "package": "UiPath.Excel.Activities",
+  "version": "3.4",
+  "concrete_version": "3.4.1",
+  "harvested_at": "2026-04-22T06:22:57+00:00",
+  "activities": {
+    "AppendRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.AppendRange",
+      "size": 285
+    },
+    "AutoFillX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.AutoFillX",
+      "size": 299
+    },
+    "ChangeDataRangeModification": {
+      "status": "unresolved"
+    },
+    "ExcelApplicationCard": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelApplicationCard",
+      "size": 893
+    },
+    "ExcelForEachRowX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelForEachRowX",
+      "size": 1003
+    },
+    "ExcelProcessScopeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelProcessScopeX",
+      "size": 960
+    },
+    "FilterPivotTableX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FilterPivotTableX",
+      "size": 378
+    },
+    "FilterX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FilterX",
+      "size": 376
+    },
+    "ForEachRow": {
+      "status": "ok",
+      "class_name": "UiPath.Core.Activities.ForEachRow",
+      "size": 716
+    },
+    "ForEachSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ForEachSheetX",
+      "size": 923
+    },
+    "InsertExcelChartX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.InsertExcelChartX",
+      "size": 469
+    },
+    "ReadRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ReadRange",
+      "size": 316
+    },
+    "ReadRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ReadRangeX",
+      "size": 314
+    },
+    "UpdateChartX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.UpdateChartX",
+      "size": 471
+    },
+    "WriteRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.WriteRange",
+      "size": 307
+    },
+    "WriteRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.WriteRangeX",
+      "size": 348
+    }
+  }
+}

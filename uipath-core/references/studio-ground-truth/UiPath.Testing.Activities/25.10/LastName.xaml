@@ -1,0 +1,3 @@
+<Activity x:Class="LastName" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:utat="clr-namespace:UiPath.Testing.Activities.TestData;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <utat:LastName LastNameResult="{x:Null}" />
+</Activity>

@@ -1,0 +1,3 @@
+<Activity x:Class="GetPDFPageCount" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <upap:GetPDFPageCount FileName="{x:Null}" PageCount="{x:Null}" />
+</Activity>

@@ -1,0 +1,7 @@
+<Activity x:Class="NewAddTestDataQueueItem" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uta:NewAddTestDataQueueItem ContinueOnError="{x:Null}" QueueName="{x:Null}" TimeoutMs="{x:Null}">
+    <uta:NewAddTestDataQueueItem.ItemInformation>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+    </uta:NewAddTestDataQueueItem.ItemInformation>
+  </uta:NewAddTestDataQueueItem>
+</Activity>

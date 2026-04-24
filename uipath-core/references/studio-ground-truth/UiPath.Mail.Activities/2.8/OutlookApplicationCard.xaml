@@ -1,0 +1,12 @@
+<Activity x:Class="OutlookApplicationCard" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount">
+    <umab:OutlookApplicationCard.Body>
+      <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </umab:OutlookApplicationCard.Body>
+  </umab:OutlookApplicationCard>
+</Activity>

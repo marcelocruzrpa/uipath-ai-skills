@@ -1,0 +1,11 @@
+<Activity x:Class="ReadPDFWithOCR" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ReadPDFWithOCR FileName="{x:Null}" Text="{x:Null}" DegreeOfParallelism="1" ImageDpi="150" Range="All">
+    <ui:ReadPDFWithOCR.OCREngine>
+      <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+        <ActivityFunc.Argument>
+          <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+        </ActivityFunc.Argument>
+      </ActivityFunc>
+    </ui:ReadPDFWithOCR.OCREngine>
+  </ui:ReadPDFWithOCR>
+</Activity>

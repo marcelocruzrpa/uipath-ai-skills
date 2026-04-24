@@ -1,0 +1,3 @@
+<Activity x:Class="NInjectJsScript" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NInjectJsScript InputParameter="{x:Null}" ScriptCode="{x:Null}" ScriptOutput="{x:Null}" />
+</Activity>
