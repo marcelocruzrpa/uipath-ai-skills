@@ -18,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Lints 120-122 are opt-in: they fire only when `project.json` contains an explicit `"versionBand"` field
 - `scaffold_project.py` auto-stamps `versionBand` when year-based dependencies are supplied via `--deps` — the band is derived from the resolved deps by `derive_band_from_deps()` in `version_band.py` (returns the max year-based band present, falls back to `None` when no year-based dep is resolved). Keeps the opt-in contract for bare scaffolds while closing the gap where downstream lints 120-122 stayed dormant on every freshly scaffolded project.
 - Project-level warning: whenever a declared `versionBand` + a dependency in that band lacks a usable profile JSON, the validator warns that lint 122 will silently no-op for that package until the profile is harvested
+- **Plugin API v2 in `plugin_loader.py`** — new `register_version_profile` / `register_band_profile_mapping` / `get_version_profiles` / `get_band_profile_mappings`; `PLUGIN_API_VERSION` bumped 1 → 2. Plugins can now ship per-band activity profiles that lint 122 enforces. `uipath-tasks` registers `UiPath.Persistence.Activities/1.4` for bands 25 and 26.
+- **`generate_workflow.py` dispatcher fall-through** — the dispatcher now tries `gen_from_annotation` before raising `Unknown generator`, so activities described purely in `references/annotations/*.json` can be emitted without a hand-written `gen_*` function. `WizardOnlyActivityError`, `MissingScopeError`, and `ReviewNeededError` are wrapped as `ValueError("Cannot generate ...")`.
 - Version profiles for UIAutomation 25.10, System 25.10 and 26.2, Excel 3.4, Mail 2.8, Testing 25.10 (uipath-core) and Persistence 1.4 (uipath-tasks)
 - Annotation corpus (`references/annotations/*.json`) — 202 activity entries across 16 annotation files; data-driven generator engine in `generate_activities/_data_driven.py`
 - Studio harvest tooling under `scripts/tools/`: `harvest_studio_xaml.py`, `compare_to_ground_truth.py`, `validate_with_studio.py`, `battle_test_activities.py`, `battle_test_studio.py`, `annotate_profile_schema.py`, `backfill_annotations.py`, `backfill_profile_templates.py`
@@ -33,12 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Internal
 
 - Lint test suite expanded with 8 new `*_project_version_compat*` fixtures (105 fixtures total under `uipath-core/assets/lint-test-cases/`)
-- `pytest uipath-core/tests/` now reports **146 passed, 10 skipped, 1 xfailed** — the 10 skips are `test_plugin_version_profiles.py` (gated on plugin_loader v2 API, see Known Gaps below); the 1 xfail is `test_dispatch_wraps_review_needed_as_valueerror` (dispatcher wiring gap, also Known Gaps)
-
-### Known Gaps (graceful degrade)
-
-- **Plugin profile loading** — `lints_version_compat.py` imports `get_version_profiles` and `get_band_profile_mappings` from `plugin_loader` inside try/except. Those symbols are not yet exposed by `plugin_loader.py`, so the lint silently no-ops on plugin-supplied profiles. Practical impact: the shipped `uipath-tasks/references/version-profiles/UiPath.Persistence.Activities/1.4.json` profile is registered on disk but lint 122 will not yet enforce its band mapping. To close: add `_version_profiles` / `_band_profile_mappings` registries plus their register/get pairs to `plugin_loader.py` (mirrors the existing `register_X` / `get_X` pattern). Tests are pre-written and will activate automatically when the symbols exist.
-- **Data-driven dispatch wrapper** — `generate_workflow.py`'s dispatcher does not yet route unknown gen names through `gen_from_annotation` to surface `ReviewNeededError` as a user-friendly `ValueError`. Marked xfail in `test_generator_coverage.py::test_dispatch_wraps_review_needed_as_valueerror`.
+- `pytest uipath-core/tests/` now reports **157 passed** (no skips, no xfails)
 
 ---
 
