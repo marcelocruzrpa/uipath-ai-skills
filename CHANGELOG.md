@@ -6,6 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.2.1] - 2026-04-25
+
+### Added
+
+**uipath-core — version-band-aware lints and scaffolding** (branch `feature/version-compatibility-v2`)
+- `version_band.py` single-source versioning model — `ProjectVersion`, band parsing, year-based vs independent package classification, band-to-profile-version mapping
+- Lint 120 (error): Version="V5"+ attributes on UiX activities are invalid below band 25
+- Lint 121 (error): HealingAgentBehavior / ClipboardMode attributes don't exist below band 25 (introduced in 25.10+)
+- Lint 122 (error): cross-band `Version` attribute mismatch — activity Version attr does not match the target band's profile
+- Lints 120-122 are opt-in: they fire only when `project.json` contains an explicit `"versionBand"` field
+- `scaffold_project.py` auto-stamps `versionBand` when year-based dependencies are supplied via `--deps` — the band is derived from the resolved deps by `derive_band_from_deps()` in `version_band.py` (returns the max year-based band present, falls back to `None` when no year-based dep is resolved). Keeps the opt-in contract for bare scaffolds while closing the gap where downstream lints 120-122 stayed dormant on every freshly scaffolded project.
+- Project-level warning: whenever a declared `versionBand` + a dependency in that band lacks a usable profile JSON, the validator warns that lint 122 will silently no-op for that package until the profile is harvested
+- Version profiles for UIAutomation 25.10, System 25.10 and 26.2, Excel 3.4, Mail 2.8, Testing 25.10 (uipath-core) and Persistence 1.4 (uipath-tasks)
+- Annotation corpus (`references/annotations/*.json`) — 202 activity entries across 16 annotation files; data-driven generator engine in `generate_activities/_data_driven.py`
+- Studio harvest tooling under `scripts/tools/`: `harvest_studio_xaml.py`, `compare_to_ground_truth.py`, `validate_with_studio.py`, `battle_test_activities.py`, `battle_test_studio.py`, `annotate_profile_schema.py`, `backfill_annotations.py`, `backfill_profile_templates.py`
+
+### Fixed
+
+- `WizardOnlyActivityError` raised by `gen_from_annotation` for wizard-only stubs instead of bare `KeyError('element_tag')` — callers can now distinguish "activity not found" from "activity exists but requires Studio wizard"
+
+### Security
+
+- `defusedxml` safe-fallback pattern applied across the new harvest/backfill tooling (`backfill_annotations.py`, `backfill_profile_templates.py`, `compare_to_ground_truth.py`, `battle_test_activities.py`) for defense-in-depth against XXE/billion-laughs in XAML parsing (consistent with `validate_xaml/_structural.py`)
+
+### Internal
+
+- Lint test suite expanded with 8 new `*_project_version_compat*` fixtures (105 fixtures total under `uipath-core/assets/lint-test-cases/`)
+- `pytest uipath-core/tests/` now reports **146 passed, 10 skipped, 1 xfailed** — the 10 skips are `test_plugin_version_profiles.py` (gated on plugin_loader v2 API, see Known Gaps below); the 1 xfail is `test_dispatch_wraps_review_needed_as_valueerror` (dispatcher wiring gap, also Known Gaps)
+
+### Known Gaps (graceful degrade)
+
+- **Plugin profile loading** — `lints_version_compat.py` imports `get_version_profiles` and `get_band_profile_mappings` from `plugin_loader` inside try/except. Those symbols are not yet exposed by `plugin_loader.py`, so the lint silently no-ops on plugin-supplied profiles. Practical impact: the shipped `uipath-tasks/references/version-profiles/UiPath.Persistence.Activities/1.4.json` profile is registered on disk but lint 122 will not yet enforce its band mapping. To close: add `_version_profiles` / `_band_profile_mappings` registries plus their register/get pairs to `plugin_loader.py` (mirrors the existing `register_X` / `get_X` pattern). Tests are pre-written and will activate automatically when the symbols exist.
+- **Data-driven dispatch wrapper** — `generate_workflow.py`'s dispatcher does not yet route unknown gen names through `gen_from_annotation` to surface `ReviewNeededError` as a user-friendly `ValueError`. Marked xfail in `test_generator_coverage.py::test_dispatch_wraps_review_needed_as_valueerror`.
+
+---
+
 ## [1.2.0] - 2026-04-21
 
 ### Added
