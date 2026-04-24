@@ -9,6 +9,7 @@ each plugin's modules are isolated — no sys.path pollution, no cross-plugin
 name collisions even when multiple uipath-* skills coexist.
 """
 
+import json
 from pathlib import Path
 
 from plugin_loader import (
@@ -25,9 +26,11 @@ from plugin_loader import (
     register_lint_test_fixture,
     register_type_mapping,
     register_variable_prefix,
+    register_version_profile,
+    register_band_profile_mapping,
 )
 
-REQUIRED_API_VERSION = 1
+REQUIRED_API_VERSION = 2
 
 _PLUGIN_ROOT = Path(__file__).resolve().parent.parent
 
@@ -259,3 +262,17 @@ register_lint_test_fixture(
     "bad_unrolled_sequential_tasks.xaml", "AC-34", "ERROR",
     _PLUGIN_ROOT / "assets" / "lint-test-cases",
 )
+
+# --- Version profiles (lint 122 / version-band-aware enforcement) ---
+# UiPath.Persistence.Activities ships a single profile that targets both
+# bands 25 and 26 (the package is band-independent; the activity surface is
+# identical across UiPath Studio 25.10 and 26.2).
+_PERSISTENCE_PROFILE_PATH = (
+    _PLUGIN_ROOT / "references" / "version-profiles"
+    / "UiPath.Persistence.Activities" / "1.4.json"
+)
+if _PERSISTENCE_PROFILE_PATH.exists():
+    _persistence_profile = json.loads(_PERSISTENCE_PROFILE_PATH.read_text(encoding="utf-8"))
+    register_version_profile("UiPath.Persistence.Activities", "1.4", _persistence_profile)
+    register_band_profile_mapping("25", "UiPath.Persistence.Activities", "1.4")
+    register_band_profile_mapping("26", "UiPath.Persistence.Activities", "1.4")

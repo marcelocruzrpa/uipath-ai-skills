@@ -23,7 +23,7 @@ from pathlib import Path
 # Plugin API version — bump when registration API signatures change
 # ---------------------------------------------------------------------------
 
-PLUGIN_API_VERSION = 1
+PLUGIN_API_VERSION = 2
 
 # ---------------------------------------------------------------------------
 # Registries
@@ -44,6 +44,8 @@ _test_specs = {}                # spec_name -> spec dict (generator integration 
 _lint_test_fixtures = []        # list of (filename, expected_substr, severity, fixture_dir)
 _type_mappings = {}             # short_type -> xaml_type (e.g. "FormTaskData" -> "upaf:FormTaskData")
 _variable_prefixes = {}         # xaml_type -> expected variable-name prefix (e.g. "upaf:FormTaskData" -> "fdt")
+_version_profiles = {}          # (package, profile_version) -> profile dict (consumed by lints_version_compat)
+_band_profile_mappings = {}     # band (e.g. "25") -> dict(package -> profile_version)
 _loaded = False
 _load_failures = []  # list of (skill_name, error_str) tuples
 
@@ -165,6 +167,42 @@ def register_type_mapping(short_type, xaml_type):
     _type_mappings[short_type] = xaml_type
 
 
+def register_version_profile(package, profile_version, profile):
+    """Register a per-version activity profile for a NuGet package.
+
+    Profiles describe each activity's expected Version attribute, properties,
+    and xaml_template. lint_version_band_mismatch (lint 122) loads them via
+    get_version_profiles() and merges them with on-disk profiles under
+    references/version-profiles/. Plugin-registered profiles win over disk
+    entries with the same (package, profile_version) key.
+
+    Args:
+        package: NuGet package ID (e.g. "UiPath.Persistence.Activities").
+        profile_version: Profile-file version string (e.g. "1.4"); this is
+                         the *profile* version, not necessarily the package
+                         version installed in a project.
+        profile: Profile dict, same shape as
+                 references/version-profiles/<pkg>/<ver>.json.
+    """
+    _version_profiles[(package, profile_version)] = profile
+
+
+def register_band_profile_mapping(band, package, profile_version):
+    """Map a (band, package) pair to a profile_version for lint 122.
+
+    A project on band "25" with UiPath.Persistence.Activities installed needs
+    to know which Persistence profile to validate against. Plugins call this
+    once per (band, package) pair; the lint reads the merged map at runtime.
+
+    Args:
+        band: Band string (e.g. "25", "26").
+        package: NuGet package ID.
+        profile_version: Profile-file version registered via
+                         register_version_profile.
+    """
+    _band_profile_mappings.setdefault(band, {})[package] = profile_version
+
+
 def register_variable_prefix(xaml_type, prefix):
     """Register an expected variable-name prefix for a plugin XAML type.
 
@@ -264,6 +302,16 @@ def get_variable_prefixes():
     return dict(_variable_prefixes)
 
 
+def get_version_profiles():
+    """Return dict of (package, profile_version) -> profile from plugins."""
+    return dict(_version_profiles)
+
+
+def get_band_profile_mappings():
+    """Return dict of band -> dict(package -> profile_version) from plugins."""
+    return {b: dict(pkgs) for b, pkgs in _band_profile_mappings.items()}
+
+
 # ---------------------------------------------------------------------------
 # Discovery
 # ---------------------------------------------------------------------------
@@ -340,6 +388,8 @@ def load_plugins():
         snap_lint_fixtures = list(_lint_test_fixtures)
         snap_type_mappings = dict(_type_mappings)
         snap_variable_prefixes = dict(_variable_prefixes)
+        snap_version_profiles = dict(_version_profiles)
+        snap_band_mappings = {b: dict(pkgs) for b, pkgs in _band_profile_mappings.items()}
 
         def _restore_registries():
             """Roll back all registries to pre-load snapshot."""
@@ -358,6 +408,8 @@ def load_plugins():
             _lint_test_fixtures.clear(); _lint_test_fixtures.extend(snap_lint_fixtures)
             _type_mappings.clear(); _type_mappings.update(snap_type_mappings)
             _variable_prefixes.clear(); _variable_prefixes.update(snap_variable_prefixes)
+            _version_profiles.clear(); _version_profiles.update(snap_version_profiles)
+            _band_profile_mappings.clear(); _band_profile_mappings.update(snap_band_mappings)
 
         try:
             # Register the package first so relative imports resolve
