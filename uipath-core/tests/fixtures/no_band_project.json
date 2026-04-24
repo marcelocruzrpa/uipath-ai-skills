@@ -1,0 +1,13 @@
+{
+  "name": "NoBandProject",
+  "projectVersion": "1.0.0",
+  "description": "Fixture without explicit versionBand",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.System.Activities": "[25.10.5]"
+  },
+  "schemaVersion": "4.0",
+  "studioVersion": "25.10.0",
+  "projectType": "Workflow",
+  "expressionLanguage": "CSharp"
+}
