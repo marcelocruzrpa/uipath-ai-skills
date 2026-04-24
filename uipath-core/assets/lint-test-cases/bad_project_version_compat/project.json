@@ -1,0 +1,12 @@
+{
+  "name": "BadProjectVersionCompat",
+  "projectVersion": "1.0.0",
+  "description": "Test project for version-compat lint rules 120, 121",
+  "main": "Main.xaml",
+  "dependencies": {},
+  "schemaVersion": "4.0",
+  "studioVersion": "23.10.0",
+  "projectType": "Workflow",
+  "expressionLanguage": "CSharp",
+  "versionBand": "24"
+}

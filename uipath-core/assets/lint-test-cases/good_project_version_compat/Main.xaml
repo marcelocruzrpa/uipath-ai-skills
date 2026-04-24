@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Main"
+  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:uix="http://schemas.uipath.com/workflow/activities/uiautomationnext"
+  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1" sap:VirtualizedContainerService.HintSize="400,300">
+    <!-- NTypeInto V5 + HealingAgentBehavior are legal in band 25 — no lint 120/121 should fire -->
+    <uix:NTypeInto DisplayName="Type Into Field" sap2010:WorkflowViewState.IdRef="NTypeInto_1" sap:VirtualizedContainerService.HintSize="100,100" Text="hello" Version="V5" HealingAgentBehavior="SameAsCard" />
+  </Sequence>
+</Activity>

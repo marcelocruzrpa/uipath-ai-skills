@@ -1,0 +1,14 @@
+{
+  "name": "GoodProjectVersionCompatBand26",
+  "projectVersion": "1.0.0",
+  "description": "Good project: band 26, UIAutomation 26.3.x — NGoToUrl V5 is legal",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[26.3.1]"
+  },
+  "schemaVersion": "4.0",
+  "studioVersion": "26.4.0",
+  "projectType": "Workflow",
+  "expressionLanguage": "CSharp",
+  "versionBand": "26"
+}

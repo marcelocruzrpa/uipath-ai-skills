@@ -1,0 +1,14 @@
+{
+  "name": "BadProjectVersionCompatMalformedBand",
+  "projectVersion": "1.0.0",
+  "description": "Malformed versionBand: '25.10' is a profile version, not a band integer — lints 120/121 silently skip (ValueError branch)",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[26.2.3]"
+  },
+  "schemaVersion": "4.0",
+  "studioVersion": "25.10.0",
+  "projectType": "Workflow",
+  "expressionLanguage": "CSharp",
+  "versionBand": "25.10"
+}
