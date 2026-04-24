@@ -1,0 +1,387 @@
+{
+  "$schema_version": "1.0",
+  "module": "excel_extended",
+  "activities": {
+    "ReadRangeX": {
+      "gen_function": "gen_read_range_x",
+      "element_tag": "ueab:ReadRangeX",
+      "hint_size_key": "ReadRangeX",
+      "params": {
+        "save_to": {
+          "attr": "SaveTo",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read Range",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "range": {
+          "attr": "Range",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Modern Excel Read Range (used inside ExcelApplicationCard scope)."
+    },
+    "WriteRangeX": {
+      "gen_function": "gen_write_range_x",
+      "element_tag": "ueab:WriteRangeX",
+      "hint_size_key": "WriteRangeX",
+      "params": {
+        "source": {
+          "attr": "Source",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "destination": {
+          "attr": "Destination",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Write Range",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ignore_empty_source": {
+          "attr": "IgnoreEmptySource",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Modern Excel Write Range (used inside ExcelApplicationCard scope)."
+    },
+    "AutoFillX": {
+      "gen_function": "gen_auto_fill_x",
+      "element_tag": "ueab:AutoFillX",
+      "hint_size_key": "AutoFillX",
+      "params": {
+        "start_range": {
+          "attr": "StartRange",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Auto Fill",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Auto-fills a range in an Excel workbook."
+    },
+    "FilterX": {
+      "gen_function": "gen_filter_x",
+      "element_tag": "ueab:FilterX",
+      "hint_size_key": "FilterX",
+      "params": {
+        "range": {
+          "attr": "Range",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "column_name": {
+          "attr": "ColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "filter_argument": {
+          "attr": "FilterArgument",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Filter",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "clear_filter": {
+          "attr": "ClearFilter",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "has_headers": {
+          "attr": "HasHeaders",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Applies a filter to an Excel range."
+    },
+    "FilterPivotTableX": {
+      "gen_function": "gen_filter_pivot_table_x",
+      "element_tag": "ueab:FilterPivotTableX",
+      "hint_size_key": "FilterPivotTableX",
+      "params": {
+        "table": {
+          "attr": "Table",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "column_name": {
+          "attr": "ColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "filter_argument": {
+          "attr": "FilterArgument",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Filter Pivot Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "clear_filter": {
+          "attr": "ClearFilter",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Filters a pivot table in Excel."
+    },
+    "InsertExcelChartX": {
+      "gen_function": "gen_insert_excel_chart_x",
+      "element_tag": "ueab:InsertExcelChartX",
+      "hint_size_key": "InsertExcelChartX",
+      "params": {
+        "range": {
+          "attr": "Range",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "insert_into_sheet": {
+          "attr": "InsertIntoSheet",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "inserted_chart": {
+          "attr": "InsertedChart",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Insert Excel Chart",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "chart_category": {
+          "attr": "ChartCategory",
+          "required": false,
+          "default": "Column",
+          "enum": ["Column", "Bar", "Line", "Pie", "Area", "Scatter"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ChartHeight": "211",
+        "ChartType": "xlColumnClustered",
+        "ChartWidth": "355",
+        "Left": "60",
+        "Top": "20"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Inserts a chart into an Excel worksheet."
+    },
+    "ExcelApplicationCard": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ExcelApplicationCard is a scope activity with ActivityAction body requiring Studio configuration to open/attach to workbooks."
+    },
+    "ExcelProcessScopeX": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ExcelProcessScopeX is a scope activity controlling an Excel process instance; requires Studio configuration."
+    },
+    "ExcelForEachRowX": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ExcelForEachRowX uses a dual-argument ActivityAction body (CurrentRow, CurrentIndex) requiring Studio configuration."
+    },
+    "ForEachSheetX": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ForEachSheetX uses a dual-argument ActivityAction body (CurrentSheet, CurrentIndex) requiring Studio configuration."
+    },
+    "UpdateChartX": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "UpdateChartX wraps an ActivityAction body for chart update operations requiring Studio configuration."
+    },
+    "ChangeDataRangeModification": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ChangeDataRangeModification has no resolvable CLR namespace and cannot be emitted without Studio wizard."
+    }
+  }
+}

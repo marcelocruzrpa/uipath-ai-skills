@@ -1,0 +1,133 @@
+{
+  "$schema_version": "1.0",
+  "module": "dialogs",
+  "activities": {
+    "InputDialog": {
+      "gen_function": "gen_input_dialog",
+      "element_tag": "ui:InputDialog",
+      "hint_size_key": null,
+      "params": {
+        "label": {
+          "attr": "Label",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "title": {
+          "attr": "Title",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "result_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Placed inside InputDialog.Result OutArgument child element"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'InputDialog_'"
+        },
+        "options_string": {
+          "attr": "OptionsString",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Semicolon-separated options for dropdown. When empty, uses OptionsString=\"{x:Null}\""
+        },
+        "is_password": {
+          "attr": "IsPassword",
+          "required": false,
+          "default": false,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Input Dialog",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Options": "{x:Null}",
+        "TopMost": "False"
+      },
+      "child_elements": {
+        "InputDialog.Result": {
+          "type": "static_block",
+          "content": "<OutArgument x:TypeArguments=\"x:String\">[{result_variable}]</OutArgument>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "MessageBox": {
+      "gen_function": "gen_message_box",
+      "element_tag": "ui:MessageBox",
+      "hint_size_key": null,
+      "params": {
+        "text_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'MessageBox_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Message Box",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Caption": "{x:Null}",
+        "ChosenButton": "{x:Null}",
+        "AutoCloseAfter": "00:00:00"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    }
+  }
+}

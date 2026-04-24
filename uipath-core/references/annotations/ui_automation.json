@@ -1,0 +1,3988 @@
+{
+  "$schema_version": "1.0",
+  "module": "ui_automation",
+  "activities": {
+    "NTypeInto": {
+      "gen_function": "gen_ntypeinto",
+      "element_tag": "uix:NTypeInto",
+      "hint_size_key": "NTypeInto",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "text_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "is_secure": {
+          "attr": null,
+          "required": false,
+          "default": false,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "When true, uses SecureText attr instead of Text"
+        },
+        "empty_field_mode": {
+          "attr": "EmptyFieldMode",
+          "required": false,
+          "default": "SingleLine",
+          "enum": [
+            "SingleLine",
+            "MultiLine",
+            "None"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ActivateBefore": "True",
+        "ClickBeforeMode": "None",
+        "ClipboardMode": "Never",
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NTypeInto.Target": {
+          "type": "selector",
+          "content": null
+        },
+        "NTypeInto.VerifyOptions": {
+          "type": "static_block",
+          "content": "<uix:VerifyExecutionTypeIntoOptions DisplayName=\"{x:Null}\" Mode=\"Appears\"><uix:VerifyExecutionTypeIntoOptions.Retry><InArgument x:TypeArguments=\"x:Boolean\" /></uix:VerifyExecutionTypeIntoOptions.Retry><uix:VerifyExecutionTypeIntoOptions.Timeout><InArgument x:TypeArguments=\"x:Double\" /></uix:VerifyExecutionTypeIntoOptions.Timeout></uix:VerifyExecutionTypeIntoOptions>"
+        }
+      },
+      "conditional_attrs": {
+        "Text": {
+          "omit_when": "is_secure=true",
+          "replacement_attr": "SecureText"
+        }
+      }
+    },
+    "NClick": {
+      "gen_function": "gen_nclick",
+      "element_tag": "uix:NClick",
+      "hint_size_key": "NClick",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "click_type": {
+          "attr": "ClickType",
+          "required": false,
+          "default": "Single",
+          "enum": [
+            "Single",
+            "Double"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mouse_button": {
+          "attr": "MouseButton",
+          "required": false,
+          "default": "Left",
+          "enum": [
+            "Left",
+            "Right",
+            "Middle"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ActivateBefore": "True",
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "SameAsCard",
+        "KeyModifiers": "None",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NClick.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NCheck": {
+      "gen_function": "gen_ncheck",
+      "element_tag": "uix:NCheck",
+      "hint_size_key": "NClick",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "action": {
+          "attr": "Action",
+          "required": false,
+          "default": "Check",
+          "enum": [
+            "Check",
+            "Uncheck",
+            "Toggle"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NCheck.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NHover": {
+      "gen_function": "gen_nhover",
+      "element_tag": "uix:NHover",
+      "hint_size_key": "NClick",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "hover_time": {
+          "attr": "HoverTime",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cursor_motion_type": {
+          "attr": "CursorMotionType",
+          "required": false,
+          "default": "Instant",
+          "enum": [
+            "Instant",
+            "Smooth"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "When non-default, uses fully qualified enum: [UiPath.UIAutomationNext.Enums.CursorMotionType.{value}]"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NHover.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {
+        "CursorMotionType": {
+          "omit_when": "Instant"
+        },
+        "HoverTime": {
+          "omit_when": null
+        }
+      }
+    },
+    "NKeyboardShortcuts": {
+      "gen_function": "gen_nkeyboardshortcuts",
+      "element_tag": "uix:NKeyboardShortcuts",
+      "hint_size_key": "NClick",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "shortcuts": {
+          "attr": "Shortcuts",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "When empty, self-closing tag with no Target child; when provided, has Target child"
+        },
+        "activate_before": {
+          "attr": "ActivateBefore",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "click_before_mode": {
+          "attr": "ClickBeforeMode",
+          "required": false,
+          "default": "None",
+          "enum": [
+            "None",
+            "Single"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "interaction_mode": {
+          "attr": "InteractionMode",
+          "required": false,
+          "default": "HardwareEvents",
+          "enum": [
+            "HardwareEvents",
+            "SimulateClick",
+            "ChromiumApi",
+            "SameAsCard"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NKeyboardShortcuts.Target": {
+          "type": "selector",
+          "content": null,
+          "note": "Only emitted when selector is non-empty; otherwise self-closing element"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NDoubleClick": {
+      "gen_function": "gen_ndoubleclick",
+      "element_tag": "uix:NClick",
+      "hint_size_key": "NClick",
+      "note": "Convenience wrapper over gen_nclick with click_type=Double",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mouse_button": {
+          "attr": "MouseButton",
+          "required": false,
+          "default": "Left",
+          "enum": [
+            "Left",
+            "Right",
+            "Middle"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ActivateBefore": "True",
+        "ClickType": "Double",
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "SameAsCard",
+        "KeyModifiers": "None",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NClick.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NRightClick": {
+      "gen_function": "gen_nrightclick",
+      "element_tag": "uix:NClick",
+      "hint_size_key": "NClick",
+      "note": "Convenience wrapper over gen_nclick with mouse_button=Right",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ActivateBefore": "True",
+        "ClickType": "Single",
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "SameAsCard",
+        "KeyModifiers": "None",
+        "MouseButton": "Right",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NClick.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NGetText": {
+      "gen_function": "gen_ngettext",
+      "element_tag": "uix:NGetText",
+      "hint_size_key": "NGetText",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "TextString",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "Provide exactly one of selector or in_ui_element"
+        },
+        "in_ui_element": {
+          "attr": "InUiElement",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When provided, self-closing tag (no Target child)"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NGetText.Target": {
+          "type": "selector",
+          "content": null,
+          "note": "Only emitted when selector is provided (not in_ui_element mode)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NCheckState": {
+      "gen_function": "gen_ncheckstate",
+      "element_tag": "uix:NCheckState",
+      "hint_size_key": "NCheckState",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "if_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "IdRef for the IfExists Sequence"
+        },
+        "if_not_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "IdRef for the IfNotExists Sequence"
+        },
+        "if_exists_body": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "if_not_exists_body": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "out_ui_element": {
+          "attr": "OutUiElement",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "EnableIfExists": "False",
+        "EnableIfNotExists": "False",
+        "HealingAgentBehavior": "Disabled",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NCheckState.IfExists": {
+          "type": "sequence",
+          "content": "Sequence with DisplayName='Target appears', contains if_exists_body and viewstate_block"
+        },
+        "NCheckState.IfNotExists": {
+          "type": "sequence",
+          "content": "Sequence with DisplayName='Target does not appear', contains if_not_exists_body and viewstate_block"
+        },
+        "NCheckState.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {
+        "OutUiElement": {
+          "omit_when": ""
+        }
+      }
+    },
+    "NSelectItem": {
+      "gen_function": "gen_nselectitem",
+      "element_tag": "uix:NSelectItem",
+      "hint_size_key": "NSelectItem",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "item_variable": {
+          "attr": "Item",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "vb_expr",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "static_items": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of static option strings for the Items scg:List child element"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V1"
+      },
+      "child_elements": {
+        "NSelectItem.Items": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='x:String' with static item x:String elements"
+        },
+        "NSelectItem.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NMouseScroll": {
+      "gen_function": "gen_nmousescroll",
+      "element_tag": "uix:NMouseScroll",
+      "hint_size_key": "NClick",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "direction": {
+          "attr": "Direction",
+          "required": false,
+          "default": "Down",
+          "enum": [
+            "Down",
+            "Up",
+            "Left",
+            "Right"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "movement_units": {
+          "attr": "MovementUnits",
+          "required": false,
+          "default": 3,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "interaction_mode": {
+          "attr": "InteractionMode",
+          "required": false,
+          "default": "HardwareEvents",
+          "enum": [
+            "HardwareEvents",
+            "SimulateClick",
+            "ChromiumApi",
+            "SameAsCard"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "KeyModifiers": "{x:Null}",
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NMouseScroll.SearchedElement": {
+          "type": "static_block",
+          "content": "<uix:SearchedElement><uix:SearchedElement.InUiElement><InArgument x:TypeArguments=\"ui:UiElement\" /></uix:SearchedElement.InUiElement><uix:SearchedElement.OutUiElement><OutArgument x:TypeArguments=\"ui:UiElement\" /></uix:SearchedElement.OutUiElement><uix:SearchedElement.Target>{selector}</uix:SearchedElement.Target><uix:SearchedElement.Timeout><InArgument x:TypeArguments=\"x:Double\" /></uix:SearchedElement.Timeout></uix:SearchedElement>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ApplicationEventTrigger": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "ExtractUIData": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "GetAttribute": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "GoogleCloudOCR": {
+      "gen_function": "gen_google_cloud_ocr",
+      "element_tag": "ui:GoogleCloudOCR",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "api_key": {
+          "attr": "ApiKey",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_region": {
+          "attr": "FilterRegion",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "image": {
+          "attr": "Image",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "language": {
+          "attr": "Language",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output": {
+          "attr": "Output",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "prediction_id": {
+          "attr": "PredictionId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "profile": {
+          "attr": "Profile",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "region": {
+          "attr": "Region",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "scale": {
+          "attr": "Scale",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "text": {
+          "attr": "Text",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ComputeSkewAngle": "False",
+        "DetectionMode": "TextDetection",
+        "ExtractWords": "False",
+        "NoopExecution": "False",
+        "ResizeToApiLimits": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "GoogleOCR": {
+      "gen_function": "gen_google_ocr",
+      "element_tag": "ui:GoogleOCR",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "allowed_characters": {
+          "attr": "AllowedCharacters",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "denied_characters": {
+          "attr": "DeniedCharacters",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_region": {
+          "attr": "FilterRegion",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "image": {
+          "attr": "Image",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "invert": {
+          "attr": "Invert",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "language": {
+          "attr": "Language",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output": {
+          "attr": "Output",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "prediction_id": {
+          "attr": "PredictionId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "profile": {
+          "attr": "Profile",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "scale": {
+          "attr": "Scale",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "text": {
+          "attr": "Text",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ComputeSkewAngle": "False",
+        "ExtractWords": "False",
+        "NoopExecution": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "MicrosoftAzureComputerVisionOCR": {
+      "gen_function": "gen_microsoft_azure_computer_vision_ocr",
+      "element_tag": "ui:MicrosoftAzureComputerVisionOCR",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "api_key": {
+          "attr": "ApiKey",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "endpoint": {
+          "attr": "Endpoint",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_region": {
+          "attr": "FilterRegion",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "image": {
+          "attr": "Image",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "language": {
+          "attr": "Language",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output": {
+          "attr": "Output",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "prediction_id": {
+          "attr": "PredictionId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "profile": {
+          "attr": "Profile",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "scale": {
+          "attr": "Scale",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "text": {
+          "attr": "Text",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ComputeSkewAngle": "False",
+        "ExtractWords": "False",
+        "HandwritingRecognition": "False",
+        "NoopExecution": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NAccessibilityCheck": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "NApplicationCard": {
+      "gen_function": "gen_n_application_card",
+      "element_tag": "uix:NApplicationCard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "Job",
+        "ScopeGuid": "5a6dbf82-25ba-414a-9e0a-2f94a9bbbcb0"
+      },
+      "child_elements": {
+        "NApplicationCard.Body": {
+          "type": "activity_action",
+          "arg_type": "x:Object",
+          "arg_name": "WSSessionData"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NBlockUserInput": {
+      "gen_function": "gen_n_block_user_input",
+      "element_tag": "uix:NBlockUserInput",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "NBlockUserInput.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NBrowserDialogScope": {
+      "gen_function": "gen_n_browser_dialog_scope",
+      "element_tag": "uix:NBrowserDialogScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "dialog_message": {
+          "attr": "DialogMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "NBrowserDialogScope.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NBrowserFilePickerScope": {
+      "gen_function": "gen_n_browser_file_picker_scope",
+      "element_tag": "uix:NBrowserFilePickerScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "NBrowserFilePickerScope.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NCheckElement": {
+      "gen_function": "gen_n_check_element",
+      "element_tag": "uix:NCheckElement",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NCheckElement.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NClickTrigger": {
+      "gen_function": "gen_n_click_trigger",
+      "element_tag": "uix:NClickTrigger",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Enabled": "True",
+        "SchedulingMode": "Sequential",
+        "TriggerId": "520373c6-c7aa-4b71-88e7-2848d0868e9a"
+      },
+      "child_elements": {
+        "NClickTrigger.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NClosePopup": {
+      "gen_function": "gen_n_close_popup",
+      "element_tag": "uix:NClosePopup",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "popup_exception": {
+          "attr": "PopupException",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "popup_handled": {
+          "attr": "PopupHandled",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "preferred_buttons": {
+          "attr": "PreferredButtons",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NDragAndDrop": {
+      "gen_function": "gen_n_drag_and_drop",
+      "element_tag": "uix:NDragAndDrop",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NDragAndDrop.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NElementScope": {
+      "gen_function": "gen_n_element_scope",
+      "element_tag": "uix:NElementScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "scope_guid": {
+          "attr": "ScopeGuid",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "InteractionMode": "HardwareEvents",
+        "IsLoose": "False"
+      },
+      "child_elements": {
+        "NElementScope.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NExtractFormDataGeneric": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "NFillForm": {
+      "gen_function": "gen_n_fill_form",
+      "element_tag": "uix:NFillForm",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NFillForm.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NFindElements": {
+      "gen_function": "gen_n_find_elements",
+      "element_tag": "uix:NFindElements",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "children": {
+          "attr": "Children",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_target": {
+          "attr": "FilterTarget",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mode": {
+          "attr": "Mode",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NFindElements.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NForEachUiElement": {
+      "gen_function": "gen_n_for_each_ui_element",
+      "element_tag": "uix:NForEachUiElement",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "extract_data_settings": {
+          "attr": "ExtractDataSettings",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "extract_metadata": {
+          "attr": "ExtractMetadata",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "maximum_results": {
+          "attr": "MaximumResults",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "LimitExtractionTo": "Rows"
+      },
+      "child_elements": {
+        "NForEachUiElement.Body": {
+          "type": "activity_action",
+          "arg_type": "x:Int32",
+          "arg_name": "CurrentIndex"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NGetBrowserData": {
+      "gen_function": "gen_n_get_browser_data",
+      "element_tag": "uix:NGetBrowserData",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "session_data": {
+          "attr": "SessionData",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NGetClipboard": {
+      "gen_function": "gen_n_get_clipboard",
+      "element_tag": "uix:NGetClipboard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NGetClipboard.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NHighlight": {
+      "gen_function": "gen_n_highlight",
+      "element_tag": "uix:NHighlight",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Color": "Gold",
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NHighlight.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NInjectJsScript": {
+      "gen_function": "gen_n_inject_js_script",
+      "element_tag": "uix:NInjectJsScript",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "input_parameter": {
+          "attr": "InputParameter",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "script_code": {
+          "attr": "ScriptCode",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "script_output": {
+          "attr": "ScriptOutput",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "NInjectJsScript.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NKeyboardTrigger": {
+      "gen_function": "gen_n_keyboard_trigger",
+      "element_tag": "uix:NKeyboardTrigger",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Enabled": "True",
+        "SchedulingMode": "Sequential",
+        "TriggerId": "10ae2088-35bc-4444-94e7-38d1d82537c8"
+      },
+      "child_elements": {
+        "NKeyboardTrigger.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NNavigateBrowser": {
+      "gen_function": "gen_n_navigate_browser",
+      "element_tag": "uix:NNavigateBrowser",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSAPCallTransaction": {
+      "gen_function": "gen_nsap_call_transaction",
+      "element_tag": "uix:NSAPCallTransaction",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "prefix": {
+          "attr": "Prefix",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "transaction": {
+          "attr": "Transaction",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPClickPictureOnScreen": {
+      "gen_function": "gen_nsap_click_picture_on_screen",
+      "element_tag": "uix:NSAPClickPictureOnScreen",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPClickPictureOnScreen.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPClickToolbarButton": {
+      "gen_function": "gen_nsap_click_toolbar_button",
+      "element_tag": "uix:NSAPClickToolbarButton",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "item": {
+          "attr": "Item",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPClickToolbarButton.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPExpandALVHierarchicalTable": {
+      "gen_function": "gen_nsap_expand_alv_hierarchical_table",
+      "element_tag": "uix:NSAPExpandALVHierarchicalTable",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "all_columns": {
+          "attr": "AllColumns",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard",
+        "SelectLevel1": "False"
+      },
+      "child_elements": {
+        "NSAPExpandALVHierarchicalTable.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPExpandALVTree": {
+      "gen_function": "gen_nsap_expand_alv_tree",
+      "element_tag": "uix:NSAPExpandALVTree",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPExpandALVTree.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPExpandTree": {
+      "gen_function": "gen_nsap_expand_tree",
+      "element_tag": "uix:NSAPExpandTree",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "item": {
+          "attr": "Item",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPExpandTree.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPLogin": {
+      "gen_function": "gen_nsap_login",
+      "element_tag": "uix:NSAPLogin",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Option": "Single"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPLogon": {
+      "gen_function": "gen_nsap_logon",
+      "element_tag": "uix:NSAPLogon",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "Job",
+        "ScopeGuid": "6644ba5d-ce7e-499b-9da1-957ca5b1da51"
+      },
+      "child_elements": {
+        "NSAPLogon.Body": {
+          "type": "activity_action",
+          "arg_type": "x:Object",
+          "arg_name": "WSSessionData"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NSAPReadStatusbar": {
+      "gen_function": "gen_nsap_read_statusbar",
+      "element_tag": "uix:NSAPReadStatusbar",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "message_data": {
+          "attr": "MessageData",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "message_id": {
+          "attr": "MessageId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "message_number": {
+          "attr": "MessageNumber",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "message_text": {
+          "attr": "MessageText",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "message_type": {
+          "attr": "MessageType",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPSelectDatesInCalendar": {
+      "gen_function": "gen_nsap_select_dates_in_calendar",
+      "element_tag": "uix:NSAPSelectDatesInCalendar",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPSelectDatesInCalendar.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPSelectMenuItem": {
+      "gen_function": "gen_nsap_select_menu_item",
+      "element_tag": "uix:NSAPSelectMenuItem",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "item": {
+          "attr": "Item",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false,
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSAPTableCellScope": {
+      "gen_function": "gen_nsap_table_cell_scope",
+      "element_tag": "uix:NSAPTableCellScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "column_names": {
+          "attr": "ColumnNames",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "row_type": {
+          "attr": "RowType",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSAPTableCellScope.Body": {
+          "type": "activity_action",
+          "arg_type": "x:Object",
+          "arg_name": "ContextTarget"
+        }
+      },
+      "conditional_attrs": {},
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+    },
+    "NSetBrowserData": {
+      "gen_function": "gen_n_set_browser_data",
+      "element_tag": "uix:NSetBrowserData",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "session_data": {
+          "attr": "SessionData",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSetClipboard": {
+      "gen_function": "gen_n_set_clipboard",
+      "element_tag": "uix:NSetClipboard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "text": {
+          "attr": "Text",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSetClipboard.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSetFocus": {
+      "gen_function": "gen_n_set_focus",
+      "element_tag": "uix:NSetFocus",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSetFocus.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSetRuntimeBrowser": {
+      "gen_function": "gen_n_set_runtime_browser",
+      "element_tag": "uix:NSetRuntimeBrowser",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSetText": {
+      "gen_function": "gen_n_set_text",
+      "element_tag": "uix:NSetText",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NSetText.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NSetValue": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false
+    },
+    "NTakeScreenshot": {
+      "gen_function": "gen_n_take_screenshot",
+      "element_tag": "uix:NTakeScreenshot",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "FileNameMode": "None",
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NTakeScreenshot.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NUITask": {
+      "gen_function": "gen_nui_task",
+      "element_tag": "uix:NUITask",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "NUITask.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NUnblockUserInput": {
+      "gen_function": "gen_n_unblock_user_input",
+      "element_tag": "uix:NUnblockUserInput",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NUnblockUserInput.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    },
+    "NWindowOperation": {
+      "gen_function": "gen_n_window_operation",
+      "element_tag": "uix:NWindowOperation",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "HealingAgentBehavior": "SameAsCard"
+      },
+      "child_elements": {
+        "NWindowOperation.Target": {
+          "type": "selector",
+          "content": null
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": false
+    }
+  }
+}

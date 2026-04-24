@@ -1,0 +1,476 @@
+{
+  "$schema_version": "1.0",
+  "module": "logging_misc",
+  "activities": {
+    "LogMessage": {
+      "gen_function": "gen_logmessage",
+      "element_tag": "ui:LogMessage",
+      "hint_size_key": "LogMessage",
+      "params": {
+        "message": {
+          "attr": "Message",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "vb_expr",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-generated from message content when empty"
+        },
+        "level": {
+          "attr": "Level",
+          "required": false,
+          "default": "Info",
+          "enum": ["Info", "Warn", "Error", "Trace"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "Comment": {
+      "gen_function": "gen_comment",
+      "element_tag": "ui:Comment",
+      "hint_size_key": null,
+      "params": {
+        "text": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'Comment_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Comment",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "CommentOut": {
+      "gen_function": "gen_comment_out",
+      "element_tag": "ui:CommentOut",
+      "hint_size_key": null,
+      "params": {
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'CommentOut_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Comment Out",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "CommentOut.Body": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Ignored Activities' with body_content and viewstate_block"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Break": {
+      "gen_function": "gen_break",
+      "element_tag": "ui:Break",
+      "hint_size_key": null,
+      "params": {
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Break",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "sap:VirtualizedContainerService.HintSize": "434,48"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "Continue": {
+      "gen_function": "gen_continue",
+      "element_tag": "ui:Continue",
+      "hint_size_key": null,
+      "params": {
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Continue",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "sap:VirtualizedContainerService.HintSize": "434,48"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "KillProcess": {
+      "gen_function": "gen_kill_process",
+      "element_tag": "ui:KillProcess",
+      "hint_size_key": "KillProcess",
+      "params": {
+        "process_name": {
+          "attr": "ProcessName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-generated as 'Kill Process ({process_name})' when empty"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "TerminateWorkflow": {
+      "gen_function": "gen_terminate_workflow",
+      "element_tag": "TerminateWorkflow",
+      "hint_size_key": "TerminateWorkflow",
+      "params": {
+        "reason_expression": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "VB expression for Exception, placed inside InArgument x:TypeArguments='s:Exception' child element"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Terminate Workflow",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "TerminateWorkflow.Exception": {
+          "type": "static_block",
+          "content": "<InArgument x:TypeArguments=\"s:Exception\">[{reason_expression}]</InArgument>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ShouldStop": {
+      "gen_function": "gen_should_stop",
+      "element_tag": "ui:ShouldStop",
+      "hint_size_key": "ShouldStop",
+      "params": {
+        "result_variable": {
+          "attr": "Result",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Should Stop",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "AddLogFields": {
+      "gen_function": "gen_add_log_fields",
+      "element_tag": "ui:AddLogFields",
+      "hint_size_key": "AddLogFields",
+      "params": {
+        "fields": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Dict of {field_name: vb_expression_value}"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Add Log Fields",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "AddLogFields.LogFields": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='ui:AddLogField' with AddLogField elements (FieldName + FieldValue attrs)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "RemoveLogFields": {
+      "gen_function": "gen_remove_log_fields",
+      "element_tag": "ui:RemoveLogFields",
+      "hint_size_key": "RemoveLogFields",
+      "params": {
+        "field_names": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of field name strings"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Remove Log Fields",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "RemoveLogFields.LogFields": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='x:String' with x:String elements"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "TakeScreenshotAndSave": {
+      "gen_function": "gen_take_screenshot_and_save",
+      "element_tag": null,
+      "hint_size_key": null,
+      "note": "Composite: generates TakeScreenshot + SaveImage pair",
+      "params": {
+        "screenshot_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Variable type must be ui:Image"
+        },
+        "save_path_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Used to generate TakeScreenshot_{id_ref} and SaveImage_{id_ref}"
+        },
+        "display_name_screenshot": {
+          "attr": null,
+          "required": false,
+          "default": "Take Screenshot",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name_save": {
+          "attr": null,
+          "required": false,
+          "default": "Save Screenshot",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "TakeScreenshot.Target": {
+          "type": "static_block",
+          "content": "<ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" WaitForReady=\"INTERACTIVE\" />"
+        }
+      },
+      "conditional_attrs": {}
+    }
+  }
+}

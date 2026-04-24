@@ -1,0 +1,1160 @@
+{
+  "$schema_version": "1.0",
+  "module": "testing",
+  "activities": {
+    "VerifyExpression": {
+      "gen_function": "gen_verify_expression",
+      "element_tag": "uta:VerifyExpression",
+      "hint_size_key": "VerifyExpression",
+      "params": {
+        "expression": {
+          "attr": "Expression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Verify Expression",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_failure": {
+          "attr": "ContinueOnFailure",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "AlternativeVerificationTitle": "{x:Null}",
+        "KeepScreenshots": "{x:Null}",
+        "OutputMessageFormat": "{x:Null}",
+        "ScreenshotsPath": "{x:Null}",
+        "TakeScreenshotInCaseOfFailingAssertion": "False",
+        "TakeScreenshotInCaseOfSucceedingAssertion": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Verifies a Boolean expression is true."
+    },
+    "VerifyExpressionWithOperator": {
+      "gen_function": "gen_verify_expression_with_operator",
+      "element_tag": "uta:VerifyExpressionWithOperator",
+      "hint_size_key": "VerifyExpressionWithOperator",
+      "params": {
+        "first_expression": {
+          "attr": "FirstExpression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "second_expression": {
+          "attr": "SecondExpression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "operator": {
+          "attr": "Operator",
+          "required": false,
+          "default": "Equality",
+          "enum": ["Equality", "Inequality", "GreaterThan", "LessThan", "GreaterThanOrEqual", "LessThanOrEqual", "Contains", "StartsWith", "EndsWith"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Verify Expression With Operator",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_failure": {
+          "attr": "ContinueOnFailure",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "AlternativeVerificationTitle": "{x:Null}",
+        "KeepScreenshots": "{x:Null}",
+        "OutputMessageFormat": "{x:Null}",
+        "ScreenshotsPath": "{x:Null}",
+        "TakeScreenshotInCaseOfFailingAssertion": "False",
+        "TakeScreenshotInCaseOfSucceedingAssertion": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Compares two expressions with a specified operator."
+    },
+    "VerifyRange": {
+      "gen_function": "gen_verify_range",
+      "element_tag": "uta:VerifyRange",
+      "hint_size_key": "VerifyRange",
+      "params": {
+        "expression": {
+          "attr": "Expression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "lower_limit": {
+          "attr": "LowerLimit",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "upper_limit": {
+          "attr": "UpperLimit",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Verify Range",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_failure": {
+          "attr": "ContinueOnFailure",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "verification_type": {
+          "attr": "VerificationType",
+          "required": false,
+          "default": "is within",
+          "enum": ["is within", "is not within"],
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "AlternativeVerificationTitle": "{x:Null}",
+        "KeepScreenshots": "{x:Null}",
+        "OutputMessageFormat": "{x:Null}",
+        "ScreenshotsPath": "{x:Null}",
+        "TakeScreenshotInCaseOfFailingAssertion": "False",
+        "TakeScreenshotInCaseOfSucceedingAssertion": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Verifies a numeric expression falls within a range."
+    },
+    "ComparePdfDocuments": {
+      "gen_function": "gen_compare_pdf_documents",
+      "element_tag": "uta:ComparePdfDocuments",
+      "hint_size_key": "ComparePdfDocuments",
+      "params": {
+        "baseline_path": {
+          "attr": "BaselinePath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "target_path": {
+          "attr": "TargetPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "differences": {
+          "attr": "Differences",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Compare PDF Documents",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "comparison_type": {
+          "attr": "ComparisonType",
+          "required": false,
+          "default": "Line",
+          "enum": ["Line", "Word", "Character"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_failure": {
+          "attr": "ContinueOnFailure",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Rules": "{x:Null}",
+        "RulesList": "{x:Null}",
+        "SemanticDifferences": "{x:Null}",
+        "IgnoreIdenticalItems": "True",
+        "IgnoreImagesLocation": "False",
+        "IncludeImages": "True",
+        "OutputFolderPath": "."
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Compares two PDF documents for differences."
+    },
+    "CompareText": {
+      "gen_function": "gen_compare_text",
+      "element_tag": "uta:CompareText",
+      "hint_size_key": "CompareText",
+      "params": {
+        "baseline_text": {
+          "attr": "BaselineText",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "target_text": {
+          "attr": "TargetText",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "differences": {
+          "attr": "Differences",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Compare Text",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "comparison_type": {
+          "attr": "ComparisonType",
+          "required": false,
+          "default": "Line",
+          "enum": ["Line", "Word", "Character"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_failure": {
+          "attr": "ContinueOnFailure",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Rules": "{x:Null}",
+        "RulesList": "{x:Null}",
+        "SemanticDifferences": "{x:Null}",
+        "WordSeparators": "{x:Null}",
+        "OutputFilePath": "differences.html"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Compares two text strings for differences."
+    },
+    "CreateComparisonRule": {
+      "gen_function": "gen_create_comparison_rule",
+      "element_tag": "uta:CreateComparisonRule",
+      "hint_size_key": "CreateComparisonRule",
+      "params": {
+        "rule_name": {
+          "attr": "RuleName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "pattern": {
+          "attr": "Pattern",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "comparison_rule": {
+          "attr": "ComparisonRule",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Create Comparison Rule",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "comparison_rule_type": {
+          "attr": "ComparisonRuleType",
+          "required": false,
+          "default": "RegexRule",
+          "enum": ["RegexRule", "IgnoreRule", "ReplaceRule"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "False",
+        "UsePlaceholder": "True"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Creates a comparison rule for document comparison."
+    },
+    "GetTestDataQueueItem": {
+      "gen_function": "gen_get_test_data_queue_item",
+      "element_tag": "uta:GetTestDataQueueItem",
+      "hint_size_key": "GetTestDataQueueItem",
+      "params": {
+        "queue_name": {
+          "attr": "QueueName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output": {
+          "attr": "Output",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get Test Data Queue Item",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mark_consumed": {
+          "attr": "MarkConsumed",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMs",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Retrieves an item from a test data queue."
+    },
+    "GetTestDataQueueItems": {
+      "gen_function": "gen_get_test_data_queue_items",
+      "element_tag": "uta:GetTestDataQueueItems",
+      "hint_size_key": "GetTestDataQueueItems",
+      "params": {
+        "queue_name": {
+          "attr": "QueueName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "test_data_queue_items": {
+          "attr": "TestDataQueueItems",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get Test Data Queue Items",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "status": {
+          "attr": "TestDataQueueItemStatus",
+          "required": false,
+          "default": "All",
+          "enum": ["All", "Unconsumed", "Consumed"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "top": {
+          "attr": "Top",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "skip": {
+          "attr": "Skip",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "IdFilter": "{x:Null}",
+        "TimeoutMs": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Retrieves multiple items from a test data queue."
+    },
+    "BulkAddTestDataQueue": {
+      "gen_function": "gen_bulk_add_test_data_queue",
+      "element_tag": "uta:BulkAddTestDataQueue",
+      "hint_size_key": "BulkAddTestDataQueue",
+      "params": {
+        "queue_name": {
+          "attr": "QueueName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "queue_items_datatable": {
+          "attr": "QueueItemsDataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Bulk Add Test Data Queue",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMs",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue."
+    },
+    "DeleteTestDataQueueItems": {
+      "gen_function": "gen_delete_test_data_queue_items",
+      "element_tag": "uta:DeleteTestDataQueueItems",
+      "hint_size_key": "DeleteTestDataQueueItems",
+      "params": {
+        "test_data_queue_items": {
+          "attr": "TestDataQueueItems",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Delete Test Data Queue Items",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMs",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Deletes items from a test data queue."
+    },
+    "AttachDocument": {
+      "gen_function": "gen_attach_document",
+      "element_tag": "uta:AttachDocument",
+      "hint_size_key": "AttachDocument",
+      "params": {
+        "file_path": {
+          "attr": "FilePath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Attach Document",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "tags": {
+          "attr": "Tags",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Attaches a document to the current test case result."
+    },
+    "RandomString": {
+      "gen_function": "gen_random_string",
+      "element_tag": "utat:RandomString",
+      "hint_size_key": "RandomString",
+      "params": {
+        "output": {
+          "attr": "Output",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Random String",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "length": {
+          "attr": "Length",
+          "required": false,
+          "default": "10",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "case": {
+          "attr": "Case",
+          "required": false,
+          "default": "LowerCase",
+          "enum": ["LowerCase", "UpperCase", "MixedCase"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random string of specified length."
+    },
+    "RandomNumber": {
+      "gen_function": "gen_random_number",
+      "element_tag": "utat:RandomNumber",
+      "hint_size_key": "RandomNumber",
+      "params": {
+        "output": {
+          "attr": "Output",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Random Number",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "min": {
+          "attr": "Min",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "max": {
+          "attr": "Max",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "decimals": {
+          "attr": "Decimals",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random number within the specified range."
+    },
+    "RandomDate": {
+      "gen_function": "gen_random_date",
+      "element_tag": "utat:RandomDate",
+      "hint_size_key": "RandomDate",
+      "params": {
+        "output": {
+          "attr": "Output",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Random Date",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "min_date": {
+          "attr": "MinDate",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "max_date": {
+          "attr": "MaxDate",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random date within the specified range."
+    },
+    "RandomValue": {
+      "gen_function": "gen_random_value",
+      "element_tag": "utat:RandomValue",
+      "hint_size_key": "RandomValue",
+      "params": {
+        "value": {
+          "attr": "Value",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Random Value",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "FilePath",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Picks a random value from a list or file."
+    },
+    "GivenName": {
+      "gen_function": "gen_given_name",
+      "element_tag": "utat:GivenName",
+      "hint_size_key": "GivenName",
+      "params": {
+        "given_name_result": {
+          "attr": "GivenNameResult",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Given Name",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random given/first name."
+    },
+    "LastName": {
+      "gen_function": "gen_last_name",
+      "element_tag": "utat:LastName",
+      "hint_size_key": "LastName",
+      "params": {
+        "last_name_result": {
+          "attr": "LastNameResult",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Last Name",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random last/family name."
+    },
+    "Address": {
+      "gen_function": "gen_address",
+      "element_tag": "utat:Address",
+      "hint_size_key": "Address",
+      "params": {
+        "address_result": {
+          "attr": "AddressResult",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Address",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "city": {
+          "attr": "City",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "country": {
+          "attr": "Country",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Generates a random address."
+    },
+    "VerifyControlAttribute": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "VerifyControlAttribute wraps an ActivityAction+ActivityFunc pair; requires Studio wizard to configure the target activity."
+    },
+    "MockActivity": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "MockActivity wraps a Sequence child to replace a mocked activity; requires Studio configuration."
+    },
+    "NewAddTestDataQueueItem": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "NewAddTestDataQueueItem uses an ItemInformation dictionary child that requires Studio wizard configuration."
+    }
+  }
+}

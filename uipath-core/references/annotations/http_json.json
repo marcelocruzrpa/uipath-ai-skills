@@ -1,0 +1,846 @@
+{
+  "$schema_version": "1.0",
+  "module": "http_json",
+  "activities": {
+    "NetHttpRequest": {
+      "gen_function": "gen_net_http_request",
+      "element_tag": "uwah:NetHttpRequest",
+      "hint_size_key": "NetHttpRequest",
+      "note": "Has built-in retry (RetryCount, RetryPolicyType). Do NOT wrap in RetryScope.",
+      "params": {
+        "method": {
+          "attr": "Method",
+          "required": true,
+          "default": null,
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "request_url_variable": {
+          "attr": "RequestUrl",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result_variable": {
+          "attr": "Result",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Variable type must be uwahm:HttpResponseSummary"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'NetHttpRequest_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "HTTP Request",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "auth_type": {
+          "attr": "AuthenticationType",
+          "required": false,
+          "default": "None",
+          "enum": [
+            "None",
+            "OAuthToken",
+            "BasicAuth"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "oauth_token_variable": {
+          "attr": "OAuthToken",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses OAuthToken=\"{x:Null}\""
+        },
+        "text_payload_variable": {
+          "attr": "TextPayload",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses TextPayload=\"\""
+        },
+        "content_type": {
+          "attr": "TextPayloadContentType",
+          "required": false,
+          "default": "application/json",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "headers_expr": {
+          "attr": "Headers",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses Headers=\"{x:Null}\""
+        },
+        "parameters_expr": {
+          "attr": "Parameters",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses Parameters=\"{x:Null}\""
+        },
+        "timeout_ms": {
+          "attr": null,
+          "required": false,
+          "default": 30000,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Placed inside NetHttpRequest.TimeoutInMiliseconds Literal child element"
+        },
+        "retry_count": {
+          "attr": "RetryCount",
+          "required": false,
+          "default": 3,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "retry_policy": {
+          "attr": "RetryPolicyType",
+          "required": false,
+          "default": "Exponential",
+          "enum": [
+            "Exponential",
+            "Linear",
+            "None"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "BasicAuthPassword": "{x:Null}",
+        "BasicAuthSecurePassword": "{x:Null}",
+        "BasicAuthUsername": "{x:Null}",
+        "BinaryPayload": "{x:Null}",
+        "ClientCertPassword": "{x:Null}",
+        "ClientCertPath": "{x:Null}",
+        "ClientCertSecurePassword": "{x:Null}",
+        "Cookies": "{x:Null}",
+        "CustomNegotiatedAuthCredentials": "{x:Null}",
+        "FilePath": "{x:Null}",
+        "FormData": "{x:Null}",
+        "LocalFiles": "{x:Null}",
+        "OutputFileName": "{x:Null}",
+        "OutputFileTargetFolder": "{x:Null}",
+        "PathResource": "{x:Null}",
+        "ProxyConfiguration": "{x:Null}",
+        "ResourceFiles": "{x:Null}",
+        "ContinueOnError": "True",
+        "DisableSslVerification": "False",
+        "EnableCookies": "True",
+        "FileOverwrite": "AutoRename",
+        "FollowRedirects": "True",
+        "InitialDelay": "500",
+        "MaxRedirects": "3",
+        "MaxRetryAfterDelay": "30000",
+        "Multiplier": "2",
+        "PreferRetryAfterValue": "True",
+        "RequestBodyType": "Text",
+        "SaveRawRequestResponse": "False",
+        "SaveResponseAsFile": "False",
+        "TextPayloadEncoding": "UTF-8",
+        "TlsProtocol": "Automatic",
+        "UseJitter": "True",
+        "UseOsNegotiatedAuthCredentials": "False"
+      },
+      "child_elements": {
+        "NetHttpRequest.TimeoutInMiliseconds": {
+          "type": "static_block",
+          "content": "<InArgument x:TypeArguments=\"s:Nullable(x:Int32)\"><Literal x:TypeArguments=\"s:Nullable(x:Int32)\" Value=\"{timeout_ms}\" /></InArgument>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "DeserializeJson": {
+      "gen_function": "gen_deserialize_json",
+      "element_tag": "ui:DeserializeJson",
+      "hint_size_key": "DeserializeJson",
+      "params": {
+        "json_string_variable": {
+          "attr": "JsonString",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "JsonObject",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DeserializeJson_'"
+        },
+        "type_argument": {
+          "attr": "x:TypeArguments",
+          "required": false,
+          "default": "njl:JObject",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Deserialize JSON",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Settings": "{x:Null}",
+        "JsonSample": ""
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "DeserializeJsonArray": {
+      "gen_function": "gen_deserializejsonarray",
+      "element_tag": "ui:DeserializeJsonArray",
+      "hint_size_key": "DeserializeJsonArray",
+      "params": {
+        "json_string_variable": {
+          "attr": "JsonString",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "String variable or literal JSON array"
+        },
+        "output_variable": {
+          "attr": "JsonArray",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Newtonsoft.Json.Linq.JArray output variable"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DeserializeJsonArray_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Deserialize JSON Array",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Self-closing."
+    },
+    "DeserializeXml": {
+      "gen_function": "gen_deserializexml",
+      "element_tag": "ui:DeserializeXml",
+      "hint_size_key": "DeserializeXml",
+      "params": {
+        "xml_string_variable": {
+          "attr": "XMLString",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "XMLDocument",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "System.Xml.Linq.XDocument output variable"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DeserializeXml_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Deserialize XML",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Self-closing."
+    },
+    "ExecuteXPath": {
+      "gen_function": "gen_executexpath",
+      "element_tag": "ui:ExecuteXPath",
+      "hint_size_key": "ExecuteXPath",
+      "params": {
+        "xml_string_variable": {
+          "attr": "XMLString",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Mutually exclusive with ExistingXML"
+        },
+        "existing_xml_variable": {
+          "attr": "ExistingXML",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "XDocument variable (mutually exclusive with XMLString)"
+        },
+        "xpath_expression": {
+          "attr": "XPathExpression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExecuteXPath_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Execute XPath",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed."
+    },
+    "GetNodes": {
+      "gen_function": "gen_getnodes",
+      "element_tag": "ui:GetNodes",
+      "hint_size_key": "GetNodes",
+      "params": {
+        "xml_string_variable": {
+          "attr": "XMLString",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Mutually exclusive with ExistingXML"
+        },
+        "existing_xml_variable": {
+          "attr": "ExistingXML",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "XMLNodes",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "IEnumerable<XElement> output"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GetNodes_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get Nodes",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetXMLNodes": {
+      "gen_function": "gen_getxmlnodes",
+      "element_tag": "ui:GetXMLNodes",
+      "hint_size_key": "GetXMLNodes",
+      "params": {
+        "xml_string_variable": {
+          "attr": "XMLString",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "existing_xml_variable": {
+          "attr": "ExistingXML",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "XMLNodes",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GetXMLNodes_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get XML Nodes",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed."
+    },
+    "GetXMLNodeAttributes": {
+      "gen_function": "gen_getxmlnodeattributes",
+      "element_tag": "ui:GetXMLNodeAttributes",
+      "hint_size_key": "GetXMLNodeAttributes",
+      "params": {
+        "existing_xml_node_variable": {
+          "attr": "ExistingXMLNode",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Single XElement node"
+        },
+        "output_variable": {
+          "attr": "Attributes",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "IEnumerable<XAttribute> output"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GetXMLNodeAttributes_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get XML Node Attributes",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SerializeJson": {
+      "gen_function": "gen_serializejson",
+      "element_tag": "uwaj:SerializeJson",
+      "hint_size_key": "SerializeJson",
+      "params": {
+        "input_object_variable": {
+          "attr": "InputObject",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Any Object graph; commonly JObject/JArray"
+        },
+        "output_variable": {
+          "attr": "Result",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "String output — serialized JSON"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'SerializeJson_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Serialize JSON",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix."
+    },
+    "HttpClient": {
+      "gen_function": "gen_httpclient",
+      "element_tag": "ui:HttpClient",
+      "hint_size_key": "HttpClient",
+      "params": {
+        "endpoint_variable": {
+          "attr": "EndPoint",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "method": {
+          "attr": "Method",
+          "required": false,
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD",
+            "OPTIONS"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_variable": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "body_format": {
+          "attr": "BodyFormat",
+          "required": false,
+          "default": "application/xml",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "accept_format": {
+          "attr": "AcceptFormat",
+          "required": false,
+          "default": "ANY",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "authentication_type": {
+          "attr": "AuthenticationType",
+          "required": false,
+          "default": "None",
+          "enum": [
+            "None",
+            "Basic",
+            "OAuth1",
+            "OAuth2",
+            "WindowsIntegrated"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "username_variable": {
+          "attr": "Username",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "password_variable": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": "6000",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "enable_ssl_verification": {
+          "attr": "EnableSSLVerification",
+          "required": false,
+          "default": "True",
+          "enum": [
+            "True",
+            "False"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result_variable": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "String output — response body"
+        },
+        "status_code_variable": {
+          "attr": "StatusCode",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Int32 output — HTTP status code"
+        },
+        "response_headers_variable": {
+          "attr": "ResponseHeaders",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Dictionary<String,String> output"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'HttpClient_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "HTTP Request",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "HttpClient.Attachments": {
+          "type": "static_block",
+          "content": "<scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />",
+          "tag_prefix": "ui:"
+        },
+        "HttpClient.Cookies": {
+          "type": "static_block",
+          "content": "<scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />",
+          "tag_prefix": "ui:"
+        },
+        "HttpClient.Headers": {
+          "type": "static_block",
+          "content": "<scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />",
+          "tag_prefix": "ui:"
+        },
+        "HttpClient.Parameters": {
+          "type": "static_block",
+          "content": "<scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />",
+          "tag_prefix": "ui:"
+        },
+        "HttpClient.UrlSegments": {
+          "type": "static_block",
+          "content": "<scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />",
+          "tag_prefix": "ui:"
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root."
+    }
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "$schema_version": "1.0",
+  "module": "invoke",
+  "activities": {
+    "InvokeWorkflowFile": {
+      "gen_function": "gen_invoke_workflow",
+      "element_tag": "ui:InvokeWorkflowFile",
+      "hint_size_key": "InvokeWorkflowFile",
+      "params": {
+        "workflow_path": {
+          "attr": "WorkflowFileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "arguments": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Dict of {key: (direction, type, value_expression)}. direction: In, Out, InOut. Type is normalized. Also accepts list formats defensively."
+        }
+      },
+      "fixed_attrs": {
+        "ArgumentsVariable": "{x:Null}",
+        "UnSafe": "False"
+      },
+      "child_elements": {
+        "InvokeWorkflowFile.Arguments": {
+          "type": "list",
+          "tag_prefix": "ui:",
+          "empty_content": "<scg:Dictionary x:TypeArguments=\"x:String, Argument\" />",
+          "content": "InArgument/OutArgument/InOutArgument elements with x:TypeArguments and x:Key (only when arguments provided)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "InvokeCode": {
+      "gen_function": "gen_invoke_code",
+      "element_tag": "ui:InvokeCode",
+      "hint_size_key": null,
+      "params": {
+        "code": {
+          "attr": "Code",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Raw code string — XML-encoded (& < > \" newlines tabs)"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'InvokeCode_'"
+        },
+        "arguments": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (direction, type, key, variable) tuples"
+        },
+        "language": {
+          "attr": "Language",
+          "required": false,
+          "default": "VBNet",
+          "enum": ["VBNet", "CSharp"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Invoke Code",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}"
+      },
+      "child_elements": {
+        "InvokeCode.Arguments": {
+          "type": "list",
+          "tag_prefix": "ui:",
+          "empty_content": "<scg:Dictionary x:TypeArguments=\"x:String, Argument\" />",
+          "content": "InArgument/OutArgument/InOutArgument elements with x:TypeArguments and x:Key (only when arguments provided)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "InvokeMethod": {
+      "gen_function": "gen_invoke_method",
+      "element_tag": "InvokeMethod",
+      "hint_size_key": null,
+      "params": {
+        "method_name": {
+          "attr": "MethodName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'InvokeMethod_'"
+        },
+        "target_object": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Tuple (variable, type) for instance method. Mutually exclusive with target_type."
+        },
+        "target_object_type": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Unused parameter in current implementation"
+        },
+        "target_type": {
+          "attr": "TargetType",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "XAML type for static method. Mutually exclusive with target_object."
+        },
+        "parameters": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (type, variable) tuples for positional InArgument parameters"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Invoke Method",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "InvokeMethod.TargetObject": {
+          "type": "static_block",
+          "content": "InArgument with x:TypeArguments for instance method target (only when target_object provided)"
+        }
+      },
+      "conditional_attrs": {}
+    }
+  }
+}

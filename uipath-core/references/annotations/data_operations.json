@@ -1,0 +1,915 @@
+{
+  "$schema_version": "1.0",
+  "module": "data_operations",
+  "activities": {
+    "Assign": {
+      "gen_function": "gen_assign",
+      "element_tag": "Assign",
+      "hint_size_key": "Assign",
+      "params": {
+        "to_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "LHS in OutArgument child element"
+        },
+        "value_expression": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "vb_expr",
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "RHS in InArgument child element"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-generated as 'Assign - {to_variable}' when empty"
+        },
+        "value_type": {
+          "attr": null,
+          "required": false,
+          "default": "x:String",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "x:TypeArguments on both OutArgument and InArgument; normalized via _normalize_type_arg"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "Assign.To": {
+          "type": "static_block",
+          "content": "<OutArgument x:TypeArguments=\"{value_type}\">[{to_variable}]</OutArgument>"
+        },
+        "Assign.Value": {
+          "type": "static_block",
+          "content": "<InArgument x:TypeArguments=\"{value_type}\">[{value_expression}]</InArgument>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "MultipleAssign": {
+      "gen_function": "gen_multiple_assign",
+      "element_tag": "ui:MultipleAssign",
+      "hint_size_key": "MultipleAssign",
+      "params": {
+        "assignments": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (to_variable, value_expression, value_type) tuples. value_type defaults to 'x:String'."
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'MultipleAssign_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Multiple Assign",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "MultipleAssign.AssignOperations": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='ui:AssignOperation' with AssignOperation elements containing To (OutArgument) and Value (InArgument)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "VariablesBlock": {
+      "gen_function": "gen_variables_block",
+      "element_tag": null,
+      "hint_size_key": null,
+      "note": "Helper to generate Variables block for Sequence or Flowchart, not a standalone activity",
+      "params": {
+        "variables": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (name, type) tuples"
+        },
+        "container": {
+          "attr": null,
+          "required": false,
+          "default": "Sequence",
+          "enum": ["Sequence", "Flowchart"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {}
+    },
+    "BuildDataTable": {
+      "gen_function": "gen_build_data_table",
+      "element_tag": "ui:BuildDataTable",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "columns": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (column_name, column_type) tuples. column_type: String, Int32, Boolean, Double, DateTime, Decimal"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'BuildDataTable_'"
+        },
+        "initial_rows": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of dicts mapping column_name to value"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Build Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. TableInfo attribute contains XML-escaped XSD schema string."
+    },
+    "AddDataRow": {
+      "gen_function": "gen_add_data_row",
+      "element_tag": "ui:AddDataRow",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "array_values": {
+          "attr": "ArrayRow",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'AddDataRow_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Add Data Row",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "DataRow": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "AddDataColumn": {
+      "gen_function": "gen_add_data_column",
+      "element_tag": "ui:AddDataColumn",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "column_name": {
+          "attr": "ColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'AddDataColumn_'"
+        },
+        "column_type": {
+          "attr": "x:TypeArguments",
+          "required": false,
+          "default": "x:Object",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-generated as 'Add Data Column - {column_name}' when empty"
+        }
+      },
+      "fixed_attrs": {
+        "AllowDBNull": "{x:Null}",
+        "AutoIncrement": "{x:Null}",
+        "Column": "{x:Null}",
+        "DefaultValue": "{x:Null}",
+        "MaxLength": "{x:Null}",
+        "Unique": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "RemoveDataColumn": {
+      "gen_function": "gen_remove_data_column",
+      "element_tag": "ui:RemoveDataColumn",
+      "hint_size_key": "RemoveDataColumn",
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "column_name": {
+          "attr": "ColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'RemoveDataColumn_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-generated as 'Remove Data Column - {column_name}' when empty"
+        }
+      },
+      "fixed_attrs": {
+        "Column": "{x:Null}",
+        "ColumnIndex": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "FilterDataTable": {
+      "gen_function": "gen_filter_data_table",
+      "element_tag": "ui:FilterDataTable",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "filters": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of tuples: (column_name, operator, operand_value, bool_op) or (column_name, operator, operand_value, bool_op, operand_type). Operators: EQ, NE, LT, LE, GT, GE, CONTAINS, STARTS_WITH, ENDS_WITH, EMPTY, NOT_EMPTY"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'FilterDataTable_'"
+        },
+        "output_variable": {
+          "attr": "OutputDataTable",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "If empty, same as input variable (in-place)"
+        },
+        "filter_rows_mode": {
+          "attr": "FilterRowsMode",
+          "required": false,
+          "default": "Keep",
+          "enum": ["Keep", "Remove"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "select_columns_mode": {
+          "attr": "SelectColumnsMode",
+          "required": false,
+          "default": "Remove",
+          "enum": ["Keep", "Remove"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Filter Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "FilterDataTable.Filters": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='ui:FilterOperationArgument' with FilterOperationArgument elements"
+        },
+        "FilterDataTable.SelectColumns": {
+          "type": "static_block",
+          "content": "<scg:List x:TypeArguments=\"InArgument\" Capacity=\"4\"><x:Null /></scg:List>"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "SortDataTable": {
+      "gen_function": "gen_sort_data_table",
+      "element_tag": "ui:SortDataTable",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "column_name": {
+          "attr": "ColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'SortDataTable_'"
+        },
+        "sort_order": {
+          "attr": "SortOrder",
+          "required": false,
+          "default": "Ascending",
+          "enum": ["Ascending", "Descending"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "OutputDataTable",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Sort Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ColumnIndex": "{x:Null}",
+        "DataColumn": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "RemoveDuplicateRows": {
+      "gen_function": "gen_remove_duplicate_rows",
+      "element_tag": "ui:RemoveDuplicateRows",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'RemoveDuplicateRows_'"
+        },
+        "output_variable": {
+          "attr": "OutputDataTable",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Remove Duplicate Rows",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "OutputDataTable": {
+      "gen_function": "gen_output_data_table",
+      "element_tag": "ui:OutputDataTable",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'OutputDataTable_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Output Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "JoinDataTables": {
+      "gen_function": "gen_join_data_tables",
+      "element_tag": "ui:JoinDataTables",
+      "hint_size_key": null,
+      "params": {
+        "datatable1_variable": {
+          "attr": "DataTable1",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "datatable2_variable": {
+          "attr": "DataTable2",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "OutputDataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "join_rules": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (column1, column2, operator, bool_op) tuples"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'JoinDataTables_'"
+        },
+        "join_type": {
+          "attr": "JoinType",
+          "required": false,
+          "default": "Inner",
+          "enum": ["Inner", "Left", "Full"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Join Data Tables",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "JoinDataTables.JoinRules": {
+          "type": "list",
+          "content": "scg:List x:TypeArguments='ui:JoinOperationArgument' with JoinOperationArgument elements"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "LookupDataTable": {
+      "gen_function": "gen_lookup_data_table",
+      "element_tag": "ui:LookupDataTable",
+      "hint_size_key": null,
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "lookup_value_variable": {
+          "attr": "LookupValue",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "lookup_column_name": {
+          "attr": "LookupColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "target_column_name": {
+          "attr": "TargetColumnName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cell_value_variable": {
+          "attr": "CellValue",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "row_index_variable": {
+          "attr": "RowIndex",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'LookupDataTable_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Lookup Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "MergeDataTable": {
+      "gen_function": "gen_merge_data_table",
+      "element_tag": "ui:MergeDataTable",
+      "hint_size_key": null,
+      "params": {
+        "source_variable": {
+          "attr": "Source",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "destination_variable": {
+          "attr": "Destination",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'MergeDataTable_'"
+        },
+        "missing_schema_action": {
+          "attr": "MissingSchemaAction",
+          "required": false,
+          "default": "Add",
+          "enum": ["Add", "Ignore", "Error", "AddWithKey"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Merge Data Table",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "GenerateDataTable": {
+      "gen_function": "gen_generate_data_table",
+      "element_tag": "ui:GenerateDataTable",
+      "hint_size_key": null,
+      "params": {
+        "input_variable": {
+          "attr": "Input",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GenerateDataTable_'"
+        },
+        "column_separator": {
+          "attr": null,
+          "required": false,
+          "default": ",",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Emitted in ColumnSeparators as VB char array expression"
+        },
+        "use_column_header": {
+          "attr": "UseColumnHeader",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Generate Data Table From Text",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "NewLineSeparator": "\\n",
+        "AutoDetect": "True"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    }
+  }
+}

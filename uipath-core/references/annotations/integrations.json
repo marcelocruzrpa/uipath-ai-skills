@@ -1,0 +1,1731 @@
+{
+  "$schema_version": "1.0",
+  "module": "integrations",
+  "activities": {
+    "ReadRange": {
+      "gen_function": "gen_read_range",
+      "element_tag": "ui:ReadRange",
+      "hint_size_key": null,
+      "params": {
+        "workbook_path_variable": {
+          "attr": "WorkbookPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "sheet_name": {
+          "attr": "SheetName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ReadRange_'"
+        },
+        "range_str": {
+          "attr": "Range",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "When empty, uses Range=\"{x:Null}\""
+        },
+        "add_headers": {
+          "attr": "AddHeaders",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read Range Workbook",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "WorkbookPathResource": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {
+        "Range": {
+          "omit_when": "",
+          "replacement_value": "{x:Null}"
+        }
+      },
+      "note": "Self-closing tag. Classic Workbook activity — no Excel app needed."
+    },
+    "WriteRange": {
+      "gen_function": "gen_write_range",
+      "element_tag": "ui:WriteRange",
+      "hint_size_key": null,
+      "params": {
+        "workbook_path_variable": {
+          "attr": "WorkbookPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "sheet_name": {
+          "attr": "SheetName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'WriteRange_'"
+        },
+        "starting_cell": {
+          "attr": "StartingCell",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "When empty, uses StartingCell=\"{x:Null}\""
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Write Range Workbook",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "WorkbookPathResource": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "WriteCell": {
+      "gen_function": "gen_write_cell",
+      "element_tag": "ui:WriteCell",
+      "hint_size_key": null,
+      "params": {
+        "workbook_path_variable": {
+          "attr": "WorkbookPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "sheet_name": {
+          "attr": "SheetName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cell_expression": {
+          "attr": "Cell",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "text_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'WriteCell_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Write Cell",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "AppendRange": {
+      "gen_function": "gen_append_range",
+      "element_tag": "ui:AppendRange",
+      "hint_size_key": "AppendRange",
+      "params": {
+        "workbook_path_variable": {
+          "attr": "WorkbookPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "sheet_name": {
+          "attr": "SheetName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'AppendRange_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Append Range Workbook",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "WorkbookPathResource": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "ReadPDFText": {
+      "gen_function": "gen_read_pdf_text",
+      "element_tag": "ui:ReadPDFText",
+      "hint_size_key": "ReadPDFText",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ReadPDFText_'"
+        },
+        "page_range": {
+          "attr": "Range",
+          "required": false,
+          "default": "All",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read PDF Text",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "PreserveFormatting": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "ReadPDFWithOCR": {
+      "gen_function": "gen_read_pdf_with_ocr",
+      "element_tag": "ui:ReadPDFWithOCR",
+      "hint_size_key": "ReadPDFWithOCR",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ReadPDFWithOCR_'"
+        },
+        "page_range": {
+          "attr": "Range",
+          "required": false,
+          "default": "All",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "image_dpi": {
+          "attr": "ImageDpi",
+          "required": false,
+          "default": 150,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read PDF With OCR",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "DegreeOfParallelism": "-1"
+      },
+      "child_elements": {
+        "ReadPDFWithOCR.OCREngine": {
+          "type": "static_block",
+          "content": "ActivityFunc x:TypeArguments='sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))' with DelegateInArgument and GoogleOCR (Tesseract) element"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "SendMail": {
+      "gen_function": "gen_send_mail",
+      "element_tag": "ui:SendMail",
+      "hint_size_key": "SendMail",
+      "params": {
+        "to_variable": {
+          "attr": "To",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "subject_variable": {
+          "attr": "Subject",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "body_variable": {
+          "attr": "Body",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'SendMail_'"
+        },
+        "cc_variable": {
+          "attr": "Cc",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses Cc=\"{x:Null}\""
+        },
+        "bcc_variable": {
+          "attr": "Bcc",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses Bcc=\"{x:Null}\""
+        },
+        "is_body_html": {
+          "attr": "IsBodyHtml",
+          "required": false,
+          "default": false,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "attachments_variable": {
+          "attr": "ResourceAttachments",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses ResourceAttachments=\"{x:Null}\""
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Send SMTP Email",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "Email": "{x:Null}",
+        "From": "{x:Null}",
+        "IgnoreCRL": "{x:Null}",
+        "MailMessage": "{x:Null}",
+        "Name": "{x:Null}",
+        "Password": "{x:Null}",
+        "Port": "{x:Null}",
+        "ReplyTo": "{x:Null}",
+        "ResourceAttachmentList": "{x:Null}",
+        "Result": "{x:Null}",
+        "SecurePassword": "{x:Null}",
+        "Server": "{x:Null}",
+        "TimeoutMS": "{x:Null}",
+        "UseOAuth": "{x:Null}",
+        "AttachmentInputMode": "Existing",
+        "ConnectionMode": "IntegrationService",
+        "EnableSSL": "True",
+        "SecureConnection": "Auto",
+        "UseISConnection": "True",
+        "UseRichTextEditor": "True"
+      },
+      "child_elements": {
+        "SendMail.AttachmentsBackup": {
+          "type": "static_block",
+          "content": "BackupSlot x:TypeArguments='umame:AttachmentInputMode' with BackupValues dictionary"
+        },
+        "SendMail.ConnectionDetailsBackupSlot": {
+          "type": "static_block",
+          "content": "BackupSlot x:TypeArguments='umae:ConnectionDetails' with IntegrationService and LegacyConfiguration lists"
+        },
+        "SendMail.Files": {
+          "type": "static_block",
+          "content": "<scg:List x:TypeArguments=\"p:InArgument(x:String)\" Capacity=\"0\" />"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "GetIMAPMailMessages": {
+      "gen_function": "gen_get_imap_mail",
+      "element_tag": "ui:GetIMAPMailMessages",
+      "hint_size_key": null,
+      "params": {
+        "messages_variable": {
+          "attr": "Messages",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GetIMAPMailMessages_'"
+        },
+        "filter_expression_variable": {
+          "attr": "FilterExpression",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses FilterExpression=\"{x:Null}\""
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": "Inbox",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "top": {
+          "attr": "Top",
+          "required": false,
+          "default": 30,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "only_unread": {
+          "attr": "OnlyUnreadMessages",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "order_by_date": {
+          "attr": "OrderByDate",
+          "required": false,
+          "default": "NewestFirst",
+          "enum": [
+            "NewestFirst",
+            "OldestFirst"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get IMAP Email List",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ClientName": "{x:Null}",
+        "ClientVersion": "{x:Null}",
+        "DeleteMessages": "{x:Null}",
+        "Email": "{x:Null}",
+        "MarkAsRead": "{x:Null}",
+        "Password": "{x:Null}",
+        "Port": "{x:Null}",
+        "SecurePassword": "{x:Null}",
+        "Server": "{x:Null}",
+        "TimeoutMS": "{x:Null}",
+        "UseOAuth": "{x:Null}",
+        "ConnectionMode": "IntegrationService",
+        "EnableSSL": "True",
+        "FilterExpressionCharacterSet": "US-ASCII",
+        "IgnoreCRL": "False",
+        "SecureConnection": "Auto",
+        "UseISConnection": "True"
+      },
+      "child_elements": {
+        "GetIMAPMailMessages.ConnectionDetailsBackupSlot": {
+          "type": "static_block",
+          "content": "BackupSlot x:TypeArguments='umae:ConnectionDetails' with BackupValues dictionary"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "SaveMailAttachments": {
+      "gen_function": "gen_save_mail_attachments",
+      "element_tag": "ui:SaveMailAttachments",
+      "hint_size_key": null,
+      "params": {
+        "message_variable": {
+          "attr": "Message",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "folder_path_variable": {
+          "attr": "FolderPath",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'SaveMailAttachments_'"
+        },
+        "attachments_variable": {
+          "attr": "Attachments",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses Attachments=\"{x:Null}\""
+        },
+        "file_filter": {
+          "attr": "Filter",
+          "required": false,
+          "default": "*.*",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "overwrite": {
+          "attr": "OverwriteExisting",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Save Mail Attachments",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ResourceAttachments": "{x:Null}",
+        "ExcludeInlineAttachments": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "DatabaseConnect": {
+      "gen_function": "gen_database_connect",
+      "element_tag": "ui:DatabaseConnect",
+      "hint_size_key": null,
+      "params": {
+        "connection_variable": {
+          "attr": "ConnectionSecureString",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "DatabaseConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DatabaseConnect_'"
+        },
+        "provider": {
+          "attr": "ProviderName",
+          "required": false,
+          "default": "Microsoft.Data.SqlClient",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Connect to Database",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "ExecuteQuery": {
+      "gen_function": "gen_execute_query",
+      "element_tag": "ui:ExecuteQuery",
+      "hint_size_key": null,
+      "params": {
+        "sql": {
+          "attr": "Sql",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExecuteQuery_'"
+        },
+        "connection_variable": {
+          "attr": "ExistingDbConnection",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Mutually exclusive with connection_string_variable"
+        },
+        "connection_string_variable": {
+          "attr": "ConnectionSecureString",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "provider": {
+          "attr": "ProviderName",
+          "required": false,
+          "default": "Microsoft.Data.SqlClient",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "parameters": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Dict of {param_name: (type, variable)}"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Run Query",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "TimeoutMS": "{x:Null}"
+      },
+      "child_elements": {
+        "ExecuteQuery.Parameters": {
+          "type": "list",
+          "content": "scg:Dictionary x:TypeArguments='x:String, p:Argument' with InArgument elements (only when parameters provided)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ExecuteNonQuery": {
+      "gen_function": "gen_execute_non_query",
+      "element_tag": "ui:ExecuteNonQuery",
+      "hint_size_key": null,
+      "params": {
+        "sql": {
+          "attr": "Sql",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExecuteNonQuery_'"
+        },
+        "connection_variable": {
+          "attr": "ExistingDbConnection",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "connection_string_variable": {
+          "attr": "ConnectionSecureString",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "provider": {
+          "attr": "ProviderName",
+          "required": false,
+          "default": "Microsoft.Data.SqlClient",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "parameters": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Dict of {param_name: (type, variable)}"
+        },
+        "affected_records_variable": {
+          "attr": "AffectedRecords",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "When empty, uses AffectedRecords=\"{x:Null}\""
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Run Command",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "TimeoutMS": "{x:Null}"
+      },
+      "child_elements": {
+        "ExecuteNonQuery.Parameters": {
+          "type": "list",
+          "content": "scg:Dictionary x:TypeArguments='x:String, p:Argument' with InArgument elements (only when parameters provided)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "BulkInsert": {
+      "gen_function": "gen_bulkinsert",
+      "element_tag": "ui:BulkInsert",
+      "hint_size_key": "BulkInsert",
+      "params": {
+        "db_connection_variable": {
+          "attr": "ExistingDbConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "table_name": {
+          "attr": "TableName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "data_table_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "affected_records_variable": {
+          "attr": "AffectedRecords",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Int32 output variable"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Boolean variable/literal"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'BulkInsert_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Bulk Insert",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+    },
+    "BulkUpdate": {
+      "gen_function": "gen_bulkupdate",
+      "element_tag": "ui:BulkUpdate",
+      "hint_size_key": "BulkUpdate",
+      "params": {
+        "db_connection_variable": {
+          "attr": "ExistingDbConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "table_name": {
+          "attr": "TableName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "data_table_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "affected_records_variable": {
+          "attr": "AffectedRecords",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Int32 output variable"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Boolean variable/literal"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'BulkUpdate_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Bulk Update",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+    },
+    "InsertDataTable": {
+      "gen_function": "gen_insertdatatable",
+      "element_tag": "ui:InsertDataTable",
+      "hint_size_key": "InsertDataTable",
+      "params": {
+        "db_connection_variable": {
+          "attr": "ExistingDbConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "table_name": {
+          "attr": "TableName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "data_table_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "affected_records_variable": {
+          "attr": "AffectedRecords",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Int32 output variable"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Optional Boolean variable/literal"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'InsertDataTable_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Insert",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+    },
+    "DatabaseDisconnect": {
+      "gen_function": "gen_databasedisconnect",
+      "element_tag": "ui:DatabaseDisconnect",
+      "hint_size_key": "DatabaseDisconnect",
+      "params": {
+        "db_connection_variable": {
+          "attr": "DatabaseConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "DatabaseConnection output from the matching DatabaseConnect"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DatabaseDisconnect_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Disconnect",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Self-closing. Pair with a preceding DatabaseConnect."
+    },
+    "DatabaseTransaction": {
+      "gen_function": "gen_databasetransaction",
+      "element_tag": "ui:DatabaseTransaction",
+      "hint_size_key": "DatabaseTransaction",
+      "params": {
+        "db_connection_variable": {
+          "attr": "DatabaseConnection",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "use_transaction": {
+          "attr": "UseTransaction",
+          "required": false,
+          "default": "True",
+          "enum": [
+            "True",
+            "False"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DatabaseTransaction_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Database Transaction",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "DatabaseTransaction.Body": {
+          "type": "static_block",
+          "content": "<Sequence DisplayName=\"Do\" />",
+          "tag_prefix": "ui:"
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities."
+    },
+    "ExportPDFPageAsImage": {
+      "gen_function": "gen_exportpdfpageasimage",
+      "element_tag": "upap:ExportPDFPageAsImage",
+      "hint_size_key": "ExportPDFPageAsImage",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_filename_variable": {
+          "attr": "OutputFileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "page_number_variable": {
+          "attr": "PageNumber",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Int32 variable or literal bracketed: e.g. [1]"
+        },
+        "image_dpi": {
+          "attr": "ImageDpi",
+          "required": false,
+          "default": "150",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExportPDFPageAsImage_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Export PDF Page As Image",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities."
+    },
+    "ExtractImagesFromPDF": {
+      "gen_function": "gen_extractimagesfrompdf",
+      "element_tag": "upap:ExtractImagesFromPDF",
+      "hint_size_key": "ExtractImagesFromPDF",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_folder_variable": {
+          "attr": "OutputFolderName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExtractImagesFromPDF_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Extract Images From PDF",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ExtractPDFPageRange": {
+      "gen_function": "gen_extractpdfpagerange",
+      "element_tag": "upap:ExtractPDFPageRange",
+      "hint_size_key": "ExtractPDFPageRange",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_filename_variable": {
+          "attr": "OutputFileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "range_literal": {
+          "attr": "Range",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Page range string e.g. '1-3', '1,3,5', 'All'"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ExtractPDFPageRange_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Extract PDF Page Range",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetPDFPageCount": {
+      "gen_function": "gen_getpdfpagecount",
+      "element_tag": "upap:GetPDFPageCount",
+      "hint_size_key": "GetPDFPageCount",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "page_count_variable": {
+          "attr": "PageCount",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Int32 output variable"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'GetPDFPageCount_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get PDF Page Count",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "JoinPDF": {
+      "gen_function": "gen_joinpdf",
+      "element_tag": "upap:JoinPDF",
+      "hint_size_key": "JoinPDF",
+      "params": {
+        "file_list_variable": {
+          "attr": "FileList",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "IEnumerable<String> of input PDF paths"
+        },
+        "output_filename_variable": {
+          "attr": "OutputFileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'JoinPDF_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Join PDF Files",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ManagePDFPassword": {
+      "gen_function": "gen_managepdfpassword",
+      "element_tag": "upap:ManagePDFPassword",
+      "hint_size_key": "ManagePDFPassword",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_filename_variable": {
+          "attr": "OutputFileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "password_variable": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Current password (needed when opening a protected PDF)"
+        },
+        "owner_password_variable": {
+          "attr": "OwnerPassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "New owner password (set to apply protection; empty to remove)"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ManagePDFPassword_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Manage PDF Password",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required."
+    },
+    "ReadXPSText": {
+      "gen_function": "gen_readxpstext",
+      "element_tag": "ui:ReadXPSText",
+      "hint_size_key": "ReadXPSText",
+      "params": {
+        "filename_variable": {
+          "attr": "FileName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "String output variable"
+        },
+        "range_literal": {
+          "attr": "Range",
+          "required": false,
+          "default": "All",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ReadXPSText_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read XPS Text",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true,
+      "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:)."
+    },
+    "ReadXPSWithOCR": {
+      "gen_function": "gen_read_xps_with_ocr",
+      "element_tag": "ui:ReadXPSWithOCR",
+      "hint_size_key": "ReadXPSWithOCR",
+      "params": {},
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_unsupported_reason": "wizard-only",
+      "note": "ReadXPSWithOCR requires an OCREngine ActivityFunc delegate (same shape as ReadPDFWithOCR). Emit via hand-written generator (see gen_read_pdf_with_ocr in integrations.py) rather than data-driven fallback.",
+      "_review_needed": true,
+      "_unsupported_detail": "requires-ocr-engine-delegate; emit via gen_read_pdf_with_ocr pattern"
+    }
+  }
+}

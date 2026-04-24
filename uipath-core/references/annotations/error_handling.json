@@ -1,0 +1,229 @@
+{
+  "$schema_version": "1.0",
+  "module": "error_handling",
+  "activities": {
+    "TryCatch": {
+      "gen_function": "gen_try_catch",
+      "element_tag": "TryCatch",
+      "hint_size_key": "TryCatch",
+      "params": {
+        "try_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "try_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'TryCatch_'"
+        },
+        "catches": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (exception_type, variable_name, catch_content, catch_sequence_idref) tuples. Default: single s:Exception catch."
+        },
+        "finally_content": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "finally_sequence_idref": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Try Catch",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "TryCatch.Try": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Try' with try_content and viewstate_block"
+        },
+        "TryCatch.Catches": {
+          "type": "list",
+          "content": "Catch x:TypeArguments with ActivityAction, DelegateInArgument, and inner Sequence"
+        },
+        "TryCatch.Finally": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Finally' (only when finally_content is non-empty)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Throw": {
+      "gen_function": "gen_throw",
+      "element_tag": "Throw",
+      "hint_size_key": "Throw",
+      "params": {
+        "exception_expression": {
+          "attr": "Exception",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "vb_expr",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Throw",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "Rethrow": {
+      "gen_function": "gen_rethrow",
+      "element_tag": "Rethrow",
+      "hint_size_key": null,
+      "params": {
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'Rethrow_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Rethrow",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "RetryScope": {
+      "gen_function": "gen_retryscope",
+      "element_tag": "ui:RetryScope",
+      "hint_size_key": "RetryScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "number_of_retries": {
+          "attr": "NumberOfRetries",
+          "required": false,
+          "default": 3,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "LogRetriedExceptions": "{x:Null}",
+        "RetriedExceptionsLogLevel": "{x:Null}"
+      },
+      "child_elements": {
+        "RetryScope.ActivityBody": {
+          "type": "sequence",
+          "content": "ActivityAction with inner Sequence DisplayName='Action'"
+        },
+        "RetryScope.Condition": {
+          "type": "static_block",
+          "content": "<ActivityFunc x:TypeArguments=\"x:Boolean\" />"
+        }
+      },
+      "conditional_attrs": {}
+    }
+  }
+}

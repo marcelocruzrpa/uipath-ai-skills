@@ -1,0 +1,885 @@
+{
+  "$schema_version": "1.0",
+  "module": "control_flow",
+  "activities": {
+    "If": {
+      "gen_function": "gen_if",
+      "element_tag": "If",
+      "hint_size_key": "If",
+      "params": {
+        "condition_expression": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Placed inside InArgument x:TypeArguments='x:Boolean' child element"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'If_'"
+        },
+        "then_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "else_content": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "If",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "If.Condition": {
+          "type": "static_block",
+          "content": "<InArgument x:TypeArguments=\"x:Boolean\">[{condition}]</InArgument>"
+        },
+        "If.Then": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Then' with then_content"
+        },
+        "If.Else": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Else' with else_content (only when else_content is non-empty)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "IfElseIfV2": {
+      "gen_function": "gen_if_else_if",
+      "element_tag": "ui:IfElseIfV2",
+      "hint_size_key": null,
+      "params": {
+        "conditions": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (condition_expression, then_content) tuples. First is primary If, rest become ElseIf."
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'IfElseIfV2_'"
+        },
+        "else_content": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Else If",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "IfElseIfV2.Then": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Then' for primary condition"
+        },
+        "IfElseIfV2.ElseIfs": {
+          "type": "list",
+          "content": "sc:BindingList x:TypeArguments='ui:IfElseIfBlock' with IfElseIfBlock elements (BlockType='ElseIf')"
+        },
+        "IfElseIfV2.Else": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Else' (only when else_content is non-empty)"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Switch": {
+      "gen_function": "gen_switch",
+      "element_tag": "Switch",
+      "hint_size_key": "Switch",
+      "params": {
+        "expression_variable": {
+          "attr": "Expression",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'Switch`1_'"
+        },
+        "cases": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Dict of {case_label: case_content_xml}"
+        },
+        "default_content": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "default_sequence_idref": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "switch_type": {
+          "attr": "x:TypeArguments",
+          "required": false,
+          "default": "x:String",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Switch",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "Switch.Default": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Default' (only when default_content is non-empty)"
+        },
+        "CaseSequences": {
+          "type": "list",
+          "content": "Each case is a Sequence with x:Key attribute for the case label"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ForEach": {
+      "gen_function": "gen_foreach",
+      "element_tag": "ui:ForEach",
+      "hint_size_key": null,
+      "params": {
+        "collection_variable": {
+          "attr": "Values",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ForEach_'"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "item_variable": {
+          "attr": null,
+          "required": false,
+          "default": "currentItem",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "DelegateInArgument Name"
+        },
+        "item_type": {
+          "attr": "x:TypeArguments",
+          "required": false,
+          "default": "x:String",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "For Each item",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "CurrentIndex": "{x:Null}"
+      },
+      "child_elements": {
+        "ForEach.Body": {
+          "type": "sequence",
+          "content": "ActivityAction with DelegateInArgument and inner Sequence"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ForEachRow": {
+      "gen_function": "gen_foreach_row",
+      "element_tag": "ui:ForEachRow",
+      "hint_size_key": "ForEachRow",
+      "params": {
+        "datatable_variable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ForEachRow_'"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "row_variable": {
+          "attr": null,
+          "required": false,
+          "default": "row",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "DelegateInArgument Name, TypeArguments='sd:DataRow'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "For Each Row",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "ForEachRow.Body": {
+          "type": "activity_action",
+          "tag_prefix": "ui:",
+          "arg_type": "sd:DataRow",
+          "arg_name": "CurrentRow"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "ForEachFileX": {
+      "gen_function": "gen_foreach_file",
+      "element_tag": "ui:ForEachFileX",
+      "hint_size_key": null,
+      "params": {
+        "folder_variable": {
+          "attr": "Folder",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'ForEachFileX_'"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "include_subdirs": {
+          "attr": "IncludeSubDirectories",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "order_by": {
+          "attr": "OrderBy",
+          "required": false,
+          "default": "NameAscFirst",
+          "enum": [
+            "NameAscFirst",
+            "NameDescFirst",
+            "DateAscFirst",
+            "DateDescFirst",
+            "SizeAscFirst",
+            "SizeDescFirst"
+          ],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "For Each File in Folder",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "ForEachFileX.Body": {
+          "type": "sequence",
+          "content": "ActivityAction x:TypeArguments='si:FileInfo, x:Int32' with Argument1 (CurrentFile) and Argument2 (CurrentIndex) DelegateInArguments"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "While": {
+      "gen_function": "gen_while",
+      "element_tag": "While",
+      "hint_size_key": null,
+      "params": {
+        "condition_expression": {
+          "attr": "Condition",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'While_'"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "While",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "Body": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Body' with body_content"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "DoWhile": {
+      "gen_function": "gen_do_while",
+      "element_tag": "DoWhile",
+      "hint_size_key": null,
+      "params": {
+        "condition_expression": {
+          "attr": "Condition",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DoWhile_'"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Do While",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "Body": {
+          "type": "sequence",
+          "content": "Sequence DisplayName='Body' with body_content"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Flowchart": {
+      "gen_function": "gen_flowchart",
+      "element_tag": "Flowchart",
+      "hint_size_key": "Flowchart",
+      "params": {
+        "steps": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of dicts: ref_id, content, next_ref, location, size, connector"
+        },
+        "decisions": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of dicts: ref_id, condition, true_ref, false_ref, display_name, location, size, true_connector, false_connector"
+        },
+        "start_ref_id": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'Flowchart_'"
+        },
+        "variables": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of (name, type) tuples for Flowchart.Variables"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Flowchart",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "Flowchart.Variables": {
+          "type": "list",
+          "content": "Variable elements with x:TypeArguments"
+        },
+        "Flowchart.StartNode": {
+          "type": "static_block",
+          "content": "x:Reference to start_ref_id"
+        },
+        "FlowSteps": {
+          "type": "list",
+          "content": "FlowStep x:Name with ViewState, content, and optional FlowStep.Next"
+        },
+        "FlowDecisions": {
+          "type": "list",
+          "content": "FlowDecision x:Name with VisualBasicValue condition, True/False x:Reference branches"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "StateMachine": {
+      "gen_function": "gen_state_machine",
+      "element_tag": "StateMachine",
+      "hint_size_key": null,
+      "params": {
+        "states": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of dicts: ref, display_name, is_final, entry_xml, transitions[{to_ref, display_name, condition, action_xml}]"
+        },
+        "initial_state_ref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": false,
+          "default": "StateMachine_1",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "State Machine",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "StateMachine.InitialState": {
+          "type": "static_block",
+          "content": "x:Reference to initial_state_ref"
+        },
+        "States": {
+          "type": "list",
+          "content": "State (or FinalState) elements with Entry and Transitions"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Parallel": {
+      "gen_function": "gen_parallel",
+      "element_tag": "Parallel",
+      "hint_size_key": null,
+      "params": {
+        "branches_xml": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "List of pre-built XAML strings for each branch body"
+        },
+        "completion_condition": {
+          "attr": "CompletionCondition",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": false,
+          "default": "Parallel_1",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Parallel",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {
+        "CompletionCondition": {
+          "omit_when": ""
+        }
+      }
+    },
+    "ParallelForEach": {
+      "gen_function": "gen_parallel_foreach",
+      "element_tag": "ParallelForEach",
+      "hint_size_key": null,
+      "params": {
+        "type_argument": {
+          "attr": "x:TypeArguments",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "values_expression": {
+          "attr": "Values",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "body_xml": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "argument_name": {
+          "attr": null,
+          "required": false,
+          "default": "item",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "DelegateInArgument Name"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": false,
+          "default": "ParallelForEach_1",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Parallel For Each",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {
+        "ParallelForEach.Body": {
+          "type": "sequence",
+          "content": "ActivityAction with DelegateInArgument and body_xml"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "Delay": {
+      "gen_function": "gen_delay",
+      "element_tag": "sa:Delay",
+      "hint_size_key": "Delay",
+      "params": {
+        "duration_expression": {
+          "attr": "Duration",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "VB expression returning a TimeSpan, e.g. TimeSpan.FromSeconds(5)"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Delay",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Pauses workflow execution for the specified duration. Lint 109 warns against using Delay — prefer ShouldStop + loop pattern."
+    }
+  }
+}

@@ -1,0 +1,462 @@
+{
+  "$schema_version": "1.0",
+  "module": "application_card",
+  "activities": {
+    "NApplicationCardOpen": {
+      "gen_function": "gen_napplicationcard_open",
+      "element_tag": "uix:NApplicationCard",
+      "hint_size_key": "NApplicationCard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "url_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Placed on TargetApp.Url attribute"
+        },
+        "out_ui_element": {
+          "attr": "OutUiElement",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "scope_guid": {
+          "attr": "ScopeGuid",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "XAML content for the Body child element"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "target_app_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "Defaults to <html app='msedge.exe' title='{browser_title}' />"
+        },
+        "browser_title": {
+          "attr": null,
+          "required": false,
+          "default": "App",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo_app": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AttachMode": "ByInstance",
+        "CloseMode": "Never",
+        "HealingAgentBehavior": "Job",
+        "InteractionMode": "Simulate",
+        "IsIncognito": "True",
+        "OpenMode": "Always",
+        "Version": "V2"
+      },
+      "child_elements": {
+        "NApplicationCard.Body": {
+          "type": "sequence",
+          "content": "Body block from _body_block helper"
+        },
+        "NApplicationCard.OcrEngine": {
+          "type": "static_block",
+          "content": "OCR engine block from _ocr_engine_block helper"
+        },
+        "NApplicationCard.TargetApp": {
+          "type": "static_block",
+          "content": "TargetApp with Area, BrowserType (auto-detected), Selector, Url, and empty Arguments/FilePath/WorkingDirectory InArguments"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NApplicationCardAttach": {
+      "gen_function": "gen_napplicationcard_attach",
+      "element_tag": "uix:NApplicationCard",
+      "hint_size_key": "NApplicationCard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ui_element_variable": {
+          "attr": "InUiElement",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Also used for OutUiElement"
+        },
+        "scope_guid": {
+          "attr": "ScopeGuid",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "interaction_mode": {
+          "attr": "InteractionMode",
+          "required": false,
+          "default": null,
+          "enum": ["Simulate", "DebuggerApi", "HardwareEvents", "WindowMessages"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Auto-selected: Simulate if desktop, DebuggerApi if browser"
+        },
+        "desktop": {
+          "attr": null,
+          "required": false,
+          "default": false,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Controls AttachMode (ByInstance vs SingleWindow) and IsIncognito"
+        },
+        "target_app_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "selector_param"
+        }
+      },
+      "fixed_attrs": {
+        "CloseMode": "Never",
+        "HealingAgentBehavior": "Job",
+        "OpenMode": "Never",
+        "Version": "V2"
+      },
+      "child_elements": {
+        "NApplicationCard.Body": {
+          "type": "sequence",
+          "content": null
+        },
+        "NApplicationCard.OcrEngine": {
+          "type": "static_block",
+          "content": null
+        },
+        "NApplicationCard.TargetApp": {
+          "type": "static_block",
+          "content": "Empty TargetApp or TargetApp with selector depending on target_app_selector"
+        }
+      },
+      "conditional_attrs": {
+        "AttachMode": {"note": "ByInstance when desktop=True, SingleWindow when desktop=False"},
+        "IsIncognito": {"omit_when": "desktop=true"}
+      }
+    },
+    "NApplicationCardClose": {
+      "gen_function": "gen_napplicationcard_close",
+      "element_tag": "uix:NApplicationCard",
+      "hint_size_key": "NApplicationCard",
+      "params": {
+        "ui_element_variable": {
+          "attr": "InUiElement",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Also used for OutUiElement"
+        },
+        "scope_guid": {
+          "attr": "ScopeGuid",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Use Browser/App",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "desktop": {
+          "attr": null,
+          "required": false,
+          "default": false,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "target_app_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "selector_param"
+        }
+      },
+      "fixed_attrs": {
+        "AttachMode": "ByInstance",
+        "CloseMode": "Always",
+        "HealingAgentBehavior": "Job",
+        "InteractionMode": "Simulate",
+        "OpenMode": "Never",
+        "Version": "V2"
+      },
+      "child_elements": {
+        "NApplicationCard.Body": {
+          "type": "sequence",
+          "content": null
+        },
+        "NApplicationCard.OcrEngine": {
+          "type": "static_block",
+          "content": null
+        },
+        "NApplicationCard.TargetApp": {
+          "type": "static_block",
+          "content": null
+        }
+      },
+      "conditional_attrs": {
+        "IsIncognito": {"omit_when": "desktop=true"}
+      }
+    },
+    "NApplicationCardDesktopOpen": {
+      "gen_function": "gen_napplicationcard_desktop_open",
+      "element_tag": "uix:NApplicationCard",
+      "hint_size_key": "NApplicationCard",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "vb_expr",
+          "bracket_wrap": true,
+          "type": "string",
+          "note": "Placed on TargetApp.FilePath attribute"
+        },
+        "out_ui_element": {
+          "attr": "OutUiElement",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "scope_guid": {
+          "attr": "ScopeGuid",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "body_content": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_sequence_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "target_app_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "Defaults to <wnd app='app.exe' />"
+        },
+        "obj_repo_app": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AttachMode": "ByInstance",
+        "CloseMode": "Never",
+        "HealingAgentBehavior": "Job",
+        "OpenMode": "Always",
+        "Version": "V2"
+      },
+      "child_elements": {
+        "NApplicationCard.Body": {
+          "type": "sequence",
+          "content": null
+        },
+        "NApplicationCard.OcrEngine": {
+          "type": "static_block",
+          "content": null
+        },
+        "NApplicationCard.TargetApp": {
+          "type": "static_block",
+          "content": "TargetApp with Area, FilePath (escaped VB expr), Selector, and empty Arguments/WorkingDirectory InArguments. No Url/BrowserType (desktop app)."
+        }
+      },
+      "conditional_attrs": {}
+    }
+  }
+}

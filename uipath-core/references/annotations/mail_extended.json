@@ -1,0 +1,303 @@
+{
+  "$schema_version": "1.0",
+  "module": "mail_extended",
+  "activities": {
+    "GetOutlookMailMessages": {
+      "gen_function": "gen_get_outlook_mail_messages",
+      "element_tag": "ui:GetOutlookMailMessages",
+      "hint_size_key": "GetOutlookMailMessages",
+      "params": {
+        "messages": {
+          "attr": "Messages",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get Outlook Mail Messages",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": "Inbox",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "top": {
+          "attr": "Top",
+          "required": false,
+          "default": "30",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter": {
+          "attr": "Filter",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "only_unread": {
+          "attr": "OnlyUnreadMessages",
+          "required": false,
+          "default": "True",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "get_attachments": {
+          "attr": "GetAttachements",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mark_as_read": {
+          "attr": "MarkAsRead",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "FilterByMessageIds": "{x:Null}",
+        "TimeoutMS": "{x:Null}",
+        "ConnectionMode": "Undefined",
+        "OrderByDate": "NewestFirst",
+        "UseISConnection": "False"
+      },
+      "child_elements": {
+        "GetOutlookMailMessages.ConnectionDetailsBackupSlot": {
+          "type": "static_block",
+          "content": "<usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\"><usau:BackupSlot.BackupValues><scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" /></usau:BackupSlot.BackupValues></usau:BackupSlot>"
+        }
+      },
+      "conditional_attrs": {},
+      "note": "Retrieves Outlook mail messages. Requires Outlook connection."
+    },
+    "MoveOutlookMessage": {
+      "gen_function": "gen_move_outlook_message",
+      "element_tag": "ui:MoveOutlookMessage",
+      "hint_size_key": "MoveOutlookMessage",
+      "params": {
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Move Outlook Message",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. Moves an Outlook mail message to a specified folder."
+    },
+    "SendOutlookMail": {
+      "gen_function": "gen_send_outlook_mail",
+      "element_tag": "ui:SendOutlookMail",
+      "hint_size_key": "SendOutlookMail",
+      "params": {
+        "to": {
+          "attr": "To",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Send Outlook Mail",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "is_body_html": {
+          "attr": "IsBodyHtml",
+          "required": false,
+          "default": "False",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "importance": {
+          "attr": "Importance",
+          "required": false,
+          "default": "Normal",
+          "enum": ["Normal", "High", "Low"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "MailMessage": "{x:Null}",
+        "ReplyTo": "{x:Null}",
+        "TimeoutMS": "{x:Null}",
+        "ConnectionMode": "Undefined",
+        "IsDraft": "False",
+        "Sensitivity": "Normal",
+        "UseISConnection": "False"
+      },
+      "child_elements": {
+        "SendOutlookMail.ConnectionDetailsBackupSlot": {
+          "type": "static_block",
+          "content": "<usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\"><usau:BackupSlot.BackupValues><scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" /></usau:BackupSlot.BackupValues></usau:BackupSlot>"
+        },
+        "SendOutlookMail.Files": {
+          "type": "static_block",
+          "content": "<scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />"
+        }
+      },
+      "conditional_attrs": {},
+      "note": "Sends an email via Outlook. Requires Outlook connection."
+    },
+    "OutlookApplicationCard": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "OutlookApplicationCard is a scope activity with ActivityAction body requiring Studio configuration."
+    },
+    "ForEachEmailX": {
+      "_unsupported_reason": "wizard-only",
+      "_review_needed": false,
+      "note": "ForEachEmailX iterates over emails with a dual-argument ActivityAction body requiring Studio configuration."
+    }
+  }
+}

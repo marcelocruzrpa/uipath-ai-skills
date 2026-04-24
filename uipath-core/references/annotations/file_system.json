@@ -1,0 +1,588 @@
+{
+  "$schema_version": "1.0",
+  "module": "file_system",
+  "activities": {
+    "CopyFile": {
+      "gen_function": "gen_copy_file",
+      "element_tag": "ui:CopyFile",
+      "hint_size_key": null,
+      "params": {
+        "source_path": {
+          "attr": "Path",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "destination_path": {
+          "attr": "Destination",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'CopyFile_'"
+        },
+        "overwrite": {
+          "attr": "Overwrite",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Copy File",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "DestinationResource": "{x:Null}",
+        "PathResource": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "MoveFile": {
+      "gen_function": "gen_move_file",
+      "element_tag": "ui:MoveFile",
+      "hint_size_key": null,
+      "params": {
+        "source_variable": {
+          "attr": "Path",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "destination_variable": {
+          "attr": "Destination",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'MoveFile_'"
+        },
+        "overwrite": {
+          "attr": "Overwrite",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Move File",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "DestinationResource": "{x:Null}",
+        "PathResource": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "DeleteFileX": {
+      "gen_function": "gen_delete_file",
+      "element_tag": "ui:DeleteFileX",
+      "hint_size_key": null,
+      "params": {
+        "path_variable": {
+          "attr": "Path",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'DeleteFileX_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Delete File",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag. No ContinueOnError property exists on this activity."
+    },
+    "PathExists": {
+      "gen_function": "gen_path_exists",
+      "element_tag": "ui:PathExists",
+      "hint_size_key": null,
+      "params": {
+        "path_variable": {
+          "attr": "Path",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "result_variable": {
+          "attr": "Result",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'PathExists_'"
+        },
+        "path_type": {
+          "attr": "PathType",
+          "required": false,
+          "default": "File",
+          "enum": ["File", "Folder"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Path Exists",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "CreateDirectory": {
+      "gen_function": "gen_create_directory",
+      "element_tag": "ui:CreateDirectory",
+      "hint_size_key": null,
+      "params": {
+        "path_variable": {
+          "attr": "Path",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'CreateDirectory_'"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Create Directory",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "ContinueOnError": "{x:Null}",
+        "Output": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    },
+    "ReadTextFile": {
+      "gen_function": "gen_read_text_file",
+      "element_tag": "ui:ReadTextFile",
+      "hint_size_key": "ReadTextFile",
+      "params": {
+        "output_variable": {
+          "attr": "Content",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read Text File",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "File",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Mutually exclusive with path_variable. When path_variable is used, File=\"{x:Null}\""
+        },
+        "path_variable": {
+          "attr": "FileName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "encoding": {
+          "attr": "Encoding",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {
+        "Encoding": {"omit_when": ""}
+      },
+      "note": "Self-closing tag."
+    },
+    "WriteTextFile": {
+      "gen_function": "gen_write_text_file",
+      "element_tag": "ui:WriteTextFile",
+      "hint_size_key": "WriteTextFile",
+      "params": {
+        "text_variable": {
+          "attr": "Text",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Write Text File",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "File",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Mutually exclusive with path_variable. When path_variable is used, File=\"{x:Null}\""
+        },
+        "path_variable": {
+          "attr": "FileName",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "encoding": {
+          "attr": "Encoding",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "Output": "{x:Null}"
+      },
+      "child_elements": {},
+      "conditional_attrs": {
+        "Encoding": {"omit_when": ""}
+      },
+      "note": "Self-closing tag."
+    },
+    "ReadCsvFile": {
+      "gen_function": "gen_read_csv",
+      "element_tag": "ui:ReadCsvFile",
+      "hint_size_key": "ReadCsvFile",
+      "params": {
+        "output_datatable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Read CSV",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "FilePath",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Mutually exclusive with path_variable. When path_variable is used, FilePath=\"{x:Null}\""
+        },
+        "path_variable": {
+          "attr": "PathResource",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "delimiter": {
+          "attr": "Delimitator",
+          "required": false,
+          "default": "Comma",
+          "enum": ["Comma", "Tab", "Semicolon", "Caret", "Pipe", "Custom"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Also sets DelimitatorForViewModel to same value"
+        },
+        "encoding": {
+          "attr": "Encoding",
+          "required": false,
+          "default": "UTF8",
+          "enum": ["UTF8", "Unicode", "ASCII", "Default"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Only emitted when not UTF8"
+        },
+        "has_headers": {
+          "attr": "IncludeColumnNames",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Only emitted as IncludeColumnNames=\"False\" when false"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {
+        "Encoding": {"omit_when": "UTF8"},
+        "IncludeColumnNames": {"omit_when": true}
+      },
+      "note": "Self-closing tag."
+    },
+    "AppendWriteCsvFile": {
+      "gen_function": "gen_write_csv",
+      "element_tag": "ui:AppendWriteCsvFile",
+      "hint_size_key": "AppendWriteCsvFile",
+      "params": {
+        "input_datatable": {
+          "attr": "DataTable",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Write CSV",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "FilePath",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Mutually exclusive with path_variable"
+        },
+        "path_variable": {
+          "attr": "PathResource",
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "csv_action": {
+          "attr": "CsvAction",
+          "required": false,
+          "default": "Write",
+          "enum": ["Write", "Append"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "delimiter": {
+          "attr": "Delimitator",
+          "required": false,
+          "default": "Comma",
+          "enum": ["Comma", "Tab", "Semicolon", "Caret", "Pipe", "Custom"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "Also sets DelimitatorForViewModel to same value"
+        },
+        "add_headers": {
+          "attr": "AddHeaders",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "should_quote": {
+          "attr": "ShouldQuote",
+          "required": false,
+          "default": true,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing tag."
+    }
+  }
+}

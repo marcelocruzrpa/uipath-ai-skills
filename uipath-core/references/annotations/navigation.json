@@ -1,0 +1,428 @@
+{
+  "$schema_version": "1.0",
+  "module": "navigation",
+  "activities": {
+    "NGoToUrl": {
+      "gen_function": "gen_ngotourl",
+      "element_tag": "uix:NGoToUrl",
+      "hint_size_key": "NGoToUrl",
+      "params": {
+        "url_variable": {
+          "attr": "Url",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Go To URL",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Version": "V5"
+      },
+      "child_elements": {
+        "viewstate_block": {
+          "type": "static_block",
+          "content": "Inline viewstate_block with is_expanded=True"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "NGetUrl": {
+      "gen_function": "gen_ngeturl",
+      "element_tag": "uix:NGetUrl",
+      "hint_size_key": null,
+      "params": {
+        "output_variable": {
+          "attr": "CurrentUrl",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Prefixed with 'NGetUrl_' in the output"
+        },
+        "display_name": {
+          "attr": "DisplayName",
+          "required": false,
+          "default": "Get URL",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Version": "V4"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "note": "Self-closing element, no children. Must be inside NApplicationCard scope."
+    },
+    "NExtractDataGeneric": {
+      "gen_function": "gen_nextractdata",
+      "element_tag": "uix:NExtractDataGeneric",
+      "hint_size_key": "NExtractDataGeneric",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "output_variable": {
+          "attr": "ExtractedData",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": true,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref",
+          "note": "Becomes NExtractDataGeneric`1_{id_ref} (backtick notation for generic type)"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "extract_data_settings": {
+          "attr": "ExtractDataSettings",
+          "required": true,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "XML-encoded column schema string attribute"
+        },
+        "extract_metadata": {
+          "attr": "ExtractMetadata",
+          "required": true,
+          "default": "",
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string",
+          "note": "XML-encoded row/column selectors string attribute"
+        },
+        "table_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "FullSelector on Target child TargetAnchorable element"
+        },
+        "next_link_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param",
+          "note": "FullSelector for pagination NextLink TargetAnchorable"
+        },
+        "scope_selector": {
+          "attr": null,
+          "required": false,
+          "default": "",
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "max_results": {
+          "attr": "MaximumResults",
+          "required": false,
+          "default": 0,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "limit_extraction_to": {
+          "attr": "LimitExtractionTo",
+          "required": false,
+          "default": "None",
+          "enum": ["None", "CurrentPage"],
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "x:TypeArguments": "sd2:DataTable",
+        "ContinueOnError": "True",
+        "HealingAgentBehavior": "SameAsCard",
+        "Version": "V5"
+      },
+      "child_elements": {
+        "NExtractDataGeneric.NextLink": {
+          "type": "static_block",
+          "content": "TargetAnchorable with FullSelectorArgument, Guid, ScopeSelectorArgument, SearchSteps=Selector, Version=V6"
+        },
+        "NExtractDataGeneric.Target": {
+          "type": "static_block",
+          "content": "TargetAnchorable with FullSelectorArgument, Guid, ScopeSelectorArgument, SearchSteps=Selector, Version=V6"
+        }
+      },
+      "conditional_attrs": {}
+    },
+    "PickLoginValidation": {
+      "gen_function": "gen_pick_login_validation",
+      "element_tag": "Pick",
+      "hint_size_key": "Pick",
+      "note": "Composite activity: Pick with two PickBranch children each containing NCheckState triggers. Composes gen_ncheckstate, gen_ngettext, gen_logmessage, gen_throw.",
+      "params": {
+        "success_selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "selector",
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "error_selector": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "selector",
+          "bracket_wrap": false,
+          "type": "selector_param"
+        },
+        "error_ui_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "error_text_variable": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "scope_id": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "pick_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_branch_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "failure_branch_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_checkstate_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "failure_checkstate_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_if_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_if_not_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "failure_if_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "failure_if_not_exists_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_action_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "failure_action_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "gettext_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "throw_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "success_log_idref": {
+          "attr": null,
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {}
+    }
+  }
+}
