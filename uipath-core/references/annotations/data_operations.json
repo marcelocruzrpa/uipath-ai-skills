@@ -72,6 +72,16 @@
       "category": "data_operations",
       "description": "Assign activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Assign.",
+      "alternatives": [
+        {
+          "activity": "MultipleAssign",
+          "use_instead_when": "You need to set two or more variables in one node; one MultipleAssign keeps related writes together."
+        },
+        {
+          "activity": "BuildDataTable",
+          "use_instead_when": "You are creating a DataTable with a fixed schema rather than assigning a scalar value."
+        }
+      ],
       "_routing_review_needed": true
     },
     "MultipleAssign": {
@@ -120,6 +130,16 @@
       "category": "data_operations",
       "description": "Multiple Assign activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Multiple Assign.",
+      "alternatives": [
+        {
+          "activity": "Assign",
+          "use_instead_when": "You are only setting a single variable; one Assign is simpler than the multi-row form."
+        },
+        {
+          "activity": "BuildDataTable",
+          "use_instead_when": "The target is a tabular value with a fixed schema, not a set of scalars."
+        }
+      ],
       "_routing_review_needed": true
     },
     "VariablesBlock": {
@@ -220,6 +240,16 @@
       "category": "data_operations",
       "description": "Build Data Table activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Build Data Table.",
+      "alternatives": [
+        {
+          "activity": "Assign",
+          "use_instead_when": "You only need to set a single variable; BuildDataTable is for constructing a tabular value with explicit columns/rows."
+        },
+        {
+          "activity": "GenerateDataTable",
+          "use_instead_when": "The source is a delimited string (CSV/TSV-style) that should be parsed into a table rather than typed in column-by-column."
+        }
+      ],
       "_routing_review_needed": true
     },
     "AddDataRow": {
@@ -494,6 +524,16 @@
       "category": "data_operations",
       "description": "Filter Data Table activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Filter Data Table.",
+      "alternatives": [
+        {
+          "activity": "LookupDataTable",
+          "use_instead_when": "You need a single matching row's value for a key, not a full filtered subset."
+        },
+        {
+          "activity": "JoinDataTables",
+          "use_instead_when": "You need to combine columns from two tables on a key rather than filter rows of one table."
+        }
+      ],
       "_routing_review_needed": true
     },
     "SortDataTable": {
@@ -762,6 +802,16 @@
       "category": "data_operations",
       "description": "Join Data Tables activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Join Data Tables.",
+      "alternatives": [
+        {
+          "activity": "FilterDataTable",
+          "use_instead_when": "You only need to subset one table by a condition, not combine columns from a second table."
+        },
+        {
+          "activity": "LookupDataTable",
+          "use_instead_when": "You only need to fetch a single value for a key rather than produce a joined result table."
+        }
+      ],
       "_routing_review_needed": true
     },
     "LookupDataTable": {
@@ -850,6 +900,16 @@
       "category": "data_operations",
       "description": "Lookup Data Table activity from the data operations category.",
       "use_when": "User wants to manipulate a DataTable or collection via Lookup Data Table.",
+      "alternatives": [
+        {
+          "activity": "FilterDataTable",
+          "use_instead_when": "You need every matching row, not just the first hit's value."
+        },
+        {
+          "activity": "JoinDataTables",
+          "use_instead_when": "You want all matching rows merged with their right-side columns, not just one looked-up scalar."
+        }
+      ],
       "_routing_review_needed": true
     },
     "MergeDataTable": {

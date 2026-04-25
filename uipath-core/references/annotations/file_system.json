@@ -357,6 +357,12 @@
       "category": "file_system",
       "description": "Read Text File activity from the file system category.",
       "use_when": "User wants to perform a filesystem operation: Read Text File.",
+      "alternatives": [
+        {
+          "activity": "ReadCsvFile",
+          "use_instead_when": "The file is a delimited CSV/TSV that should be parsed into a DataTable rather than handed back as a string."
+        }
+      ],
       "_routing_review_needed": true
     },
     "WriteTextFile": {
@@ -543,6 +549,12 @@
       "category": "file_system",
       "description": "Read Csv File activity from the file system category.",
       "use_when": "User wants to perform a filesystem operation: Read Csv File.",
+      "alternatives": [
+        {
+          "activity": "ReadTextFile",
+          "use_instead_when": "The file is plain text without delimited columns; you want the raw string, not a parsed DataTable."
+        }
+      ],
       "_routing_review_needed": true
     },
     "AppendWriteCsvFile": {

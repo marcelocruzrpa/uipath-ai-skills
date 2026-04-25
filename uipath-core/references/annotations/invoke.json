@@ -61,6 +61,16 @@
       "category": "invoke",
       "description": "Invoke Workflow File activity from the invoke category.",
       "use_when": "User wants to invoke another workflow or piece of code via Invoke Workflow File.",
+      "alternatives": [
+        {
+          "activity": "InvokeCode",
+          "use_instead_when": "The logic is short, language-level (VB.NET / C#) snippets that do not warrant a separate XAML file."
+        },
+        {
+          "activity": "InvokeMethod",
+          "use_instead_when": "You only need to call a single method on an existing .NET object via reflection, not run a whole workflow."
+        }
+      ],
       "_routing_review_needed": true
     },
     "InvokeCode": {
@@ -135,6 +145,16 @@
       "category": "invoke",
       "description": "Invoke Code activity from the invoke category.",
       "use_when": "User wants to invoke another workflow or piece of code via Invoke Code.",
+      "alternatives": [
+        {
+          "activity": "InvokeWorkflowFile",
+          "use_instead_when": "The behavior is reusable and worth modeling as its own XAML workflow with named arguments."
+        },
+        {
+          "activity": "InvokeMethod",
+          "use_instead_when": "You just need to call one method on an existing object; reflection is lighter than a code block."
+        }
+      ],
       "_routing_review_needed": true
     },
     "InvokeMethod": {
@@ -222,6 +242,16 @@
       "category": "invoke",
       "description": "Invoke Method activity from the invoke category.",
       "use_when": "User wants to invoke another workflow or piece of code via Invoke Method.",
+      "alternatives": [
+        {
+          "activity": "InvokeCode",
+          "use_instead_when": "You need more than one statement, control flow, or local variables; a code block is more natural than reflection."
+        },
+        {
+          "activity": "InvokeWorkflowFile",
+          "use_instead_when": "The behavior is reusable enough to warrant its own XAML workflow with explicit arguments."
+        }
+      ],
       "_routing_review_needed": true
     }
   }

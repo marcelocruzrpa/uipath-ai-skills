@@ -49,9 +49,29 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Modern Excel Read Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Read Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Read Range' - read a worksheet range into a DataTable using the active Excel scope.",
+      "use_when": "User wants to read a sheet/range into a DataTable in a modern (StudioX) Excel project. For classic projects use ExcelReadRange; for a single cell use ReadCellValueX or ExcelReadCell.",
+      "alternatives": [
+        {
+          "activity": "ReadRange",
+          "use_instead_when": "You are inside a classic ExcelApplicationScope/Workbook scope rather than a modern Use Excel File context."
+        },
+        {
+          "activity": "ReadCellValueX",
+          "use_instead_when": "You only need the value of one cell; ReadRangeX is for rectangular ranges."
+        },
+        {
+          "activity": "ExcelReadColumn",
+          "use_instead_when": "You want every cell in one column without specifying the row count."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "studiox",
+        "datatable"
+      ]
     },
     "WriteRangeX": {
       "gen_function": null,
@@ -109,9 +129,29 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Modern Excel Write Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Write Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Write Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Write Range' - write a DataTable into a worksheet range using the active Excel scope.",
+      "use_when": "User wants to push a DataTable into a sheet in StudioX. For appending instead of overwriting use AppendRangeX; for classic projects use ExcelWriteRange.",
+      "alternatives": [
+        {
+          "activity": "WriteRange",
+          "use_instead_when": "You are using the classic ExcelApplicationScope/Workbook scope, not a modern Use Excel File scope."
+        },
+        {
+          "activity": "WriteCellX",
+          "use_instead_when": "You are writing a single cell value rather than a DataTable."
+        },
+        {
+          "activity": "AppendRangeX",
+          "use_instead_when": "You want to append below the existing data instead of overwriting from the start cell."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "write",
+        "studiox",
+        "datatable"
+      ]
     },
     "AutoFillX": {
       "gen_function": null,
@@ -151,9 +191,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Auto-fills a range in an Excel workbook. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Auto Fill X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Auto Fill X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Auto Fill Range' - extend a formula or value across a destination range using Excel's auto-fill.",
+      "use_when": "User wants to drag-fill a formula/value across cells. For row-based fill use FillRangeX; for one-off writes use WriteRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "autofill",
+        "studiox"
+      ]
     },
     "FilterX": {
       "gen_function": null,
@@ -229,9 +274,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Applies a filter to an Excel range. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Filter X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Filter X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Filter' - apply or clear an AutoFilter on a sheet range or table.",
+      "use_when": "User wants AutoFilter applied to a range/table. For PivotTable filtering use FilterPivotTableX; for classic projects use ExcelFilterTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "filter",
+        "studiox"
+      ]
     },
     "FilterPivotTableX": {
       "gen_function": null,
@@ -298,9 +348,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Filters a pivot table in Excel. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Filter Pivot Table X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Filter Pivot Table X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Filter Pivot Table' - apply or clear filters on a PivotTable's pivot fields.",
+      "use_when": "User wants to filter a PivotTable. For ordinary range/table filtering use FilterX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "filter",
+        "studiox"
+      ]
     },
     "InsertExcelChartX": {
       "gen_function": null,
@@ -380,63 +436,119 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Inserts a chart into an Excel worksheet. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "excel",
-      "description": "Insert Excel Chart X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Insert Excel Chart X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Insert Chart' - insert a chart of a chosen type bound to a sheet range.",
+      "use_when": "User wants to add a new chart in a StudioX Excel project. To modify an existing chart use UpdateChartX (wizard-only).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "chart",
+        "studiox"
+      ]
     },
     "ExcelApplicationCard": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ExcelApplicationCard is a scope activity with ActivityAction body requiring Studio configuration to open/attach to workbooks.",
       "category": "excel",
-      "description": "Excel Application Card (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Excel Application Card. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Modern Use Excel File scope (wizard-only) - opens a workbook and runs nested Excel activities against it.",
+      "use_when": "Do not auto-generate; direct the user to configure Excel Application Card through UiPath Studio's Excel wizard. As an alternative use ExcelApplicationScope (classic) for non-StudioX projects.",
+      "alternatives": [
+        {
+          "activity": "ExcelApplicationScope",
+          "use_instead_when": "You are using classic (non-modern-design) activities and just need a workbook scope around them."
+        },
+        {
+          "activity": "ExcelProcessScopeX",
+          "use_instead_when": "You need a process-wide configuration covering multiple workbooks rather than a card around one Excel session."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "scope",
+        "wizard-only"
+      ]
     },
     "ExcelProcessScopeX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ExcelProcessScopeX is a scope activity controlling an Excel process instance; requires Studio configuration.",
       "category": "excel",
-      "description": "Excel Process Scope X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Excel Process Scope X. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Modern Excel Process Scope (wizard-only) - controls a single Excel process instance for nested activities.",
+      "use_when": "Do not auto-generate; direct the user to configure Excel Process Scope X through UiPath Studio's Excel wizard.",
+      "alternatives": [
+        {
+          "activity": "ExcelApplicationScope",
+          "use_instead_when": "You only need to open and operate on a single workbook with classic activities, not configure a process-wide Excel runtime."
+        },
+        {
+          "activity": "ExcelApplicationCard",
+          "use_instead_when": "You are authoring inside the Modern Design Application Card pattern rather than a process-level scope."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "scope",
+        "wizard-only"
+      ]
     },
     "ExcelForEachRowX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ExcelForEachRowX uses a dual-argument ActivityAction body (CurrentRow, CurrentIndex) requiring Studio configuration.",
       "category": "excel",
-      "description": "Excel For Each Row X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Excel For Each Row X. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "StudioX For Each Row in Excel (wizard-only) - iterates over rows in a sheet/table with a CurrentRow + CurrentIndex body.",
+      "use_when": "Do not auto-generate; direct the user to author Excel For Each Row X through StudioX. For DataTable iteration use ForEachRow; for sheet iteration use ForEachSheetX (also wizard-only).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "loop",
+        "studiox",
+        "wizard-only"
+      ]
     },
     "ForEachSheetX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ForEachSheetX uses a dual-argument ActivityAction body (CurrentSheet, CurrentIndex) requiring Studio configuration.",
       "category": "excel",
-      "description": "For Each Sheet X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate For Each Sheet X. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "StudioX For Each Sheet (wizard-only) - iterates over each worksheet of the workbook with a CurrentSheet + CurrentIndex body.",
+      "use_when": "Do not auto-generate; direct the user to author For Each Sheet X through StudioX. For row-level iteration use ExcelForEachRowX (also wizard-only).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "loop",
+        "studiox",
+        "wizard-only"
+      ]
     },
     "UpdateChartX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "UpdateChartX wraps an ActivityAction body for chart update operations requiring Studio configuration.",
       "category": "excel",
-      "description": "Update Chart X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Update Chart X. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Update Chart' (wizard-only) - updates the data range or properties of an existing chart.",
+      "use_when": "Do not auto-generate; direct the user to author Update Chart X through StudioX. To insert a new chart use InsertExcelChartX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "chart",
+        "wizard-only"
+      ]
     },
     "ChangeDataRangeModification": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ChangeDataRangeModification has no resolvable CLR namespace and cannot be emitted without Studio wizard.",
       "category": "excel",
-      "description": "ChangeDataRangeModification (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate ChangeDataRangeModification. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Internal Excel range-modification helper without a stable XAML namespace (wizard-only).",
+      "use_when": "Do not auto-generate; this activity has no resolvable namespace and must come from Studio's wizard.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "wizard-only"
+      ]
     },
     "AddSensitivityLabelX": {
       "gen_function": "gen_add_sensitivity_label_x",
@@ -511,9 +623,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Add Sensitivity Label X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Add Sensitivity Label X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that applies a Microsoft 365 sensitivity label to the active workbook.",
+      "use_when": "User wants to set/replace a sensitivity label on a workbook. To read the current label use GetSensitivityLabelX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sensitivity",
+        "studiox"
+      ]
     },
     "AppendCsvFile": {
       "gen_function": "gen_append_csv_file",
@@ -582,9 +699,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Append Csv File activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Append Csv File.",
-      "_routing_review_needed": true
+      "description": "Append rows from a DataTable to an existing CSV file (or create the file with headers).",
+      "use_when": "User wants to grow a CSV without rewriting it. To overwrite use WriteCsvFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "csv",
+        "append"
+      ]
     },
     "AppendRangeX": {
       "gen_function": "gen_append_range_x",
@@ -664,9 +785,25 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Append Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Append Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Append Range' - append a DataTable to the end of an existing sheet/table in the active Excel scope.",
+      "use_when": "User wants to add rows below existing data without overwriting. To overwrite from row 1 use WriteRangeX.",
+      "alternatives": [
+        {
+          "activity": "AppendRange",
+          "use_instead_when": "You are using the classic ExcelApplicationScope rather than a modern Use Excel File scope."
+        },
+        {
+          "activity": "WriteRangeX",
+          "use_instead_when": "The destination is empty (or you want to overwrite) rather than append below existing rows."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "append",
+        "studiox",
+        "datatable"
+      ]
     },
     "AutoFitX": {
       "gen_function": "gen_auto_fit_x",
@@ -726,9 +863,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Auto Fit X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Auto Fit X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Auto Fit' - auto-size columns or rows in a sheet or range.",
+      "use_when": "User wants Excel to auto-size widths after writing data.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format",
+        "studiox"
+      ]
     },
     "ChangePivotTableDataSourceX": {
       "gen_function": "gen_change_pivot_table_data_source_x",
@@ -794,9 +936,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Change Pivot Table Data Source X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Change Pivot Table Data Source X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that re-points a PivotTable to a different source range.",
+      "use_when": "User wants to redirect a PivotTable's data source. To refresh after underlying data changed use RefreshPivotTableX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "studiox"
+      ]
     },
     "ClearRangeX": {
       "gen_function": "gen_clear_range_x",
@@ -855,9 +1002,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Clear Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Clear Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Clear Range' - clear contents and/or formatting from a worksheet range.",
+      "use_when": "User wants to wipe values from cells without deleting the rows/columns. To remove rows use DeleteRowsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "clear",
+        "studiox"
+      ]
     },
     "CloseWorkbook": {
       "gen_function": "gen_close_workbook",
@@ -914,9 +1066,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Close Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Close Workbook.",
-      "_routing_review_needed": true
+      "description": "Close an open workbook in the current Excel scope, optionally saving first.",
+      "use_when": "User wants to close a workbook explicitly. For modern projects this is rarely needed - the Excel scope auto-closes.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "workbook"
+      ]
     },
     "CopyChartToClipboardX": {
       "gen_function": "gen_copy_chart_to_clipboard_x",
@@ -985,9 +1141,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Copy Chart To Clipboard X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Copy Chart To Clipboard X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that copies an Excel chart image to the system clipboard.",
+      "use_when": "User wants the chart in clipboard form (e.g. to paste into a slide deck or email).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "chart",
+        "clipboard",
+        "studiox"
+      ]
     },
     "CopyPasteRangeX": {
       "gen_function": "gen_copy_paste_range_x",
@@ -1056,9 +1218,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Copy Paste Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Copy Paste Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Copy/Paste Range' - copy a source range and paste it to a destination, with paste-special options.",
+      "use_when": "User wants to duplicate a range with native Excel paste semantics. For classic projects use ExcelCopyPasteRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "copy",
+        "studiox"
+      ]
     },
     "CreateNewWorkbook": {
       "gen_function": "gen_create_new_workbook",
@@ -1126,9 +1293,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Create New Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Create New Workbook.",
-      "_routing_review_needed": true
+      "description": "Create a new empty workbook on disk at the given path.",
+      "use_when": "User wants to scaffold a new .xlsx file before writing data. To open an existing workbook use OpenWorkbook.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "workbook",
+        "create"
+      ]
     },
     "CreatePivotTable": {
       "gen_function": "gen_create_pivot_table",
@@ -1243,9 +1415,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Create Pivot Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Create Pivot Table.",
-      "_routing_review_needed": true
+      "description": "Create a PivotTable in the workbook (classic Excel API) bound to a source range.",
+      "use_when": "User wants a PivotTable in classic projects. In StudioX use CreatePivotTableX or CreatePivotTableXv2.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "classic"
+      ]
     },
     "CreatePivotTableX": {
       "gen_function": "gen_create_pivot_table_x",
@@ -1319,9 +1496,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Create Pivot Table X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Create Pivot Table X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Create Pivot Table' - create a PivotTable bound to a sheet/table range.",
+      "use_when": "User wants a PivotTable in StudioX. The newer variant CreatePivotTableXv2 supports additional layout options.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "studiox"
+      ]
     },
     "CreatePivotTableXv2": {
       "gen_function": "gen_create_pivot_table_xv2",
@@ -1395,9 +1577,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Create Pivot Table Xv2 activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Create Pivot Table Xv2.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Create Pivot Table (v2)' - newer variant with additional row/column/value field configuration.",
+      "use_when": "User wants the newer PivotTable creator with explicit field layout. Otherwise CreatePivotTableX works.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "studiox"
+      ]
     },
     "CreateTableX": {
       "gen_function": "gen_create_table_x",
@@ -1474,9 +1661,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Create Table X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Create Table X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Create Table' - convert a sheet range into a named Excel table (ListObject).",
+      "use_when": "User wants a structured named table over a range so other StudioX activities can reference it by name.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "table",
+        "studiox"
+      ]
     },
     "DeleteColumnX": {
       "gen_function": "gen_delete_column_x",
@@ -1544,9 +1736,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Delete Column X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Delete Column X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Delete Column' - remove one or more columns from a sheet or table.",
+      "use_when": "User wants to drop columns. To clear cell values without deleting columns use ClearRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "delete",
+        "studiox"
+      ]
     },
     "DeleteRowsX": {
       "gen_function": "gen_delete_rows_x",
@@ -1615,9 +1812,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Delete Rows X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Delete Rows X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Delete Rows' - remove one or more rows from a sheet or table.",
+      "use_when": "User wants to drop rows. To clear cell values without deleting rows use ClearRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "delete",
+        "studiox"
+      ]
     },
     "DeleteSheetX": {
       "gen_function": "gen_delete_sheet_x",
@@ -1674,9 +1876,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Delete Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Delete Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Delete Sheet' - delete a worksheet from the active workbook.",
+      "use_when": "User wants to remove a worksheet. To rename use RenameSheetX; to add use InsertSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "delete",
+        "studiox"
+      ]
     },
     "DuplicateSheetX": {
       "gen_function": "gen_duplicate_sheet_x",
@@ -1735,9 +1943,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Duplicate Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Duplicate Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Duplicate Sheet' - copy an existing worksheet to a new sheet in the same workbook.",
+      "use_when": "User wants a copy of an existing sheet (template duplication). To insert a blank sheet use InsertSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "studiox"
+      ]
     },
     "ExcelAppendRange": {
       "gen_function": "gen_excel_append_range",
@@ -1796,9 +2009,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Append Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Append Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Append Range' - append a DataTable to an existing sheet inside an ExcelApplicationScope.",
+      "use_when": "User wants to append rows in classic Excel projects. For StudioX use AppendRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "append",
+        "classic"
+      ]
     },
     "ExcelApplicationScope": {
       "gen_function": "gen_excel_application_scope",
@@ -1863,9 +2081,24 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Application Scope activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Application Scope.",
-      "_routing_review_needed": true
+      "description": "Classic Excel Application Scope - open a workbook and run nested classic Excel activities against it.",
+      "use_when": "User wants the classic Excel container with explicit Open/Save semantics. For StudioX use ExcelApplicationCard (wizard-only).",
+      "alternatives": [
+        {
+          "activity": "ExcelProcessScopeX",
+          "use_instead_when": "The workflow runs the modern (X) Excel activities and you want a process-level scope that covers multiple workbooks rather than per-file."
+        },
+        {
+          "activity": "ExcelApplicationCard",
+          "use_instead_when": "You are authoring inside a Modern Design experience (Application Card) rather than the classic scope."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "scope",
+        "classic"
+      ]
     },
     "ExcelAutoFillRange": {
       "gen_function": "gen_excel_auto_fill_range",
@@ -1933,9 +2166,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Auto Fill Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Auto Fill Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Auto Fill Range' - extend a formula or value across a destination range.",
+      "use_when": "User wants drag-fill in a classic project. For StudioX use AutoFillX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "autofill",
+        "classic"
+      ]
     },
     "ExcelCloseWorkbook": {
       "gen_function": "gen_excel_close_workbook",
@@ -1992,9 +2230,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Close Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Close Workbook.",
-      "_routing_review_needed": true
+      "description": "Classic 'Close Workbook' - close the workbook of the surrounding ExcelApplicationScope.",
+      "use_when": "User wants explicit close semantics in classic projects.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "workbook",
+        "classic"
+      ]
     },
     "ExcelCopyPasteRange": {
       "gen_function": "gen_excel_copy_paste_range",
@@ -2071,9 +2314,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Copy Paste Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Copy Paste Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Copy/Paste Range' - copy a range to a destination with paste-special options.",
+      "use_when": "User wants copy-paste in a classic project. For StudioX use CopyPasteRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "copy",
+        "classic"
+      ]
     },
     "ExcelCopySheet": {
       "gen_function": "gen_excel_copy_sheet",
@@ -2141,9 +2389,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Copy Sheet activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Copy Sheet.",
-      "_routing_review_needed": true
+      "description": "Classic 'Copy Sheet' - copy a worksheet to another workbook or position.",
+      "use_when": "User wants to clone a sheet in classic projects. For StudioX use DuplicateSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "classic"
+      ]
     },
     "ExcelCreatePivotTable": {
       "gen_function": "gen_excel_create_pivot_table",
@@ -2220,9 +2473,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Create Pivot Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Create Pivot Table.",
-      "_routing_review_needed": true
+      "description": "Classic 'Create Pivot Table' - create a PivotTable bound to a source range.",
+      "use_when": "User wants a PivotTable in classic projects. For StudioX use CreatePivotTableX or CreatePivotTableXv2.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "classic"
+      ]
     },
     "ExcelCreateTable": {
       "gen_function": "gen_excel_create_table",
@@ -2290,9 +2548,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Create Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Create Table.",
-      "_routing_review_needed": true
+      "description": "Classic 'Create Table' - convert a range into a named Excel table.",
+      "use_when": "User wants a structured table in classic projects. For StudioX use CreateTableX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "table",
+        "classic"
+      ]
     },
     "ExcelDeleteColumn": {
       "gen_function": "gen_excel_delete_column",
@@ -2360,9 +2623,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Delete Column activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Delete Column.",
-      "_routing_review_needed": true
+      "description": "Classic 'Delete Column' - remove a column from a sheet.",
+      "use_when": "User wants to drop columns in classic projects. For StudioX use DeleteColumnX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "delete",
+        "classic"
+      ]
     },
     "ExcelDeleteRange": {
       "gen_function": "gen_excel_delete_range",
@@ -2423,9 +2691,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Delete Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Delete Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Delete Range' - delete a range of cells, shifting neighbouring cells.",
+      "use_when": "User wants to remove a sub-range and shift cells. To clear values use ClearRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "delete",
+        "classic"
+      ]
     },
     "ExcelFilterTable": {
       "gen_function": "gen_excel_filter_table",
@@ -2502,9 +2775,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Filter Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Filter Table.",
-      "_routing_review_needed": true
+      "description": "Classic 'Filter Table' - apply or clear an AutoFilter on a named table.",
+      "use_when": "User wants table filtering in classic projects. For StudioX use FilterX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "filter",
+        "classic"
+      ]
     },
     "ExcelForEachRow": {
       "gen_function": "gen_excel_for_each_row",
@@ -2561,9 +2839,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel For Each Row activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel For Each Row.",
-      "_routing_review_needed": true
+      "description": "Classic 'For Each Row in Excel' - iterate the rows of a sheet/range from a classic Excel scope.",
+      "use_when": "User wants row iteration in classic projects. For DataTable iteration use ForEachRow; for StudioX use ExcelForEachRowX (wizard-only).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "loop",
+        "classic"
+      ]
     },
     "ExcelGetCellColor": {
       "gen_function": "gen_excel_get_cell_color",
@@ -2623,9 +2906,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Get Cell Color activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Get Cell Color.",
-      "_routing_review_needed": true
+      "description": "Classic 'Get Cell Color' - read the background colour of a cell into a Color variable.",
+      "use_when": "User needs the cell's colour value. For StudioX use GetCellColorX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format",
+        "classic"
+      ]
     },
     "ExcelGetSelectedRange": {
       "gen_function": "gen_excel_get_selected_range",
@@ -2682,9 +2970,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Get Selected Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Get Selected Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Get Selected Range' - read the currently selected range address into a string.",
+      "use_when": "User wants the user's current Excel selection. For StudioX use GetSelectedRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "selection",
+        "classic"
+      ]
     },
     "ExcelGetTableRange": {
       "gen_function": "gen_excel_get_table_range",
@@ -2753,9 +3046,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Get Table Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Get Table Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Get Table Range' - return the address of a named Excel table.",
+      "use_when": "User needs the address (e.g. A1:D20) of a named table for downstream activities.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "table",
+        "classic"
+      ]
     },
     "ExcelGetWorkbookSheet": {
       "gen_function": "gen_excel_get_workbook_sheet",
@@ -2821,9 +3119,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Get Workbook Sheet activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Get Workbook Sheet.",
-      "_routing_review_needed": true
+      "description": "Classic 'Get Workbook Sheet' - return a worksheet by name or index from a workbook.",
+      "use_when": "User wants a sheet handle. For all sheet names use ExcelGetWorkbookSheets / GetSheets.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "classic"
+      ]
     },
     "ExcelGetWorkbookSheets": {
       "gen_function": "gen_excel_get_workbook_sheets",
@@ -2880,9 +3183,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Get Workbook Sheets activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Get Workbook Sheets.",
-      "_routing_review_needed": true
+      "description": "Classic 'Get Workbook Sheets' - list the sheet names of the active workbook.",
+      "use_when": "User wants every sheet name for iteration or display. For StudioX use GetSheets.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "classic"
+      ]
     },
     "ExcelInsertColumn": {
       "gen_function": "gen_excel_insert_column",
@@ -2959,9 +3267,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Insert Column activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Insert Column.",
-      "_routing_review_needed": true
+      "description": "Classic 'Insert Column' - insert a column at a given position.",
+      "use_when": "User wants to add a column in classic projects. For StudioX use InsertColumnX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "insert",
+        "classic"
+      ]
     },
     "ExcelInsertDeleteColumns": {
       "gen_function": "gen_excel_insert_delete_columns",
@@ -3022,9 +3335,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Insert Delete Columns activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Insert Delete Columns.",
-      "_routing_review_needed": true
+      "description": "Classic 'Insert/Delete Columns' - insert or delete N columns in one call.",
+      "use_when": "User wants to add or drop multiple columns at once.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "insert",
+        "delete",
+        "classic"
+      ]
     },
     "ExcelInsertDeleteRows": {
       "gen_function": "gen_excel_insert_delete_rows",
@@ -3085,9 +3404,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Insert Delete Rows activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Insert Delete Rows.",
-      "_routing_review_needed": true
+      "description": "Classic 'Insert/Delete Rows' - insert or delete N rows in one call.",
+      "use_when": "User wants to add or drop multiple rows at once.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "insert",
+        "delete",
+        "classic"
+      ]
     },
     "ExcelLookUpRange": {
       "gen_function": "gen_excel_look_up_range",
@@ -3164,9 +3489,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Look Up Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Look Up Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Lookup Range' - find the address of a cell containing a given value within a range.",
+      "use_when": "User wants the cell address that holds a value. For VLOOKUP-style data lookup use VLookupX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "lookup",
+        "classic"
+      ]
     },
     "ExcelReadCell": {
       "gen_function": "gen_excel_read_cell",
@@ -3226,9 +3556,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Read Cell activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Read Cell.",
-      "_routing_review_needed": true
+      "description": "Classic 'Read Cell' - read a single cell value into a string.",
+      "use_when": "User wants one cell's value in classic projects. For StudioX use ReadCellValueX or ReadCell.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "classic"
+      ]
     },
     "ExcelReadCellFormula": {
       "gen_function": "gen_excel_read_cell_formula",
@@ -3288,9 +3623,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Read Cell Formula activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Read Cell Formula.",
-      "_routing_review_needed": true
+      "description": "Classic 'Read Cell Formula' - read the underlying formula text of a cell.",
+      "use_when": "User wants the formula (=SUM(A1:A10)) rather than its evaluated value. For value use ExcelReadCell.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "formula",
+        "classic"
+      ]
     },
     "ExcelReadColumn": {
       "gen_function": "gen_excel_read_column",
@@ -3350,9 +3691,24 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Read Column activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Read Column.",
-      "_routing_review_needed": true
+      "description": "Classic 'Read Column' - read a single column starting at a cell into an IEnumerable<object>.",
+      "use_when": "User wants one column of data without building a DataTable.",
+      "alternatives": [
+        {
+          "activity": "ReadRangeX",
+          "use_instead_when": "You need a rectangular range with multiple columns, not a single column of values."
+        },
+        {
+          "activity": "ReadCellValueX",
+          "use_instead_when": "You only need one cell from the column."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "classic"
+      ]
     },
     "ExcelReadRange": {
       "gen_function": "gen_excel_read_range",
@@ -3412,9 +3768,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Read Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Read Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Read Range' - read a worksheet range into a DataTable from a classic Excel scope.",
+      "use_when": "User wants to read into a DataTable in classic projects. For StudioX use ReadRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "classic",
+        "datatable"
+      ]
     },
     "ExcelReadRow": {
       "gen_function": "gen_excel_read_row",
@@ -3474,9 +3836,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Read Row activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Read Row.",
-      "_routing_review_needed": true
+      "description": "Classic 'Read Row' - read a single row starting at a cell into an IEnumerable<object>.",
+      "use_when": "User wants one row of data without building a DataTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "classic"
+      ]
     },
     "ExcelRefreshPivotTable": {
       "gen_function": "gen_excel_refresh_pivot_table",
@@ -3535,9 +3902,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Refresh Pivot Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Refresh Pivot Table.",
-      "_routing_review_needed": true
+      "description": "Classic 'Refresh Pivot Table' - refresh a PivotTable after its source data changes.",
+      "use_when": "User wants to refresh a PivotTable in classic projects. For StudioX use RefreshPivotTableX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "classic"
+      ]
     },
     "ExcelRemoveDuplicatesRange": {
       "gen_function": "gen_excel_remove_duplicates_range",
@@ -3596,9 +3968,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Remove Duplicates Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Remove Duplicates Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Remove Duplicates' - remove duplicate rows from a sheet range.",
+      "use_when": "User wants Excel to dedupe rows. For DataTable dedupe use RemoveDuplicateRows.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "dedupe",
+        "classic"
+      ]
     },
     "ExcelSaveWorkbook": {
       "gen_function": "gen_excel_save_workbook",
@@ -3646,9 +4023,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Save Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Save Workbook.",
-      "_routing_review_needed": true
+      "description": "Classic 'Save Workbook' - save the workbook of the surrounding ExcelApplicationScope.",
+      "use_when": "User wants to persist changes in classic projects.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "save",
+        "classic"
+      ]
     },
     "ExcelSelectRange": {
       "gen_function": "gen_excel_select_range",
@@ -3707,9 +4089,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Select Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Select Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Select Range' - select a range so subsequent activities act on the user's selection.",
+      "use_when": "User wants to set the active selection in classic projects. For StudioX use SelectRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "selection",
+        "classic"
+      ]
     },
     "ExcelSetRangeColor": {
       "gen_function": "gen_excel_set_range_color",
@@ -3769,9 +4156,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Set Range Color activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Set Range Color.",
-      "_routing_review_needed": true
+      "description": "Classic 'Set Range Color' - set the background colour of cells in a range.",
+      "use_when": "User wants to colour cells in classic projects. For StudioX use FormatRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format",
+        "classic"
+      ]
     },
     "ExcelSortTable": {
       "gen_function": "gen_excel_sort_table",
@@ -3840,9 +4232,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Sort Table activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Sort Table.",
-      "_routing_review_needed": true
+      "description": "Classic 'Sort Table' - sort a named Excel table by one or more columns.",
+      "use_when": "User wants table sorting in classic projects. For StudioX use SortX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sort",
+        "classic"
+      ]
     },
     "ExcelWriteCell": {
       "gen_function": "gen_excel_write_cell",
@@ -3902,9 +4299,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Write Cell activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Write Cell.",
-      "_routing_review_needed": true
+      "description": "Classic 'Write Cell' - write a value or formula into a single cell.",
+      "use_when": "User wants to set one cell in classic projects. For StudioX use WriteCellX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "write",
+        "classic"
+      ]
     },
     "ExcelWriteRange": {
       "gen_function": "gen_excel_write_range",
@@ -3965,9 +4367,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Excel Write Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Excel Write Range.",
-      "_routing_review_needed": true
+      "description": "Classic 'Write Range' - write a DataTable into a worksheet range from a classic Excel scope.",
+      "use_when": "User wants to write a DataTable in classic projects. For StudioX use WriteRangeX; to append use ExcelAppendRange / AppendRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "write",
+        "classic",
+        "datatable"
+      ]
     },
     "ExecuteMacro": {
       "gen_function": "gen_execute_macro",
@@ -4042,9 +4450,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Execute Macro activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Execute Macro.",
-      "_routing_review_needed": true
+      "description": "Classic 'Execute Macro' - run a VBA macro defined in the active workbook with optional parameters.",
+      "use_when": "User wants to invoke an existing VBA macro. For StudioX use ExecuteMacroX. To run inline VBA code use InvokeVBA / InvokeVBAX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "macro",
+        "vba",
+        "classic"
+      ]
     },
     "ExecuteMacroX": {
       "gen_function": "gen_execute_macro_x",
@@ -4115,9 +4529,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Execute Macro X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Execute Macro X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Run Macro' - run a VBA macro defined in the active workbook with optional parameters.",
+      "use_when": "User wants to invoke an existing VBA macro in a StudioX project. For inline VBA code use InvokeVBAX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "macro",
+        "vba",
+        "studiox"
+      ]
     },
     "ExportExcelToCsvX": {
       "gen_function": "gen_export_excel_to_csv_x",
@@ -4183,9 +4603,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Export Excel To Csv X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Export Excel To Csv X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Export to CSV' - export a sheet of the active workbook to a CSV file.",
+      "use_when": "User wants a CSV from an Excel sheet directly. For DataTable -> CSV use WriteCsvFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "csv",
+        "export",
+        "studiox"
+      ]
     },
     "FillRangeX": {
       "gen_function": "gen_fill_range_x",
@@ -4251,9 +4677,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Fill Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Fill Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Fill Range' - fill a range with a value or formula.",
+      "use_when": "User wants every cell in a range set to the same value/formula. For drag-fill behaviour use AutoFillX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "fill",
+        "studiox"
+      ]
     },
     "FindFirstLastDataRowX": {
       "gen_function": "gen_find_first_last_data_row_x",
@@ -4344,9 +4775,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Find First Last Data Row X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Find First Last Data Row X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that returns the first/last data row index in a sheet or table.",
+      "use_when": "User wants to compute where data starts/ends so they can append correctly.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "rows",
+        "studiox"
+      ]
     },
     "FindReplaceValueX": {
       "gen_function": "gen_find_replace_value_x",
@@ -4433,9 +4869,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Find Replace Value X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Find Replace Value X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Find/Replace Value' - search and replace values across a sheet, table, or range.",
+      "use_when": "User wants Excel-native find/replace. For DataTable-side replace use FindAndReplace.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "replace",
+        "studiox"
+      ]
     },
     "FormatRangeX": {
       "gen_function": "gen_format_range_x",
@@ -4510,9 +4951,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Format Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Format Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Format Range' - set font, alignment, borders, fill, and number format on a range.",
+      "use_when": "User wants comprehensive cell formatting (not just colour). For colour-only use SetRangeColor / ExcelSetRangeColor.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format",
+        "studiox"
+      ]
     },
     "GetCellColor": {
       "gen_function": "gen_get_cell_color",
@@ -4587,9 +5033,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Cell Color activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Cell Color.",
-      "_routing_review_needed": true
+      "description": "Modern 'Get Cell Color' - read the background colour of a cell.",
+      "use_when": "User wants the cell's colour value in modern projects. For classic use ExcelGetCellColor; for StudioX use GetCellColorX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format"
+      ]
     },
     "GetCellColorX": {
       "gen_function": "gen_get_cell_color_x",
@@ -4655,9 +5105,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Cell Color X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Cell Color X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Get Cell Color' - read the background colour of a cell.",
+      "use_when": "User wants the cell's colour value in StudioX. For classic use ExcelGetCellColor.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format",
+        "studiox"
+      ]
     },
     "GetSelectedRangeX": {
       "gen_function": "gen_get_selected_range_x",
@@ -4723,9 +5178,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Selected Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Selected Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Get Selected Range' - read the currently selected range address into a string.",
+      "use_when": "User wants the user's current Excel selection in StudioX. For classic use ExcelGetSelectedRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "selection",
+        "studiox"
+      ]
     },
     "GetSensitivityLabelX": {
       "gen_function": "gen_get_sensitivity_label_x",
@@ -4791,9 +5251,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Sensitivity Label X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Sensitivity Label X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that reads the current Microsoft 365 sensitivity label of the active workbook.",
+      "use_when": "User wants to read the workbook's sensitivity label. To set/replace one use AddSensitivityLabelX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sensitivity",
+        "studiox"
+      ]
     },
     "GetSheets": {
       "gen_function": "gen_get_sheets",
@@ -4850,9 +5315,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Sheets activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Sheets.",
-      "_routing_review_needed": true
+      "description": "List the sheet names of the active workbook in StudioX/modern Excel.",
+      "use_when": "User wants every sheet name for iteration. For classic use ExcelGetWorkbookSheets.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet"
+      ]
     },
     "GetTableRange": {
       "gen_function": "gen_get_table_range",
@@ -4929,9 +5398,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Get Table Range activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Get Table Range.",
-      "_routing_review_needed": true
+      "description": "Return the address (e.g. A1:D20) of a named Excel table.",
+      "use_when": "User needs a table's range address for downstream activities.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "table"
+      ]
     },
     "InsertColumnX": {
       "gen_function": "gen_insert_column_x",
@@ -5018,9 +5491,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Insert Column X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Insert Column X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Insert Column' - insert a new column into a sheet or table.",
+      "use_when": "User wants to add a column in StudioX. For classic use ExcelInsertColumn.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "insert",
+        "studiox"
+      ]
     },
     "InsertRowsX": {
       "gen_function": "gen_insert_rows_x",
@@ -5098,9 +5576,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Insert Rows X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Insert Rows X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Insert Rows' - insert one or more rows into a sheet or table.",
+      "use_when": "User wants to add rows at a position in StudioX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "insert",
+        "studiox"
+      ]
     },
     "InsertSheetX": {
       "gen_function": "gen_insert_sheet_x",
@@ -5166,9 +5649,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Insert Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Insert Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Insert Sheet' - add a new worksheet to the active workbook.",
+      "use_when": "User wants to add a new sheet. To clone an existing sheet use DuplicateSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "studiox"
+      ]
     },
     "InvokeVBA": {
       "gen_function": "gen_invoke_vba",
@@ -5236,9 +5724,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Invoke VBA activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Invoke VBA.",
-      "_routing_review_needed": true
+      "description": "Run inline VBA code against the active workbook (classic Excel projects).",
+      "use_when": "User wants to execute custom VBA without saving a macro first. For StudioX use InvokeVBAX; for an existing macro use ExecuteMacro.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "vba",
+        "classic"
+      ]
     },
     "InvokeVBAX": {
       "gen_function": "gen_invoke_vbax",
@@ -5318,9 +5811,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Invoke VBAX activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Invoke VBAX.",
-      "_routing_review_needed": true
+      "description": "Run inline VBA code against the active workbook (StudioX Excel projects).",
+      "use_when": "User wants to execute custom VBA inline in StudioX. For an existing named macro use ExecuteMacroX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "vba",
+        "studiox"
+      ]
     },
     "LookupX": {
       "gen_function": "gen_lookup_x",
@@ -5404,9 +5902,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Lookup X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Lookup X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Lookup' - find a value in a range and return the corresponding cell address.",
+      "use_when": "User wants the address of a found value. For VLOOKUP-style data return use VLookupX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "lookup",
+        "studiox"
+      ]
     },
     "MatchFunctionX": {
       "gen_function": "gen_match_function_x",
@@ -5483,9 +5986,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Match Function X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Match Function X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Match' - return the position (index) of a value within a range.",
+      "use_when": "User wants the relative index of a matched value (Excel MATCH semantics).",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "lookup",
+        "studiox"
+      ]
     },
     "OpenWorkbook": {
       "gen_function": "gen_open_workbook",
@@ -5562,9 +6070,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Open Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Open Workbook.",
-      "_routing_review_needed": true
+      "description": "Open an existing .xlsx workbook on disk and return a workbook variable.",
+      "use_when": "User wants to load an existing workbook. To create a new one use CreateNewWorkbook; to use a scope-style container use ExcelApplicationScope or ExcelApplicationCard.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "workbook",
+        "open"
+      ]
     },
     "ProtectSheetX": {
       "gen_function": "gen_protect_sheet_x",
@@ -5641,9 +6154,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Protect Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Protect Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Protect Sheet' - apply password protection to a worksheet.",
+      "use_when": "User wants to lock a sheet against edits. To remove protection use UnprotectSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "protect",
+        "studiox"
+      ]
     },
     "ReadCell": {
       "gen_function": "gen_read_cell",
@@ -5718,9 +6236,23 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Cell activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Cell.",
-      "_routing_review_needed": true
+      "description": "Modern 'Read Cell' - read a single cell value (string) using the active Excel scope.",
+      "use_when": "User wants a single cell's text in modern Excel. For typed value use ReadCellValueX; for formula use ReadCellFormulaX.",
+      "alternatives": [
+        {
+          "activity": "ReadRange",
+          "use_instead_when": "You need more than a single cell; ReadRange returns a rectangular block as a DataTable."
+        },
+        {
+          "activity": "ReadCellValueX",
+          "use_instead_when": "The workflow uses the modern Excel (X) suite rather than the classic Workbook activities."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read"
+      ]
     },
     "ReadCellFormula": {
       "gen_function": "gen_read_cell_formula",
@@ -5795,9 +6327,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Cell Formula activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Cell Formula.",
-      "_routing_review_needed": true
+      "description": "Modern 'Read Cell Formula' - read the formula text of a cell.",
+      "use_when": "User wants the formula not the result. For just the value use ReadCell or ReadCellValueX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "formula"
+      ]
     },
     "ReadCellFormulaX": {
       "gen_function": "gen_read_cell_formula_x",
@@ -5863,9 +6400,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Cell Formula X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Cell Formula X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Read Cell Formula' - read the formula text of a cell.",
+      "use_when": "User wants the formula (=SUM(A1:A10)) rather than its evaluated value. For just the value use ReadCellValueX or ReadCell.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "formula",
+        "studiox"
+      ]
     },
     "ReadCellValueX": {
       "gen_function": "gen_read_cell_value_x",
@@ -5933,9 +6476,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Cell Value X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Cell Value X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Read Cell Value' - read a single cell value (typed) using the active Excel scope.",
+      "use_when": "User wants one cell's typed value in StudioX. For string-only use ReadCell; for formula text use ReadCellFormulaX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read",
+        "studiox"
+      ]
     },
     "ReadColumn": {
       "gen_function": "gen_read_column",
@@ -6010,9 +6558,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Column activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Column.",
-      "_routing_review_needed": true
+      "description": "Modern 'Read Column' - read one column of values into an IEnumerable<object>.",
+      "use_when": "User wants a single column of data. For a row use ReadRow; for full range use ReadRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read"
+      ]
     },
     "ReadRow": {
       "gen_function": "gen_read_row",
@@ -6087,9 +6639,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Read Row activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Read Row.",
-      "_routing_review_needed": true
+      "description": "Modern 'Read Row' - read one row of values into an IEnumerable<object>.",
+      "use_when": "User wants a single row. For a column use ReadColumn; for a full range use ReadRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "read"
+      ]
     },
     "RefreshDataConnectionsX": {
       "gen_function": "gen_refresh_data_connections_x",
@@ -6146,9 +6702,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Refresh Data Connections X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Refresh Data Connections X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that refreshes all (or named) data connections in the active workbook.",
+      "use_when": "User wants to pull fresh data from external connections (Power Query, ODBC). For PivotTables alone use RefreshPivotTableX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "refresh",
+        "studiox"
+      ]
     },
     "RefreshPivotTableX": {
       "gen_function": "gen_refresh_pivot_table_x",
@@ -6214,9 +6775,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Refresh Pivot Table X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Refresh Pivot Table X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Refresh Pivot Table' - refresh a PivotTable after its source data changes.",
+      "use_when": "User wants to refresh a single PivotTable. For all data connections use RefreshDataConnectionsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pivot",
+        "refresh",
+        "studiox"
+      ]
     },
     "RemoveDuplicatesX": {
       "gen_function": "gen_remove_duplicates_x",
@@ -6282,9 +6849,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Remove Duplicates X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Remove Duplicates X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Remove Duplicates' - remove duplicate rows from a sheet range or table.",
+      "use_when": "User wants in-place dedupe in StudioX. For classic use ExcelRemoveDuplicatesRange; for DataTable dedupe use RemoveDuplicateRows.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "dedupe",
+        "studiox"
+      ]
     },
     "RenameSheetX": {
       "gen_function": "gen_rename_sheet_x",
@@ -6350,9 +6922,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Rename Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Rename Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Rename Sheet' - rename an existing worksheet.",
+      "use_when": "User wants to rename a sheet in StudioX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sheet",
+        "studiox"
+      ]
     },
     "SaveAsPdfX": {
       "gen_function": "gen_save_as_pdf_x",
@@ -6438,9 +7015,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Save As Pdf X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Save As Pdf X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Save as PDF' - export the workbook (or a sheet/range) to a PDF file.",
+      "use_when": "User wants a PDF output of an Excel file. To save as a different Excel file use SaveExcelFileAsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "pdf",
+        "studiox"
+      ]
     },
     "SaveExcelFileAsX": {
       "gen_function": "gen_save_excel_file_as_x",
@@ -6508,9 +7090,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Save Excel File As X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Save Excel File As X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Save Excel File As' - save the active workbook to a new path.",
+      "use_when": "User wants to save under a different filename or folder. For in-place save use SaveExcelFileX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "save",
+        "studiox"
+      ]
     },
     "SaveExcelFileX": {
       "gen_function": "gen_save_excel_file_x",
@@ -6567,9 +7154,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Save Excel File X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Save Excel File X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Save Excel File' - save the active workbook to its existing path.",
+      "use_when": "User wants to persist changes in place. To save as a new file use SaveExcelFileAsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "save",
+        "studiox"
+      ]
     },
     "SelectRangeX": {
       "gen_function": "gen_select_range_x",
@@ -6626,9 +7218,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Select Range X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Select Range X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Select Range' - set the active selection in a sheet so subsequent activities act on it.",
+      "use_when": "User wants to mark a range as the active selection.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "selection",
+        "studiox"
+      ]
     },
     "SequenceX": {
       "gen_function": "gen_sequence_x",
@@ -6676,9 +7273,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Sequence X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Sequence X.",
-      "_routing_review_needed": true
+      "description": "StudioX Sequence container that groups Excel-related child activities under a logical step.",
+      "use_when": "User wants to group StudioX Excel steps in a labelled container.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "container",
+        "studiox"
+      ]
     },
     "SetRangeColor": {
       "gen_function": "gen_set_range_color",
@@ -6753,9 +7355,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Set Range Color activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Set Range Color.",
-      "_routing_review_needed": true
+      "description": "Modern 'Set Range Color' - set the background colour of cells in a range.",
+      "use_when": "User wants to colour cells in modern projects. For wider formatting use FormatRangeX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "format"
+      ]
     },
     "SortX": {
       "gen_function": "gen_sort_x",
@@ -6810,9 +7416,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Sort X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Sort X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Sort' - sort a sheet range or table by one or more columns.",
+      "use_when": "User wants Excel-side sorting. For classic table sort use ExcelSortTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "sort",
+        "studiox"
+      ]
     },
     "TextToColumnsX": {
       "gen_function": "gen_text_to_columns_x",
@@ -6906,9 +7517,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Text To Columns X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Text To Columns X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Text to Columns' - split a column by a delimiter into multiple columns.",
+      "use_when": "User wants Excel's Text-to-Columns feature applied to a range.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "transform",
+        "studiox"
+      ]
     },
     "UnprotectSheetX": {
       "gen_function": "gen_unprotect_sheet_x",
@@ -6983,9 +7599,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Unprotect Sheet X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Unprotect Sheet X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Unprotect Sheet' - remove password protection from a worksheet.",
+      "use_when": "User wants to unlock a previously protected sheet. To protect use ProtectSheetX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "protect",
+        "studiox"
+      ]
     },
     "VLookupX": {
       "gen_function": "gen_v_lookup_x",
@@ -7071,9 +7692,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "V Lookup X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using V Lookup X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'VLookup' - perform an Excel-style VLOOKUP against a range and return the matched value.",
+      "use_when": "User wants VLOOKUP semantics. For arbitrary cell-address lookup use ExcelLookUpRange / LookupX; for general matching use MatchFunctionX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "lookup",
+        "studiox"
+      ]
     },
     "WithWorkbook": {
       "gen_function": "gen_with_workbook",
@@ -7146,9 +7772,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "With Workbook activity from the excel category.",
-      "use_when": "User wants to interact with Excel using With Workbook.",
-      "_routing_review_needed": true
+      "description": "Project Notebook scope that opens a workbook and runs nested activities against it (StudioX project notebook).",
+      "use_when": "User is using the StudioX Project Notebook pattern and wants the implicit workbook scope.",
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "scope",
+        "studiox"
+      ]
     },
     "WriteCellX": {
       "gen_function": "gen_write_cell_x",
@@ -7214,9 +7845,24 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Write Cell X activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Write Cell X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Write Cell' - write a value or formula into a single cell.",
+      "use_when": "User wants to set one cell in StudioX. For classic use ExcelWriteCell.",
+      "alternatives": [
+        {
+          "activity": "WriteCell",
+          "use_instead_when": "You are using the classic Workbook activities rather than the modern Excel (X) suite."
+        },
+        {
+          "activity": "WriteRangeX",
+          "use_instead_when": "You are writing a DataTable or multiple cells rather than a single value."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "excel",
+        "write",
+        "studiox"
+      ]
     },
     "WriteCsvFile": {
       "gen_function": "gen_write_csv_file",
@@ -7287,9 +7933,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "excel",
-      "description": "Write Csv File activity from the excel category.",
-      "use_when": "User wants to interact with Excel using Write Csv File.",
-      "_routing_review_needed": true
+      "description": "Write a DataTable to a CSV file (overwriting any existing file).",
+      "use_when": "User wants a CSV from a DataTable. To grow an existing CSV use AppendCsvFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "csv",
+        "write"
+      ]
     }
   }
 }

@@ -87,6 +87,16 @@
       "category": "integrations",
       "description": "Read Range activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Read Range.",
+      "alternatives": [
+        {
+          "activity": "ReadRangeX",
+          "use_instead_when": "The workflow uses the modern Modern Excel (X) suite with Use Excel File scope rather than the classic ExcelApplicationScope."
+        },
+        {
+          "activity": "ReadCell",
+          "use_instead_when": "You only need a single cell, not a rectangular range."
+        }
+      ],
       "_routing_review_needed": true
     },
     "WriteRange": {
@@ -160,6 +170,20 @@
       "category": "integrations",
       "description": "Write Range activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Write Range.",
+      "alternatives": [
+        {
+          "activity": "WriteRangeX",
+          "use_instead_when": "The workflow uses the modern Excel (X) suite with Use Excel File scope rather than classic Workbook scope."
+        },
+        {
+          "activity": "WriteCell",
+          "use_instead_when": "You are writing a single value, not a DataTable's worth of rows."
+        },
+        {
+          "activity": "AppendRange",
+          "use_instead_when": "The destination already has data and you want to append below it instead of overwriting from the start cell."
+        }
+      ],
       "_routing_review_needed": true
     },
     "WriteCell": {
@@ -230,6 +254,16 @@
       "category": "integrations",
       "description": "Write Cell activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Write Cell.",
+      "alternatives": [
+        {
+          "activity": "WriteRange",
+          "use_instead_when": "You are writing a DataTable or multiple cells, not a single cell."
+        },
+        {
+          "activity": "WriteCellX",
+          "use_instead_when": "The workflow uses the modern Excel (X) suite rather than classic Workbook activities."
+        }
+      ],
       "_routing_review_needed": true
     },
     "AppendRange": {
@@ -293,6 +327,16 @@
       "category": "integrations",
       "description": "Append Range activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Append Range.",
+      "alternatives": [
+        {
+          "activity": "WriteRange",
+          "use_instead_when": "The destination is empty (or you want to overwrite) rather than append below existing data."
+        },
+        {
+          "activity": "AppendRangeX",
+          "use_instead_when": "The workflow uses the modern Excel (X) suite rather than classic Workbook activities."
+        }
+      ],
       "_routing_review_needed": true
     },
     "ReadPDFText": {
@@ -566,6 +610,16 @@
       "category": "integrations",
       "description": "Send Mail activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Send Mail.",
+      "alternatives": [
+        {
+          "activity": "SendOutlookMail",
+          "use_instead_when": "There is a logged-in Outlook desktop client and you want messages to be sent through it (so they land in Sent Items, follow Outlook rules, etc.)."
+        },
+        {
+          "activity": "SendExchangeMail",
+          "use_instead_when": "You can authenticate to Exchange Web Services directly rather than relying on a generic SMTP relay."
+        }
+      ],
       "_routing_review_needed": true
     },
     "GetIMAPMailMessages": {
@@ -680,6 +734,20 @@
       "category": "integrations",
       "description": "Get IMAP Mail Messages activity from the integrations category.",
       "use_when": "User wants to integrate with an external system using Get IMAP Mail Messages.",
+      "alternatives": [
+        {
+          "activity": "GetPOP3MailMessages",
+          "use_instead_when": "The mailbox only exposes POP3 (one-shot download) rather than IMAP (folders, server-side state)."
+        },
+        {
+          "activity": "GetExchangeMailMessages",
+          "use_instead_when": "You can talk to the Exchange Web Services / EWS endpoint directly with credentials rather than going through a generic IMAP gateway."
+        },
+        {
+          "activity": "GetOutlookMailMessages",
+          "use_instead_when": "The robot has a logged-in Outlook desktop client and you want to read from the local profile rather than hit the server over IMAP."
+        }
+      ],
       "_routing_review_needed": true
     },
     "SaveMailAttachments": {

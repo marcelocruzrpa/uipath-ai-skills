@@ -103,6 +103,12 @@
       "category": "orchestrator",
       "description": "Add Queue Item activity from the orchestrator category.",
       "use_when": "User wants to interact with UiPath Orchestrator via Add Queue Item.",
+      "alternatives": [
+        {
+          "activity": "BulkAddQueueItems",
+          "use_instead_when": "You have many items to enqueue at once; bulk uploads are dramatically faster than a per-item loop."
+        }
+      ],
       "_routing_review_needed": true
     },
     "BulkAddQueueItems": {
@@ -166,6 +172,12 @@
       "category": "orchestrator",
       "description": "Bulk Add Queue Items activity from the orchestrator category.",
       "use_when": "User wants to interact with UiPath Orchestrator via Bulk Add Queue Items.",
+      "alternatives": [
+        {
+          "activity": "AddQueueItem",
+          "use_instead_when": "You only have a single item to enqueue; the bulk path is overkill."
+        }
+      ],
       "_routing_review_needed": true
     },
     "GetQueueItem": {
@@ -311,6 +323,12 @@
       "category": "orchestrator",
       "description": "Get Robot Credential activity from the orchestrator category.",
       "use_when": "User wants to interact with UiPath Orchestrator via Get Robot Credential.",
+      "alternatives": [
+        {
+          "activity": "GetRobotAsset",
+          "use_instead_when": "The asset is a non-credential value (text, integer, bool, JSON) rather than a username/password pair."
+        }
+      ],
       "_routing_review_needed": true
     },
     "GetRobotAsset": {
@@ -405,6 +423,12 @@
       "category": "orchestrator",
       "description": "Get Robot Asset activity from the orchestrator category.",
       "use_when": "User wants to interact with UiPath Orchestrator via Get Robot Asset.",
+      "alternatives": [
+        {
+          "activity": "GetRobotCredential",
+          "use_instead_when": "The asset is a Credential type and you need both username and password (as SecureString) returned."
+        }
+      ],
       "_routing_review_needed": true
     }
   }

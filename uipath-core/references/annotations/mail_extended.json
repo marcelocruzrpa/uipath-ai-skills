@@ -114,9 +114,27 @@
       "conditional_attrs": {},
       "note": "Retrieves Outlook mail messages. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "mail",
-      "description": "Get Outlook Mail Messages activity from the mail category.",
-      "use_when": "User wants to send or process email using Get Outlook Mail Messages.",
-      "_routing_review_needed": true
+      "description": "Read mail messages from a desktop Outlook folder using the local Outlook profile.",
+      "use_when": "User has Outlook installed and wants to fetch messages from a local mailbox folder. For Exchange Web Services use GetExchangeMailMessages; for Microsoft 365 Graph use plugin activities.",
+      "alternatives": [
+        {
+          "activity": "GetExchangeMailMessages",
+          "use_instead_when": "There is no locally-installed Outlook profile and you must hit Exchange Web Services directly."
+        },
+        {
+          "activity": "GetIMAPMailMessages",
+          "use_instead_when": "The mailbox is non-Exchange (e.g. Gmail, generic IMAP) and there is no Outlook client to drive."
+        },
+        {
+          "activity": "GetPOP3MailMessages",
+          "use_instead_when": "The server only exposes POP3 and you just need a one-shot download of new mail."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "read"
+      ]
     },
     "MoveOutlookMessage": {
       "gen_function": null,
@@ -174,9 +192,13 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Moves an Outlook mail message to a specified folder. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "mail",
-      "description": "Move Outlook Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Move Outlook Message.",
-      "_routing_review_needed": true
+      "description": "Move a desktop Outlook MailMessage to another folder in the same store.",
+      "use_when": "User wants to file an Outlook message to another folder (Archive, Done). For IMAP use MoveIMAPMailMessageToFolder; for Exchange use MoveMessageToFolder.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "move"
+      ]
     },
     "SendOutlookMail": {
       "gen_function": null,
@@ -301,27 +323,52 @@
       "conditional_attrs": {},
       "note": "Sends an email via Outlook. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "mail",
-      "description": "Send Outlook Mail activity from the mail category.",
-      "use_when": "User wants to send or process email using Send Outlook Mail.",
-      "_routing_review_needed": true
+      "description": "Send an email through the local desktop Outlook profile.",
+      "use_when": "User has Outlook installed and wants to send through that profile. For Exchange use SendExchangeMail; for SMTP/Gmail use SendMailX.",
+      "alternatives": [
+        {
+          "activity": "SendExchangeMail",
+          "use_instead_when": "There is no locally-installed Outlook profile and you must talk to Exchange Web Services directly."
+        },
+        {
+          "activity": "SendMail",
+          "use_instead_when": "You only have a generic SMTP relay (no Outlook client, no Exchange credentials)."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "send"
+      ]
     },
     "OutlookApplicationCard": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "OutlookApplicationCard is a scope activity with ActivityAction body requiring Studio configuration.",
       "category": "mail",
-      "description": "Outlook Application Card (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Outlook Application Card. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Modern Use Outlook scope (wizard-only) - pins an Outlook account for nested mail activities.",
+      "use_when": "Do not auto-generate; direct the user to configure Outlook Application Card through UiPath Studio's Outlook wizard.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "scope",
+        "wizard-only"
+      ]
     },
     "ForEachEmailX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ForEachEmailX iterates over emails with a dual-argument ActivityAction body requiring Studio configuration.",
       "category": "mail",
-      "description": "For Each Email X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate For Each Email X. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "StudioX For Each Email iterator (wizard-only) over a mailbox folder.",
+      "use_when": "Do not auto-generate; direct the user to configure For Each Email X through StudioX's Outlook wizard. As an alternative iterate the output of GetOutlookMailMessages with ForEach.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "loop",
+        "studiox",
+        "wizard-only"
+      ]
     },
     "ArchiveMailX": {
       "gen_function": "gen_archive_mail_x",
@@ -378,9 +425,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Archive Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Archive Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that moves an email to the configured Archive folder of the active mail account.",
+      "use_when": "User wants the StudioX 'Archive Email' button equivalent. For arbitrary moves use MoveOutlookMessage / MoveMessageToFolder.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "archive",
+        "studiox"
+      ]
     },
     "CreateDraft": {
       "gen_function": "gen_create_draft",
@@ -604,9 +656,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Create Draft activity from the mail category.",
-      "use_when": "User wants to send or process email using Create Draft.",
-      "_routing_review_needed": true
+      "description": "Create a draft email in the chosen mail account without sending it.",
+      "use_when": "User wants to stage an email for human review or later send. To send immediately use SendOutlookMail / SendExchangeMail / SendMailX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "draft",
+        "compose"
+      ]
     },
     "CreateHtmlContent": {
       "gen_function": "gen_create_html_content",
@@ -663,9 +719,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Create Html Content activity from the mail category.",
-      "use_when": "User wants to send or process email using Create Html Content.",
-      "_routing_review_needed": true
+      "description": "Build an HTML body string from a template and variables for use as an email body.",
+      "use_when": "User wants to compose a templated HTML email body before sending. Pair with SendOutlookMail / SendMailX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "html",
+        "template",
+        "compose"
+      ]
     },
     "DeleteImapMailMessage": {
       "gen_function": "gen_delete_imap_mail_message",
@@ -808,9 +869,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Delete Imap Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Delete Imap Mail Message.",
-      "_routing_review_needed": true
+      "description": "Delete a MailMessage from an IMAP server.",
+      "use_when": "User wants to remove a message via IMAP. For Outlook use DeleteOutlookMailMessage; for Exchange use DeleteMail; for Lotus Notes use DeleteLotusNotesMailMessage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "imap",
+        "delete"
+      ]
     },
     "DeleteLotusNotesMailMessage": {
       "gen_function": "gen_delete_lotus_notes_mail_message",
@@ -894,9 +959,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Delete Lotus Notes Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Delete Lotus Notes Mail Message.",
-      "_routing_review_needed": true
+      "description": "Delete a MailMessage from an IBM/HCL Lotus Notes mailbox.",
+      "use_when": "User automates Lotus Notes mail and wants to delete a message. For other providers use DeleteImapMailMessage / DeleteOutlookMailMessage / DeleteMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "lotus-notes",
+        "delete"
+      ]
     },
     "DeleteMail": {
       "gen_function": "gen_delete_mail",
@@ -1038,9 +1107,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Delete Mail activity from the mail category.",
-      "use_when": "User wants to send or process email using Delete Mail.",
-      "_routing_review_needed": true
+      "description": "Delete a MailMessage through Exchange (EWS) using the active scope.",
+      "use_when": "User wants to delete an Exchange message inside an ExchangeScope. For Outlook desktop use DeleteOutlookMailMessage; for IMAP use DeleteImapMailMessage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "delete"
+      ]
     },
     "DeleteMailX": {
       "gen_function": "gen_delete_mail_x",
@@ -1097,9 +1170,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Delete Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Delete Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Delete Email' activity for the active mail account.",
+      "use_when": "User wants the StudioX delete-email button equivalent. For provider-specific calls use DeleteOutlookMailMessage / DeleteImapMailMessage / DeleteMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "delete",
+        "studiox"
+      ]
     },
     "DeleteOutlookMailMessage": {
       "gen_function": "gen_delete_outlook_mail_message",
@@ -1158,9 +1235,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Delete Outlook Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Delete Outlook Mail Message.",
-      "_routing_review_needed": true
+      "description": "Delete a MailMessage from the local desktop Outlook profile.",
+      "use_when": "User wants to delete a message in desktop Outlook. For IMAP use DeleteImapMailMessage; for Exchange use DeleteMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "delete"
+      ]
     },
     "ExchangeScope": {
       "gen_function": "gen_exchange_scope",
@@ -1307,9 +1388,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Exchange Scope activity from the mail category.",
-      "use_when": "User wants to send or process email using Exchange Scope.",
-      "_routing_review_needed": true
+      "description": "Connect to Exchange Web Services (EWS) and run nested Exchange mail activities under that connection.",
+      "use_when": "User wants EWS-based mail automation in a single scope. For Microsoft 365 Graph use the plugin scope; for desktop Outlook none - use the activities directly.",
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "ews",
+        "scope"
+      ]
     },
     "ForwardMailX": {
       "gen_function": "gen_forward_mail_x",
@@ -1423,9 +1509,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Forward Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Forward Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Forward Email' activity for the active mail account.",
+      "use_when": "User wants to forward the current StudioX email. For provider-specific forwarding use the underlying Outlook/Exchange activities.",
+      "_routing_review_needed": false,
+      "tags": [
+        "forward",
+        "studiox"
+      ]
     },
     "GetEmailById": {
       "gen_function": "gen_get_email_by_id",
@@ -1500,9 +1590,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Get Email By Id activity from the mail category.",
-      "use_when": "User wants to send or process email using Get Email By Id.",
-      "_routing_review_needed": true
+      "description": "Fetch a single mail message by its provider-specific identifier.",
+      "use_when": "User already knows the message ID (e.g. from a trigger) and wants the full MailMessage. For folder enumeration use the provider's Get*Mail* activity.",
+      "_routing_review_needed": false,
+      "tags": [
+        "read",
+        "by-id"
+      ]
     },
     "GetExchangeMailMessages": {
       "gen_function": "gen_get_exchange_mail_messages",
@@ -1678,9 +1772,28 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Get Exchange Mail Messages activity from the mail category.",
-      "use_when": "User wants to send or process email using Get Exchange Mail Messages.",
-      "_routing_review_needed": true
+      "description": "Read mail messages from an Exchange folder via Exchange Web Services (EWS).",
+      "use_when": "User automates Exchange via EWS and wants to fetch messages. For desktop Outlook use GetOutlookMailMessages; for IMAP use GetPOP3MailMessages or an IMAP variant.",
+      "alternatives": [
+        {
+          "activity": "GetOutlookMailMessages",
+          "use_instead_when": "You want to use the locally-installed Outlook desktop client instead of talking to Exchange Web Services directly."
+        },
+        {
+          "activity": "GetIMAPMailMessages",
+          "use_instead_when": "The server only exposes IMAP, or you need vendor-neutral folder access without Exchange credentials."
+        },
+        {
+          "activity": "GetPOP3MailMessages",
+          "use_instead_when": "The server only exposes POP3 for a one-shot download."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "ews",
+        "read"
+      ]
     },
     "GetLotusNotesMailMessages": {
       "gen_function": "gen_get_lotus_notes_mail_messages",
@@ -1770,9 +1883,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Get Lotus Notes Mail Messages activity from the mail category.",
-      "use_when": "User wants to send or process email using Get Lotus Notes Mail Messages.",
-      "_routing_review_needed": true
+      "description": "Read mail messages from an IBM/HCL Lotus Notes mailbox.",
+      "use_when": "User automates Lotus Notes mail. For other providers use GetOutlookMailMessages / GetExchangeMailMessages / GetPOP3MailMessages.",
+      "_routing_review_needed": false,
+      "tags": [
+        "lotus-notes",
+        "read"
+      ]
     },
     "GetMailMessageFromFile": {
       "gen_function": "gen_get_mail_message_from_file",
@@ -1838,9 +1955,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Get Mail Message From File activity from the mail category.",
-      "use_when": "User wants to send or process email using Get Mail Message From File.",
-      "_routing_review_needed": true
+      "description": "Load a saved .eml or .msg file from disk into a MailMessage variable.",
+      "use_when": "User has previously saved an email to disk and wants to re-load it for processing. To save use SaveMail / SaveMailX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "read",
+        "file"
+      ]
     },
     "GetPOP3MailMessages": {
       "gen_function": "gen_get_pop3_mail_messages",
@@ -1968,9 +2089,27 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Get POP3 Mail Messages activity from the mail category.",
-      "use_when": "User wants to send or process email using Get POP3 Mail Messages.",
-      "_routing_review_needed": true
+      "description": "Read mail messages from a POP3 server.",
+      "use_when": "User must use POP3 (legacy). Prefer IMAP or Exchange where available; use GetExchangeMailMessages or GetOutlookMailMessages instead.",
+      "alternatives": [
+        {
+          "activity": "GetIMAPMailMessages",
+          "use_instead_when": "The server supports IMAP and you need folder navigation or server-side flags rather than a one-shot POP3 download."
+        },
+        {
+          "activity": "GetExchangeMailMessages",
+          "use_instead_when": "You can use the Exchange Web Services endpoint directly for richer querying than POP3."
+        },
+        {
+          "activity": "GetOutlookMailMessages",
+          "use_instead_when": "You want to read from a logged-in Outlook desktop profile rather than poll a POP3 server."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "pop3",
+        "read"
+      ]
     },
     "MarkMailAsReadX": {
       "gen_function": "gen_mark_mail_as_read_x",
@@ -2029,9 +2168,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Mark Mail As Read X activity from the mail category.",
-      "use_when": "User wants to send or process email using Mark Mail As Read X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Mark Email as Read' activity for the active mail account.",
+      "use_when": "User wants the StudioX mark-as-read button equivalent. For provider-specific control use MarkOutlookMailAsRead.",
+      "_routing_review_needed": false,
+      "tags": [
+        "read-state",
+        "studiox"
+      ]
     },
     "MarkOutlookMailAsRead": {
       "gen_function": "gen_mark_outlook_mail_as_read",
@@ -2090,9 +2233,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Mark Outlook Mail As Read activity from the mail category.",
-      "use_when": "User wants to send or process email using Mark Outlook Mail As Read.",
-      "_routing_review_needed": true
+      "description": "Mark a desktop Outlook MailMessage as read or unread.",
+      "use_when": "User wants to flip the read flag on an Outlook message. For StudioX use MarkMailAsReadX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "read-state"
+      ]
     },
     "MoveIMAPMailMessageToFolder": {
       "gen_function": "gen_move_imap_mail_message_to_folder",
@@ -2245,9 +2392,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Move IMAP Mail Message To Folder activity from the mail category.",
-      "use_when": "User wants to send or process email using Move IMAP Mail Message To Folder.",
-      "_routing_review_needed": true
+      "description": "Move a MailMessage to another folder on an IMAP server.",
+      "use_when": "User automates IMAP and wants to file a message. For Outlook use MoveOutlookMessage; for Exchange use MoveMessageToFolder; for StudioX use MoveMailX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "imap",
+        "move"
+      ]
     },
     "MoveLotusNotesMailMessage": {
       "gen_function": "gen_move_lotus_notes_mail_message",
@@ -2340,9 +2491,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Move Lotus Notes Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Move Lotus Notes Mail Message.",
-      "_routing_review_needed": true
+      "description": "Move a Lotus Notes MailMessage to another mailbox folder.",
+      "use_when": "User automates Lotus Notes and wants to file a message.",
+      "_routing_review_needed": false,
+      "tags": [
+        "lotus-notes",
+        "move"
+      ]
     },
     "MoveMailX": {
       "gen_function": "gen_move_mail_x",
@@ -2408,9 +2563,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Move Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Move Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Move Email' activity for the active mail account.",
+      "use_when": "User wants the StudioX move-email button equivalent. For provider-specific calls use MoveOutlookMessage / MoveIMAPMailMessageToFolder / MoveMessageToFolder.",
+      "_routing_review_needed": false,
+      "tags": [
+        "move",
+        "studiox"
+      ]
     },
     "MoveMessageToFolder": {
       "gen_function": "gen_move_message_to_folder",
@@ -2569,9 +2728,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Move Message To Folder activity from the mail category.",
-      "use_when": "User wants to send or process email using Move Message To Folder.",
-      "_routing_review_needed": true
+      "description": "Move an Exchange MailMessage to another folder via EWS inside an ExchangeScope.",
+      "use_when": "User automates Exchange via EWS. For Outlook use MoveOutlookMessage; for IMAP use MoveIMAPMailMessageToFolder.",
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "move"
+      ]
     },
     "NewIMAPEmailReceivedTrigger": {
       "gen_function": "gen_new_imap_email_received_trigger",
@@ -2715,9 +2878,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "New IMAP Email Received Trigger activity from the mail category.",
-      "use_when": "User wants to send or process email using New IMAP Email Received Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a new email arrives on an IMAP server.",
+      "use_when": "User wants an event-driven workflow that reacts to new IMAP mail. For Outlook event triggers use OutlookMailMessagesTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "imap",
+        "trigger"
+      ]
     },
     "OutlookMailMessagesTrigger": {
       "gen_function": "gen_outlook_mail_messages_trigger",
@@ -2831,9 +2998,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Outlook Mail Messages Trigger activity from the mail category.",
-      "use_when": "User wants to send or process email using Outlook Mail Messages Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a new email arrives in a desktop Outlook folder.",
+      "use_when": "User wants an event-driven workflow that reacts to new Outlook mail. For IMAP use NewIMAPEmailReceivedTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "trigger"
+      ]
     },
     "ReplyToMailX": {
       "gen_function": "gen_reply_to_mail_x",
@@ -2948,9 +3119,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Reply To Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Reply To Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Reply to Email' activity for the active mail account.",
+      "use_when": "User wants the StudioX reply button equivalent. For provider-specific replies use ReplyToOutlookMailMessage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "reply",
+        "studiox"
+      ]
     },
     "ReplyToOutlookMailMessage": {
       "gen_function": "gen_reply_to_outlook_mail_message",
@@ -3073,9 +3248,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Reply To Outlook Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Reply To Outlook Mail Message.",
-      "_routing_review_needed": true
+      "description": "Reply (or Reply All) to a desktop Outlook MailMessage with new body and optional attachments.",
+      "use_when": "User wants to compose a reply to an Outlook message. For Exchange/IMAP, reply via the underlying provider's send activity with appropriate headers.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "reply"
+      ]
     },
     "SaveExchangeAttachements": {
       "gen_function": "gen_save_exchange_attachements",
@@ -3243,9 +3422,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Save Exchange Attachements activity from the mail category.",
-      "use_when": "User wants to send or process email using Save Exchange Attachements.",
-      "_routing_review_needed": true
+      "description": "Save all attachments from an Exchange MailMessage to a folder on disk.",
+      "use_when": "User wants to extract attachments from an Exchange message. For other providers use SaveMailAttachmentsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "attachments",
+        "save"
+      ]
     },
     "SaveMail": {
       "gen_function": "gen_save_mail",
@@ -3320,9 +3504,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Save Mail activity from the mail category.",
-      "use_when": "User wants to send or process email using Save Mail.",
-      "_routing_review_needed": true
+      "description": "Save a MailMessage to disk as an .eml/.msg file.",
+      "use_when": "User wants to persist an email for archival or later re-import. For attachments only use SaveMailAttachmentsX; to re-load use GetMailMessageFromFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "save",
+        "file"
+      ]
     },
     "SaveMailAttachmentsX": {
       "gen_function": "gen_save_mail_attachments_x",
@@ -3400,9 +3588,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Save Mail Attachments X activity from the mail category.",
-      "use_when": "User wants to send or process email using Save Mail Attachments X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that saves all attachments of the current email to a folder.",
+      "use_when": "User wants the StudioX 'Save Attachments' button equivalent. For Exchange specifically use SaveExchangeAttachements.",
+      "_routing_review_needed": false,
+      "tags": [
+        "attachments",
+        "save",
+        "studiox"
+      ]
     },
     "SaveMailX": {
       "gen_function": "gen_save_mail_x",
@@ -3477,9 +3670,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Save Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Save Mail X.",
-      "_routing_review_needed": true
+      "description": "StudioX 'Save Email' activity that writes the current email to disk.",
+      "use_when": "User wants the StudioX save-email button equivalent. For provider-agnostic saving use SaveMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "save",
+        "studiox"
+      ]
     },
     "SaveOutlookMailMessage": {
       "gen_function": "gen_save_outlook_mail_message",
@@ -3557,9 +3754,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Save Outlook Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Save Outlook Mail Message.",
-      "_routing_review_needed": true
+      "description": "Save a desktop Outlook MailMessage to disk as a .msg file.",
+      "use_when": "User wants to persist an Outlook message in native .msg format. For provider-agnostic .eml use SaveMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "save"
+      ]
     },
     "SendCalendarInviteX": {
       "gen_function": "gen_send_calendar_invite_x",
@@ -3714,9 +3915,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Send Calendar Invite X activity from the mail category.",
-      "use_when": "User wants to send or process email using Send Calendar Invite X.",
-      "_routing_review_needed": true
+      "description": "StudioX activity that sends a calendar invitation through the active mail account.",
+      "use_when": "User wants to send a meeting invite, not a plain email. For ordinary mail use SendOutlookMail / SendMailX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "calendar",
+        "invite",
+        "studiox"
+      ]
     },
     "SendExchangeMail": {
       "gen_function": "gen_send_exchange_mail",
@@ -3942,9 +4148,23 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Send Exchange Mail activity from the mail category.",
-      "use_when": "User wants to send or process email using Send Exchange Mail.",
-      "_routing_review_needed": true
+      "description": "Send an email through Exchange Web Services (EWS) inside an ExchangeScope.",
+      "use_when": "User wants to send via EWS. For desktop Outlook use SendOutlookMail; for SMTP use SendMailX.",
+      "alternatives": [
+        {
+          "activity": "SendOutlookMail",
+          "use_instead_when": "There is a logged-in Outlook desktop client; let it deliver the mail so it follows local Outlook rules."
+        },
+        {
+          "activity": "SendMail",
+          "use_instead_when": "You do not have Exchange credentials and only need to push through a generic SMTP relay."
+        }
+      ],
+      "_routing_review_needed": false,
+      "tags": [
+        "exchange",
+        "send"
+      ]
     },
     "SendLotusNotesMailMessage": {
       "gen_function": "gen_send_lotus_notes_mail_message",
@@ -4095,9 +4315,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Send Lotus Notes Mail Message activity from the mail category.",
-      "use_when": "User wants to send or process email using Send Lotus Notes Mail Message.",
-      "_routing_review_needed": true
+      "description": "Send an email through an IBM/HCL Lotus Notes session.",
+      "use_when": "User automates Lotus Notes outbound mail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "lotus-notes",
+        "send"
+      ]
     },
     "SendMailX": {
       "gen_function": "gen_send_mail_x",
@@ -4222,9 +4446,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Send Mail X activity from the mail category.",
-      "use_when": "User wants to send or process email using Send Mail X.",
-      "_routing_review_needed": true
+      "description": "Send an email via SMTP (configurable host/port/credentials).",
+      "use_when": "User wants to send through a generic SMTP server (Gmail SMTP, custom relay). For Outlook use SendOutlookMail; for Exchange use SendExchangeMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "smtp",
+        "send"
+      ]
     },
     "SetOutlookMailCategories": {
       "gen_function": "gen_set_outlook_mail_categories",
@@ -4290,9 +4518,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "mail",
-      "description": "Set Outlook Mail Categories activity from the mail category.",
-      "use_when": "User wants to send or process email using Set Outlook Mail Categories.",
-      "_routing_review_needed": true
+      "description": "Apply or replace one or more Outlook category labels on a desktop Outlook MailMessage.",
+      "use_when": "User wants to tag an Outlook message with category colours/labels.",
+      "_routing_review_needed": false,
+      "tags": [
+        "outlook",
+        "categories"
+      ]
     }
   }
 }
