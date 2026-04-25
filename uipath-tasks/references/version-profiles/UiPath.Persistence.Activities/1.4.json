@@ -198,7 +198,7 @@
       "harvestable": true,
       "namespace_prefix": "upat",
       "child_elements": [],
-      "xaml_template": "<upat:ForwardTask Comments=\"{x:Null}\" TaskId=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" />"
+      "xaml_template": "<upat:ForwardTask xmlns:upat=\"clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities\" Comments=\"{x:Null}\" TaskId=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" />"
     },
     "GetAppTasks": {
       "doc_name": "Get App Tasks",

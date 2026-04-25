@@ -607,3 +607,240 @@ def gen_assign_tasks(task_id_expr, id_ref,
         f'{i2}</upat:AssignTasks.AssignmentCriteria>\n'
         f'{i}</upat:AssignTasks>'
     )
+
+
+# ---------------------------------------------------------------------------
+# Inline xmlns declarations
+#
+# battle_test_activities.py wraps each generated fragment in a fixed namespace
+# header that does NOT declare the Persistence-package prefixes (upat / upau).
+# The other tasks generators above (CreateFormTask, etc.) are declared
+# `harvestable: false` in the version profile and skipped, so they never hit
+# the XML well-formedness check. The three activities introduced below
+# (ForwardTask, GetAppTasks, WaitForUserActionAndResume) are `harvestable: true`,
+# so their fragments must self-declare any non-standard prefix. Mirrors the
+# inline-xmlns convention used by uipath-core/scripts/generate_activities/
+# _data_driven.py for prefixes outside _STANDARD_XMLNS_PREFIXES.
+# ---------------------------------------------------------------------------
+_UPAT_XMLNS = (
+    'xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;'
+    'assembly=UiPath.Persistence.Activities"'
+)
+_UPAU_XMLNS = (
+    'xmlns:upau="clr-namespace:UiPath.Persistence.Activities.UserAction;'
+    'assembly=UiPath.Persistence.Activities"'
+)
+
+
+# ---------------------------------------------------------------------------
+# ForwardTask (Task Management) — re-route a task to another user/group
+# ---------------------------------------------------------------------------
+
+def gen_forward_task(id_ref,
+                     task_id_expr="",
+                     user_name_or_email="",
+                     comments_expr="",
+                     timeout_ms_expr="",
+                     display_name="Forward Task",
+                     indent="    "):
+    """Generate ForwardTask — reassign an existing task to a different user.
+
+    Used in escalation flows when the originally-assigned user cannot complete
+    the task. Reassigns by user name or email; optional comment is shown to
+    the new assignee.
+
+    Requires namespace:
+        xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities"
+
+    Args:
+        task_id_expr: VB expression evaluating to the task ID (no brackets).
+                      Empty → emitted as `{x:Null}`.
+        user_name_or_email: Email or username of the new assignee.
+                            Empty → emitted as `{x:Null}`.
+        comments_expr: Optional VB expression with a comment for the new
+                       assignee. Empty → `{x:Null}`.
+        timeout_ms_expr: Optional VB expression for request timeout. Empty
+                        → `{x:Null}`.
+    """
+    dn = _escape_xml_attr(display_name)
+    i = indent
+
+    task_id = (
+        f'TaskId="[{_escape_vb_expr(task_id_expr)}]"'
+        if task_id_expr else 'TaskId="{x:Null}"'
+    )
+    user = (
+        f'UserNameOrEmail="[{_escape_vb_expr(user_name_or_email)}]"'
+        if user_name_or_email else 'UserNameOrEmail="{x:Null}"'
+    )
+    comments = (
+        f'Comments="[{_escape_vb_expr(comments_expr)}]"'
+        if comments_expr else 'Comments="{x:Null}"'
+    )
+    timeout = (
+        f'TimeoutMs="[{_escape_vb_expr(timeout_ms_expr)}]"'
+        if timeout_ms_expr else 'TimeoutMs="{x:Null}"'
+    )
+
+    return (
+        f'{i}<upat:ForwardTask {_UPAT_XMLNS} '
+        f'{comments} '
+        f'{task_id} '
+        f'{timeout} '
+        f'{user} '
+        f'DisplayName="{dn}" '
+        f'sap:VirtualizedContainerService.HintSize="400,200" '
+        f'sap2010:WorkflowViewState.IdRef="{id_ref}" />'
+    )
+
+
+# ---------------------------------------------------------------------------
+# GetAppTasks (User-Action / App-Task retrieval)
+# ---------------------------------------------------------------------------
+
+def gen_get_app_tasks(id_ref,
+                      task_objects_variable="tasks",
+                      task_catalog_name_expr="",
+                      filter_expr="",
+                      order_by_expr="",
+                      select_expr="",
+                      expand_expr="",
+                      top_expr="",
+                      skip_expr="",
+                      timeout_ms_expr="",
+                      display_name="Get App Tasks",
+                      indent="    "):
+    """Generate GetAppTasks — retrieve App Tasks (user-action tasks) from Orchestrator.
+
+    Counterpart of GetFormTasks for App Tasks (a.k.a. user-action tasks). Used
+    by recovery flows and for monitoring queues of app-task work items.
+
+    Requires namespace:
+        xmlns:upau="clr-namespace:UiPath.Persistence.Activities.UserAction;assembly=UiPath.Persistence.Activities"
+    Requires variable: <Variable x:TypeArguments="..." Name="{task_objects_variable}" />
+
+    Args:
+        task_objects_variable: Variable receiving the retrieved task objects
+                               (no brackets). Defaults to ``"tasks"`` so the
+                               minimal-spec battle-test path produces valid
+                               XAML; production callers should pass an
+                               explicit variable name.
+        task_catalog_name_expr: Optional catalog filter VB expression.
+        filter_expr: OData filter string, e.g. "Status eq 'Pending'".
+        order_by_expr / select_expr / expand_expr: OData modifiers.
+        top_expr / skip_expr: OData paging.
+        timeout_ms_expr: Optional VB expression for request timeout.
+    """
+    dn = _escape_xml_attr(display_name)
+    i = indent
+
+    catalog = (
+        f'TaskCatalogName="[{_escape_vb_expr(task_catalog_name_expr)}]"'
+        if task_catalog_name_expr else 'TaskCatalogName="{x:Null}"'
+    )
+    filt = (
+        f'Filter="{_escape_xml_attr(filter_expr)}"'
+        if filter_expr else 'Filter="{x:Null}"'
+    )
+    order = (
+        f'OrderBy="{_escape_xml_attr(order_by_expr)}"'
+        if order_by_expr else 'OrderBy="{x:Null}"'
+    )
+    sel = (
+        f'Select="{_escape_xml_attr(select_expr)}"'
+        if select_expr else 'Select="{x:Null}"'
+    )
+    expand = (
+        f'Expand="{_escape_xml_attr(expand_expr)}"'
+        if expand_expr else 'Expand="{x:Null}"'
+    )
+    top = (
+        f'Top="{_escape_xml_attr(top_expr)}"'
+        if top_expr else 'Top="{x:Null}"'
+    )
+    skip = (
+        f'Skip="{_escape_xml_attr(skip_expr)}"'
+        if skip_expr else 'Skip="{x:Null}"'
+    )
+    timeout = (
+        f'TimeoutMs="[{_escape_vb_expr(timeout_ms_expr)}]"'
+        if timeout_ms_expr else 'TimeoutMs="{x:Null}"'
+    )
+
+    return (
+        f'{i}<upau:GetAppTasks {_UPAU_XMLNS} '
+        f'{expand} {filt} {order} {sel} {skip} {catalog} {timeout} {top} '
+        f'DisplayName="{dn}" '
+        f'TaskObjects="[{task_objects_variable}]" '
+        f'sap:VirtualizedContainerService.HintSize="400,200" '
+        f'sap2010:WorkflowViewState.IdRef="{id_ref}" />'
+    )
+
+
+# ---------------------------------------------------------------------------
+# WaitForUserActionAndResume (User-Action persistence point)
+# ---------------------------------------------------------------------------
+
+def gen_wait_for_user_action_and_resume(id_ref,
+                                        task_input_expr="tasks.First",
+                                        task_action_variable="",
+                                        task_output_variable="",
+                                        status_message_expr="",
+                                        timeout_ms_expr="",
+                                        display_name="Wait For App Task and Resume",
+                                        indent="    "):
+    """Generate WaitForUserActionAndResume — suspend workflow until App Task completes.
+
+    Counterpart of WaitForFormTaskAndResume / WaitForExternalTaskAndResume for
+    App Tasks (user-action tasks). MUST live in Main.xaml — this is a
+    persistence point and Studio refuses sub-workflow placement.
+
+    Requires namespace:
+        xmlns:upau="clr-namespace:UiPath.Persistence.Activities.UserAction;assembly=UiPath.Persistence.Activities"
+
+    Args:
+        task_input_expr: VB expression for the input task object — typically
+                         the first item of a GetAppTasks result, e.g.
+                         ``"tasks.First"`` (the default mirrors the
+                         ground-truth template) or
+                         ``"appTasks.FirstOrDefault()"``.
+        task_action_variable: Optional — receives the user-supplied action
+                              string (no brackets). Empty → `{x:Null}`.
+        task_output_variable: Optional — receives the updated task object
+                              (no brackets). Empty → `{x:Null}`.
+        status_message_expr: Optional VB expression for a status message
+                             shown while waiting.
+        timeout_ms_expr: Optional VB expression for resume timeout.
+    """
+    dn = _escape_xml_attr(display_name)
+    i = indent
+
+    status = (
+        f'StatusMessage="[{_escape_vb_expr(status_message_expr)}]"'
+        if status_message_expr else 'StatusMessage="{x:Null}"'
+    )
+    action = (
+        f'TaskAction="[{task_action_variable}]"'
+        if task_action_variable else 'TaskAction="{x:Null}"'
+    )
+    output = (
+        f'TaskOutput="[{task_output_variable}]"'
+        if task_output_variable else 'TaskOutput="{x:Null}"'
+    )
+    timeout = (
+        f'TimeoutMs="[{_escape_vb_expr(timeout_ms_expr)}]"'
+        if timeout_ms_expr else 'TimeoutMs="{x:Null}"'
+    )
+
+    return (
+        f'{i}<upau:WaitForUserActionAndResume {_UPAU_XMLNS} '
+        f'{status} '
+        f'{action} '
+        f'{output} '
+        f'{timeout} '
+        f'WaitItemDataObject="{{x:Null}}" '
+        f'DisplayName="{dn}" '
+        f'TaskInput="[{_escape_vb_expr(task_input_expr)}]" '
+        f'sap:VirtualizedContainerService.HintSize="400,100" '
+        f'sap2010:WorkflowViewState.IdRef="{id_ref}" />'
+    )

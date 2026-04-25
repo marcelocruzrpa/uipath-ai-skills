@@ -38,6 +38,7 @@ from .generators import (
     gen_create_form_task, gen_wait_for_form_task,
     gen_create_external_task, gen_wait_for_external_task,
     gen_get_form_tasks, gen_complete_task, gen_assign_tasks,
+    gen_forward_task, gen_get_app_tasks, gen_wait_for_user_action_and_resume,
     form_layout_to_external_file,
 )
 from .lint_rules import (
@@ -63,6 +64,27 @@ register_generator("wait_for_external_task", gen_wait_for_external_task, display
 register_generator("get_form_tasks", gen_get_form_tasks, display_name="GetFormTasks")
 register_generator("complete_task", gen_complete_task, display_name="CompleteTask")
 register_generator("assign_tasks", gen_assign_tasks, display_name="AssignTasks")
+
+# --- Generators for activities harvested into the version profile but not
+#     covered by the legacy gen_* set above. battle_test_activities.py builds
+#     a spec with `gen` set to the lowercase activity name, so register under
+#     the lowercase form (no underscores) so dispatch resolves before the
+#     annotation fallback. Snake-case aliases are also registered for
+#     human-authored specs.
+register_generator("forwardtask", gen_forward_task, display_name="ForwardTask")
+register_generator("forward_task", gen_forward_task, display_name="ForwardTask")
+register_generator("getapptasks", gen_get_app_tasks, display_name="GetAppTasks")
+register_generator("get_app_tasks", gen_get_app_tasks, display_name="GetAppTasks")
+register_generator(
+    "waitforuseractionandresume",
+    gen_wait_for_user_action_and_resume,
+    display_name="WaitForUserActionAndResume",
+)
+register_generator(
+    "wait_for_user_action_and_resume",
+    gen_wait_for_user_action_and_resume,
+    display_name="WaitForUserActionAndResume",
+)
 
 # --- Lint rules ---
 register_lint(lint_tasks, "lint_tasks")
@@ -94,6 +116,11 @@ register_namespace(
     "upat",
     "clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities"
 )
+# UserAction sub-namespace — hosts GetAppTasks and WaitForUserActionAndResume.
+register_namespace(
+    "upau",
+    "clr-namespace:UiPath.Persistence.Activities.UserAction;assembly=UiPath.Persistence.Activities"
+)
 
 # --- Type mappings (short spec name → prefixed XAML type) ---
 register_type_mapping("FormTaskData", "upaf:FormTaskData")
@@ -114,6 +141,7 @@ register_known_activities(
     "CreateFormTask", "WaitForFormTaskAndResume",
     "CreateExternalTask", "WaitForExternalTaskAndResume",
     "GetFormTasks", "CompleteTask", "AssignTasks",
+    "ForwardTask", "GetAppTasks", "WaitForUserActionAndResume",
 )
 
 # --- Key activities (DisplayName required) ---
@@ -121,6 +149,8 @@ register_key_activities(
     "upaf:CreateFormTask", "upaf:WaitForFormTaskAndResume",
     "upae:CreateExternalTask", "upae:WaitForExternalTaskAndResume",
     "upaf:GetFormTasks", "upat:CompleteTask", "upat:AssignTasks",
+    "upat:ForwardTask",
+    "upau:GetAppTasks", "upau:WaitForUserActionAndResume",
 )
 
 # --- Hallucination patterns ---
