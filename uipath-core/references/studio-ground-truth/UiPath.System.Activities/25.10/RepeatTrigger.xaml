@@ -1,0 +1,3 @@
+<Activity x:Class="RepeatTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:RepeatTrigger Interval="{x:Null}" Enabled="True" SchedulingMode="Sequential" TriggerId="91edd8e1-608e-4850-9c80-5fd059a5ffb5" />
+</Activity>

@@ -13,7 +13,7 @@
         "Target"
       ],
       "version_attrs": {},
-      "xaml_template": null,
+      "xaml_template": "<uix:NNativeEventTrigger x:TypeArguments=\"uuat:EmptyArgs\" AvailableEventTypes=\"CtrlTextChange,CtrlFocusGained,CtrlFocusLost,ElementAppeared,ElementDisappeared,CtrlStateChanged,CtrlSelectionChanged,MouseClick,KeyPress\" DisplayName=\"Application Event Trigger\" Enabled=\"True\" SchedulingMode=\"Sequential\" Version=\"V5\"><uix:NNativeEventTrigger.Target><uix:TargetAnchorable SearchSteps=\"Selector\" Version=\"V6\" WaitForReadyArgument=\"Interactive\" /></uix:NNativeEventTrigger.Target></uix:NNativeEventTrigger>",
       "clr_namespace": null,
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": null,
@@ -64,7 +64,7 @@
         "Timeout"
       ],
       "version_attrs": {},
-      "xaml_template": null,
+      "xaml_template": "<uix:NGetAttributeGeneric x:TypeArguments=\"x:Int32\" Result=\"{x:Null}\" Attribute=\"PID\" DisplayName=\"Get Attribute\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\"><uix:NGetAttributeGeneric.Target><uix:TargetAnchorable ElementType=\"Text\" ElementVisibilityArgument=\"Interactive\" SearchSteps=\"Selector\" Version=\"V6\" WaitForReadyArgument=\"Interactive\" /></uix:NGetAttributeGeneric.Target></uix:NGetAttributeGeneric>",
       "clr_namespace": null,
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": null,
@@ -72,7 +72,7 @@
     },
     "GoogleCloudOCR": {
       "child_elements": [],
-      "doc_name": "GoogleCloudOCR",
+      "doc_name": "Google Cloud OCR",
       "name": "GoogleCloudOCR",
       "namespace_prefix": "ui",
       "properties": [
@@ -110,7 +110,7 @@
     },
     "MicrosoftAzureComputerVisionOCR": {
       "child_elements": [],
-      "doc_name": "MicrosoftAzureComputerVisionOCR",
+      "doc_name": "Microsoft Azure Computer Vision OCR",
       "name": "MicrosoftAzureComputerVisionOCR",
       "namespace_prefix": "ui",
       "properties": [
@@ -184,7 +184,7 @@
       "version_attrs": {
         "NApplicationCard": "V2"
       },
-      "xaml_template": "<uix:NApplicationCard HealingAgentBehavior=\"Job\" ScopeGuid=\"5a6dbf82-25ba-414a-9e0a-2f94a9bbbcb0\">\n\n  <uix:NApplicationCard.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"WSSessionData\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NApplicationCard.Body>\n\n  <uix:NApplicationCard.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\">\n\n      <ActivityFunc.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:Image\" Name=\"Image\" />\n\n      </ActivityFunc.Argument>\n\n    </ActivityFunc>\n\n  </uix:NApplicationCard.OCREngine>\n\n</uix:NApplicationCard>",
+      "xaml_template": "<uix:NApplicationCard AttachMode=\"ByInstance\" HealingAgentBehavior=\"Job\" IsDisplayNameAuto=\"True\" ScopeGuid=\"e7935895-731f-4ccc-af43-bcaf97460019\" Version=\"V2\">\n\n  <uix:NApplicationCard.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"WSSessionData\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NApplicationCard.Body>\n\n  <uix:NApplicationCard.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\">\n\n      <ActivityFunc.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:Image\" Name=\"Image\" />\n\n      </ActivityFunc.Argument>\n\n    </ActivityFunc>\n\n  </uix:NApplicationCard.OCREngine>\n\n  <uix:NApplicationCard.TargetApp>\n\n    <uix:TargetApp Area=\"0, 0, 0, 0\" Version=\"V2\" />\n\n  </uix:NApplicationCard.TargetApp>\n\n</uix:NApplicationCard>",
       "class_name": "UiPath.UIAutomationNext.Activities.NApplicationCard",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -192,7 +192,9 @@
       "harvestable": true
     },
     "NBlockUserInput": {
-      "child_elements": [],
+      "child_elements": [
+        "Body"
+      ],
       "doc_name": "BlockUserInput",
       "name": "NBlockUserInput",
       "namespace_prefix": "uix",
@@ -207,8 +209,10 @@
         "OutUiElement",
         "Target"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NBlockUserInput />",
+      "version_attrs": {
+        "NBlockUserInput": "V5"
+      },
+      "xaml_template": "<uix:NBlockUserInput DisplayName=\"Block User Input\" KeyModifiers=\"Alt\" Keys=\"F10\" Version=\"V5\">\n\n  <uix:NBlockUserInput.Body>\n\n    <Sequence DisplayName=\"Do\" />\n\n  </uix:NBlockUserInput.Body>\n\n</uix:NBlockUserInput>",
       "class_name": "UiPath.UIAutomationNext.Activities.NBlockUserInput",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -216,7 +220,9 @@
       "harvestable": true
     },
     "NBrowserDialogScope": {
-      "child_elements": [],
+      "child_elements": [
+        "Body"
+      ],
       "doc_name": "BrowserDialogScope",
       "name": "NBrowserDialogScope",
       "namespace_prefix": "uix",
@@ -233,8 +239,10 @@
         "Timeout",
         "WaitForDialogToAppearTimeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NBrowserDialogScope DialogMessage=\"{x:Null}\" />",
+      "version_attrs": {
+        "NBrowserDialogScope": "V5"
+      },
+      "xaml_template": "<uix:NBrowserDialogScope DialogMessage=\"{x:Null}\" DialogResponse=\"Cancel\" DisplayName=\"Browser Dialog Scope\" Version=\"V5\" WaitForDialogToAppearTimeout=\"30\">\n\n  <uix:NBrowserDialogScope.Body>\n\n    <Sequence DisplayName=\"Actions that trigger the dialog\" />\n\n  </uix:NBrowserDialogScope.Body>\n\n</uix:NBrowserDialogScope>",
       "class_name": "UiPath.UIAutomationNext.Activities.NBrowserDialogScope",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -242,7 +250,9 @@
       "harvestable": true
     },
     "NBrowserFilePickerScope": {
-      "child_elements": [],
+      "child_elements": [
+        "Body"
+      ],
       "doc_name": "BrowserFilePickerScope",
       "name": "NBrowserFilePickerScope",
       "namespace_prefix": "uix",
@@ -258,8 +268,10 @@
         "Timeout",
         "WaitForDialogToAppearTimeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NBrowserFilePickerScope />",
+      "version_attrs": {
+        "NBrowserFilePickerScope": "V5"
+      },
+      "xaml_template": "<uix:NBrowserFilePickerScope DisplayName=\"Browser File Picker Scope\" Version=\"V5\" WaitForDialogToAppearTimeout=\"30\">\n\n  <uix:NBrowserFilePickerScope.Body>\n\n    <Sequence DisplayName=\"Actions that trigger the file picker\" />\n\n  </uix:NBrowserFilePickerScope.Body>\n\n</uix:NBrowserFilePickerScope>",
       "class_name": "UiPath.UIAutomationNext.Activities.NBrowserFilePickerScope",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -283,8 +295,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NCheck Action=\"Check\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NCheck": "V5"
+      },
+      "xaml_template": "<uix:NCheck Action=\"Check\" DisplayName=\"Check/Uncheck\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NCheck",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -305,8 +319,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NCheckElement Result=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NCheckElement": "V5"
+      },
+      "xaml_template": "<uix:NCheckElement Result=\"{x:Null}\" DelayBefore=\"0\" DisplayName=\"Check Element\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NCheckElement",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -314,7 +330,10 @@
       "harvestable": true
     },
     "NCheckState": {
-      "child_elements": [],
+      "child_elements": [
+        "IfExists",
+        "IfNotExists"
+      ],
       "doc_name": "CheckAppState",
       "name": "NCheckState",
       "namespace_prefix": "uix",
@@ -330,8 +349,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NCheckState HealingAgentBehavior=\"Disabled\" />",
+      "version_attrs": {
+        "NCheckState": "V5"
+      },
+      "xaml_template": "<uix:NCheckState DisplayName=\"Check App State\" HealingAgentBehavior=\"Disabled\" Version=\"V5\">\n\n  <uix:NCheckState.IfExists>\n\n    <Sequence DisplayName=\"Target appears\" />\n\n  </uix:NCheckState.IfExists>\n\n  <uix:NCheckState.IfNotExists>\n\n    <Sequence DisplayName=\"Target does not appear\" />\n\n  </uix:NCheckState.IfNotExists>\n\n</uix:NCheckState>",
       "class_name": "UiPath.UIAutomationNext.Activities.NCheckState",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -365,7 +386,7 @@
       "version_attrs": {
         "NClick": "V5"
       },
-      "xaml_template": "<uix:NClick ActivateBefore=\"True\" ClickType=\"Single\" HealingAgentBehavior=\"SameAsCard\" KeyModifiers=\"None\" MouseButton=\"Left\" />",
+      "xaml_template": "<uix:NClick ActivateBefore=\"True\" ClickType=\"Single\" DisplayName=\"Click\" HealingAgentBehavior=\"SameAsCard\" KeyModifiers=\"None\" MouseButton=\"Left\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NClick",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -409,8 +430,10 @@
         "PopupHandled",
         "PreferredButtons"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NClosePopup PopupException=\"{x:Null}\" PopupHandled=\"{x:Null}\" PreferredButtons=\"{x:Null}\" />",
+      "version_attrs": {
+        "NClosePopup": "V5"
+      },
+      "xaml_template": "<uix:NClosePopup PopupException=\"{x:Null}\" PopupHandled=\"{x:Null}\" DisplayName=\"Close Popup\" PreferredButtons=\"[New String(){&quot;Close&quot;, &quot;Cancel&quot;}]\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NClosePopup",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -445,7 +468,9 @@
       "harvestable": true
     },
     "NElementScope": {
-      "child_elements": [],
+      "child_elements": [
+        "Body"
+      ],
       "doc_name": "ElementScope",
       "name": "NElementScope",
       "namespace_prefix": "uix",
@@ -457,8 +482,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NElementScope ScopeGuid=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" InteractionMode=\"HardwareEvents\" IsLoose=\"False\" />",
+      "version_attrs": {
+        "NElementScope": "V5"
+      },
+      "xaml_template": "<uix:NElementScope DisplayName=\"Element Scope\" HealingAgentBehavior=\"SameAsCard\" InteractionMode=\"HardwareEvents\" IsLoose=\"False\" ScopeGuid=\"691fed1f-41b4-4681-abd6-e997aa777027\" Version=\"V5\">\n\n  <uix:NElementScope.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"ContextTarget\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NElementScope.Body>\n\n</uix:NElementScope>",
       "class_name": "UiPath.UIAutomationNext.Activities.NElementScope",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -466,10 +493,13 @@
       "harvestable": true
     },
     "NExtractDataGeneric": {
-      "child_elements": [],
+      "child_elements": [
+        "NextLink",
+        "Target"
+      ],
       "doc_name": "ExtractData",
       "name": "NExtractDataGeneric",
-      "namespace_prefix": null,
+      "namespace_prefix": "uix",
       "properties": [
         "ContinueOnError",
         "DataTable",
@@ -488,18 +518,22 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": null,
+      "version_attrs": {
+        "NExtractDataGeneric": "V5"
+      },
+      "xaml_template": "<uix:NExtractDataGeneric x:TypeArguments=\"sd2:DataTable\" ContinueOnError=\"True\" DisplayName=\"Extract Table Data\" ExtractDataSettings=\"{x:Null}\" ExtractMetadata=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" LimitExtractionTo=\"None\" MaximumResults=\"0\" Version=\"V5\"><uix:NExtractDataGeneric.NextLink><uix:TargetAnchorable ElementType=\"Text\" ElementVisibilityArgument=\"Interactive\" SearchSteps=\"Selector\" Version=\"V6\" WaitForReadyArgument=\"Interactive\"><uix:TargetAnchorable.PointOffset><uix:PointOffset X=\"0\" Y=\"0\" /></uix:TargetAnchorable.PointOffset></uix:TargetAnchorable></uix:NExtractDataGeneric.NextLink><uix:NExtractDataGeneric.Target><uix:TargetAnchorable ElementVisibilityArgument=\"Interactive\" SearchSteps=\"Selector\" Version=\"V6\" WaitForReadyArgument=\"Interactive\" /></uix:NExtractDataGeneric.Target></uix:NExtractDataGeneric>",
       "clr_namespace": null,
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": null,
       "harvestable": true
     },
     "NExtractFormDataGeneric": {
-      "child_elements": [],
+      "child_elements": [
+        "FieldMappings"
+      ],
       "doc_name": "ExtractFormData",
       "name": "NExtractFormDataGeneric",
-      "namespace_prefix": null,
+      "namespace_prefix": "uix",
       "properties": [
         "ContinueOnError",
         "DelayAfter",
@@ -511,8 +545,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": null,
+      "version_attrs": {
+        "NExtractFormDataGeneric": "V5"
+      },
+      "xaml_template": "<uix:NExtractFormDataGeneric x:TypeArguments=\"uuadsfb:FormData\" DisplayName=\"Extract Form Data\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\"><uix:NExtractFormDataGeneric.FieldMappings><scg:Dictionary x:TypeArguments=\"x:String, x:String\"><x:String x:Key=\"Username\">Username</x:String><x:String x:Key=\"Password\">Password</x:String></scg:Dictionary></uix:NExtractFormDataGeneric.FieldMappings></uix:NExtractFormDataGeneric>",
       "clr_namespace": null,
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": null,
@@ -536,8 +572,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NFillForm HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NFillForm": "V5"
+      },
+      "xaml_template": "<uix:NFillForm DisplayName=\"Fill Form\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.Semantic.Activities.NFillForm",
       "clr_namespace": "UiPath.Semantic.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -589,8 +627,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NForEachUiElement ExtractDataSettings=\"{x:Null}\" ExtractMetadata=\"{x:Null}\" MaximumResults=\"{x:Null}\" LimitExtractionTo=\"Rows\">\n\n  <uix:NForEachUiElement.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Int32\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NForEachUiElement.Body>\n\n  <uix:NForEachUiElement.Variables>\n\n    <sco:Collection x:TypeArguments=\"Variable\" />\n\n  </uix:NForEachUiElement.Variables>\n\n  <uix:NForEachUiElement.VariablesMetadata>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, scg:List(uuam:VariableMetadata)\" />\n\n  </uix:NForEachUiElement.VariablesMetadata>\n\n</uix:NForEachUiElement>",
+      "version_attrs": {
+        "NForEachUiElement": "V5"
+      },
+      "xaml_template": "<uix:NForEachUiElement ExtractDataSettings=\"{x:Null}\" ExtractMetadata=\"{x:Null}\" MaximumResults=\"{x:Null}\" DisplayName=\"For Each UI Element\" LimitExtractionTo=\"Rows\" Version=\"V5\">\n\n  <uix:NForEachUiElement.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Int32\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NForEachUiElement.Body>\n\n  <uix:NForEachUiElement.Variables>\n\n    <sco:Collection x:TypeArguments=\"Variable\" />\n\n  </uix:NForEachUiElement.Variables>\n\n  <uix:NForEachUiElement.VariablesMetadata>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, scg:List(uuam:VariableMetadata)\" />\n\n  </uix:NForEachUiElement.VariablesMetadata>\n\n</uix:NForEachUiElement>",
       "class_name": "UiPath.UIAutomationNext.Activities.NForEachUiElement",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -612,8 +652,10 @@
         "SourceUserDataFolder",
         "UserProfile"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NGetBrowserData SessionData=\"{x:Null}\" />",
+      "version_attrs": {
+        "NGetBrowserData": "V5"
+      },
+      "xaml_template": "<uix:NGetBrowserData SessionData=\"{x:Null}\" DisplayName=\"Get Browser Data\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NGetBrowserData",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -636,8 +678,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NGetClipboard Result=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NGetClipboard": "V5"
+      },
+      "xaml_template": "<uix:NGetClipboard Result=\"{x:Null}\" DisplayName=\"Get Clipboard\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NGetClipboard",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -666,7 +710,7 @@
       "version_attrs": {
         "NGetText": "V5"
       },
-      "xaml_template": "<uix:NGetText HealingAgentBehavior=\"SameAsCard\" />",
+      "xaml_template": "<uix:NGetText DisplayName=\"Get Text\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NGetText",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -686,8 +730,10 @@
         "Timeout",
         "WaitForReady"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NGetUrl CurrentUrl=\"{x:Null}\" />",
+      "version_attrs": {
+        "NGetUrl": "V5"
+      },
+      "xaml_template": "<uix:NGetUrl CurrentUrl=\"{x:Null}\" DisplayName=\"Get URL\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NGetUrl",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -709,7 +755,7 @@
       "version_attrs": {
         "NGoToUrl": "V5"
       },
-      "xaml_template": "<uix:NGoToUrl />",
+      "xaml_template": "<uix:NGoToUrl DisplayName=\"Go To URL\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NGoToUrl",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -733,8 +779,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NHighlight Color=\"Gold\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NHighlight": "V5"
+      },
+      "xaml_template": "<uix:NHighlight Color=\"Gold\" DisplayName=\"Highlight\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NHighlight",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -760,8 +808,10 @@
         "Timeout",
         "VerifyOptions"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NHover HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NHover": "V5"
+      },
+      "xaml_template": "<uix:NHover DisplayName=\"Hover\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NHover",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -786,8 +836,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NInjectJsScript InputParameter=\"{x:Null}\" ScriptCode=\"{x:Null}\" ScriptOutput=\"{x:Null}\" />",
+      "version_attrs": {
+        "NInjectJsScript": "V5"
+      },
+      "xaml_template": "<uix:NInjectJsScript InputParameter=\"{x:Null}\" ScriptOutput=\"{x:Null}\" DisplayName=\"Inject Js Script\" ScriptCode=\"function (element, input) {&#xD;&#xA;&#xD;&#xA;// Add your javascript code here ...&#xD;&#xA;&#xD;&#xA;}\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NInjectJsScript",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -817,8 +869,10 @@
         "Timeout",
         "VerifyOptions"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NKeyboardShortcuts ActivateBefore=\"True\" ClickBeforeMode=\"None\" HealingAgentBehavior=\"SameAsCard\" InteractionMode=\"HardwareEvents\" />",
+      "version_attrs": {
+        "NKeyboardShortcuts": "V5"
+      },
+      "xaml_template": "<uix:NKeyboardShortcuts ActivateBefore=\"True\" ClickBeforeMode=\"None\" DisplayName=\"Keyboard Shortcuts\" HealingAgentBehavior=\"SameAsCard\" InteractionMode=\"HardwareEvents\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NKeyboardShortcuts",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -839,8 +893,10 @@
         "SchedulingMode",
         "Target"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NKeyboardTrigger Enabled=\"True\" SchedulingMode=\"Sequential\" TriggerId=\"10ae2088-35bc-4444-94e7-38d1d82537c8\" />",
+      "version_attrs": {
+        "NKeyboardTrigger": "V5"
+      },
+      "xaml_template": "<uix:NKeyboardTrigger BlockEvent=\"False\" DisplayName=\"Keypress Event Trigger\" Enabled=\"True\" IncludeChildren=\"True\" KeyModifiers=\"None\" Mode=\"Down\" SchedulingMode=\"Sequential\" TriggerId=\"bf6949df-cb29-4b0c-aa2c-767334b9558d\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NKeyboardTrigger",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -848,7 +904,9 @@
       "harvestable": true
     },
     "NMouseScroll": {
-      "child_elements": [],
+      "child_elements": [
+        "SearchedElement"
+      ],
       "doc_name": "MouseScroll",
       "name": "NMouseScroll",
       "namespace_prefix": "uix",
@@ -871,8 +929,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NMouseScroll Direction=\"{x:Null}\" KeyModifiers=\"{x:Null}\" MovementUnits=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NMouseScroll": "V5"
+      },
+      "xaml_template": "<uix:NMouseScroll KeyModifiers=\"{x:Null}\" Direction=\"Down\" DisplayName=\"Mouse Scroll\" HealingAgentBehavior=\"SameAsCard\" InteractionMode=\"HardwareEvents\" MovementUnits=\"10\" Version=\"V5\">\n\n  <uix:NMouseScroll.SearchedElement>\n\n    <uix:SearchedElement>\n\n      <uix:SearchedElement.Timeout>\n\n        <InArgument x:TypeArguments=\"x:Double\" />\n\n      </uix:SearchedElement.Timeout>\n\n    </uix:SearchedElement>\n\n  </uix:NMouseScroll.SearchedElement>\n\n</uix:NMouseScroll>",
       "class_name": "UiPath.UIAutomationNext.Activities.NMouseScroll",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -891,8 +951,10 @@
         "DelayBefore",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NNavigateBrowser />",
+      "version_attrs": {
+        "NNavigateBrowser": "V5"
+      },
+      "xaml_template": "<uix:NNavigateBrowser DisplayName=\"Navigate Browser - Go Back\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NNavigateBrowser",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -972,7 +1034,7 @@
       "version_attrs": {
         "NSAPClickToolbarButton": "V5"
       },
-      "xaml_template": "<uix:NSAPClickToolbarButton Item=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "xaml_template": "<uix:NSAPClickToolbarButton Item=\"{x:Null}\" DisplayName=\"Click Toolbar Button\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSAPClickToolbarButton",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -999,8 +1061,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSAPExpandALVHierarchicalTable AllColumns=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" SelectLevel1=\"False\" />",
+      "version_attrs": {
+        "NSAPExpandALVHierarchicalTable": "V5"
+      },
+      "xaml_template": "<uix:NSAPExpandALVHierarchicalTable AllColumns=\"{x:Null}\" DisplayName=\"Expand ALV Hierarchical Table\" HealingAgentBehavior=\"SameAsCard\" SelectLevel1=\"False\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSAPExpandALVHierarchicalTable",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1113,7 +1177,7 @@
       "version_attrs": {
         "NSAPLogon": "V2"
       },
-      "xaml_template": "<uix:NSAPLogon HealingAgentBehavior=\"Job\" ScopeGuid=\"6644ba5d-ce7e-499b-9da1-957ca5b1da51\">\n\n  <uix:NSAPLogon.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"WSSessionData\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NSAPLogon.Body>\n\n  <uix:NSAPLogon.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\">\n\n      <ActivityFunc.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:Image\" Name=\"Image\" />\n\n      </ActivityFunc.Argument>\n\n    </ActivityFunc>\n\n  </uix:NSAPLogon.OCREngine>\n\n</uix:NSAPLogon>",
+      "xaml_template": "<uix:NSAPLogon AttachMode=\"ByInstance\" CloseMode=\"Never\" DelayBetweenRetries=\"0.5\" HealingAgentBehavior=\"Job\" Retries=\"5\" ScopeGuid=\"67fa4dc2-1293-44b3-91de-1f015c765264\" Version=\"V2\">\n\n  <uix:NSAPLogon.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"WSSessionData\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NSAPLogon.Body>\n\n  <uix:NSAPLogon.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\">\n\n      <ActivityFunc.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:Image\" Name=\"Image\" />\n\n      </ActivityFunc.Argument>\n\n    </ActivityFunc>\n\n  </uix:NSAPLogon.OCREngine>\n\n  <uix:NSAPLogon.TargetApp>\n\n    <uix:TargetApp Area=\"0, 0, 0, 0\" FilePath=\"C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe\" Selector=\"&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;\" Version=\"V2\" />\n\n  </uix:NSAPLogon.TargetApp>\n\n</uix:NSAPLogon>",
       "class_name": "UiPath.UIAutomationNext.Activities.NSAPLogon",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1140,7 +1204,7 @@
       "version_attrs": {
         "NSAPReadStatusbar": "V5"
       },
-      "xaml_template": "<uix:NSAPReadStatusbar MessageData=\"{x:Null}\" MessageId=\"{x:Null}\" MessageNumber=\"{x:Null}\" MessageText=\"{x:Null}\" MessageType=\"{x:Null}\" />",
+      "xaml_template": "<uix:NSAPReadStatusbar MessageData=\"{x:Null}\" MessageId=\"{x:Null}\" MessageNumber=\"{x:Null}\" MessageText=\"{x:Null}\" MessageType=\"{x:Null}\" DisplayName=\"Read Status Bar\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSAPReadStatusbar",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1227,7 +1291,7 @@
       "version_attrs": {
         "NSAPTableCellScope": "V5"
       },
-      "xaml_template": "<uix:NSAPTableCellScope ColumnNames=\"{x:Null}\" RowType=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\">\n\n  <uix:NSAPTableCellScope.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"ContextTarget\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NSAPTableCellScope.Body>\n\n</uix:NSAPTableCellScope>",
+      "xaml_template": "<uix:NSAPTableCellScope ColumnNames=\"{x:Null}\" DisplayName=\"Table Cell Scope\" HealingAgentBehavior=\"SameAsCard\" RowType=\"FirstEmptyRow\" Version=\"V5\">\n\n  <uix:NSAPTableCellScope.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"ContextTarget\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </uix:NSAPTableCellScope.Body>\n\n</uix:NSAPTableCellScope>",
       "class_name": "UiPath.UIAutomationNext.Activities.NSAPTableCellScope",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1254,7 +1318,7 @@
       "version_attrs": {
         "NSelectItem": "V5"
       },
-      "xaml_template": "<uix:NSelectItem Item=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "xaml_template": "<uix:NSelectItem Item=\"{x:Null}\" DisplayName=\"Select Item\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSelectItem",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1273,8 +1337,10 @@
         "DelayBefore",
         "SessionData"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSetBrowserData SessionData=\"{x:Null}\" />",
+      "version_attrs": {
+        "NSetBrowserData": "V5"
+      },
+      "xaml_template": "<uix:NSetBrowserData SessionData=\"{x:Null}\" DisplayName=\"Set Browser Data\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSetBrowserData",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1297,8 +1363,10 @@
         "Text",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSetClipboard Text=\"{x:Null}\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NSetClipboard": "V5"
+      },
+      "xaml_template": "<uix:NSetClipboard Text=\"{x:Null}\" DisplayName=\"Set Clipboard\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSetClipboard",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1320,8 +1388,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSetFocus HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NSetFocus": "V5"
+      },
+      "xaml_template": "<uix:NSetFocus DisplayName=\"Set Focus\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSetFocus",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1340,8 +1410,10 @@
         "DelayBefore",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSetRuntimeBrowser />",
+      "version_attrs": {
+        "NSetRuntimeBrowser": "V5"
+      },
+      "xaml_template": "<uix:NSetRuntimeBrowser BrowserType=\"[DefaultSystemBrowser.BrowserType]\" DisplayName=\"Set Runtime Browser\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSetRuntimeBrowser",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1366,8 +1438,10 @@
         "Text",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NSetText HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NSetText": "V5"
+      },
+      "xaml_template": "<uix:NSetText DisplayName=\"Set Text\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NSetText",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1378,7 +1452,7 @@
       "child_elements": [],
       "doc_name": "UpdateUIElementUsingAI",
       "name": "NSetValue",
-      "namespace_prefix": null,
+      "namespace_prefix": "uix",
       "properties": [
         "ContinueOnError",
         "DelayAfter",
@@ -1392,8 +1466,10 @@
         "Timeout",
         "Value"
       ],
-      "version_attrs": {},
-      "xaml_template": null,
+      "version_attrs": {
+        "NSetValue": "V5"
+      },
+      "xaml_template": "<uix:NSetValue DisplayName=\"Update UI Element\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "clr_namespace": null,
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": null,
@@ -1419,8 +1495,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NTakeScreenshot FileNameMode=\"None\" HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NTakeScreenshot": "V5"
+      },
+      "xaml_template": "<uix:NTakeScreenshot DisplayName=\"Take Screenshot\" FileName=\"screenshot.png\" FileNameMode=\"None\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NTakeScreenshot",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1428,7 +1506,9 @@
       "harvestable": true
     },
     "NTypeInto": {
-      "child_elements": [],
+      "child_elements": [
+        "VerifyOptions"
+      ],
       "doc_name": "TypeInto",
       "name": "NTypeInto",
       "namespace_prefix": "uix",
@@ -1456,7 +1536,7 @@
       "version_attrs": {
         "NTypeInto": "V5"
       },
-      "xaml_template": "<uix:NTypeInto ActivateBefore=\"True\" HealingAgentBehavior=\"SameAsCard\" />",
+      "xaml_template": "<uix:NTypeInto ActivateBefore=\"True\" ClickBeforeMode=\"Single\" ClipboardMode=\"Never\" DisplayName=\"Type Into\" EmptyFieldMode=\"SingleLine\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\">\n\n  <uix:NTypeInto.VerifyOptions>\n\n    <uix:VerifyExecutionTypeIntoOptions Mode=\"Appears\">\n\n      <uix:VerifyExecutionTypeIntoOptions.Retry>\n\n        <InArgument x:TypeArguments=\"x:Boolean\" />\n\n      </uix:VerifyExecutionTypeIntoOptions.Retry>\n\n      <uix:VerifyExecutionTypeIntoOptions.Timeout>\n\n        <InArgument x:TypeArguments=\"x:Double\" />\n\n      </uix:VerifyExecutionTypeIntoOptions.Timeout>\n\n    </uix:VerifyExecutionTypeIntoOptions>\n\n  </uix:NTypeInto.VerifyOptions>\n\n</uix:NTypeInto>",
       "class_name": "UiPath.UIAutomationNext.Activities.NTypeInto",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1512,8 +1592,10 @@
         "Target",
         "Timeout"
       ],
-      "version_attrs": {},
-      "xaml_template": "<uix:NUnblockUserInput HealingAgentBehavior=\"SameAsCard\" />",
+      "version_attrs": {
+        "NUnblockUserInput": "V5"
+      },
+      "xaml_template": "<uix:NUnblockUserInput DisplayName=\"Unblock User Input\" HealingAgentBehavior=\"SameAsCard\" Version=\"V5\" />",
       "class_name": "UiPath.UIAutomationNext.Activities.NUnblockUserInput",
       "clr_namespace": "UiPath.UIAutomationNext.Activities",
       "source_package": "UiPath.UIAutomation.Activities",
@@ -1547,6 +1629,374 @@
       "source_package": "UiPath.UIAutomation.Activities",
       "namespace_match": false,
       "harvestable": true
+    },
+    "Activate": {
+      "doc_name": "Activate",
+      "name": "Activate",
+      "properties": [
+        "DelayBefore",
+        "DelayMS",
+        "Target"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.Activate",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<ui:Activate DelayBefore=\"{x:Null}\" DelayMS=\"{x:Null}\">\n\n  <ui:Activate.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"63fc6cd2-2fa3-44c8-b8e4-d4657730a2a0\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:Activate.Target>\n\n</ui:Activate>"
+    },
+    "CVScope": {
+      "doc_name": "CV Scope",
+      "name": "CVScope",
+      "properties": [
+        "Body",
+        "ContinueOnError",
+        "CvMethod",
+        "DelayBefore",
+        "DesignTimeCacheContainer",
+        "OCREngine",
+        "RequiresDefaultValues",
+        "ScopeId",
+        "ScrollOffset",
+        "SendOnPremData",
+        "Server",
+        "Target",
+        "UseLocalServer",
+        "Version"
+      ],
+      "version_attrs": {
+        "CVScope": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CVScope",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [
+        "Body",
+        "DesignTimeCacheContainer",
+        "OCREngine",
+        "Target"
+      ],
+      "xaml_template": "<p:CVScope ContinueOnError=\"{x:Null}\" DelayBefore=\"{x:Null}\" ScopeId=\"{x:Null}\" ScrollOffset=\"{x:Null}\" Server=\"{x:Null}\" UseLocalServer=\"{x:Null}\" CvMethod=\"ElementDetection, OCR\" RequiresDefaultValues=\"True\" SendOnPremData=\"False\" Version=\"V6\">\n\n  <p:CVScope.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"CVSessionData\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </p:CVScope.Body>\n\n  <p:CVScope.DesignTimeCacheContainer>\n\n    <uc:CvCacheContainer />\n\n  </p:CVScope.DesignTimeCacheContainer>\n\n  <p:CVScope.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\" />\n\n  </p:CVScope.OCREngine>\n\n  <p:CVScope.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"c854a77d-2731-47b9-9a9f-c3c373326514\" WaitForReady=\"INTERACTIVE\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n    </ui:Target>\n\n  </p:CVScope.Target>\n\n</p:CVScope>"
+    },
+    "CvExtractDataTableWithDescriptor": {
+      "doc_name": "Cv Extract Data Table With Descriptor",
+      "name": "CvExtractDataTableWithDescriptor",
+      "properties": [
+        "AddHeaders",
+        "DelayScreenshotAfterScroll",
+        "DesignTimeScaleFactor",
+        "IgnoreEmptyRows",
+        "InRegion",
+        "MaxTableScrollHeightInPixels",
+        "NumberOfScrolls",
+        "RefreshBefore",
+        "Scroll",
+        "ScrollDirection",
+        "ScrollOffset",
+        "Version"
+      ],
+      "version_attrs": {
+        "CvExtractDataTableWithDescriptor": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CvExtractDataTableWithDescriptor",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [],
+      "xaml_template": "<p:CvExtractDataTableWithDescriptor DesignTimeScaleFactor=\"{x:Null}\" InRegion=\"{x:Null}\" ScrollOffset=\"{x:Null}\" AddHeaders=\"True\" DelayScreenshotAfterScroll=\"250\" IgnoreEmptyRows=\"False\" MaxTableScrollHeightInPixels=\"30000\" NumberOfScrolls=\"2\" RefreshBefore=\"True\" Scroll=\"False\" ScrollDirection=\"Down\" Version=\"V6\" />"
+    },
+    "CvGetTextWithDescriptor": {
+      "doc_name": "Cv Get Text With Descriptor",
+      "name": "CvGetTextWithDescriptor",
+      "properties": [
+        "DelayScreenshotAfterScroll",
+        "DesignTimeScaleFactor",
+        "NumberOfScrolls",
+        "RefreshBefore",
+        "ScrollDirection",
+        "ScrollOffset",
+        "Version"
+      ],
+      "version_attrs": {
+        "CvGetTextWithDescriptor": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CvGetTextWithDescriptor",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [],
+      "xaml_template": "<p:CvGetTextWithDescriptor DelayScreenshotAfterScroll=\"{x:Null}\" DesignTimeScaleFactor=\"{x:Null}\" ScrollOffset=\"{x:Null}\" NumberOfScrolls=\"2\" RefreshBefore=\"True\" ScrollDirection=\"Down\" Version=\"V6\" />"
+    },
+    "CvHighlightWithDescriptor": {
+      "doc_name": "Cv Highlight With Descriptor",
+      "name": "CvHighlightWithDescriptor",
+      "properties": [
+        "Color",
+        "DelayScreenshotAfterScroll",
+        "DesignTimeScaleFactor",
+        "HighlightTime",
+        "NumberOfScrolls",
+        "ScrollDirection",
+        "Target",
+        "Version"
+      ],
+      "version_attrs": {
+        "CvHighlightWithDescriptor": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CvHighlightWithDescriptor",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<p:CvHighlightWithDescriptor DelayScreenshotAfterScroll=\"{x:Null}\" DesignTimeScaleFactor=\"{x:Null}\" Color=\"Gold\" HighlightTime=\"1000\" NumberOfScrolls=\"2\" ScrollDirection=\"Down\" Version=\"V6\">\n\n  <p:CvHighlightWithDescriptor.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"40933e5a-c5d8-4978-b2ef-475dc0eef2bf\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </p:CvHighlightWithDescriptor.Target>\n\n</p:CvHighlightWithDescriptor>"
+    },
+    "CvHoverWithDescriptor": {
+      "doc_name": "Cv Hover With Descriptor",
+      "name": "CvHoverWithDescriptor",
+      "properties": [
+        "DelayScreenshotAfterScroll",
+        "DesignTimeScaleFactor",
+        "NumberOfScrolls",
+        "ScrollDirection",
+        "Version"
+      ],
+      "version_attrs": {
+        "CvHoverWithDescriptor": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CvHoverWithDescriptor",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [],
+      "xaml_template": "<p:CvHoverWithDescriptor DelayScreenshotAfterScroll=\"{x:Null}\" DesignTimeScaleFactor=\"{x:Null}\" NumberOfScrolls=\"2\" ScrollDirection=\"Down\" Version=\"V6\" />"
+    },
+    "CvTypeIntoWithDescriptor": {
+      "doc_name": "Cv Type Into With Descriptor",
+      "name": "CvTypeIntoWithDescriptor",
+      "properties": [
+        "Activate",
+        "ClickBeforeTyping",
+        "DelayScreenshotAfterScroll",
+        "DeselectAfter",
+        "DesignTimeScaleFactor",
+        "EmptyField",
+        "NumberOfScrolls",
+        "ScrollDirection",
+        "SendWindowMessages",
+        "SimulateType",
+        "Target",
+        "Version"
+      ],
+      "version_attrs": {
+        "CvTypeIntoWithDescriptor": "V6"
+      },
+      "class_name": "UiPath.CV.Activities.CvTypeIntoWithDescriptor",
+      "clr_namespace": "UiPath.CV.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "p",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<p:CvTypeIntoWithDescriptor DelayScreenshotAfterScroll=\"{x:Null}\" DeselectAfter=\"{x:Null}\" DesignTimeScaleFactor=\"{x:Null}\" SendWindowMessages=\"{x:Null}\" SimulateType=\"{x:Null}\" Activate=\"False\" ClickBeforeTyping=\"False\" EmptyField=\"True\" NumberOfScrolls=\"2\" ScrollDirection=\"Down\" Version=\"V6\">\n\n  <p:CvTypeIntoWithDescriptor.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"c2ad9ff6-d128-46b2-8a78-da588f1ee168\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </p:CvTypeIntoWithDescriptor.Target>\n\n</p:CvTypeIntoWithDescriptor>"
+    },
+    "FindChildren": {
+      "doc_name": "Find Children",
+      "name": "FindChildren",
+      "properties": [
+        "Children",
+        "Filter",
+        "Scope",
+        "Target"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.FindChildren",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<ui:FindChildren Children=\"{x:Null}\" Filter=\"{x:Null}\" Scope=\"FIND_CHILDREN\">\n\n  <ui:FindChildren.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"6cfade3f-54a3-4e2a-beac-b13f09526292\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:FindChildren.Target>\n\n</ui:FindChildren>"
+    },
+    "GetActiveWindow": {
+      "doc_name": "Get Active Window",
+      "name": "GetActiveWindow",
+      "properties": [
+        "ApplicationWindow",
+        "Body"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.GetActiveWindow",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:GetActiveWindow ApplicationWindow=\"{x:Null}\">\n\n  <ui:GetActiveWindow.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Object\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Object\" Name=\"ContextTarget\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:GetActiveWindow.Body>\n\n</ui:GetActiveWindow>"
+    },
+    "GetOCRText": {
+      "doc_name": "Get OCR Text",
+      "name": "GetOCRText",
+      "properties": [
+        "OCREngine",
+        "Target",
+        "Text",
+        "WordsInfo"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.GetOCRText",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "OCREngine",
+        "Target"
+      ],
+      "xaml_template": "<ui:GetOCRText Text=\"{x:Null}\" WordsInfo=\"{x:Null}\">\n\n  <ui:GetOCRText.OCREngine>\n\n    <ActivityFunc x:TypeArguments=\"sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))\">\n\n      <ActivityFunc.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"sd:Image\" Name=\"Image\" />\n\n      </ActivityFunc.Argument>\n\n      <p:UiPathDocumentOCR ApiKey=\"{x:Null}\" Endpoint=\"{x:Null}\" Output=\"{x:Null}\" PredictionId=\"{x:Null}\" Text=\"{x:Null}\" UseLocalServer=\"{x:Null}\" ComputeSkewAngle=\"False\" DisplayName=\"UiPath Document OCR\" ExtractWords=\"True\" Image=\"[Image]\" Language=\"auto\" NoopExecution=\"False\" Profile=\"None\" Scale=\"1\" Timeout=\"100000\" UseSeparateOcrProcess=\"True\" />\n\n    </ActivityFunc>\n\n  </ui:GetOCRText.OCREngine>\n\n  <ui:GetOCRText.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"dea49c04-a646-47cc-9b73-781c1c3a9b34\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:GetOCRText.Target>\n\n</ui:GetOCRText>"
+    },
+    "HideWindow": {
+      "doc_name": "Hide Window",
+      "name": "HideWindow",
+      "properties": [
+        "Window"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.HideWindow",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:HideWindow Window=\"{x:Null}\" />"
+    },
+    "LoadImage": {
+      "doc_name": "Load Image",
+      "name": "LoadImage",
+      "properties": [
+        "FileName",
+        "Image"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.LoadImage",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:LoadImage FileName=\"{x:Null}\" Image=\"{x:Null}\" />"
+    },
+    "SaveImage": {
+      "doc_name": "Save Image",
+      "name": "SaveImage",
+      "properties": [
+        "FileName",
+        "Image"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.SaveImage",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SaveImage FileName=\"{x:Null}\" Image=\"{x:Null}\" />"
+    },
+    "SelectMultipleItems": {
+      "doc_name": "Select Multiple Items",
+      "name": "SelectMultipleItems",
+      "properties": [
+        "AddToSelection",
+        "AlterIfDisabled",
+        "ContinueOnError",
+        "DelayAfter",
+        "DelayBefore",
+        "MultipleItems",
+        "Target"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.SelectMultipleItems",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<ui:SelectMultipleItems AddToSelection=\"{x:Null}\" AlterIfDisabled=\"{x:Null}\" ContinueOnError=\"{x:Null}\" DelayAfter=\"{x:Null}\" DelayBefore=\"{x:Null}\" MultipleItems=\"{x:Null}\">\n\n  <ui:SelectMultipleItems.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"00600add-27d2-4f75-b187-f776bdaf8a16\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:SelectMultipleItems.Target>\n\n</ui:SelectMultipleItems>"
+    },
+    "SetFocus": {
+      "doc_name": "Set Focus",
+      "name": "SetFocus",
+      "properties": [
+        "DelayBefore",
+        "DelayMS",
+        "Target"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.SetFocus",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<ui:SetFocus DelayBefore=\"{x:Null}\" DelayMS=\"{x:Null}\">\n\n  <ui:SetFocus.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"67d2133c-051b-490f-b26b-61357cfabb9d\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:SetFocus.Target>\n\n</ui:SetFocus>"
+    },
+    "SetWebAttribute": {
+      "doc_name": "Set Web Attribute",
+      "name": "SetWebAttribute",
+      "properties": [
+        "Attribute",
+        "ContinueOnError",
+        "DelayAfter",
+        "DelayBefore",
+        "Target",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.SetWebAttribute",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.UIAutomation.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Target"
+      ],
+      "xaml_template": "<ui:SetWebAttribute Attribute=\"{x:Null}\" ContinueOnError=\"{x:Null}\" DelayAfter=\"{x:Null}\" DelayBefore=\"{x:Null}\" Value=\"{x:Null}\">\n\n  <ui:SetWebAttribute.Target>\n\n    <ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" Id=\"312c806d-0f51-4bf8-86a2-c941b6b49eae\">\n\n      <ui:Target.TimeoutMS>\n\n        <InArgument x:TypeArguments=\"x:Int32\" />\n\n      </ui:Target.TimeoutMS>\n\n      <ui:Target.WaitForReady>\n\n        <InArgument x:TypeArguments=\"ui:WaitForReady\" />\n\n      </ui:Target.WaitForReady>\n\n    </ui:Target>\n\n  </ui:SetWebAttribute.Target>\n\n</ui:SetWebAttribute>"
     }
   },
   "source": "UiPath/skills@main/UiPath.UIAutomation.Activities/25.10",

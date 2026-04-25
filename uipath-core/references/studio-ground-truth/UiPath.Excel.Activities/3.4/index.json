@@ -2,7 +2,7 @@
   "package": "UiPath.Excel.Activities",
   "version": "3.4",
   "concrete_version": "3.4.1",
-  "harvested_at": "2026-04-22T06:22:57+00:00",
+  "harvested_at": "2026-04-25T08:15:52+00:00",
   "activities": {
     "AppendRange": {
       "status": "ok",
@@ -15,7 +15,10 @@
       "size": 299
     },
     "ChangeDataRangeModification": {
-      "status": "unresolved"
+      "status": "wizard_unavailable",
+      "note": "not present in installed UiPath.Excel.Activities@3.4; Studio substituted WriteRange",
+      "class_name": null,
+      "harvest_method": "studio_wizard_unavailable"
     },
     "ExcelApplicationCard": {
       "status": "ok",
@@ -81,6 +84,518 @@
       "status": "ok",
       "class_name": "UiPath.Excel.Activities.Business.WriteRangeX",
       "size": 348
+    },
+    "AddSensitivityLabelX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.AddSensitivityLabelX",
+      "size": 372
+    },
+    "AppendCsvFile": {
+      "status": "ok",
+      "class_name": "UiPath.CSV.Activities.AppendCsvFile",
+      "size": 340
+    },
+    "AppendRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.AppendRangeX",
+      "size": 450
+    },
+    "AppendWriteCsvFile": {
+      "status": "ok",
+      "class_name": "UiPath.CSV.Activities.AppendWriteCsvFile",
+      "size": 429
+    },
+    "AutoFitX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.AutoFitX",
+      "size": 319
+    },
+    "ChangePivotTableDataSourceX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ChangePivotTableDataSourceX",
+      "size": 361
+    },
+    "ClearRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ClearRangeX",
+      "size": 323
+    },
+    "CloseWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.CloseWorkbook",
+      "size": 267
+    },
+    "CopyChartToClipboardX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.CopyChartToClipboardX",
+      "size": 382
+    },
+    "CopyPasteRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.CopyPasteRangeX",
+      "size": 377
+    },
+    "CreateNewWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.CreateNewWorkbook",
+      "size": 329
+    },
+    "CreatePivotTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.CreatePivotTable",
+      "size": 778
+    },
+    "CreatePivotTableX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.CreatePivotTableX",
+      "size": 590
+    },
+    "CreatePivotTableXv2": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.CreatePivotTableXv2",
+      "size": 600
+    },
+    "CreateTableX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.CreateTableX",
+      "size": 363
+    },
+    "DeleteColumnX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.DeleteColumnX",
+      "size": 342
+    },
+    "DeleteRowsX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.DeleteRowsX",
+      "size": 368
+    },
+    "DeleteSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.DeleteSheetX",
+      "size": 300
+    },
+    "DuplicateSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.DuplicateSheetX",
+      "size": 342
+    },
+    "ExcelAppendRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelAppendRange",
+      "size": 293
+    },
+    "ExcelApplicationScope": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelApplicationScope",
+      "size": 775
+    },
+    "ExcelAutoFillRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelAutoFillRange",
+      "size": 320
+    },
+    "ExcelCloseWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelCloseWorkbook",
+      "size": 277
+    },
+    "ExcelCopyPasteRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelCopyPasteRange",
+      "size": 356
+    },
+    "ExcelCopySheet": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelCopySheet",
+      "size": 331
+    },
+    "ExcelCreatePivotTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelCreatePivotTable",
+      "size": 347
+    },
+    "ExcelCreateTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelCreateTable",
+      "size": 310
+    },
+    "ExcelDeleteColumn": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelDeleteColumn",
+      "size": 317
+    },
+    "ExcelDeleteRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelDeleteRange",
+      "size": 330
+    },
+    "ExcelFilterTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelFilterTable",
+      "size": 340
+    },
+    "ExcelForEachRow": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExcelForEachRow",
+      "size": 998
+    },
+    "ExcelGetCellColor": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelGetCellColor",
+      "size": 301
+    },
+    "ExcelGetSelectedRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelGetSelectedRange",
+      "size": 280
+    },
+    "ExcelGetTableRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelGetTableRange",
+      "size": 330
+    },
+    "ExcelGetWorkbookSheet": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelGetWorkbookSheet",
+      "size": 297
+    },
+    "ExcelGetWorkbookSheets": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelGetWorkbookSheets",
+      "size": 283
+    },
+    "ExcelInsertColumn": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelInsertColumn",
+      "size": 337
+    },
+    "ExcelInsertDeleteColumns": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelInsertDeleteColumns",
+      "size": 326
+    },
+    "ExcelInsertDeleteRows": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelInsertDeleteRows",
+      "size": 317
+    },
+    "ExcelLookUpRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelLookUpRange",
+      "size": 324
+    },
+    "ExcelReadCell": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelReadCell",
+      "size": 294
+    },
+    "ExcelReadCellFormula": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelReadCellFormula",
+      "size": 309
+    },
+    "ExcelReadColumn": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelReadColumn",
+      "size": 306
+    },
+    "ExcelReadRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelReadRange",
+      "size": 517
+    },
+    "ExcelReadRow": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelReadRow",
+      "size": 300
+    },
+    "ExcelRefreshPivotTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelRefreshPivotTable",
+      "size": 305
+    },
+    "ExcelRemoveDuplicatesRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelRemoveDuplicatesRange",
+      "size": 309
+    },
+    "ExcelSaveWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelSaveWorkbook",
+      "size": 255
+    },
+    "ExcelSelectRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelSelectRange",
+      "size": 289
+    },
+    "ExcelSetRangeColor": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelSetRangeColor",
+      "size": 307
+    },
+    "ExcelSortTable": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelSortTable",
+      "size": 329
+    },
+    "ExcelWriteCell": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelWriteCell",
+      "size": 294
+    },
+    "ExcelWriteRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExcelWriteRange",
+      "size": 328
+    },
+    "ExecuteMacro": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ExecuteMacro",
+      "size": 316
+    },
+    "ExecuteMacroX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExecuteMacroX",
+      "size": 518
+    },
+    "ExportExcelToCsvX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ExportExcelToCsvX",
+      "size": 336
+    },
+    "FillRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FillRangeX",
+      "size": 324
+    },
+    "FindFirstLastDataRowX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FindFirstLastDataRowX",
+      "size": 526
+    },
+    "FindReplaceValueX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FindReplaceValueX",
+      "size": 416
+    },
+    "FormatRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.FormatRangeX",
+      "size": 454
+    },
+    "GetCellColor": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.GetCellColor",
+      "size": 299
+    },
+    "GetCellColorX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.GetCellColorX",
+      "size": 286
+    },
+    "GetSelectedRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Windows.Business.GetSelectedRangeX",
+      "size": 340
+    },
+    "GetSensitivityLabelX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.GetSensitivityLabelX",
+      "size": 347
+    },
+    "GetSheets": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.GetSheets",
+      "size": 257
+    },
+    "GetTableRange": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.GetTableRange",
+      "size": 322
+    },
+    "InsertChart": {
+      "status": "wizard_unavailable",
+      "note": "not present in installed UiPath.Excel.Activities@3.4; Studio substituted CreatePivotTable",
+      "class_name": "UiPath.Excel.Activities.InsertChart",
+      "harvest_method": "studio_wizard_unavailable"
+    },
+    "InsertColumnX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.InsertColumnX",
+      "size": 425
+    },
+    "InsertRowsX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.InsertRowsX",
+      "size": 382
+    },
+    "InsertSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.InsertSheetX",
+      "size": 319
+    },
+    "InvokeVBA": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.InvokeVBA",
+      "size": 309
+    },
+    "InvokeVBAX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.InvokeVBAX",
+      "size": 533
+    },
+    "LookupX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.LookupX",
+      "size": 353
+    },
+    "MatchFunctionX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.MatchFunctionX",
+      "size": 392
+    },
+    "OpenWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.OpenWorkbook",
+      "size": 337
+    },
+    "ProtectSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ProtectSheetX",
+      "size": 377
+    },
+    "ReadCell": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ReadCell",
+      "size": 292
+    },
+    "ReadCellFormula": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ReadCellFormula",
+      "size": 306
+    },
+    "ReadCellFormulaX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ReadCellFormulaX",
+      "size": 325
+    },
+    "ReadCellValueX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.ReadCellValueX",
+      "size": 345
+    },
+    "ReadColumn": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ReadColumn",
+      "size": 304
+    },
+    "ReadCsvFile": {
+      "status": "ok",
+      "class_name": "UiPath.CSV.Activities.ReadCsvFile",
+      "size": 360
+    },
+    "ReadRow": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.ReadRow",
+      "size": 298
+    },
+    "RefreshDataConnectionsX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.RefreshDataConnectionsX",
+      "size": 325
+    },
+    "RefreshPivotTableX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.RefreshPivotTableX",
+      "size": 337
+    },
+    "RemoveDuplicatesX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.RemoveDuplicatesX",
+      "size": 329
+    },
+    "RenameSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.RenameSheetX",
+      "size": 313
+    },
+    "SaveAsPdfX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.SaveAsPdfX",
+      "size": 399
+    },
+    "SaveExcelFileAsX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.SaveExcelFileAsX",
+      "size": 364
+    },
+    "SaveExcelFileX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.SaveExcelFileX",
+      "size": 307
+    },
+    "SelectRangeX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Windows.Business.SelectRangeX",
+      "size": 310
+    },
+    "SequenceX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.SequenceX",
+      "size": 277
+    },
+    "SetRangeColor": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.SetRangeColor",
+      "size": 302
+    },
+    "SortX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.SortX",
+      "size": 454
+    },
+    "TextToColumnsX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.TextToColumnsX",
+      "size": 610
+    },
+    "UnprotectSheetX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.UnprotectSheetX",
+      "size": 352
+    },
+    "UpdateChart": {
+      "status": "wizard_unavailable",
+      "note": "not present in installed UiPath.Excel.Activities@3.4; Studio substituted CreatePivotTable",
+      "class_name": "UiPath.Excel.Activities.UpdateChart",
+      "harvest_method": "studio_wizard_unavailable"
+    },
+    "VLookupX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.VLookupX",
+      "size": 373
+    },
+    "WithWorkbook": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.WithWorkbook",
+      "size": 451
+    },
+    "WriteCell": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.WriteCell",
+      "size": 292
+    },
+    "WriteCellX": {
+      "status": "ok",
+      "class_name": "UiPath.Excel.Activities.Business.WriteCellX",
+      "size": 312
+    },
+    "WriteCsvFile": {
+      "status": "ok",
+      "class_name": "UiPath.CSV.Activities.WriteCsvFile",
+      "size": 375
     }
   }
 }

@@ -1,0 +1,3 @@
+<Activity x:Class="GetEmailById" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:GetEmailById Account="{x:Null}" EmailId="{x:Null}" Result="{x:Null}" />
+</Activity>

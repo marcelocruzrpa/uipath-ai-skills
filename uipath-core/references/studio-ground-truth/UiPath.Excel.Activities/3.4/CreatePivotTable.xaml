@@ -1,0 +1,7 @@
+<Activity x:Class="CreatePivotTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:CreatePivotTable PivotTableFieldsVariable="{x:Null}" PivotTableName="{x:Null}" PlacementCell="{x:Null}" SheetName="{x:Null}" SourceRange="{x:Null}" SourceSheet="{x:Null}" SourceTable="{x:Null}" LayoutRowType="Compact" UseTableSource="False" ValuesMode="Columns">
+    <ui:CreatePivotTable.PivotTableFields>
+      <scg:List x:TypeArguments="InArgument(ui:PivotTableField)" Capacity="0" />
+    </ui:CreatePivotTable.PivotTableFields>
+  </ui:CreatePivotTable>
+</Activity>

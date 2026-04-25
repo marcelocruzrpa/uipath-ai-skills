@@ -1,3 +1,3 @@
-<Activity x:Class="NHover" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NHover HealingAgentBehavior="SameAsCard" />
+<Activity x:Class="Hover" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NHover DisplayName="Hover" HealingAgentBehavior="SameAsCard" Version="V5" />
 </Activity>

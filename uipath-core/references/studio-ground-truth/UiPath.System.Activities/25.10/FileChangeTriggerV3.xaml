@@ -1,0 +1,3 @@
+<Activity x:Class="FileChangeTriggerV3" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:FileChangeTriggerV3 FileNameFilter="{x:Null}" IncludeSubdirectories="{x:Null}" Path="{x:Null}" ChangeType="Changed" Enabled="True" NotifyFilters="FileName" SchedulingMode="Sequential" TriggerId="e8ad3371-f1c8-489b-9cb6-4811f6ba8e6a" />
+</Activity>

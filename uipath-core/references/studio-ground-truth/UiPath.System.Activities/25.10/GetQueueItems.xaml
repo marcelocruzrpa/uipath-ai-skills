@@ -1,0 +1,3 @@
+<Activity x:Class="GetQueueItems" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" QueueName="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" FilterStrategy="Equals" QueueItemStates="All" />
+</Activity>

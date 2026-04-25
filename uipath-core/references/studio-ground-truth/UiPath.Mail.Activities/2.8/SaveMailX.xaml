@@ -1,0 +1,3 @@
+<Activity x:Class="SaveMailX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:SaveMailX FileName="{x:Null}" FolderPath="{x:Null}" MailMessage="{x:Null}" />
+</Activity>

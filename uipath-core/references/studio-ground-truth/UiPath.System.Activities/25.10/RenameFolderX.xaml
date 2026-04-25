@@ -1,0 +1,3 @@
+<Activity x:Class="RenameFolderX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:RenameFolderX FolderPath="{x:Null}" NewName="{x:Null}" />
+</Activity>

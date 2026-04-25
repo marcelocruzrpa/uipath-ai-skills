@@ -1,3 +1,14 @@
-<Activity x:Class="NTypeInto" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NTypeInto ActivateBefore="True" HealingAgentBehavior="SameAsCard" />
+<Activity x:Class="Type Into" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Into" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" Version="V5">
+    <uix:NTypeInto.VerifyOptions>
+      <uix:VerifyExecutionTypeIntoOptions Mode="Appears">
+        <uix:VerifyExecutionTypeIntoOptions.Retry>
+          <InArgument x:TypeArguments="x:Boolean" />
+        </uix:VerifyExecutionTypeIntoOptions.Retry>
+        <uix:VerifyExecutionTypeIntoOptions.Timeout>
+          <InArgument x:TypeArguments="x:Double" />
+        </uix:VerifyExecutionTypeIntoOptions.Timeout>
+      </uix:VerifyExecutionTypeIntoOptions>
+    </uix:NTypeInto.VerifyOptions>
+  </uix:NTypeInto>
 </Activity>

@@ -1,0 +1,12 @@
+<Activity x:Class="ExchangeScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mewd="clr-namespace:Microsoft.Exchange.WebServices.Data;assembly=Microsoft.Exchange.WebServices" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ExchangeScope ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" ExchangeService="{x:Null}" ExistingExchangeService="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" ContinueOnError="True" ExchangeVersion="Exchange2007_SP1">
+    <ui:ExchangeScope.Body>
+      <ActivityAction x:TypeArguments="mewd:ExchangeService">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="mewd:ExchangeService" Name="ExchangeConnection" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ExchangeScope.Body>
+  </ui:ExchangeScope>
+</Activity>

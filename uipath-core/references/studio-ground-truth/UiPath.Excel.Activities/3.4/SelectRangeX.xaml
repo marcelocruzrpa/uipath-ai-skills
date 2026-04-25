@@ -1,0 +1,3 @@
+<Activity x:Class="SelectRangeX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueawb="clr-namespace:UiPath.Excel.Activities.Windows.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueawb:SelectRangeX Range="{x:Null}" />
+</Activity>

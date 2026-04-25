@@ -1,0 +1,3 @@
+<Activity x:Class="GetTransactionItem" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetTransactionItem QueueType="{x:Null}" Reference="{x:Null}" TimeoutMS="{x:Null}" TransactionItem="{x:Null}" FilterStrategy="StartsWith" />
+</Activity>

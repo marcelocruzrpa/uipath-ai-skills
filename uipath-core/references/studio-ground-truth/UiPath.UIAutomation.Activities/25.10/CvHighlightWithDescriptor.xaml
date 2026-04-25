@@ -1,0 +1,14 @@
+<Activity x:Class="CvHighlightWithDescriptor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:CvHighlightWithDescriptor DelayScreenshotAfterScroll="{x:Null}" DesignTimeScaleFactor="{x:Null}" Color="Gold" HighlightTime="1000" NumberOfScrolls="2" ScrollDirection="Down" Version="V6">
+    <p:CvHighlightWithDescriptor.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="40933e5a-c5d8-4978-b2ef-475dc0eef2bf">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </p:CvHighlightWithDescriptor.Target>
+  </p:CvHighlightWithDescriptor>
+</Activity>

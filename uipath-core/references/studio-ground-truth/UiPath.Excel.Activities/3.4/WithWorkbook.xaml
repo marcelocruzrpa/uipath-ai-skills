@@ -1,0 +1,7 @@
+<Activity x:Class="WithWorkbook" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:WithWorkbook Password="{x:Null}" Workbook="{x:Null}" WorkbookPath="{x:Null}" UseExcelApplication="False">
+    <ui:WithWorkbook.Body>
+      <Sequence DisplayName="Do" />
+    </ui:WithWorkbook.Body>
+  </ui:WithWorkbook>
+</Activity>

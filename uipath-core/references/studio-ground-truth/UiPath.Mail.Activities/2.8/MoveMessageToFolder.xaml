@@ -1,0 +1,3 @@
+<Activity x:Class="MoveMessageToFolder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:MoveMessageToFolder ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" MailFolder="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" SharedMailbox="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" ExchangeVersion="Exchange2007_SP1" />
+</Activity>

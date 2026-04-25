@@ -1,0 +1,7 @@
+<Activity x:Class="BeginProcess" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:BeginProcess ProcessName="{x:Null}" UsePackage="True">
+    <ui:BeginProcess.Arguments>
+      <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+    </ui:BeginProcess.Arguments>
+  </ui:BeginProcess>
+</Activity>

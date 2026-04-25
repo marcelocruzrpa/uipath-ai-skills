@@ -1,0 +1,3 @@
+<Activity x:Class="ReadTextFile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ReadTextFile Content="{x:Null}" File="{x:Null}" FileName="{x:Null}" />
+</Activity>

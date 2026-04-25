@@ -1,0 +1,3 @@
+<Activity x:Class="ClearDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ClearDataTable DataTable="{x:Null}" />
+</Activity>

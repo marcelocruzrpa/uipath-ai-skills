@@ -1,9 +1,13 @@
 {
   "activities": {
     "InvokeCode": {
-      "doc_name": "InvokeCode",
+      "doc_name": "Invoke Code",
       "name": "InvokeCode",
-      "properties": [],
+      "properties": [
+        "Arguments",
+        "Code",
+        "ContinueOnError"
+      ],
       "version_attrs": {},
       "xaml_template": "<ui:InvokeCode Code=\"{x:Null}\" ContinueOnError=\"{x:Null}\">\n\n  <ui:InvokeCode.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeCode.Arguments>\n\n</ui:InvokeCode>",
       "namespace_prefix": "ui",
@@ -17,9 +21,14 @@
       "class_name": "UiPath.Core.Activities.InvokeCode"
     },
     "InvokeWorkflowFile": {
-      "doc_name": "InvokeWorkflowFile",
+      "doc_name": "Invoke Workflow File",
       "name": "InvokeWorkflowFile",
-      "properties": [],
+      "properties": [
+        "Arguments",
+        "ArgumentsVariable",
+        "UnSafe",
+        "WorkflowFileName"
+      ],
       "version_attrs": {},
       "xaml_template": "<ui:InvokeWorkflowFile ArgumentsVariable=\"{x:Null}\" WorkflowFileName=\"{x:Null}\" UnSafe=\"False\">\n\n  <ui:InvokeWorkflowFile.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:InvokeWorkflowFile.Arguments>\n\n</ui:InvokeWorkflowFile>",
       "namespace_prefix": "ui",
@@ -33,9 +42,11 @@
       "class_name": "UiPath.Core.Activities.InvokeWorkflowFile"
     },
     "LogMessage": {
-      "doc_name": "LogMessage",
+      "doc_name": "Log Message",
       "name": "LogMessage",
-      "properties": [],
+      "properties": [
+        "Message"
+      ],
       "version_attrs": {},
       "xaml_template": "<ui:LogMessage Message=\"{x:Null}\" />",
       "namespace_prefix": "ui",
@@ -45,6 +56,732 @@
       "namespace_match": false,
       "harvestable": true,
       "class_name": "UiPath.Core.Activities.LogMessage"
+    },
+    "AddOrSubtractFromDate": {
+      "doc_name": "Add Or Subtract From Date",
+      "name": "AddOrSubtractFromDate",
+      "properties": [
+        "AmountOfTime",
+        "SelectedOperation",
+        "Source",
+        "UnitOfTime"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Date.AddOrSubtractFromDate",
+      "clr_namespace": "UiPath.Activities.System.Date",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uasd",
+      "child_elements": [],
+      "xaml_template": "<uasd:AddOrSubtractFromDate AmountOfTime=\"{x:Null}\" Source=\"{x:Null}\" SelectedOperation=\"Add\" UnitOfTime=\"Days\" />"
+    },
+    "BeginProcess": {
+      "doc_name": "Begin Process",
+      "name": "BeginProcess",
+      "properties": [
+        "Arguments",
+        "ProcessName",
+        "UsePackage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.BeginProcess",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "xaml_template": "<ui:BeginProcess ProcessName=\"{x:Null}\" UsePackage=\"False\">\n\n  <ui:BeginProcess.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, InArgument\" />\n\n  </ui:BeginProcess.Arguments>\n\n</ui:BeginProcess>"
+    },
+    "Break": {
+      "doc_name": "Break",
+      "name": "Break",
+      "properties": [],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.Break",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:Break />"
+    },
+    "BulkAddQueueItems": {
+      "doc_name": "Bulk Add Queue Items",
+      "name": "BulkAddQueueItems",
+      "properties": [
+        "QueueItemsDataTable",
+        "QueueName",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.BulkAddQueueItems",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:BulkAddQueueItems QueueItemsDataTable=\"{x:Null}\" QueueName=\"{x:Null}\" TimeoutMS=\"{x:Null}\" />"
+    },
+    "CombineText": {
+      "doc_name": "Combine Text",
+      "name": "CombineText",
+      "properties": [
+        "Separator",
+        "SeparatorKey",
+        "Source"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Text.CombineText",
+      "clr_namespace": "UiPath.Activities.System.Text",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uast",
+      "child_elements": [],
+      "xaml_template": "<uast:CombineText Separator=\"{x:Null}\" Source=\"{x:Null}\" SeparatorKey=\"Custom\" />"
+    },
+    "CommentOut": {
+      "doc_name": "Comment Out",
+      "name": "CommentOut",
+      "properties": [
+        "Body"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.CommentOut",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:CommentOut>\n\n  <ui:CommentOut.Body>\n\n    <Sequence DisplayName=\"Ignored Activities\" />\n\n  </ui:CommentOut.Body>\n\n</ui:CommentOut>"
+    },
+    "Continue": {
+      "doc_name": "Continue",
+      "name": "Continue",
+      "properties": [],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.Continue",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:Continue />"
+    },
+    "CustomInput": {
+      "doc_name": "Custom Input",
+      "name": "CustomInput",
+      "properties": [
+        "Height",
+        "Result",
+        "TopMost",
+        "URI",
+        "Width"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.CustomInput",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:CustomInput Height=\"{x:Null}\" Result=\"{x:Null}\" URI=\"{x:Null}\" Width=\"{x:Null}\" TopMost=\"True\" />"
+    },
+    "EvaluateBusinessRule": {
+      "doc_name": "Evaluate Business Rule",
+      "name": "EvaluateBusinessRule",
+      "properties": [
+        "Arguments",
+        "ArgumentsVariable",
+        "BusinessRule",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.EvaluateBusinessRule",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Arguments"
+      ],
+      "xaml_template": "<ui:EvaluateBusinessRule ArgumentsVariable=\"{x:Null}\" BusinessRule=\"{x:Null}\" TimeoutMS=\"{x:Null}\">\n\n  <ui:EvaluateBusinessRule.Arguments>\n\n    <scg:Dictionary x:TypeArguments=\"x:String, Argument\" />\n\n  </ui:EvaluateBusinessRule.Arguments>\n\n</ui:EvaluateBusinessRule>"
+    },
+    "ExtractDateTime": {
+      "doc_name": "Extract Date Time",
+      "name": "ExtractDateTime",
+      "properties": [
+        "Format",
+        "LocalizationCode",
+        "Results",
+        "Source"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Text.ExtractDateTime",
+      "clr_namespace": "UiPath.Activities.System.Text",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uast",
+      "child_elements": [],
+      "xaml_template": "<uast:ExtractDateTime Format=\"{x:Null}\" Results=\"{x:Null}\" Source=\"{x:Null}\" LocalizationCode=\"(Default)\" />"
+    },
+    "ExtractText": {
+      "doc_name": "Extract Text",
+      "name": "ExtractText",
+      "properties": [
+        "EndingText",
+        "ExtractBaseURLOnly",
+        "ExtractOptions",
+        "FirstMatch",
+        "IgnoreDuplicates",
+        "MatchCase",
+        "Results",
+        "Source",
+        "StartingText"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Text.ExtractText",
+      "clr_namespace": "UiPath.Activities.System.Text",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uast",
+      "child_elements": [],
+      "xaml_template": "<uast:ExtractText EndingText=\"{x:Null}\" FirstMatch=\"{x:Null}\" Results=\"{x:Null}\" Source=\"{x:Null}\" StartingText=\"{x:Null}\" ExtractBaseURLOnly=\"False\" ExtractOptions=\"BetweenStrings\" IgnoreDuplicates=\"False\" MatchCase=\"False\" />"
+    },
+    "FilterDataTable": {
+      "doc_name": "Filter Data Table",
+      "name": "FilterDataTable",
+      "properties": [
+        "DataTable",
+        "Filters",
+        "OutputDataTable",
+        "SelectColumns",
+        "SelectColumnsMode"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.FilterDataTable",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:FilterDataTable DataTable=\"{x:Null}\" Filters=\"{x:Null}\" OutputDataTable=\"{x:Null}\" SelectColumns=\"{x:Null}\" SelectColumnsMode=\"Remove\" />"
+    },
+    "FormatDateAsText": {
+      "doc_name": "Format Date As Text",
+      "name": "FormatDateAsText",
+      "properties": [
+        "Format",
+        "LocalizationCode",
+        "Source"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Date.FormatDateAsText",
+      "clr_namespace": "UiPath.Activities.System.Date",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uasd",
+      "child_elements": [],
+      "xaml_template": "<uasd:FormatDateAsText Format=\"{x:Null}\" Source=\"{x:Null}\" LocalizationCode=\"(Default)\" />"
+    },
+    "GenerateDataTable": {
+      "doc_name": "Generate Data Table",
+      "name": "GenerateDataTable",
+      "properties": [
+        "ColumnSeparators",
+        "ColumnSizes",
+        "DataTable",
+        "Input",
+        "NewLineSeparator",
+        "Positions"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.GenerateDataTable",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GenerateDataTable ColumnSeparators=\"{x:Null}\" ColumnSizes=\"{x:Null}\" DataTable=\"{x:Null}\" Input=\"{x:Null}\" NewLineSeparator=\"{x:Null}\" Positions=\"{x:Null}\" />"
+    },
+    "GetLastDownloadedFile": {
+      "doc_name": "Get Last Downloaded File",
+      "name": "GetLastDownloadedFile",
+      "properties": [
+        "Body",
+        "DownloadFolder",
+        "File",
+        "FileResource",
+        "IgnoreFiles",
+        "Timeout"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.GetLastDownloadedFile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:GetLastDownloadedFile File=\"{x:Null}\" FileResource=\"{x:Null}\" IgnoreFiles=\"{x:Null}\" Timeout=\"{x:Null}\" DownloadFolder=\"[System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]\">\n\n  <ui:GetLastDownloadedFile.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:GetLastDownloadedFile.Body>\n\n</ui:GetLastDownloadedFile>"
+    },
+    "GetQueueItem": {
+      "doc_name": "Get Queue Item",
+      "name": "GetQueueItem",
+      "properties": [
+        "ContinueOnError",
+        "QueueType",
+        "TimeoutMS",
+        "TransactionItem"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.GetQueueItem",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetQueueItem ContinueOnError=\"{x:Null}\" QueueType=\"{x:Null}\" TimeoutMS=\"{x:Null}\" TransactionItem=\"{x:Null}\" />"
+    },
+    "InterruptibleDoWhile": {
+      "doc_name": "Interruptible Do While",
+      "name": "InterruptibleDoWhile",
+      "properties": [
+        "Body",
+        "CurrentIndex"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.InterruptibleDoWhile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:InterruptibleDoWhile CurrentIndex=\"{x:Null}\">\n\n  <ui:InterruptibleDoWhile.Body>\n\n    <Sequence DisplayName=\"Body\" />\n\n  </ui:InterruptibleDoWhile.Body>\n\n</ui:InterruptibleDoWhile>"
+    },
+    "InterruptibleWhile": {
+      "doc_name": "Interruptible While",
+      "name": "InterruptibleWhile",
+      "properties": [
+        "Body",
+        "CurrentIndex"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.InterruptibleWhile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:InterruptibleWhile CurrentIndex=\"{x:Null}\">\n\n  <ui:InterruptibleWhile.Body>\n\n    <Sequence DisplayName=\"Body\" />\n\n  </ui:InterruptibleWhile.Body>\n\n</ui:InterruptibleWhile>"
+    },
+    "IsMatch": {
+      "doc_name": "Is Match",
+      "name": "IsMatch",
+      "properties": [
+        "Input",
+        "IsBuilderTabModified",
+        "Pattern",
+        "RegexOption"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.IsMatch",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:IsMatch Input=\"{x:Null}\" Pattern=\"{x:Null}\" IsBuilderTabModified=\"False\" RegexOption=\"IgnoreCase, Compiled\" />"
+    },
+    "Matches": {
+      "doc_name": "Matches",
+      "name": "Matches",
+      "properties": [
+        "FirstMatch",
+        "Input",
+        "IsBuilderTabModified",
+        "Pattern",
+        "RegexOption"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.Matches",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:Matches FirstMatch=\"{x:Null}\" Input=\"{x:Null}\" Pattern=\"{x:Null}\" IsBuilderTabModified=\"False\" RegexOption=\"IgnoreCase, Compiled\" />"
+    },
+    "MessageBox": {
+      "doc_name": "Message Box",
+      "name": "MessageBox",
+      "properties": [
+        "AutoCloseAfter",
+        "Caption",
+        "ChosenButton"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.MessageBox",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:MessageBox Caption=\"{x:Null}\" ChosenButton=\"{x:Null}\" AutoCloseAfter=\"00:00:00\" />"
+    },
+    "ModifyText": {
+      "doc_name": "Modify Text",
+      "name": "ModifyText",
+      "properties": [
+        "Body",
+        "OutputText",
+        "SourceText"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.ModifyText",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:ModifyText OutputText=\"{x:Null}\" SourceText=\"{x:Null}\">\n\n  <ui:ModifyText.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:ModifyText.Body>\n\n</ui:ModifyText>"
+    },
+    "OutputDataTable": {
+      "doc_name": "Output Data Table",
+      "name": "OutputDataTable",
+      "properties": [
+        "DataTable",
+        "Text"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.OutputDataTable",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:OutputDataTable DataTable=\"{x:Null}\" Text=\"{x:Null}\" />"
+    },
+    "PathExists": {
+      "doc_name": "Path Exists",
+      "name": "PathExists",
+      "properties": [
+        "Exists",
+        "Path",
+        "PathType",
+        "Resource"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.PathExists",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:PathExists Exists=\"{x:Null}\" Path=\"{x:Null}\" Resource=\"{x:Null}\" PathType=\"File\" />"
+    },
+    "QueueTrigger": {
+      "doc_name": "Queue Trigger",
+      "name": "QueueTrigger",
+      "properties": [
+        "ExtractedQueueItem",
+        "ItemsActivationThreshold",
+        "ItemsPerJobActivationTarget",
+        "MaxJobsForActivation",
+        "QueueName",
+        "TransactionItem"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.QueueTrigger",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:QueueTrigger ExtractedQueueItem=\"{x:Null}\" QueueName=\"{x:Null}\" TransactionItem=\"{x:Null}\" ItemsActivationThreshold=\"1\" ItemsPerJobActivationTarget=\"1\" MaxJobsForActivation=\"1\" />"
+    },
+    "RaiseAlert": {
+      "doc_name": "Raise Alert",
+      "name": "RaiseAlert",
+      "properties": [
+        "Notification",
+        "Severity",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.RaiseAlert",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:RaiseAlert Notification=\"{x:Null}\" TimeoutMS=\"{x:Null}\" Severity=\"Info\" />"
+    },
+    "ReadStorageText": {
+      "doc_name": "Read Storage Text",
+      "name": "ReadStorageText",
+      "properties": [
+        "Path",
+        "StorageBucketName",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.Storage.ReadStorageText",
+      "clr_namespace": "UiPath.Core.Activities.Storage",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ucas",
+      "child_elements": [],
+      "xaml_template": "<ucas:ReadStorageText Path=\"{x:Null}\" StorageBucketName=\"{x:Null}\" TimeoutMS=\"{x:Null}\" />"
+    },
+    "ReadTextFile": {
+      "doc_name": "Read Text File",
+      "name": "ReadTextFile",
+      "properties": [
+        "Content",
+        "File",
+        "FileName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.ReadTextFile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadTextFile Content=\"{x:Null}\" File=\"{x:Null}\" FileName=\"{x:Null}\" />"
+    },
+    "RemoveDuplicateRows": {
+      "doc_name": "Remove Duplicate Rows",
+      "name": "RemoveDuplicateRows",
+      "properties": [
+        "DataTable",
+        "OutputDataTable"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.RemoveDuplicateRows",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:RemoveDuplicateRows DataTable=\"{x:Null}\" OutputDataTable=\"{x:Null}\" />"
+    },
+    "RepeatNumberOfTimesX": {
+      "doc_name": "Repeat Number Of Times X",
+      "name": "RepeatNumberOfTimesX",
+      "properties": [
+        "Body",
+        "NumberOfTimes",
+        "StartAt"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.RepeatNumberOfTimesX",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:RepeatNumberOfTimesX NumberOfTimes=\"{x:Null}\" StartAt=\"1\">\n\n  <ui:RepeatNumberOfTimesX.Body>\n\n    <ActivityAction x:TypeArguments=\"x:Int32\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentItem\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:RepeatNumberOfTimesX.Body>\n\n</ui:RepeatNumberOfTimesX>"
+    },
+    "RetryScope": {
+      "doc_name": "Retry Scope",
+      "name": "RetryScope",
+      "properties": [
+        "ActivityBody",
+        "Condition",
+        "LogRetriedExceptions",
+        "RetriedExceptionsLogLevel"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.RetryScope",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ActivityBody",
+        "Condition"
+      ],
+      "xaml_template": "<ui:RetryScope LogRetriedExceptions=\"{x:Null}\" RetriedExceptionsLogLevel=\"{x:Null}\">\n\n  <ui:RetryScope.ActivityBody>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Action\" />\n\n    </ActivityAction>\n\n  </ui:RetryScope.ActivityBody>\n\n  <ui:RetryScope.Condition>\n\n    <ActivityFunc x:TypeArguments=\"x:Boolean\" />\n\n  </ui:RetryScope.Condition>\n\n</ui:RetryScope>"
+    },
+    "SetTransactionProgress": {
+      "doc_name": "Set Transaction Progress",
+      "name": "SetTransactionProgress",
+      "properties": [
+        "Progress",
+        "TimeoutMS",
+        "TransactionItem"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.SetTransactionProgress",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SetTransactionProgress Progress=\"{x:Null}\" TimeoutMS=\"{x:Null}\" TransactionItem=\"{x:Null}\" />"
+    },
+    "SplitText": {
+      "doc_name": "Split Text",
+      "name": "SplitText",
+      "properties": [
+        "Results",
+        "Separator",
+        "SeparatorKey",
+        "Source"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Activities.System.Text.SplitText",
+      "clr_namespace": "UiPath.Activities.System.Text",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "uast",
+      "child_elements": [],
+      "xaml_template": "<uast:SplitText Results=\"{x:Null}\" Separator=\"{x:Null}\" Source=\"{x:Null}\" SeparatorKey=\"Custom\" />"
+    },
+    "StopJob": {
+      "doc_name": "Stop Job",
+      "name": "StopJob",
+      "properties": [
+        "Job",
+        "Strategy",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.StopJob",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:StopJob Job=\"{x:Null}\" Strategy=\"{x:Null}\" TimeoutMS=\"{x:Null}\" />"
+    },
+    "TextToLeftRight": {
+      "doc_name": "Text To Left Right",
+      "name": "TextToLeftRight",
+      "properties": [
+        "FullText",
+        "Separator",
+        "SeparatorKey",
+        "TextToLeft",
+        "TextToRight"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.TextToLeftRight",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:TextToLeftRight FullText=\"{x:Null}\" Separator=\"{x:Null}\" TextToLeft=\"{x:Null}\" TextToRight=\"{x:Null}\" SeparatorKey=\"Custom\" />"
+    },
+    "TrackObject": {
+      "doc_name": "Track Object",
+      "name": "TrackObject",
+      "properties": [
+        "ObjectId",
+        "ObjectInteraction",
+        "ObjectProperties",
+        "ObjectPropertiesV2",
+        "ObjectType",
+        "UseObjectPropertiesV2"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.ProcessTracking.TrackObject",
+      "clr_namespace": "UiPath.Core.Activities.ProcessTracking",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ucap",
+      "child_elements": [],
+      "xaml_template": "<ucap:TrackObject ObjectId=\"{x:Null}\" ObjectInteraction=\"{x:Null}\" ObjectProperties=\"{x:Null}\" ObjectPropertiesV2=\"{x:Null}\" ObjectType=\"{x:Null}\" UseObjectPropertiesV2=\"True\" />"
+    },
+    "WaitQueueItem": {
+      "doc_name": "Wait Queue Item",
+      "name": "WaitQueueItem",
+      "properties": [
+        "FilterStrategy",
+        "PollTimeMS",
+        "QueueName",
+        "Reference",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.WaitQueueItem",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:WaitQueueItem PollTimeMS=\"{x:Null}\" QueueName=\"{x:Null}\" Reference=\"{x:Null}\" TimeoutMS=\"{x:Null}\" FilterStrategy=\"StartsWith\" />"
+    },
+    "WriteTextFile": {
+      "doc_name": "Write Text File",
+      "name": "WriteTextFile",
+      "properties": [
+        "File",
+        "FileName",
+        "Output",
+        "Text"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Core.Activities.WriteTextFile",
+      "clr_namespace": "UiPath.Core.Activities",
+      "source_package": "UiPath.System.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:WriteTextFile File=\"{x:Null}\" FileName=\"{x:Null}\" Output=\"{x:Null}\" Text=\"{x:Null}\" />"
     }
   },
   "source": "UiPath/skills@main/UiPath.System.Activities/26.2",

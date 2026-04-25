@@ -1,0 +1,3 @@
+<Activity x:Class="SaveMailAttachmentsX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:SaveMailAttachmentsX Attachments="{x:Null}" FolderPath="{x:Null}" Message="{x:Null}" ExcludeInlineAttachments="True" OverwriteExisting="False" />
+</Activity>

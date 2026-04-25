@@ -1,0 +1,12 @@
+<Activity x:Class="ExcelApplicationScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ExcelApplicationScope SensitivityLabel="{x:Null}" WorkbookPath="{x:Null}" InstanceCachePeriod="3000" SensitivityOperation="None">
+    <ui:ExcelApplicationScope.Body>
+      <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ExcelApplicationScope.Body>
+  </ui:ExcelApplicationScope>
+</Activity>

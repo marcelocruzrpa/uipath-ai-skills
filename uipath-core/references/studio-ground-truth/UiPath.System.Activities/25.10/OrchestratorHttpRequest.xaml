@@ -1,0 +1,3 @@
+<Activity x:Class="OrchestratorHttpRequest" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:OrchestratorHttpRequest JSONPayload="{x:Null}" RelativeEndpoint="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" TimeoutMS="{x:Null}" Method="GET" />
+</Activity>

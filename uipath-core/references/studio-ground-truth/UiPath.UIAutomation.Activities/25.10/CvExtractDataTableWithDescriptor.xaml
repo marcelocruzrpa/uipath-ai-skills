@@ -1,0 +1,3 @@
+<Activity x:Class="CvExtractDataTableWithDescriptor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:CvExtractDataTableWithDescriptor DesignTimeScaleFactor="{x:Null}" InRegion="{x:Null}" ScrollOffset="{x:Null}" AddHeaders="True" DelayScreenshotAfterScroll="250" IgnoreEmptyRows="False" MaxTableScrollHeightInPixels="30000" NumberOfScrolls="2" RefreshBefore="True" Scroll="False" ScrollDirection="Down" Version="V6" />
+</Activity>

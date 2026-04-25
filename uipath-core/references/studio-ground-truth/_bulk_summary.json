@@ -1,0 +1,21 @@
+{
+  "started_at": "2026-04-25T08:48:49+00:00",
+  "finished_at": "2026-04-25T08:50:50+00:00",
+  "total_pairs": 1,
+  "succeeded": [
+    {
+      "package": "UiPath.UIAutomation.Activities",
+      "version": "25.10",
+      "bands": [
+        "25",
+        "26"
+      ],
+      "concrete_version": "25.10.30",
+      "activity_counts": {
+        "ok": 70,
+        "unresolved": 6
+      }
+    }
+  ],
+  "failed": []
+}

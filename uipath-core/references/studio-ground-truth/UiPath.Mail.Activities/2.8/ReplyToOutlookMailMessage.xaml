@@ -1,0 +1,7 @@
+<Activity x:Class="ReplyToOutlookMailMessage" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ReplyToOutlookMailMessage AddBcc="{x:Null}" AddCc="{x:Null}" AddTo="{x:Null}" Body="{x:Null}" MailMessage="{x:Null}" NewSubject="{x:Null}" ReplyFrom="{x:Null}" TimeoutMS="{x:Null}" Importance="Normal" ReplyAll="False">
+    <ui:ReplyToOutlookMailMessage.Files>
+      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+    </ui:ReplyToOutlookMailMessage.Files>
+  </ui:ReplyToOutlookMailMessage>
+</Activity>

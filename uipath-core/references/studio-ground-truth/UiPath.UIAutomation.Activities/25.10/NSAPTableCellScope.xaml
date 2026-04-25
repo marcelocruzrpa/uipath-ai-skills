@@ -1,5 +1,5 @@
-<Activity x:Class="NSAPTableCellScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NSAPTableCellScope ColumnNames="{x:Null}" RowType="{x:Null}" HealingAgentBehavior="SameAsCard">
+<Activity x:Class="Table Cell Scope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NSAPTableCellScope ColumnNames="{x:Null}" DisplayName="Table Cell Scope" HealingAgentBehavior="SameAsCard" RowType="FirstEmptyRow" Version="V5">
     <uix:NSAPTableCellScope.Body>
       <ActivityAction x:TypeArguments="x:Object">
         <ActivityAction.Argument>

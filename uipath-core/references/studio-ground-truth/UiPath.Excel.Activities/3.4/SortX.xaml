@@ -1,0 +1,9 @@
+<Activity x:Class="SortX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:SortX Range="{x:Null}" HasHeaders="True">
+    <ueab:SortX.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ueab:SortX.Body>
+  </ueab:SortX>
+</Activity>

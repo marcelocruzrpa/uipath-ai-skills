@@ -1,0 +1,3 @@
+<Activity x:Class="UploadStorageFile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ucas:UploadStorageFile Destination="{x:Null}" FileResource="{x:Null}" Path="{x:Null}" StorageBucketName="{x:Null}" TimeoutMS="{x:Null}" />
+</Activity>

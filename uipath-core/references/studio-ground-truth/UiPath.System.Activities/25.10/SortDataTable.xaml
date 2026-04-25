@@ -1,0 +1,3 @@
+<Activity x:Class="SortDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:SortDataTable ColumnIndex="{x:Null}" ColumnName="{x:Null}" DataColumn="{x:Null}" DataTable="{x:Null}" OutputDataTable="{x:Null}" SortOrder="Ascending" />
+</Activity>

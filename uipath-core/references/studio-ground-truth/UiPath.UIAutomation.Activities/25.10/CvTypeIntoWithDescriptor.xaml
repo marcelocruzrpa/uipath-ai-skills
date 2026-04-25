@@ -1,0 +1,14 @@
+<Activity x:Class="CvTypeIntoWithDescriptor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:CvTypeIntoWithDescriptor DelayScreenshotAfterScroll="{x:Null}" DeselectAfter="{x:Null}" DesignTimeScaleFactor="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="False" ClickBeforeTyping="False" EmptyField="True" NumberOfScrolls="2" ScrollDirection="Down" Version="V6">
+    <p:CvTypeIntoWithDescriptor.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="c2ad9ff6-d128-46b2-8a78-da588f1ee168">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </p:CvTypeIntoWithDescriptor.Target>
+  </p:CvTypeIntoWithDescriptor>
+</Activity>

@@ -1,0 +1,3 @@
+<Activity x:Class="JoinDataTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:JoinDataTables Arguments="{x:Null}" DataTable1="{x:Null}" DataTable2="{x:Null}" OutputDataTable="{x:Null}" JoinType="Inner" />
+</Activity>

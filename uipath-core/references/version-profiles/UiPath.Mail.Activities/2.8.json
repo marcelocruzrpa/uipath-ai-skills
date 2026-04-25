@@ -1,7 +1,7 @@
 {
   "activities": {
     "ForEachEmailX": {
-      "doc_name": "ForEachEmailX",
+      "doc_name": "For Each Email X",
       "name": "ForEachEmailX",
       "properties": [
         "Capacity",
@@ -34,7 +34,7 @@
       "harvestable": true
     },
     "GetOutlookMailMessages": {
-      "doc_name": "GetOutlookMailMessages",
+      "doc_name": "Get Outlook Mail Messages",
       "name": "GetOutlookMailMessages",
       "properties": [
         "Account",
@@ -63,7 +63,7 @@
       "harvestable": true
     },
     "MoveOutlookMessage": {
-      "doc_name": "MoveOutlookMessage",
+      "doc_name": "Move Outlook Message",
       "name": "MoveOutlookMessage",
       "properties": [
         "Account",
@@ -82,7 +82,7 @@
       "harvestable": true
     },
     "OutlookApplicationCard": {
-      "doc_name": "OutlookApplicationCard",
+      "doc_name": "Outlook Application Card",
       "name": "OutlookApplicationCard",
       "properties": [
         "Account",
@@ -104,7 +104,7 @@
       "harvestable": true
     },
     "SaveMailAttachments": {
-      "doc_name": "SaveMailAttachments",
+      "doc_name": "Save Mail Attachments",
       "name": "SaveMailAttachments",
       "properties": [
         "Attachments",
@@ -126,7 +126,7 @@
       "harvestable": true
     },
     "SendOutlookMail": {
-      "doc_name": "SendOutlookMail",
+      "doc_name": "Send Outlook Mail",
       "name": "SendOutlookMail",
       "properties": [
         "Account",
@@ -161,6 +161,1040 @@
       "source_package": "UiPath.Mail.Activities",
       "namespace_match": true,
       "harvestable": true
+    },
+    "ArchiveMailX": {
+      "doc_name": "Archive Mail X",
+      "name": "ArchiveMailX",
+      "properties": [
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.ArchiveMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:ArchiveMailX MailMessage=\"{x:Null}\" />"
+    },
+    "CreateDraft": {
+      "doc_name": "Create Draft",
+      "name": "CreateDraft",
+      "properties": [
+        "ApplicationId",
+        "AttachmentInputMode",
+        "AttachmentsBackup",
+        "AuthenticationMode",
+        "Bcc",
+        "Body",
+        "Cc",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "From",
+        "IsBodyHtml",
+        "MailMessage",
+        "Name",
+        "Password",
+        "ResourceAttachmentList",
+        "ResourceAttachments",
+        "SecurePassword",
+        "Server",
+        "Subject",
+        "TimeoutMS",
+        "To",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.CreateDraft",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "AttachmentsBackup"
+      ],
+      "xaml_template": "<ui:CreateDraft ApplicationId=\"{x:Null}\" Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" From=\"{x:Null}\" MailMessage=\"{x:Null}\" Name=\"{x:Null}\" Password=\"{x:Null}\" ResourceAttachmentList=\"{x:Null}\" ResourceAttachments=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" Subject=\"{x:Null}\" TimeoutMS=\"{x:Null}\" To=\"{x:Null}\" User=\"{x:Null}\" AttachmentInputMode=\"FilePaths\" AuthenticationMode=\"UserNameAndPassword\" ExchangeVersion=\"Exchange2007_SP1\" IsBodyHtml=\"False\">\n\n  <ui:CreateDraft.AttachmentsBackup>\n\n    <usau:BackupSlot x:TypeArguments=\"umame:AttachmentInputMode\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umame:AttachmentInputMode, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:CreateDraft.AttachmentsBackup>\n\n</ui:CreateDraft>"
+    },
+    "CreateHtmlContent": {
+      "doc_name": "Create Html Content",
+      "name": "CreateHtmlContent",
+      "properties": [
+        "HtmlContent",
+        "HtmlContentArg"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.CreateHtmlContent",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "HtmlContentArg"
+      ],
+      "xaml_template": "<umab:CreateHtmlContent HtmlContent=\"{x:Null}\">\n\n  <umab:CreateHtmlContent.HtmlContentArg>\n\n    <umabh:HtmlContentArgument FilePath=\"{x:Null}\" HtmlBody=\"{x:Null}\">\n\n      <umabh:HtmlContentArgument.RuntimeImages>\n\n        <scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />\n\n      </umabh:HtmlContentArgument.RuntimeImages>\n\n      <umabh:HtmlContentArgument.ValueMappings>\n\n        <scg:List x:TypeArguments=\"umabh:HtmlValueMappingBase\" Capacity=\"0\" />\n\n      </umabh:HtmlContentArgument.ValueMappings>\n\n    </umabh:HtmlContentArgument>\n\n  </umab:CreateHtmlContent.HtmlContentArg>\n\n</umab:CreateHtmlContent>"
+    },
+    "DeleteImapMailMessage": {
+      "doc_name": "Delete Imap Mail Message",
+      "name": "DeleteImapMailMessage",
+      "properties": [
+        "ClientName",
+        "ClientVersion",
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "Email",
+        "FromFolder",
+        "IgnoreCRL",
+        "MailMessage",
+        "Password",
+        "Port",
+        "SecureConnection",
+        "SecurePassword",
+        "Server",
+        "UseISConnection",
+        "UseOAuth"
+      ],
+      "version_attrs": {
+        "ClientVersion": "{x:Null}"
+      },
+      "class_name": "UiPath.Mail.IMAP.Activities.DeleteImapMailMessage",
+      "clr_namespace": "UiPath.Mail.IMAP.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<ui:DeleteImapMailMessage ClientName=\"{x:Null}\" ClientVersion=\"{x:Null}\" Email=\"{x:Null}\" FromFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" Port=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" UseOAuth=\"{x:Null}\" ConnectionMode=\"Undefined\" IgnoreCRL=\"False\" SecureConnection=\"Auto\" UseISConnection=\"False\">\n\n  <ui:DeleteImapMailMessage.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:DeleteImapMailMessage.ConnectionDetailsBackupSlot>\n\n</ui:DeleteImapMailMessage>"
+    },
+    "DeleteLotusNotesMailMessage": {
+      "doc_name": "Delete Lotus Notes Mail Message",
+      "name": "DeleteLotusNotesMailMessage",
+      "properties": [
+        "FromFolder",
+        "MailMessage",
+        "Password",
+        "SecurePassword"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.LotusNotes.Activities.DeleteLotusNotesMailMessage",
+      "clr_namespace": "UiPath.Mail.LotusNotes.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umla",
+      "child_elements": [],
+      "xaml_template": "<umla:DeleteLotusNotesMailMessage FromFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" />"
+    },
+    "DeleteMail": {
+      "doc_name": "Delete Mail",
+      "name": "DeleteMail",
+      "properties": [
+        "ApplicationId",
+        "AuthenticationMode",
+        "DeleteMode",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "MailMessage",
+        "Password",
+        "SecurePassword",
+        "Server",
+        "TimeoutMS",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.DeleteMail",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:DeleteMail ApplicationId=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" TimeoutMS=\"{x:Null}\" User=\"{x:Null}\" AuthenticationMode=\"UserNameAndPassword\" DeleteMode=\"MoveToDeletedItems\" ExchangeVersion=\"Exchange2007_SP1\" />"
+    },
+    "DeleteMailX": {
+      "doc_name": "Delete Mail X",
+      "name": "DeleteMailX",
+      "properties": [
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.DeleteMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:DeleteMailX MailMessage=\"{x:Null}\" />"
+    },
+    "DeleteOutlookMailMessage": {
+      "doc_name": "Delete Outlook Mail Message",
+      "name": "DeleteOutlookMailMessage",
+      "properties": [
+        "MailMessage",
+        "PermanentlyDelete"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Outlook.Activities.DeleteOutlookMailMessage",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:DeleteOutlookMailMessage MailMessage=\"{x:Null}\" PermanentlyDelete=\"False\" />"
+    },
+    "ExchangeScope": {
+      "doc_name": "Exchange Scope",
+      "name": "ExchangeScope",
+      "properties": [
+        "ApplicationId",
+        "AuthenticationMode",
+        "Body",
+        "ContinueOnError",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeService",
+        "ExchangeVersion",
+        "ExistingExchangeService",
+        "Password",
+        "SecurePassword",
+        "Server",
+        "TimeoutMS",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.ExchangeScope",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:ExchangeScope ApplicationId=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" ExchangeService=\"{x:Null}\" ExistingExchangeService=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" TimeoutMS=\"{x:Null}\" User=\"{x:Null}\" AuthenticationMode=\"UserNameAndPassword\" ContinueOnError=\"True\" ExchangeVersion=\"Exchange2007_SP1\">\n\n  <ui:ExchangeScope.Body>\n\n    <ActivityAction x:TypeArguments=\"mewd:ExchangeService\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"mewd:ExchangeService\" Name=\"ExchangeConnection\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:ExchangeScope.Body>\n\n</ui:ExchangeScope>"
+    },
+    "ForwardMailX": {
+      "doc_name": "Forward Mail X",
+      "name": "ForwardMailX",
+      "properties": [
+        "Bcc",
+        "Body",
+        "Cc",
+        "Files",
+        "HtmlBodyFromFile",
+        "HtmlBodyFromText",
+        "MailMessage",
+        "MaxBodyDocumentSizeMB",
+        "NewSubject",
+        "To",
+        "UseDocumentAsBody"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.ForwardMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Files",
+        "HtmlBodyFromFile"
+      ],
+      "xaml_template": "<umab:ForwardMailX Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" HtmlBodyFromText=\"{x:Null}\" MailMessage=\"{x:Null}\" NewSubject=\"{x:Null}\" To=\"{x:Null}\" MaxBodyDocumentSizeMB=\"2\" UseDocumentAsBody=\"False\">\n\n  <umab:ForwardMailX.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </umab:ForwardMailX.Files>\n\n  <umab:ForwardMailX.HtmlBodyFromFile>\n\n    <umabh:HtmlContentArgument FilePath=\"{x:Null}\" HtmlBody=\"{x:Null}\">\n\n      <umabh:HtmlContentArgument.RuntimeImages>\n\n        <scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />\n\n      </umabh:HtmlContentArgument.RuntimeImages>\n\n      <umabh:HtmlContentArgument.ValueMappings>\n\n        <scg:List x:TypeArguments=\"umabh:HtmlValueMappingBase\" Capacity=\"0\" />\n\n      </umabh:HtmlContentArgument.ValueMappings>\n\n    </umabh:HtmlContentArgument>\n\n  </umab:ForwardMailX.HtmlBodyFromFile>\n\n</umab:ForwardMailX>"
+    },
+    "GetEmailById": {
+      "doc_name": "Get Email By Id",
+      "name": "GetEmailById",
+      "properties": [
+        "Account",
+        "EmailId",
+        "Result"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.GetEmailById",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:GetEmailById Account=\"{x:Null}\" EmailId=\"{x:Null}\" Result=\"{x:Null}\" />"
+    },
+    "GetExchangeMailMessages": {
+      "doc_name": "Get Exchange Mail Messages",
+      "name": "GetExchangeMailMessages",
+      "properties": [
+        "ApplicationId",
+        "AuthenticationMode",
+        "CustomFolder",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "FilterByMessageIds",
+        "FilterExpression",
+        "GetAttachements",
+        "IsBodyHtml",
+        "MailFolder",
+        "MarkAsRead",
+        "Messages",
+        "OnlyUnreadMessages",
+        "OrderByDate",
+        "Password",
+        "SecurePassword",
+        "Server",
+        "SharedMailbox",
+        "TimeoutMS",
+        "Top",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.GetExchangeMailMessages",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetExchangeMailMessages ApplicationId=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" FilterByMessageIds=\"{x:Null}\" FilterExpression=\"{x:Null}\" Messages=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" SharedMailbox=\"{x:Null}\" TimeoutMS=\"{x:Null}\" User=\"{x:Null}\" AuthenticationMode=\"UserNameAndPassword\" CustomFolder=\"Inbox\" ExchangeVersion=\"Exchange2007_SP1\" GetAttachements=\"False\" IsBodyHtml=\"False\" MailFolder=\"Calendar\" MarkAsRead=\"False\" OnlyUnreadMessages=\"True\" OrderByDate=\"NewestFirst\" Top=\"30\" />"
+    },
+    "GetIMAPMailMessages": {
+      "doc_name": "Get IMAP Mail Messages",
+      "name": "GetIMAPMailMessages",
+      "properties": [
+        "ClientName",
+        "ClientVersion",
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "DeleteMessages",
+        "Email",
+        "EnableSSL",
+        "FilterExpression",
+        "FilterExpressionCharacterSet",
+        "IgnoreCRL",
+        "MailFolder",
+        "MarkAsRead",
+        "Messages",
+        "OnlyUnreadMessages",
+        "OrderByDate",
+        "Password",
+        "Port",
+        "SecureConnection",
+        "SecurePassword",
+        "Server",
+        "TimeoutMS",
+        "Top",
+        "UseISConnection",
+        "UseOAuth"
+      ],
+      "version_attrs": {
+        "ClientVersion": "{x:Null}"
+      },
+      "class_name": "UiPath.Mail.IMAP.Activities.GetIMAPMailMessages",
+      "clr_namespace": "UiPath.Mail.IMAP.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<ui:GetIMAPMailMessages ClientName=\"{x:Null}\" ClientVersion=\"{x:Null}\" DeleteMessages=\"{x:Null}\" Email=\"{x:Null}\" FilterExpression=\"{x:Null}\" MarkAsRead=\"{x:Null}\" Messages=\"{x:Null}\" Password=\"{x:Null}\" Port=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" TimeoutMS=\"{x:Null}\" UseOAuth=\"{x:Null}\" ConnectionMode=\"Undefined\" EnableSSL=\"True\" FilterExpressionCharacterSet=\"US-ASCII\" IgnoreCRL=\"False\" MailFolder=\"Inbox\" OnlyUnreadMessages=\"True\" OrderByDate=\"NewestFirst\" SecureConnection=\"Auto\" Top=\"30\" UseISConnection=\"False\">\n\n  <ui:GetIMAPMailMessages.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:GetIMAPMailMessages.ConnectionDetailsBackupSlot>\n\n</ui:GetIMAPMailMessages>"
+    },
+    "GetLotusNotesMailMessages": {
+      "doc_name": "Get Lotus Notes Mail Messages",
+      "name": "GetLotusNotesMailMessages",
+      "properties": [
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "GetAttachments",
+        "MailFolder",
+        "Messages",
+        "Password",
+        "SecurePassword",
+        "TimeoutMS",
+        "Top",
+        "UseISConnection"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.LotusNotes.Activities.GetLotusNotesMailMessages",
+      "clr_namespace": "UiPath.Mail.LotusNotes.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umla",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<umla:GetLotusNotesMailMessages Messages=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" TimeoutMS=\"{x:Null}\" ConnectionMode=\"Undefined\" GetAttachments=\"False\" MailFolder=\"($Inbox)\" Top=\"30\" UseISConnection=\"False\">\n\n  <umla:GetLotusNotesMailMessages.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </umla:GetLotusNotesMailMessages.ConnectionDetailsBackupSlot>\n\n</umla:GetLotusNotesMailMessages>"
+    },
+    "GetMailMessageFromFile": {
+      "doc_name": "Get Mail Message From File",
+      "name": "GetMailMessageFromFile",
+      "properties": [
+        "EmailFile",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.GetMailMessageFromFile",
+      "clr_namespace": "UiPath.Mail.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetMailMessageFromFile EmailFile=\"{x:Null}\" MailMessage=\"{x:Null}\" />"
+    },
+    "GetPOP3MailMessages": {
+      "doc_name": "Get POP3 Mail Messages",
+      "name": "GetPOP3MailMessages",
+      "properties": [
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "DeleteMessages",
+        "Email",
+        "EnableSSL",
+        "IgnoreCRL",
+        "Messages",
+        "Password",
+        "Port",
+        "SecureConnection",
+        "SecurePassword",
+        "Server",
+        "TimeoutMS",
+        "Top",
+        "UseISConnection",
+        "UseOAuth"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.POP3.Activities.GetPOP3MailMessages",
+      "clr_namespace": "UiPath.Mail.POP3.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<ui:GetPOP3MailMessages Email=\"{x:Null}\" Messages=\"{x:Null}\" Password=\"{x:Null}\" Port=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" TimeoutMS=\"{x:Null}\" UseOAuth=\"{x:Null}\" ConnectionMode=\"Undefined\" DeleteMessages=\"False\" EnableSSL=\"False\" IgnoreCRL=\"False\" SecureConnection=\"Auto\" Top=\"30\" UseISConnection=\"False\">\n\n  <ui:GetPOP3MailMessages.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:GetPOP3MailMessages.ConnectionDetailsBackupSlot>\n\n</ui:GetPOP3MailMessages>"
+    },
+    "MarkMailAsReadX": {
+      "doc_name": "Mark Mail As Read X",
+      "name": "MarkMailAsReadX",
+      "properties": [
+        "MailMessage",
+        "MarkAs"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.MarkMailAsReadX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:MarkMailAsReadX MailMessage=\"{x:Null}\" MarkAs=\"Read\" />"
+    },
+    "MarkOutlookMailAsRead": {
+      "doc_name": "Mark Outlook Mail As Read",
+      "name": "MarkOutlookMailAsRead",
+      "properties": [
+        "MailMessage",
+        "MarkAs"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Outlook.Activities.MarkOutlookMailAsRead",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:MarkOutlookMailAsRead MailMessage=\"{x:Null}\" MarkAs=\"Read\" />"
+    },
+    "MoveIMAPMailMessageToFolder": {
+      "doc_name": "Move IMAP Mail Message To Folder",
+      "name": "MoveIMAPMailMessageToFolder",
+      "properties": [
+        "ClientName",
+        "ClientVersion",
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "Email",
+        "EnableSSL",
+        "FromFolder",
+        "IgnoreCRL",
+        "MailFolder",
+        "MailMessage",
+        "Password",
+        "Port",
+        "SecureConnection",
+        "SecurePassword",
+        "Server",
+        "UseISConnection",
+        "UseOAuth"
+      ],
+      "version_attrs": {
+        "ClientVersion": "{x:Null}"
+      },
+      "class_name": "UiPath.Mail.IMAP.Activities.MoveIMAPMailMessageToFolder",
+      "clr_namespace": "UiPath.Mail.IMAP.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot"
+      ],
+      "xaml_template": "<ui:MoveIMAPMailMessageToFolder ClientName=\"{x:Null}\" ClientVersion=\"{x:Null}\" Email=\"{x:Null}\" FromFolder=\"{x:Null}\" MailFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" Port=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" UseOAuth=\"{x:Null}\" ConnectionMode=\"Undefined\" EnableSSL=\"True\" IgnoreCRL=\"False\" SecureConnection=\"Auto\" UseISConnection=\"False\">\n\n  <ui:MoveIMAPMailMessageToFolder.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:MoveIMAPMailMessageToFolder.ConnectionDetailsBackupSlot>\n\n</ui:MoveIMAPMailMessageToFolder>"
+    },
+    "MoveLotusNotesMailMessage": {
+      "doc_name": "Move Lotus Notes Mail Message",
+      "name": "MoveLotusNotesMailMessage",
+      "properties": [
+        "FromFolder",
+        "MailFolder",
+        "MailMessage",
+        "Password",
+        "SecurePassword"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.LotusNotes.Activities.MoveLotusNotesMailMessage",
+      "clr_namespace": "UiPath.Mail.LotusNotes.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umla",
+      "child_elements": [],
+      "xaml_template": "<umla:MoveLotusNotesMailMessage FromFolder=\"{x:Null}\" MailFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" />"
+    },
+    "MoveMailX": {
+      "doc_name": "Move Mail X",
+      "name": "MoveMailX",
+      "properties": [
+        "MailFolder",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.MoveMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:MoveMailX MailFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" />"
+    },
+    "MoveMessageToFolder": {
+      "doc_name": "Move Message To Folder",
+      "name": "MoveMessageToFolder",
+      "properties": [
+        "ApplicationId",
+        "AuthenticationMode",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "MailFolder",
+        "MailMessage",
+        "Password",
+        "SecurePassword",
+        "Server",
+        "SharedMailbox",
+        "TimeoutMS",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.MoveMessageToFolder",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:MoveMessageToFolder ApplicationId=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" MailFolder=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" SharedMailbox=\"{x:Null}\" TimeoutMS=\"{x:Null}\" User=\"{x:Null}\" AuthenticationMode=\"UserNameAndPassword\" ExchangeVersion=\"Exchange2007_SP1\" />"
+    },
+    "NewIMAPEmailReceivedTrigger": {
+      "doc_name": "New IMAP Email Received Trigger",
+      "name": "NewIMAPEmailReceivedTrigger",
+      "properties": [
+        "ConnectionAccountName",
+        "ConnectionId",
+        "Filter",
+        "FilterExpression",
+        "IncludeAttachments",
+        "JobData",
+        "MailFolder",
+        "MarkAsRead",
+        "Result",
+        "UiPathEvent",
+        "UiPathEventConnector",
+        "UiPathEventObjectId",
+        "UiPathEventObjectType",
+        "UseConnectionService",
+        "WithAttachmentsOnly"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.IMAP.NewIMAPEmailReceivedTrigger",
+      "clr_namespace": "UiPath.Mail.Activities.IMAP",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umai",
+      "child_elements": [],
+      "xaml_template": "<umai:NewIMAPEmailReceivedTrigger ConnectionAccountName=\"{x:Null}\" ConnectionId=\"{x:Null}\" Filter=\"{x:Null}\" FilterExpression=\"{x:Null}\" JobData=\"{x:Null}\" Result=\"{x:Null}\" UiPathEvent=\"{x:Null}\" UiPathEventConnector=\"{x:Null}\" UiPathEventObjectId=\"{x:Null}\" UiPathEventObjectType=\"{x:Null}\" IncludeAttachments=\"False\" MailFolder=\"INBOX\" MarkAsRead=\"False\" UseConnectionService=\"True\" WithAttachmentsOnly=\"False\" />"
+    },
+    "OutlookMailMessagesTrigger": {
+      "doc_name": "Outlook Mail Messages Trigger",
+      "name": "OutlookMailMessagesTrigger",
+      "properties": [
+        "Account",
+        "BodyFilter",
+        "BodyIsBuilderTabModified",
+        "BodyRegexOption",
+        "Cc",
+        "Enabled",
+        "From",
+        "Importance",
+        "MailFolder",
+        "MarkAsRead",
+        "SchedulingMode",
+        "SubjectFilter",
+        "SubjectIsBuilderTabModified",
+        "SubjectRegexOption",
+        "To",
+        "TriggerId",
+        "WhenOutlookIsClosed"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Outlook.OutlookMailMessagesTrigger",
+      "clr_namespace": "UiPath.Mail.Activities.Outlook",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umao",
+      "child_elements": [],
+      "xaml_template": "<umao:OutlookMailMessagesTrigger Account=\"{x:Null}\" BodyFilter=\"{x:Null}\" Cc=\"{x:Null}\" From=\"{x:Null}\" SubjectFilter=\"{x:Null}\" To=\"{x:Null}\" BodyIsBuilderTabModified=\"False\" BodyRegexOption=\"None\" Enabled=\"True\" Importance=\"Any\" MailFolder=\"Inbox\" MarkAsRead=\"False\" SchedulingMode=\"Sequential\" SubjectIsBuilderTabModified=\"False\" SubjectRegexOption=\"None\" TriggerId=\"727b169b-d51a-41a8-99c5-10a745a96b87\" WhenOutlookIsClosed=\"Open\" />"
+    },
+    "ReplyToMailX": {
+      "doc_name": "Reply To Mail X",
+      "name": "ReplyToMailX",
+      "properties": [
+        "AdditionalCc",
+        "AdditionalTo",
+        "Bcc",
+        "Body",
+        "Files",
+        "HtmlBodyFromFile",
+        "HtmlBodyFromText",
+        "MailMessage",
+        "MaxBodyDocumentSizeMB",
+        "NewSubject",
+        "ReplyToAll",
+        "UseDocumentAsBody"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.ReplyToMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Files",
+        "HtmlBodyFromFile"
+      ],
+      "xaml_template": "<umab:ReplyToMailX AdditionalCc=\"{x:Null}\" AdditionalTo=\"{x:Null}\" Bcc=\"{x:Null}\" Body=\"{x:Null}\" HtmlBodyFromText=\"{x:Null}\" MailMessage=\"{x:Null}\" NewSubject=\"{x:Null}\" MaxBodyDocumentSizeMB=\"2\" ReplyToAll=\"False\" UseDocumentAsBody=\"False\">\n\n  <umab:ReplyToMailX.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </umab:ReplyToMailX.Files>\n\n  <umab:ReplyToMailX.HtmlBodyFromFile>\n\n    <umabh:HtmlContentArgument FilePath=\"{x:Null}\" HtmlBody=\"{x:Null}\">\n\n      <umabh:HtmlContentArgument.RuntimeImages>\n\n        <scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />\n\n      </umabh:HtmlContentArgument.RuntimeImages>\n\n      <umabh:HtmlContentArgument.ValueMappings>\n\n        <scg:List x:TypeArguments=\"umabh:HtmlValueMappingBase\" Capacity=\"0\" />\n\n      </umabh:HtmlContentArgument.ValueMappings>\n\n    </umabh:HtmlContentArgument>\n\n  </umab:ReplyToMailX.HtmlBodyFromFile>\n\n</umab:ReplyToMailX>"
+    },
+    "ReplyToOutlookMailMessage": {
+      "doc_name": "Reply To Outlook Mail Message",
+      "name": "ReplyToOutlookMailMessage",
+      "properties": [
+        "AddBcc",
+        "AddCc",
+        "AddTo",
+        "Body",
+        "Files",
+        "Importance",
+        "MailMessage",
+        "NewSubject",
+        "ReplyAll",
+        "ReplyFrom",
+        "TimeoutMS"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Outlook.Activities.ReplyToOutlookMailMessage",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Files"
+      ],
+      "xaml_template": "<ui:ReplyToOutlookMailMessage AddBcc=\"{x:Null}\" AddCc=\"{x:Null}\" AddTo=\"{x:Null}\" Body=\"{x:Null}\" MailMessage=\"{x:Null}\" NewSubject=\"{x:Null}\" ReplyFrom=\"{x:Null}\" TimeoutMS=\"{x:Null}\" Importance=\"Normal\" ReplyAll=\"False\">\n\n  <ui:ReplyToOutlookMailMessage.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </ui:ReplyToOutlookMailMessage.Files>\n\n</ui:ReplyToOutlookMailMessage>"
+    },
+    "SaveExchangeAttachements": {
+      "doc_name": "Save Exchange Attachements",
+      "name": "SaveExchangeAttachements",
+      "properties": [
+        "ApplicationId",
+        "AuthenticationMode",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "Files",
+        "FolderPath",
+        "MailMessage",
+        "Password",
+        "ResourceAttachments",
+        "SecurePassword",
+        "Server",
+        "TimeoutMS",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.SaveExchangeAttachements",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SaveExchangeAttachements ApplicationId=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" Files=\"{x:Null}\" FolderPath=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" ResourceAttachments=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" TimeoutMS=\"{x:Null}\" User=\"{x:Null}\" AuthenticationMode=\"UserNameAndPassword\" ExchangeVersion=\"Exchange2007_SP1\" />"
+    },
+    "SaveMail": {
+      "doc_name": "Save Mail",
+      "name": "SaveMail",
+      "properties": [
+        "Email",
+        "FilePath",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.SaveMail",
+      "clr_namespace": "UiPath.Mail.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SaveMail Email=\"{x:Null}\" FilePath=\"{x:Null}\" MailMessage=\"{x:Null}\" />"
+    },
+    "SaveMailAttachmentsX": {
+      "doc_name": "Save Mail Attachments X",
+      "name": "SaveMailAttachmentsX",
+      "properties": [
+        "Attachments",
+        "ExcludeInlineAttachments",
+        "FolderPath",
+        "Message",
+        "OverwriteExisting"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.SaveMailAttachmentsX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:SaveMailAttachmentsX Attachments=\"{x:Null}\" FolderPath=\"{x:Null}\" Message=\"{x:Null}\" ExcludeInlineAttachments=\"True\" OverwriteExisting=\"False\" />"
+    },
+    "SaveMailX": {
+      "doc_name": "Save Mail X",
+      "name": "SaveMailX",
+      "properties": [
+        "FileName",
+        "FolderPath",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.SaveMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [],
+      "xaml_template": "<umab:SaveMailX FileName=\"{x:Null}\" FolderPath=\"{x:Null}\" MailMessage=\"{x:Null}\" />"
+    },
+    "SaveOutlookMailMessage": {
+      "doc_name": "Save Outlook Mail Message",
+      "name": "SaveOutlookMailMessage",
+      "properties": [
+        "FileName",
+        "Folder",
+        "MailMessage",
+        "ReplaceExisting",
+        "SaveAsType"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Outlook.Activities.SaveOutlookMailMessage",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SaveOutlookMailMessage FileName=\"{x:Null}\" Folder=\"{x:Null}\" MailMessage=\"{x:Null}\" ReplaceExisting=\"False\" SaveAsType=\"OutlookMessageFormatUnicode\" />"
+    },
+    "SendCalendarInviteX": {
+      "doc_name": "Send Calendar Invite X",
+      "name": "SendCalendarInviteX",
+      "properties": [
+        "Account",
+        "AlertInterval",
+        "AllDayEvent",
+        "BusyStatus",
+        "DailyRecurrenceStep",
+        "DailyRecurrenceType",
+        "Description",
+        "Duration",
+        "EndDate",
+        "Files",
+        "IsRecurring",
+        "Location",
+        "MaxBodyDocumentSizeMB",
+        "MonthlyRecurrenceDay",
+        "MonthlyRecurrenceDayIndex",
+        "MonthlyRecurrenceStep",
+        "MonthlyRecurrenceType",
+        "MonthlyRecurrenceWeek",
+        "OptionalAttendees",
+        "RecurrenceEndType",
+        "RecurrencePatternType",
+        "RecurrenceTotalOccurrences",
+        "RequiredAttendees",
+        "SaveWithoutSending",
+        "StartDate",
+        "StartTime",
+        "Subject",
+        "WeeklyRecurrenceDays",
+        "WeeklyRecurrenceStep",
+        "YearlyRecurrenceDay",
+        "YearlyRecurrenceDayIndex",
+        "YearlyRecurrenceMonth",
+        "YearlyRecurrenceStep",
+        "YearlyRecurrenceType",
+        "YearlyRecurrenceWeek"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.SendCalendarInviteX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Files"
+      ],
+      "xaml_template": "<umab:SendCalendarInviteX Account=\"{x:Null}\" Description=\"{x:Null}\" EndDate=\"{x:Null}\" Location=\"{x:Null}\" OptionalAttendees=\"{x:Null}\" RequiredAttendees=\"{x:Null}\" StartDate=\"{x:Null}\" StartTime=\"{x:Null}\" Subject=\"{x:Null}\" AlertInterval=\"00:15:00\" AllDayEvent=\"False\" BusyStatus=\"Busy\" DailyRecurrenceStep=\"1\" DailyRecurrenceType=\"EveryWeekDay\" Duration=\"00:30:00\" IsRecurring=\"False\" MaxBodyDocumentSizeMB=\"2\" MonthlyRecurrenceDay=\"Day\" MonthlyRecurrenceDayIndex=\"1\" MonthlyRecurrenceStep=\"1\" MonthlyRecurrenceType=\"EveryNthDayOnEveryXthMonth\" MonthlyRecurrenceWeek=\"First\" RecurrenceEndType=\"NoEndDate\" RecurrencePatternType=\"Daily\" RecurrenceTotalOccurrences=\"1\" SaveWithoutSending=\"True\" WeeklyRecurrenceDays=\"None\" WeeklyRecurrenceStep=\"1\" YearlyRecurrenceDay=\"Day\" YearlyRecurrenceDayIndex=\"1\" YearlyRecurrenceMonth=\"January\" YearlyRecurrenceStep=\"1\" YearlyRecurrenceType=\"EveryNthDayOfMonth\" YearlyRecurrenceWeek=\"First\">\n\n  <umab:SendCalendarInviteX.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </umab:SendCalendarInviteX.Files>\n\n</umab:SendCalendarInviteX>"
+    },
+    "SendExchangeMail": {
+      "doc_name": "Send Exchange Mail",
+      "name": "SendExchangeMail",
+      "properties": [
+        "ApplicationId",
+        "AttachmentInputMode",
+        "AttachmentsBackup",
+        "AuthenticationMode",
+        "Bcc",
+        "Body",
+        "Cc",
+        "DirectoryId",
+        "Domain",
+        "EmailAutodiscover",
+        "ExchangeVersion",
+        "Files",
+        "From",
+        "IsBodyHtml",
+        "IsDraft",
+        "MailMessage",
+        "Name",
+        "Password",
+        "ResourceAttachmentList",
+        "ResourceAttachments",
+        "SaveCopy",
+        "SecurePassword",
+        "Server",
+        "Subject",
+        "TimeoutMS",
+        "To",
+        "User"
+      ],
+      "version_attrs": {
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "class_name": "UiPath.Mail.Exchange.Activities.SendExchangeMail",
+      "clr_namespace": "UiPath.Mail.Exchange.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "AttachmentsBackup",
+        "Files"
+      ],
+      "xaml_template": "<ui:SendExchangeMail ApplicationId=\"{x:Null}\" Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" DirectoryId=\"{x:Null}\" Domain=\"{x:Null}\" EmailAutodiscover=\"{x:Null}\" From=\"{x:Null}\" MailMessage=\"{x:Null}\" Name=\"{x:Null}\" Password=\"{x:Null}\" ResourceAttachmentList=\"{x:Null}\" ResourceAttachments=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" Subject=\"{x:Null}\" TimeoutMS=\"{x:Null}\" To=\"{x:Null}\" User=\"{x:Null}\" AttachmentInputMode=\"FilePaths\" AuthenticationMode=\"UserNameAndPassword\" ExchangeVersion=\"Exchange2007_SP1\" IsBodyHtml=\"False\" IsDraft=\"False\" SaveCopy=\"False\">\n\n  <ui:SendExchangeMail.AttachmentsBackup>\n\n    <usau:BackupSlot x:TypeArguments=\"umame:AttachmentInputMode\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umame:AttachmentInputMode, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:SendExchangeMail.AttachmentsBackup>\n\n  <ui:SendExchangeMail.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </ui:SendExchangeMail.Files>\n\n</ui:SendExchangeMail>"
+    },
+    "SendLotusNotesMailMessage": {
+      "doc_name": "Send Lotus Notes Mail Message",
+      "name": "SendLotusNotesMailMessage",
+      "properties": [
+        "Bcc",
+        "Body",
+        "Cc",
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "ContinueOnError",
+        "Files",
+        "IsBodyHtml",
+        "MailMessage",
+        "Password",
+        "SecurePassword",
+        "Subject",
+        "TimeoutMS",
+        "To",
+        "UseISConnection",
+        "UseRichTextEditor"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.LotusNotes.Activities.SendLotusNotesMailMessage",
+      "clr_namespace": "UiPath.Mail.LotusNotes.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umla",
+      "child_elements": [
+        "ConnectionDetailsBackupSlot",
+        "Files"
+      ],
+      "xaml_template": "<umla:SendLotusNotesMailMessage Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" ContinueOnError=\"{x:Null}\" MailMessage=\"{x:Null}\" Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Subject=\"{x:Null}\" TimeoutMS=\"{x:Null}\" To=\"{x:Null}\" UseRichTextEditor=\"{x:Null}\" ConnectionMode=\"Undefined\" IsBodyHtml=\"False\" UseISConnection=\"False\">\n\n  <umla:SendLotusNotesMailMessage.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </umla:SendLotusNotesMailMessage.ConnectionDetailsBackupSlot>\n\n  <umla:SendLotusNotesMailMessage.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </umla:SendLotusNotesMailMessage.Files>\n\n</umla:SendLotusNotesMailMessage>"
+    },
+    "SendMail": {
+      "doc_name": "Send Mail",
+      "name": "SendMail",
+      "properties": [
+        "Action",
+        "AttachmentInputMode",
+        "AttachmentsBackup",
+        "Bcc",
+        "Body",
+        "Cc",
+        "ConnectionDetailsBackupSlot",
+        "ConnectionMode",
+        "ContinueOnError",
+        "Email",
+        "EnableSSL",
+        "Files",
+        "From",
+        "IgnoreCRL",
+        "IsBodyHtml",
+        "MailMessage",
+        "Name",
+        "Password",
+        "Port",
+        "ReplyTo",
+        "ResourceAttachmentList",
+        "ResourceAttachments",
+        "Result",
+        "SecureConnection",
+        "SecurePassword",
+        "Server",
+        "Subject",
+        "TimeoutMS",
+        "To",
+        "UseISConnection",
+        "UseOAuth",
+        "UseRichTextEditor"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.SMTP.Activities.SendMail",
+      "clr_namespace": "UiPath.Mail.SMTP.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "AttachmentsBackup",
+        "ConnectionDetailsBackupSlot",
+        "Files"
+      ],
+      "xaml_template": "<ui:SendMail Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" ContinueOnError=\"{x:Null}\" Email=\"{x:Null}\" From=\"{x:Null}\" MailMessage=\"{x:Null}\" Name=\"{x:Null}\" Password=\"{x:Null}\" Port=\"{x:Null}\" ReplyTo=\"{x:Null}\" ResourceAttachmentList=\"{x:Null}\" ResourceAttachments=\"{x:Null}\" Result=\"{x:Null}\" SecurePassword=\"{x:Null}\" Server=\"{x:Null}\" Subject=\"{x:Null}\" TimeoutMS=\"{x:Null}\" To=\"{x:Null}\" UseOAuth=\"{x:Null}\" UseRichTextEditor=\"{x:Null}\" Action=\"Forward\" AttachmentInputMode=\"None\" ConnectionMode=\"Undefined\" EnableSSL=\"True\" IgnoreCRL=\"False\" IsBodyHtml=\"False\" SecureConnection=\"Auto\" UseISConnection=\"False\">\n\n  <ui:SendMail.AttachmentsBackup>\n\n    <usau:BackupSlot x:TypeArguments=\"umame:AttachmentInputMode\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umame:AttachmentInputMode, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:SendMail.AttachmentsBackup>\n\n  <ui:SendMail.ConnectionDetailsBackupSlot>\n\n    <usau:BackupSlot x:TypeArguments=\"umae:ConnectionDetails\" StoredValue=\"{x:Null}\">\n\n      <usau:BackupSlot.BackupValues>\n\n        <scg:Dictionary x:TypeArguments=\"umae:ConnectionDetails, scg:List(x:Object)\" />\n\n      </usau:BackupSlot.BackupValues>\n\n    </usau:BackupSlot>\n\n  </ui:SendMail.ConnectionDetailsBackupSlot>\n\n  <ui:SendMail.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </ui:SendMail.Files>\n\n</ui:SendMail>"
+    },
+    "SendMailX": {
+      "doc_name": "Send Mail X",
+      "name": "SendMailX",
+      "properties": [
+        "Account",
+        "Bcc",
+        "Body",
+        "Cc",
+        "Files",
+        "HtmlBodyFromFile",
+        "HtmlBodyFromText",
+        "Importance",
+        "MaxBodyDocumentSizeMB",
+        "ReplyTo",
+        "Sensitivity",
+        "Subject",
+        "To",
+        "UseDocumentAsBody"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Activities.Business.SendMailX",
+      "clr_namespace": "UiPath.Mail.Activities.Business",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "umab",
+      "child_elements": [
+        "Files",
+        "HtmlBodyFromFile"
+      ],
+      "xaml_template": "<umab:SendMailX Account=\"{x:Null}\" Bcc=\"{x:Null}\" Body=\"{x:Null}\" Cc=\"{x:Null}\" HtmlBodyFromText=\"{x:Null}\" ReplyTo=\"{x:Null}\" Subject=\"{x:Null}\" To=\"{x:Null}\" Importance=\"Normal\" MaxBodyDocumentSizeMB=\"2\" Sensitivity=\"Normal\" UseDocumentAsBody=\"False\">\n\n  <umab:SendMailX.Files>\n\n    <scg:List x:TypeArguments=\"InArgument(x:String)\" Capacity=\"0\" />\n\n  </umab:SendMailX.Files>\n\n  <umab:SendMailX.HtmlBodyFromFile>\n\n    <umabh:HtmlContentArgument FilePath=\"{x:Null}\" HtmlBody=\"{x:Null}\">\n\n      <umabh:HtmlContentArgument.RuntimeImages>\n\n        <scg:Dictionary x:TypeArguments=\"x:String, InArgument(x:String)\" />\n\n      </umabh:HtmlContentArgument.RuntimeImages>\n\n      <umabh:HtmlContentArgument.ValueMappings>\n\n        <scg:List x:TypeArguments=\"umabh:HtmlValueMappingBase\" Capacity=\"0\" />\n\n      </umabh:HtmlContentArgument.ValueMappings>\n\n    </umabh:HtmlContentArgument>\n\n  </umab:SendMailX.HtmlBodyFromFile>\n\n</umab:SendMailX>"
+    },
+    "SetOutlookMailCategories": {
+      "doc_name": "Set Outlook Mail Categories",
+      "name": "SetOutlookMailCategories",
+      "properties": [
+        "Categories",
+        "MailMessage"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Mail.Outlook.Activities.SetOutlookMailCategories",
+      "clr_namespace": "UiPath.Mail.Outlook.Activities",
+      "source_package": "UiPath.Mail.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SetOutlookMailCategories Categories=\"{x:Null}\" MailMessage=\"{x:Null}\" />"
     }
   },
   "source": "UiPath/skills@main/UiPath.Mail.Activities/2.8",

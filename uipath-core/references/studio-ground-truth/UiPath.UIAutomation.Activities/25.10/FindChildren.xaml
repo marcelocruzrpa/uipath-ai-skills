@@ -1,0 +1,14 @@
+<Activity x:Class="FindChildren" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:FindChildren Children="{x:Null}" Filter="{x:Null}" Scope="FIND_CHILDREN">
+    <ui:FindChildren.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="6cfade3f-54a3-4e2a-beac-b13f09526292">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </ui:FindChildren.Target>
+  </ui:FindChildren>
+</Activity>

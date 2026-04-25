@@ -1,3 +1,3 @@
-<Activity x:Class="NSetRuntimeBrowser" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NSetRuntimeBrowser />
+<Activity x:Class="Set Runtime Browser" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NSetRuntimeBrowser BrowserType="[DefaultSystemBrowser.BrowserType]" DisplayName="Set Runtime Browser" Version="V5" />
 </Activity>

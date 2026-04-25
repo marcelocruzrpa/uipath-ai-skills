@@ -1,0 +1,12 @@
+<Activity x:Class="FileChangeTriggerV2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:FileChangeTriggerV2 ContinueMonitoring="{x:Null}" ContinueOnError="{x:Null}" FileName="{x:Null}" Path="{x:Null}" ChangeType="Changed" IncludeSubdirectories="False" NotifyFilters="FileName">
+    <ui:FileChangeTriggerV2.Body>
+      <ActivityAction x:TypeArguments="ui:FileChangeInfo">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ui:FileChangeInfo" Name="FileChangeInfo" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:FileChangeTriggerV2.Body>
+  </ui:FileChangeTriggerV2>
+</Activity>

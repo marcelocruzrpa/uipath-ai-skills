@@ -1,0 +1,9 @@
+<Activity x:Class="CreatePivotTableXv2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:CreatePivotTableXv2 DestinationRange="{x:Null}" Range="{x:Null}" TableName="{x:Null}" LayoutRowType="Compact" ValuesMode="Columns">
+    <ueab:CreatePivotTableXv2.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ueab:CreatePivotTableXv2.Body>
+  </ueab:CreatePivotTableXv2>
+</Activity>

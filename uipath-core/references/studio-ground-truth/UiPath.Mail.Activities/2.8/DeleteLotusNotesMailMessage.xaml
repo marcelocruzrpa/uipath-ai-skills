@@ -1,0 +1,3 @@
+<Activity x:Class="DeleteLotusNotesMailMessage" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umla="clr-namespace:UiPath.Mail.LotusNotes.Activities;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umla:DeleteLotusNotesMailMessage FromFolder="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" />
+</Activity>

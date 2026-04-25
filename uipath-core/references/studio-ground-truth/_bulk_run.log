@@ -1,0 +1,9 @@
+Enumerated 1 unique (package, version) pair(s):
+  - UiPath.UIAutomation.Activities@25.10  bands=25,26  [existing: ok=53, unresolved=7]
+
+[1/1] UiPath.UIAutomation.Activities@25.10 (bands 25,26)
+  -> ok (70/76 activities, concrete=25.10.30)
+
+Summary written: C:\Users\marce\uipath-ai-skills\uipath-core\references\studio-ground-truth\_bulk_summary.json
+  succeeded: 1
+  failed:    0

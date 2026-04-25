@@ -1,0 +1,7 @@
+<Activity x:Class="FormatValue" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:FormatValue Value="{x:Null}">
+    <ui:FormatValue.Format>
+      <ui:GeneralNumberFormatProvider DecimalDigits="2" DecimalSeparator="." GroupSeparator="," />
+    </ui:FormatValue.Format>
+  </ui:FormatValue>
+</Activity>

@@ -1,0 +1,12 @@
+<Activity x:Class="RetryScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:RetryScope LogRetriedExceptions="{x:Null}" RetriedExceptionsLogLevel="{x:Null}">
+    <ui:RetryScope.ActivityBody>
+      <ActivityAction>
+        <Sequence DisplayName="Action" />
+      </ActivityAction>
+    </ui:RetryScope.ActivityBody>
+    <ui:RetryScope.Condition>
+      <ActivityFunc x:TypeArguments="x:Boolean" />
+    </ui:RetryScope.Condition>
+  </ui:RetryScope>
+</Activity>

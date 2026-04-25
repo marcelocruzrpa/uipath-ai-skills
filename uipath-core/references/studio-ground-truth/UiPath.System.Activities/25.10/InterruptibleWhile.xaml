@@ -1,0 +1,7 @@
+<Activity x:Class="InterruptibleWhile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:InterruptibleWhile CurrentIndex="{x:Null}">
+    <ui:InterruptibleWhile.Body>
+      <Sequence DisplayName="Body" />
+    </ui:InterruptibleWhile.Body>
+  </ui:InterruptibleWhile>
+</Activity>

@@ -1,0 +1,14 @@
+<Activity x:Class="SelectMultipleItems" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:SelectMultipleItems AddToSelection="{x:Null}" AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" MultipleItems="{x:Null}">
+    <ui:SelectMultipleItems.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="00600add-27d2-4f75-b187-f776bdaf8a16">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </ui:SelectMultipleItems.Target>
+  </ui:SelectMultipleItems>
+</Activity>

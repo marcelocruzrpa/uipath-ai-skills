@@ -1,0 +1,12 @@
+<Activity x:Class="ProcessEndTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ProcessEndTrigger ContinueMonitoring="{x:Null}" ContinueOnError="{x:Null}" ProcessName="{x:Null}">
+    <ui:ProcessEndTrigger.Body>
+      <ActivityAction x:TypeArguments="ui:ProcessInfo">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="ui:ProcessInfo" Name="ProcessInfo" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ProcessEndTrigger.Body>
+  </ui:ProcessEndTrigger>
+</Activity>

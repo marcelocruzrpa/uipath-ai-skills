@@ -2,7 +2,7 @@
   "package": "UiPath.Mail.Activities",
   "version": "2.8",
   "concrete_version": "2.8.10",
-  "harvested_at": "2026-04-22T06:23:18+00:00",
+  "harvested_at": "2026-04-25T08:34:02+00:00",
   "activities": {
     "ForEachEmailX": {
       "status": "ok",
@@ -33,6 +33,191 @@
       "status": "ok",
       "class_name": "UiPath.Mail.Outlook.Activities.SendOutlookMail",
       "size": 1413
+    },
+    "ArchiveMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.ArchiveMailX",
+      "size": 304
+    },
+    "CreateDraft": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.CreateDraft",
+      "size": 1440
+    },
+    "CreateHtmlContent": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.CreateHtmlContent",
+      "size": 1098
+    },
+    "DeleteImapMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.IMAP.Activities.DeleteImapMailMessage",
+      "size": 1265
+    },
+    "DeleteLotusNotesMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.LotusNotes.Activities.DeleteLotusNotesMailMessage",
+      "size": 404
+    },
+    "DeleteMail": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.DeleteMail",
+      "size": 568
+    },
+    "DeleteMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.DeleteMailX",
+      "size": 302
+    },
+    "DeleteOutlookMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Outlook.Activities.DeleteOutlookMailMessage",
+      "size": 318
+    },
+    "ExchangeScope": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.ExchangeScope",
+      "size": 1084
+    },
+    "ForwardMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.ForwardMailX",
+      "size": 1373
+    },
+    "GetEmailById": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.GetEmailById",
+      "size": 337
+    },
+    "GetExchangeMailMessages": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.GetExchangeMailMessages",
+      "size": 808
+    },
+    "GetIMAPMailMessages": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.IMAP.Activities.GetIMAPMailMessages",
+      "size": 1464
+    },
+    "GetLotusNotesMailMessages": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.LotusNotes.Activities.GetLotusNotesMailMessages",
+      "size": 1219
+    },
+    "GetMailMessageFromFile": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.GetMailMessageFromFile",
+      "size": 309
+    },
+    "GetPOP3MailMessages": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.POP3.Activities.GetPOP3MailMessages",
+      "size": 1254
+    },
+    "MarkMailAsReadX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.MarkMailAsReadX",
+      "size": 324
+    },
+    "MarkOutlookMailAsRead": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Outlook.Activities.MarkOutlookMailAsRead",
+      "size": 300
+    },
+    "MoveIMAPMailMessageToFolder": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.IMAP.Activities.MoveIMAPMailMessageToFolder",
+      "size": 1334
+    },
+    "MoveLotusNotesMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.LotusNotes.Activities.MoveLotusNotesMailMessage",
+      "size": 422
+    },
+    "MoveMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.MoveMailX",
+      "size": 320
+    },
+    "MoveMessageToFolder": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.MoveMessageToFolder",
+      "size": 601
+    },
+    "NewIMAPEmailReceivedTrigger": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.IMAP.NewIMAPEmailReceivedTrigger",
+      "size": 687
+    },
+    "OutlookMailMessagesTrigger": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Outlook.OutlookMailMessagesTrigger",
+      "size": 710
+    },
+    "ReplyToMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.ReplyToMailX",
+      "size": 1412
+    },
+    "ReplyToOutlookMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Outlook.Activities.ReplyToOutlookMailMessage",
+      "size": 738
+    },
+    "SaveExchangeAttachements": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.SaveExchangeAttachements",
+      "size": 634
+    },
+    "SaveMail": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.SaveMail",
+      "size": 297
+    },
+    "SaveMailAttachmentsX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.SaveMailAttachmentsX",
+      "size": 419
+    },
+    "SaveMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.SaveMailX",
+      "size": 340
+    },
+    "SaveOutlookMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Outlook.Activities.SaveOutlookMailMessage",
+      "size": 391
+    },
+    "SendCalendarInviteX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.SendCalendarInviteX",
+      "size": 1463
+    },
+    "SendExchangeMail": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Exchange.Activities.SendExchangeMail",
+      "size": 1637
+    },
+    "SendLotusNotesMailMessage": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.LotusNotes.Activities.SendLotusNotesMailMessage",
+      "size": 1482
+    },
+    "SendMail": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.SMTP.Activities.SendMail",
+      "size": 2099
+    },
+    "SendMailX": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Activities.Business.SendMailX",
+      "size": 1405
+    },
+    "SetOutlookMailCategories": {
+      "status": "ok",
+      "class_name": "UiPath.Mail.Outlook.Activities.SetOutlookMailCategories",
+      "size": 314
     }
   }
 }

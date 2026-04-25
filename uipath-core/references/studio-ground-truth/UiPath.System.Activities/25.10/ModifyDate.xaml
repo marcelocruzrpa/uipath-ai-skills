@@ -1,0 +1,9 @@
+<Activity x:Class="ModifyDate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ModifyDate CustomDateFormat="{x:Null}" OutDate="{x:Null}" OutText="{x:Null}" SourceDate="{x:Null}">
+    <ui:ModifyDate.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ModifyDate.Body>
+  </ui:ModifyDate>
+</Activity>

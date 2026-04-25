@@ -1,3 +1,10 @@
-<Activity x:Class="NCheckState" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NCheckState HealingAgentBehavior="Disabled" />
+<Activity x:Class="Check App State" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NCheckState DisplayName="Check App State" HealingAgentBehavior="Disabled" Version="V5">
+    <uix:NCheckState.IfExists>
+      <Sequence DisplayName="Target appears" />
+    </uix:NCheckState.IfExists>
+    <uix:NCheckState.IfNotExists>
+      <Sequence DisplayName="Target does not appear" />
+    </uix:NCheckState.IfNotExists>
+  </uix:NCheckState>
 </Activity>

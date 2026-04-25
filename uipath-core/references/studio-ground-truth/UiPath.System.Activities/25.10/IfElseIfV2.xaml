@@ -1,0 +1,13 @@
+<Activity x:Class="IfElseIfV2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:IfElseIfV2>
+    <ui:IfElseIfV2.Else>
+      <Sequence DisplayName="" />
+    </ui:IfElseIfV2.Else>
+    <ui:IfElseIfV2.ElseIfs>
+      <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True" />
+    </ui:IfElseIfV2.ElseIfs>
+    <ui:IfElseIfV2.Then>
+      <Sequence DisplayName="" />
+    </ui:IfElseIfV2.Then>
+  </ui:IfElseIfV2>
+</Activity>

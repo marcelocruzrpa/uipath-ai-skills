@@ -1,0 +1,3 @@
+<Activity x:Class="CvGetTextWithDescriptor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" DesignTimeScaleFactor="{x:Null}" ScrollOffset="{x:Null}" NumberOfScrolls="2" RefreshBefore="True" ScrollDirection="Down" Version="V6" />
+</Activity>

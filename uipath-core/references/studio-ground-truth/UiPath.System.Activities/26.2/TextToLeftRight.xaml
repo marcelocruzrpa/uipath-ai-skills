@@ -1,0 +1,3 @@
+<Activity x:Class="TextToLeftRight" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:TextToLeftRight FullText="{x:Null}" Separator="{x:Null}" TextToLeft="{x:Null}" TextToRight="{x:Null}" SeparatorKey="Custom" />
+</Activity>

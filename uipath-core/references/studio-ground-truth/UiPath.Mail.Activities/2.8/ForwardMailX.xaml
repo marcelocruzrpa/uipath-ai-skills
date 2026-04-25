@@ -1,0 +1,17 @@
+<Activity x:Class="ForwardMailX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:ForwardMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" MailMessage="{x:Null}" NewSubject="{x:Null}" To="{x:Null}" MaxBodyDocumentSizeMB="2" UseDocumentAsBody="False">
+    <umab:ForwardMailX.Files>
+      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+    </umab:ForwardMailX.Files>
+    <umab:ForwardMailX.HtmlBodyFromFile>
+      <umabh:HtmlContentArgument FilePath="{x:Null}" HtmlBody="{x:Null}">
+        <umabh:HtmlContentArgument.RuntimeImages>
+          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+        </umabh:HtmlContentArgument.RuntimeImages>
+        <umabh:HtmlContentArgument.ValueMappings>
+          <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="0" />
+        </umabh:HtmlContentArgument.ValueMappings>
+      </umabh:HtmlContentArgument>
+    </umab:ForwardMailX.HtmlBodyFromFile>
+  </umab:ForwardMailX>
+</Activity>

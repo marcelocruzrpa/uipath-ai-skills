@@ -1,0 +1,7 @@
+<Activity x:Class="InvokeVBScript" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:InvokeVBScript FileName="{x:Null}" KillOnTimeout="{x:Null}" Result="{x:Null}" RunInBatchMode="{x:Null}" TimeoutMS="{x:Null}" UnicodeSupport="{x:Null}" WaitForOutput="True">
+    <ui:InvokeVBScript.Arguments>
+      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+    </ui:InvokeVBScript.Arguments>
+  </ui:InvokeVBScript>
+</Activity>

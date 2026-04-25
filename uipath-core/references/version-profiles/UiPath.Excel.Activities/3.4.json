@@ -1,7 +1,7 @@
 {
   "activities": {
     "AppendRange": {
-      "doc_name": "AppendRange",
+      "doc_name": "Append Range",
       "name": "AppendRange",
       "properties": [
         "DataTable",
@@ -21,7 +21,7 @@
       "harvestable": true
     },
     "AutoFillX": {
-      "doc_name": "AutoFillX",
+      "doc_name": "Auto Fill X",
       "name": "AutoFillX",
       "properties": [
         "StartRange"
@@ -49,7 +49,7 @@
       "harvestable": true
     },
     "ExcelApplicationCard": {
-      "doc_name": "ExcelApplicationCard",
+      "doc_name": "Excel Application Card",
       "name": "ExcelApplicationCard",
       "properties": [
         "DisplayName",
@@ -75,7 +75,7 @@
       "harvestable": true
     },
     "ExcelForEachRowX": {
-      "doc_name": "ExcelForEachRowX",
+      "doc_name": "Excel For Each Row X",
       "name": "ExcelForEachRowX",
       "properties": [
         "DisplayName",
@@ -99,7 +99,7 @@
       "harvestable": true
     },
     "ExcelProcessScopeX": {
-      "doc_name": "ExcelProcessScopeX",
+      "doc_name": "Excel Process Scope X",
       "name": "ExcelProcessScopeX",
       "properties": [
         "DisplayAlerts",
@@ -127,7 +127,7 @@
       "harvestable": true
     },
     "FilterPivotTableX": {
-      "doc_name": "FilterPivotTableX",
+      "doc_name": "Filter Pivot Table X",
       "name": "FilterPivotTableX",
       "properties": [
         "ueabf"
@@ -143,7 +143,7 @@
       "harvestable": true
     },
     "FilterX": {
-      "doc_name": "FilterX",
+      "doc_name": "Filter X",
       "name": "FilterX",
       "properties": [
         "ueabf"
@@ -159,7 +159,7 @@
       "harvestable": true
     },
     "ForEachRow": {
-      "doc_name": "ForEachRow",
+      "doc_name": "For Each Row",
       "name": "ForEachRow",
       "properties": [
         "ColumnNames",
@@ -182,7 +182,7 @@
       "harvestable": true
     },
     "ForEachSheetX": {
-      "doc_name": "ForEachSheetX",
+      "doc_name": "For Each Sheet X",
       "name": "ForEachSheetX",
       "properties": [
         "DisplayName",
@@ -203,7 +203,7 @@
       "harvestable": true
     },
     "InsertExcelChartX": {
-      "doc_name": "InsertExcelChartX",
+      "doc_name": "Insert Excel Chart X",
       "name": "InsertExcelChartX",
       "properties": [
         "ueabc"
@@ -219,7 +219,7 @@
       "harvestable": true
     },
     "ReadRange": {
-      "doc_name": "ReadRange",
+      "doc_name": "Read Range",
       "name": "ReadRange",
       "properties": [
         "AddHeaders",
@@ -241,7 +241,7 @@
       "harvestable": true
     },
     "ReadRangeX": {
-      "doc_name": "ReadRangeX",
+      "doc_name": "Read Range X",
       "name": "ReadRangeX",
       "properties": [
         "DisplayName",
@@ -259,7 +259,7 @@
       "harvestable": true
     },
     "UpdateChartX": {
-      "doc_name": "UpdateChartX",
+      "doc_name": "Update Chart X",
       "name": "UpdateChartX",
       "properties": [
         "ueabc"
@@ -277,7 +277,7 @@
       "harvestable": true
     },
     "WriteRange": {
-      "doc_name": "WriteRange",
+      "doc_name": "Write Range",
       "name": "WriteRange",
       "properties": [
         "DataTable",
@@ -298,7 +298,7 @@
       "harvestable": true
     },
     "WriteRangeX": {
-      "doc_name": "WriteRangeX",
+      "doc_name": "Write Range X",
       "name": "WriteRangeX",
       "properties": [
         "Destination",
@@ -315,6 +315,1872 @@
       "source_package": "UiPath.Excel.Activities",
       "namespace_match": true,
       "harvestable": true
+    },
+    "AddSensitivityLabelX": {
+      "doc_name": "Add Sensitivity Label X",
+      "name": "AddSensitivityLabelX",
+      "properties": [
+        "Justification",
+        "SensitivityLabel",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.AddSensitivityLabelX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:AddSensitivityLabelX Justification=\"{x:Null}\" SensitivityLabel=\"{x:Null}\" Workbook=\"{x:Null}\" />"
+    },
+    "AppendCsvFile": {
+      "doc_name": "Append Csv File",
+      "name": "AppendCsvFile",
+      "properties": [
+        "DataTable",
+        "Delimitator",
+        "DelimitatorForViewModel",
+        "FilePath"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.CSV.Activities.AppendCsvFile",
+      "clr_namespace": "UiPath.CSV.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:AppendCsvFile DataTable=\"{x:Null}\" FilePath=\"{x:Null}\" Delimitator=\"Comma\" DelimitatorForViewModel=\"Comma\" />"
+    },
+    "AppendRangeX": {
+      "doc_name": "Append Range X",
+      "name": "AppendRangeX",
+      "properties": [
+        "DestinationHasHeaders",
+        "DestinationRange",
+        "HasHeaders",
+        "PasteOptions",
+        "SourceRange",
+        "StartingColumnName",
+        "Transpose"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.AppendRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:AppendRangeX DestinationRange=\"{x:Null}\" SourceRange=\"{x:Null}\" StartingColumnName=\"{x:Null}\" DestinationHasHeaders=\"False\" HasHeaders=\"False\" PasteOptions=\"All\" Transpose=\"False\" />"
+    },
+    "AppendWriteCsvFile": {
+      "doc_name": "Append Write Csv File",
+      "name": "AppendWriteCsvFile",
+      "properties": [
+        "AddHeaders",
+        "CsvAction",
+        "DataTable",
+        "Delimitator",
+        "DelimitatorForViewModel",
+        "FilePath",
+        "PathResource",
+        "ShouldQuote"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.CSV.Activities.AppendWriteCsvFile",
+      "clr_namespace": "UiPath.CSV.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:AppendWriteCsvFile DataTable=\"{x:Null}\" FilePath=\"{x:Null}\" PathResource=\"{x:Null}\" AddHeaders=\"True\" CsvAction=\"Write\" Delimitator=\"Comma\" DelimitatorForViewModel=\"Comma\" ShouldQuote=\"True\" />"
+    },
+    "AutoFitX": {
+      "doc_name": "Auto Fit X",
+      "name": "AutoFitX",
+      "properties": [
+        "Columns",
+        "Range",
+        "Rows"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.AutoFitX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:AutoFitX Range=\"{x:Null}\" Columns=\"True\" Rows=\"True\" />"
+    },
+    "ChangePivotTableDataSourceX": {
+      "doc_name": "Change Pivot Table Data Source X",
+      "name": "ChangePivotTableDataSourceX",
+      "properties": [
+        "NewSourceRange",
+        "PivotTable"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ChangePivotTableDataSourceX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ChangePivotTableDataSourceX NewSourceRange=\"{x:Null}\" PivotTable=\"{x:Null}\" />"
+    },
+    "ClearRangeX": {
+      "doc_name": "Clear Range X",
+      "name": "ClearRangeX",
+      "properties": [
+        "HasHeaders",
+        "TargetRange"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ClearRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ClearRangeX TargetRange=\"{x:Null}\" HasHeaders=\"False\" />"
+    },
+    "CloseWorkbook": {
+      "doc_name": "Close Workbook",
+      "name": "CloseWorkbook",
+      "properties": [
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.CloseWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:CloseWorkbook Workbook=\"{x:Null}\" />"
+    },
+    "CopyChartToClipboardX": {
+      "doc_name": "Copy Chart To Clipboard X",
+      "name": "CopyChartToClipboardX",
+      "properties": [
+        "Action",
+        "Chart",
+        "FilePath",
+        "ReplaceFile"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.CopyChartToClipboardX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:CopyChartToClipboardX Chart=\"{x:Null}\" FilePath=\"{x:Null}\" Action=\"CopyToClipboard\" ReplaceFile=\"True\" />"
+    },
+    "CopyPasteRangeX": {
+      "doc_name": "Copy Paste Range X",
+      "name": "CopyPasteRangeX",
+      "properties": [
+        "DestinationRange",
+        "PasteOptions",
+        "SourceRange",
+        "Transpose"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.CopyPasteRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:CopyPasteRangeX DestinationRange=\"{x:Null}\" SourceRange=\"{x:Null}\" PasteOptions=\"All\" Transpose=\"False\" />"
+    },
+    "CreateNewWorkbook": {
+      "doc_name": "Create New Workbook",
+      "name": "CreateNewWorkbook",
+      "properties": [
+        "ConflictResolution",
+        "SheetName",
+        "WorkbookFile"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.CreateNewWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:CreateNewWorkbook SheetName=\"{x:Null}\" WorkbookFile=\"{x:Null}\" ConflictResolution=\"Replace\" />"
+    },
+    "CreatePivotTable": {
+      "doc_name": "Create Pivot Table",
+      "name": "CreatePivotTable",
+      "properties": [
+        "LayoutRowType",
+        "PivotTableFields",
+        "PivotTableFieldsVariable",
+        "PivotTableName",
+        "PlacementCell",
+        "SheetName",
+        "SourceRange",
+        "SourceSheet",
+        "SourceTable",
+        "UseTableSource",
+        "ValuesMode"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.CreatePivotTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "PivotTableFields"
+      ],
+      "xaml_template": "<ui:CreatePivotTable PivotTableFieldsVariable=\"{x:Null}\" PivotTableName=\"{x:Null}\" PlacementCell=\"{x:Null}\" SheetName=\"{x:Null}\" SourceRange=\"{x:Null}\" SourceSheet=\"{x:Null}\" SourceTable=\"{x:Null}\" LayoutRowType=\"Compact\" UseTableSource=\"False\" ValuesMode=\"Columns\">\n\n  <ui:CreatePivotTable.PivotTableFields>\n\n    <scg:List x:TypeArguments=\"InArgument(ui:PivotTableField)\" Capacity=\"0\" />\n\n  </ui:CreatePivotTable.PivotTableFields>\n\n</ui:CreatePivotTable>"
+    },
+    "CreatePivotTableX": {
+      "doc_name": "Create Pivot Table X",
+      "name": "CreatePivotTableX",
+      "properties": [
+        "Body",
+        "DestinationRange",
+        "LayoutRowType",
+        "Range",
+        "TableName",
+        "ValuesMode"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.CreatePivotTableX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:CreatePivotTableX DestinationRange=\"{x:Null}\" Range=\"{x:Null}\" TableName=\"{x:Null}\" LayoutRowType=\"Compact\" ValuesMode=\"Columns\">\n\n  <ueab:CreatePivotTableX.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:CreatePivotTableX.Body>\n\n</ueab:CreatePivotTableX>"
+    },
+    "CreatePivotTableXv2": {
+      "doc_name": "Create Pivot Table Xv2",
+      "name": "CreatePivotTableXv2",
+      "properties": [
+        "Body",
+        "DestinationRange",
+        "LayoutRowType",
+        "Range",
+        "TableName",
+        "ValuesMode"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.CreatePivotTableXv2",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:CreatePivotTableXv2 DestinationRange=\"{x:Null}\" Range=\"{x:Null}\" TableName=\"{x:Null}\" LayoutRowType=\"Compact\" ValuesMode=\"Columns\">\n\n  <ueab:CreatePivotTableXv2.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:CreatePivotTableXv2.Body>\n\n</ueab:CreatePivotTableXv2>"
+    },
+    "CreateTableX": {
+      "doc_name": "Create Table X",
+      "name": "CreateTableX",
+      "properties": [
+        "HasHeaders",
+        "OutTableName",
+        "Range",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.CreateTableX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:CreateTableX OutTableName=\"{x:Null}\" Range=\"{x:Null}\" TableName=\"{x:Null}\" HasHeaders=\"True\" />"
+    },
+    "DeleteColumnX": {
+      "doc_name": "Delete Column X",
+      "name": "DeleteColumnX",
+      "properties": [
+        "ColumnName",
+        "HasHeaders",
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.DeleteColumnX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:DeleteColumnX ColumnName=\"{x:Null}\" Range=\"{x:Null}\" HasHeaders=\"True\" />"
+    },
+    "DeleteRowsX": {
+      "doc_name": "Delete Rows X",
+      "name": "DeleteRowsX",
+      "properties": [
+        "DeleteRowsOption",
+        "HasHeaders",
+        "Range",
+        "RowPositions"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.DeleteRowsX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:DeleteRowsX Range=\"{x:Null}\" RowPositions=\"{x:Null}\" DeleteRowsOption=\"Specific\" HasHeaders=\"True\" />"
+    },
+    "DeleteSheetX": {
+      "doc_name": "Delete Sheet X",
+      "name": "DeleteSheetX",
+      "properties": [
+        "Sheet"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.DeleteSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:DeleteSheetX Sheet=\"{x:Null}\" />"
+    },
+    "DuplicateSheetX": {
+      "doc_name": "Duplicate Sheet X",
+      "name": "DuplicateSheetX",
+      "properties": [
+        "NewSheetName",
+        "SheetToDuplicate"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.DuplicateSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:DuplicateSheetX SheetToDuplicate=\"{x:Null}\" NewSheetName=\"New Sheet\" />"
+    },
+    "ExcelAppendRange": {
+      "doc_name": "Excel Append Range",
+      "name": "ExcelAppendRange",
+      "properties": [
+        "DataTable",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelAppendRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelAppendRange DataTable=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelApplicationScope": {
+      "doc_name": "Excel Application Scope",
+      "name": "ExcelApplicationScope",
+      "properties": [
+        "Body",
+        "InstanceCachePeriod",
+        "SensitivityLabel",
+        "SensitivityOperation",
+        "WorkbookPath"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelApplicationScope",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:ExcelApplicationScope SensitivityLabel=\"{x:Null}\" WorkbookPath=\"{x:Null}\" InstanceCachePeriod=\"3000\" SensitivityOperation=\"None\">\n\n  <ui:ExcelApplicationScope.Body>\n\n    <ActivityAction x:TypeArguments=\"ui:WorkbookApplication\">\n\n      <ActivityAction.Argument>\n\n        <DelegateInArgument x:TypeArguments=\"ui:WorkbookApplication\" Name=\"ExcelWorkbookScope\" />\n\n      </ActivityAction.Argument>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ui:ExcelApplicationScope.Body>\n\n</ui:ExcelApplicationScope>"
+    },
+    "ExcelAutoFillRange": {
+      "doc_name": "Excel Auto Fill Range",
+      "name": "ExcelAutoFillRange",
+      "properties": [
+        "FillRange",
+        "SheetName",
+        "SourceRange"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelAutoFillRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelAutoFillRange FillRange=\"{x:Null}\" SourceRange=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelCloseWorkbook": {
+      "doc_name": "Excel Close Workbook",
+      "name": "ExcelCloseWorkbook",
+      "properties": [
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelCloseWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelCloseWorkbook Workbook=\"{x:Null}\" />"
+    },
+    "ExcelCopyPasteRange": {
+      "doc_name": "Excel Copy Paste Range",
+      "name": "ExcelCopyPasteRange",
+      "properties": [
+        "DestinationCell",
+        "DestinationSheet",
+        "SheetName",
+        "SourceRange"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelCopyPasteRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelCopyPasteRange DestinationCell=\"{x:Null}\" DestinationSheet=\"{x:Null}\" SourceRange=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelCopySheet": {
+      "doc_name": "Excel Copy Sheet",
+      "name": "ExcelCopySheet",
+      "properties": [
+        "DestinationFilePath",
+        "DestinationSheetName",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelCopySheet",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelCopySheet DestinationFilePath=\"{x:Null}\" DestinationSheetName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelCreatePivotTable": {
+      "doc_name": "Excel Create Pivot Table",
+      "name": "ExcelCreatePivotTable",
+      "properties": [
+        "Range",
+        "SheetName",
+        "SourceTableName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelCreatePivotTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelCreatePivotTable Range=\"{x:Null}\" SourceTableName=\"{x:Null}\" TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelCreateTable": {
+      "doc_name": "Excel Create Table",
+      "name": "ExcelCreateTable",
+      "properties": [
+        "Range",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelCreateTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelCreateTable Range=\"{x:Null}\" TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelDeleteColumn": {
+      "doc_name": "Excel Delete Column",
+      "name": "ExcelDeleteColumn",
+      "properties": [
+        "ColumnName",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelDeleteColumn",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelDeleteColumn ColumnName=\"{x:Null}\" TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelDeleteRange": {
+      "doc_name": "Excel Delete Range",
+      "name": "ExcelDeleteRange",
+      "properties": [
+        "Range",
+        "SheetName",
+        "ShiftCells",
+        "ShiftOption"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelDeleteRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelDeleteRange Range=\"{x:Null}\" SheetName=\"Sheet1\" ShiftCells=\"False\" ShiftOption=\"ShiftUp\" />"
+    },
+    "ExcelFilterTable": {
+      "doc_name": "Excel Filter Table",
+      "name": "ExcelFilterTable",
+      "properties": [
+        "ColumnName",
+        "FilterOptions",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelFilterTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelFilterTable ColumnName=\"{x:Null}\" FilterOptions=\"{x:Null}\" TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelForEachRow": {
+      "doc_name": "Excel For Each Row",
+      "name": "ExcelForEachRow",
+      "properties": [
+        "Body",
+        "EmptyRowBehavior",
+        "HasHeaders",
+        "Range",
+        "SaveAfterEachRow"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ExcelForEachRow",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ExcelForEachRow Range=\"{x:Null}\" EmptyRowBehavior=\"Stop\" HasHeaders=\"False\" SaveAfterEachRow=\"False\">\n\n  <ueab:ExcelForEachRow.Body>\n\n    <ActivityAction x:TypeArguments=\"ue:CurrentRowQuickHandle, x:Int32\">\n\n      <ActivityAction.Argument1>\n\n        <DelegateInArgument x:TypeArguments=\"ue:CurrentRowQuickHandle\" Name=\"CurrentRow\" />\n\n      </ActivityAction.Argument1>\n\n      <ActivityAction.Argument2>\n\n        <DelegateInArgument x:TypeArguments=\"x:Int32\" Name=\"CurrentIndex\" />\n\n      </ActivityAction.Argument2>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ExcelForEachRow.Body>\n\n</ueab:ExcelForEachRow>"
+    },
+    "ExcelGetCellColor": {
+      "doc_name": "Excel Get Cell Color",
+      "name": "ExcelGetCellColor",
+      "properties": [
+        "Cell",
+        "Color",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelGetCellColor",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelGetCellColor Color=\"{x:Null}\" Cell=\"A1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelGetSelectedRange": {
+      "doc_name": "Excel Get Selected Range",
+      "name": "ExcelGetSelectedRange",
+      "properties": [
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelGetSelectedRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelGetSelectedRange Range=\"{x:Null}\" />"
+    },
+    "ExcelGetTableRange": {
+      "doc_name": "Excel Get Table Range",
+      "name": "ExcelGetTableRange",
+      "properties": [
+        "IsPivot",
+        "Range",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelGetTableRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelGetTableRange Range=\"{x:Null}\" TableName=\"{x:Null}\" IsPivot=\"False\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelGetWorkbookSheet": {
+      "doc_name": "Excel Get Workbook Sheet",
+      "name": "ExcelGetWorkbookSheet",
+      "properties": [
+        "Index",
+        "Sheet"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelGetWorkbookSheet",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelGetWorkbookSheet Index=\"{x:Null}\" Sheet=\"{x:Null}\" />"
+    },
+    "ExcelGetWorkbookSheets": {
+      "doc_name": "Excel Get Workbook Sheets",
+      "name": "ExcelGetWorkbookSheets",
+      "properties": [
+        "Sheets"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelGetWorkbookSheets",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelGetWorkbookSheets Sheets=\"{x:Null}\" />"
+    },
+    "ExcelInsertColumn": {
+      "doc_name": "Excel Insert Column",
+      "name": "ExcelInsertColumn",
+      "properties": [
+        "ColumnName",
+        "Position",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelInsertColumn",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelInsertColumn ColumnName=\"{x:Null}\" Position=\"{x:Null}\" TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelInsertDeleteColumns": {
+      "doc_name": "Excel Insert Delete Columns",
+      "name": "ExcelInsertDeleteColumns",
+      "properties": [
+        "Mode",
+        "NoColumns",
+        "Position",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelInsertDeleteColumns",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelInsertDeleteColumns Mode=\"Add\" NoColumns=\"1\" Position=\"1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelInsertDeleteRows": {
+      "doc_name": "Excel Insert Delete Rows",
+      "name": "ExcelInsertDeleteRows",
+      "properties": [
+        "Mode",
+        "NoRows",
+        "Position",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelInsertDeleteRows",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelInsertDeleteRows Mode=\"Add\" NoRows=\"1\" Position=\"1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelLookUpRange": {
+      "doc_name": "Excel Look Up Range",
+      "name": "ExcelLookUpRange",
+      "properties": [
+        "Range",
+        "Result",
+        "SheetName",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelLookUpRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelLookUpRange Range=\"{x:Null}\" Result=\"{x:Null}\" Value=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelReadCell": {
+      "doc_name": "Excel Read Cell",
+      "name": "ExcelReadCell",
+      "properties": [
+        "Cell",
+        "Result",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelReadCell",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelReadCell Result=\"{x:Null}\" Cell=\"A1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelReadCellFormula": {
+      "doc_name": "Excel Read Cell Formula",
+      "name": "ExcelReadCellFormula",
+      "properties": [
+        "Cell",
+        "Formula",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelReadCellFormula",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelReadCellFormula Formula=\"{x:Null}\" Cell=\"A1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelReadColumn": {
+      "doc_name": "Excel Read Column",
+      "name": "ExcelReadColumn",
+      "properties": [
+        "Result",
+        "SheetName",
+        "StartingCell"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelReadColumn",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelReadColumn Result=\"{x:Null}\" SheetName=\"Sheet1\" StartingCell=\"A1\" />"
+    },
+    "ExcelReadRange": {
+      "doc_name": "Excel Read Range",
+      "name": "ExcelReadRange",
+      "properties": [
+        "AddHeaders",
+        "DataTable",
+        "Range",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelReadRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Range"
+      ],
+      "xaml_template": "<ui:ExcelReadRange DataTable=\"{x:Null}\" AddHeaders=\"True\" SheetName=\"Sheet1\">\n\n  <ui:ExcelReadRange.Range>\n\n    <InArgument x:TypeArguments=\"x:String\">\n\n      <Literal x:TypeArguments=\"x:String\" Value=\"\" />\n\n    </InArgument>\n\n  </ui:ExcelReadRange.Range>\n\n</ui:ExcelReadRange>"
+    },
+    "ExcelReadRow": {
+      "doc_name": "Excel Read Row",
+      "name": "ExcelReadRow",
+      "properties": [
+        "Result",
+        "SheetName",
+        "StartingCell"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelReadRow",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelReadRow Result=\"{x:Null}\" SheetName=\"Sheet1\" StartingCell=\"A1\" />"
+    },
+    "ExcelRefreshPivotTable": {
+      "doc_name": "Excel Refresh Pivot Table",
+      "name": "ExcelRefreshPivotTable",
+      "properties": [
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelRefreshPivotTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelRefreshPivotTable TableName=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelRemoveDuplicatesRange": {
+      "doc_name": "Excel Remove Duplicates Range",
+      "name": "ExcelRemoveDuplicatesRange",
+      "properties": [
+        "Range",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelRemoveDuplicatesRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelRemoveDuplicatesRange Range=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelSaveWorkbook": {
+      "doc_name": "Excel Save Workbook",
+      "name": "ExcelSaveWorkbook",
+      "properties": [],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelSaveWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelSaveWorkbook />"
+    },
+    "ExcelSelectRange": {
+      "doc_name": "Excel Select Range",
+      "name": "ExcelSelectRange",
+      "properties": [
+        "Range",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelSelectRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelSelectRange Range=\"{x:Null}\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelSetRangeColor": {
+      "doc_name": "Excel Set Range Color",
+      "name": "ExcelSetRangeColor",
+      "properties": [
+        "Color",
+        "Range",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelSetRangeColor",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelSetRangeColor Color=\"{x:Null}\" Range=\"A1:A2\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelSortTable": {
+      "doc_name": "Excel Sort Table",
+      "name": "ExcelSortTable",
+      "properties": [
+        "ColumnName",
+        "Order",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelSortTable",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelSortTable ColumnName=\"{x:Null}\" TableName=\"{x:Null}\" Order=\"Ascending\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelWriteCell": {
+      "doc_name": "Excel Write Cell",
+      "name": "ExcelWriteCell",
+      "properties": [
+        "Cell",
+        "SheetName",
+        "Text"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelWriteCell",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelWriteCell Text=\"{x:Null}\" Cell=\"A1\" SheetName=\"Sheet1\" />"
+    },
+    "ExcelWriteRange": {
+      "doc_name": "Excel Write Range",
+      "name": "ExcelWriteRange",
+      "properties": [
+        "AddHeaders",
+        "DataTable",
+        "SheetName",
+        "StartingCell"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExcelWriteRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExcelWriteRange DataTable=\"{x:Null}\" AddHeaders=\"False\" SheetName=\"Sheet1\" StartingCell=\"A1\" />"
+    },
+    "ExecuteMacro": {
+      "doc_name": "Execute Macro",
+      "name": "ExecuteMacro",
+      "properties": [
+        "ContinueOnError",
+        "MacroName",
+        "MacroOutput"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ExecuteMacro",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ExecuteMacro ContinueOnError=\"{x:Null}\" MacroName=\"{x:Null}\" MacroOutput=\"{x:Null}\" />"
+    },
+    "ExecuteMacroX": {
+      "doc_name": "Execute Macro X",
+      "name": "ExecuteMacroX",
+      "properties": [
+        "Body",
+        "MacroName",
+        "Result",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ExecuteMacroX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:ExecuteMacroX MacroName=\"{x:Null}\" Result=\"{x:Null}\" Workbook=\"{x:Null}\">\n\n  <ueab:ExecuteMacroX.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:ExecuteMacroX.Body>\n\n</ueab:ExecuteMacroX>"
+    },
+    "ExportExcelToCsvX": {
+      "doc_name": "Export Excel To Csv X",
+      "name": "ExportExcelToCsvX",
+      "properties": [
+        "FilePath",
+        "TargetRange"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ExportExcelToCsvX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ExportExcelToCsvX FilePath=\"{x:Null}\" TargetRange=\"{x:Null}\" />"
+    },
+    "FillRangeX": {
+      "doc_name": "Fill Range X",
+      "name": "FillRangeX",
+      "properties": [
+        "DestinationRange",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.FillRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:FillRangeX DestinationRange=\"{x:Null}\" Value=\"{x:Null}\" />"
+    },
+    "FindFirstLastDataRowX": {
+      "doc_name": "Find First Last Data Row X",
+      "name": "FindFirstLastDataRowX",
+      "properties": [
+        "BlankRowsToSkip",
+        "ColumnName",
+        "ConfigureLastRowAs",
+        "FirstRowIndex",
+        "FirstRowOffset",
+        "HasHeaders",
+        "LastRowIndex",
+        "LastRowOffset",
+        "Range",
+        "VisibleRowsOnly"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.FindFirstLastDataRowX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:FindFirstLastDataRowX ColumnName=\"{x:Null}\" FirstRowIndex=\"{x:Null}\" LastRowIndex=\"{x:Null}\" Range=\"{x:Null}\" BlankRowsToSkip=\"1\" ConfigureLastRowAs=\"LastPopulatedRow\" FirstRowOffset=\"0\" HasHeaders=\"True\" LastRowOffset=\"0\" VisibleRowsOnly=\"False\" />"
+    },
+    "FindReplaceValueX": {
+      "doc_name": "Find Replace Value X",
+      "name": "FindReplaceValueX",
+      "properties": [
+        "FoundAt",
+        "LookIn",
+        "Operation",
+        "ReplaceWith",
+        "ValueToFind",
+        "WhereToSearch"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.FindReplaceValueX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:FindReplaceValueX FoundAt=\"{x:Null}\" ReplaceWith=\"{x:Null}\" ValueToFind=\"{x:Null}\" WhereToSearch=\"{x:Null}\" LookIn=\"Values\" Operation=\"Find\" />"
+    },
+    "FormatRangeX": {
+      "doc_name": "Format Range X",
+      "name": "FormatRangeX",
+      "properties": [
+        "Alignment",
+        "Font",
+        "Format",
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.FormatRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Format"
+      ],
+      "xaml_template": "<ueab:FormatRangeX Alignment=\"{x:Null}\" Font=\"{x:Null}\" Range=\"{x:Null}\">\n\n  <ueab:FormatRangeX.Format>\n\n    <ueab:GeneralFormat />\n\n  </ueab:FormatRangeX.Format>\n\n</ueab:FormatRangeX>"
+    },
+    "GetCellColor": {
+      "doc_name": "Get Cell Color",
+      "name": "GetCellColor",
+      "properties": [
+        "Cell",
+        "Color",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.GetCellColor",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetCellColor Cell=\"{x:Null}\" Color=\"{x:Null}\" SheetName=\"{x:Null}\" />"
+    },
+    "GetCellColorX": {
+      "doc_name": "Get Cell Color X",
+      "name": "GetCellColorX",
+      "properties": [
+        "Cell",
+        "OutputColor"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.GetCellColorX",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetCellColorX Cell=\"{x:Null}\" OutputColor=\"{x:Null}\" />"
+    },
+    "GetSelectedRangeX": {
+      "doc_name": "Get Selected Range X",
+      "name": "GetSelectedRangeX",
+      "properties": [
+        "Range",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Windows.Business.GetSelectedRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Windows.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueawb",
+      "child_elements": [],
+      "xaml_template": "<ueawb:GetSelectedRangeX Range=\"{x:Null}\" Workbook=\"{x:Null}\" />"
+    },
+    "GetSensitivityLabelX": {
+      "doc_name": "Get Sensitivity Label X",
+      "name": "GetSensitivityLabelX",
+      "properties": [
+        "SensitivityLabel",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.GetSensitivityLabelX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:GetSensitivityLabelX SensitivityLabel=\"{x:Null}\" Workbook=\"{x:Null}\" />"
+    },
+    "GetSheets": {
+      "doc_name": "Get Sheets",
+      "name": "GetSheets",
+      "properties": [
+        "Result"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.GetSheets",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetSheets Result=\"{x:Null}\" />"
+    },
+    "GetTableRange": {
+      "doc_name": "Get Table Range",
+      "name": "GetTableRange",
+      "properties": [
+        "IsPivot",
+        "Range",
+        "SheetName",
+        "TableName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.GetTableRange",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:GetTableRange Range=\"{x:Null}\" SheetName=\"{x:Null}\" TableName=\"{x:Null}\" IsPivot=\"False\" />"
+    },
+    "InsertColumnX": {
+      "doc_name": "Insert Column X",
+      "name": "InsertColumnX",
+      "properties": [
+        "ColumnFormat",
+        "HasHeaders",
+        "NewColumnName",
+        "Range",
+        "RelativeColumnName",
+        "RelativePosition"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.InsertColumnX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:InsertColumnX ColumnFormat=\"{x:Null}\" NewColumnName=\"{x:Null}\" Range=\"{x:Null}\" RelativeColumnName=\"{x:Null}\" HasHeaders=\"True\" RelativePosition=\"Before\" />"
+    },
+    "InsertRowsX": {
+      "doc_name": "Insert Rows X",
+      "name": "InsertRowsX",
+      "properties": [
+        "HasHeaders",
+        "InsertPosition",
+        "NbOfRows",
+        "Range",
+        "SpecificIndex"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.InsertRowsX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:InsertRowsX NbOfRows=\"{x:Null}\" Range=\"{x:Null}\" SpecificIndex=\"{x:Null}\" HasHeaders=\"True\" InsertPosition=\"End\" />"
+    },
+    "InsertSheetX": {
+      "doc_name": "Insert Sheet X",
+      "name": "InsertSheetX",
+      "properties": [
+        "Name",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.InsertSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:InsertSheetX Name=\"{x:Null}\" Workbook=\"{x:Null}\" />"
+    },
+    "InvokeVBA": {
+      "doc_name": "Invoke VBA",
+      "name": "InvokeVBA",
+      "properties": [
+        "CodeFilePath",
+        "EntryMethodName",
+        "OutputValue"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.InvokeVBA",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:InvokeVBA CodeFilePath=\"{x:Null}\" OutputValue=\"{x:Null}\" EntryMethodName=\"Main\" />"
+    },
+    "InvokeVBAX": {
+      "doc_name": "Invoke VBAX",
+      "name": "InvokeVBAX",
+      "properties": [
+        "Body",
+        "CodeFilePath",
+        "EntryMethodName",
+        "Result",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.InvokeVBAX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:InvokeVBAX CodeFilePath=\"{x:Null}\" EntryMethodName=\"{x:Null}\" Result=\"{x:Null}\" Workbook=\"{x:Null}\">\n\n  <ueab:InvokeVBAX.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:InvokeVBAX.Body>\n\n</ueab:InvokeVBAX>"
+    },
+    "LookupX": {
+      "doc_name": "Lookup X",
+      "name": "LookupX",
+      "properties": [
+        "Label",
+        "ResultRange",
+        "SourceRange",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.LookupX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:LookupX Label=\"{x:Null}\" ResultRange=\"{x:Null}\" SourceRange=\"{x:Null}\" Value=\"{x:Null}\" />"
+    },
+    "MatchFunctionX": {
+      "doc_name": "Match Function X",
+      "name": "MatchFunctionX",
+      "properties": [
+        "InRange",
+        "MatchFunctionType",
+        "SaveTo",
+        "ValueToMatch"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.MatchFunctionX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:MatchFunctionX InRange=\"{x:Null}\" SaveTo=\"{x:Null}\" ValueToMatch=\"{x:Null}\" MatchFunctionType=\"LargestValueLessOrEqual\" />"
+    },
+    "OpenWorkbook": {
+      "doc_name": "Open Workbook",
+      "name": "OpenWorkbook",
+      "properties": [
+        "Password",
+        "UseExcelApplication",
+        "Workbook",
+        "WorkbookPath"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.OpenWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:OpenWorkbook Password=\"{x:Null}\" Workbook=\"{x:Null}\" WorkbookPath=\"{x:Null}\" UseExcelApplication=\"False\" />"
+    },
+    "ProtectSheetX": {
+      "doc_name": "Protect Sheet X",
+      "name": "ProtectSheetX",
+      "properties": [
+        "AdditionalPermissions",
+        "Password",
+        "SecurePassword",
+        "Sheet"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ProtectSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ProtectSheetX Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Sheet=\"{x:Null}\" AdditionalPermissions=\"None\" />"
+    },
+    "ReadCell": {
+      "doc_name": "Read Cell",
+      "name": "ReadCell",
+      "properties": [
+        "Cell",
+        "Result",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ReadCell",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadCell Cell=\"{x:Null}\" Result=\"{x:Null}\" SheetName=\"{x:Null}\" />"
+    },
+    "ReadCellFormula": {
+      "doc_name": "Read Cell Formula",
+      "name": "ReadCellFormula",
+      "properties": [
+        "Cell",
+        "Result",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ReadCellFormula",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadCellFormula Cell=\"{x:Null}\" Result=\"{x:Null}\" SheetName=\"{x:Null}\" />"
+    },
+    "ReadCellFormulaX": {
+      "doc_name": "Read Cell Formula X",
+      "name": "ReadCellFormulaX",
+      "properties": [
+        "Cell",
+        "SaveTo"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ReadCellFormulaX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ReadCellFormulaX Cell=\"{x:Null}\" SaveTo=\"{x:Null}\" />"
+    },
+    "ReadCellValueX": {
+      "doc_name": "Read Cell Value X",
+      "name": "ReadCellValueX",
+      "properties": [
+        "Cell",
+        "GetFormattedText",
+        "SaveTo"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.ReadCellValueX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:ReadCellValueX Cell=\"{x:Null}\" SaveTo=\"{x:Null}\" GetFormattedText=\"True\" />"
+    },
+    "ReadColumn": {
+      "doc_name": "Read Column",
+      "name": "ReadColumn",
+      "properties": [
+        "Result",
+        "SheetName",
+        "StartingCell"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ReadColumn",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadColumn Result=\"{x:Null}\" SheetName=\"{x:Null}\" StartingCell=\"{x:Null}\" />"
+    },
+    "ReadCsvFile": {
+      "doc_name": "Read Csv File",
+      "name": "ReadCsvFile",
+      "properties": [
+        "DataTable",
+        "Delimitator",
+        "DelimitatorForViewModel",
+        "FilePath",
+        "PathResource"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.CSV.Activities.ReadCsvFile",
+      "clr_namespace": "UiPath.CSV.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadCsvFile DataTable=\"{x:Null}\" FilePath=\"{x:Null}\" PathResource=\"{x:Null}\" Delimitator=\"Comma\" DelimitatorForViewModel=\"Comma\" />"
+    },
+    "ReadRow": {
+      "doc_name": "Read Row",
+      "name": "ReadRow",
+      "properties": [
+        "Result",
+        "SheetName",
+        "StartingCell"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.ReadRow",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:ReadRow Result=\"{x:Null}\" SheetName=\"{x:Null}\" StartingCell=\"{x:Null}\" />"
+    },
+    "RefreshDataConnectionsX": {
+      "doc_name": "Refresh Data Connections X",
+      "name": "RefreshDataConnectionsX",
+      "properties": [
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.RefreshDataConnectionsX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:RefreshDataConnectionsX Workbook=\"{x:Null}\" />"
+    },
+    "RefreshPivotTableX": {
+      "doc_name": "Refresh Pivot Table X",
+      "name": "RefreshPivotTableX",
+      "properties": [
+        "LayoutRowType",
+        "Table"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.RefreshPivotTableX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:RefreshPivotTableX LayoutRowType=\"{x:Null}\" Table=\"{x:Null}\" />"
+    },
+    "RemoveDuplicatesX": {
+      "doc_name": "Remove Duplicates X",
+      "name": "RemoveDuplicatesX",
+      "properties": [
+        "Columns",
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.RemoveDuplicatesX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:RemoveDuplicatesX Columns=\"{x:Null}\" Range=\"{x:Null}\" />"
+    },
+    "RenameSheetX": {
+      "doc_name": "Rename Sheet X",
+      "name": "RenameSheetX",
+      "properties": [
+        "From",
+        "To"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.RenameSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:RenameSheetX From=\"{x:Null}\" To=\"{x:Null}\" />"
+    },
+    "SaveAsPdfX": {
+      "doc_name": "Save As Pdf X",
+      "name": "SaveAsPdfX",
+      "properties": [
+        "DestinationPdfPath",
+        "EndPage",
+        "SaveQuality",
+        "StartPage",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.SaveAsPdfX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:SaveAsPdfX DestinationPdfPath=\"{x:Null}\" EndPage=\"{x:Null}\" StartPage=\"{x:Null}\" Workbook=\"{x:Null}\" SaveQuality=\"StandardQuality\" />"
+    },
+    "SaveExcelFileAsX": {
+      "doc_name": "Save Excel File As X",
+      "name": "SaveExcelFileAsX",
+      "properties": [
+        "FilePath",
+        "SaveAsFileType",
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.SaveExcelFileAsX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:SaveExcelFileAsX FilePath=\"{x:Null}\" Workbook=\"{x:Null}\" SaveAsFileType=\"OpenXmlWorkbook\" />"
+    },
+    "SaveExcelFileX": {
+      "doc_name": "Save Excel File X",
+      "name": "SaveExcelFileX",
+      "properties": [
+        "Workbook"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.SaveExcelFileX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:SaveExcelFileX Workbook=\"{x:Null}\" />"
+    },
+    "SelectRangeX": {
+      "doc_name": "Select Range X",
+      "name": "SelectRangeX",
+      "properties": [
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Windows.Business.SelectRangeX",
+      "clr_namespace": "UiPath.Excel.Activities.Windows.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueawb",
+      "child_elements": [],
+      "xaml_template": "<ueawb:SelectRangeX Range=\"{x:Null}\" />"
+    },
+    "SequenceX": {
+      "doc_name": "Sequence X",
+      "name": "SequenceX",
+      "properties": [],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.SequenceX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:SequenceX />"
+    },
+    "SetRangeColor": {
+      "doc_name": "Set Range Color",
+      "name": "SetRangeColor",
+      "properties": [
+        "Color",
+        "Range",
+        "SheetName"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.SetRangeColor",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:SetRangeColor Color=\"{x:Null}\" Range=\"{x:Null}\" SheetName=\"{x:Null}\" />"
+    },
+    "SortX": {
+      "doc_name": "Sort X",
+      "name": "SortX",
+      "properties": [
+        "Body",
+        "HasHeaders",
+        "Range"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.SortX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ueab:SortX Range=\"{x:Null}\" HasHeaders=\"True\">\n\n  <ueab:SortX.Body>\n\n    <ActivityAction>\n\n      <Sequence DisplayName=\"Do\" />\n\n    </ActivityAction>\n\n  </ueab:SortX.Body>\n\n</ueab:SortX>"
+    },
+    "TextToColumnsX": {
+      "doc_name": "Text To Columns X",
+      "name": "TextToColumnsX",
+      "properties": [
+        "ConsecutiveOperatorsAsOne",
+        "DestinationRange",
+        "NumberOfCharactersPerColumn",
+        "OtherSeparator",
+        "ParsingType",
+        "SourceRange",
+        "SplitByComma",
+        "SplitByLineBreak",
+        "SplitByOther",
+        "SplitBySemicolon",
+        "SplitBySpace",
+        "SplitByTabs",
+        "TextQualifier"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.TextToColumnsX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:TextToColumnsX DestinationRange=\"{x:Null}\" NumberOfCharactersPerColumn=\"{x:Null}\" OtherSeparator=\"{x:Null}\" SourceRange=\"{x:Null}\" ConsecutiveOperatorsAsOne=\"True\" ParsingType=\"Delimited\" SplitByComma=\"True\" SplitByLineBreak=\"False\" SplitByOther=\"False\" SplitBySemicolon=\"True\" SplitBySpace=\"True\" SplitByTabs=\"True\" TextQualifier=\"None\" />"
+    },
+    "UnprotectSheetX": {
+      "doc_name": "Unprotect Sheet X",
+      "name": "UnprotectSheetX",
+      "properties": [
+        "Password",
+        "SecurePassword",
+        "Sheet"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.UnprotectSheetX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:UnprotectSheetX Password=\"{x:Null}\" SecurePassword=\"{x:Null}\" Sheet=\"{x:Null}\" />"
+    },
+    "VLookupX": {
+      "doc_name": "V Lookup X",
+      "name": "VLookupX",
+      "properties": [
+        "ColumnIndex",
+        "ExactMatch",
+        "Label",
+        "SourceRange",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.VLookupX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:VLookupX ColumnIndex=\"{x:Null}\" Label=\"{x:Null}\" SourceRange=\"{x:Null}\" Value=\"{x:Null}\" ExactMatch=\"True\" />"
+    },
+    "WithWorkbook": {
+      "doc_name": "With Workbook",
+      "name": "WithWorkbook",
+      "properties": [
+        "Body",
+        "Password",
+        "UseExcelApplication",
+        "Workbook",
+        "WorkbookPath"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.WithWorkbook",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [
+        "Body"
+      ],
+      "xaml_template": "<ui:WithWorkbook Password=\"{x:Null}\" Workbook=\"{x:Null}\" WorkbookPath=\"{x:Null}\" UseExcelApplication=\"False\">\n\n  <ui:WithWorkbook.Body>\n\n    <Sequence DisplayName=\"Do\" />\n\n  </ui:WithWorkbook.Body>\n\n</ui:WithWorkbook>"
+    },
+    "WriteCell": {
+      "doc_name": "Write Cell",
+      "name": "WriteCell",
+      "properties": [
+        "Cell",
+        "SheetName",
+        "Text"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.WriteCell",
+      "clr_namespace": "UiPath.Excel.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:WriteCell Cell=\"{x:Null}\" SheetName=\"{x:Null}\" Text=\"{x:Null}\" />"
+    },
+    "WriteCellX": {
+      "doc_name": "Write Cell X",
+      "name": "WriteCellX",
+      "properties": [
+        "Cell",
+        "Value"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Excel.Activities.Business.WriteCellX",
+      "clr_namespace": "UiPath.Excel.Activities.Business",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "ueab",
+      "child_elements": [],
+      "xaml_template": "<ueab:WriteCellX Cell=\"{x:Null}\" Value=\"{x:Null}\" />"
+    },
+    "WriteCsvFile": {
+      "doc_name": "Write Csv File",
+      "name": "WriteCsvFile",
+      "properties": [
+        "AddHeaders",
+        "DataTable",
+        "Delimitator",
+        "DelimitatorForViewModel",
+        "FilePath",
+        "ShouldQuote"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.CSV.Activities.WriteCsvFile",
+      "clr_namespace": "UiPath.CSV.Activities",
+      "source_package": "UiPath.Excel.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "ui",
+      "child_elements": [],
+      "xaml_template": "<ui:WriteCsvFile DataTable=\"{x:Null}\" FilePath=\"{x:Null}\" AddHeaders=\"True\" Delimitator=\"Comma\" DelimitatorForViewModel=\"Comma\" ShouldQuote=\"True\" />"
     }
   },
   "source": "UiPath/skills@main/UiPath.Excel.Activities/3.4",

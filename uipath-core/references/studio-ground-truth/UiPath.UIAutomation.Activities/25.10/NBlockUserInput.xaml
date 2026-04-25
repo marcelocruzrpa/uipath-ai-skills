@@ -1,3 +1,7 @@
-<Activity x:Class="NBlockUserInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NBlockUserInput />
+<Activity x:Class="Block User Input" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NBlockUserInput DisplayName="Block User Input" KeyModifiers="Alt" Keys="F10" Version="V5">
+    <uix:NBlockUserInput.Body>
+      <Sequence DisplayName="Do" />
+    </uix:NBlockUserInput.Body>
+  </uix:NBlockUserInput>
 </Activity>

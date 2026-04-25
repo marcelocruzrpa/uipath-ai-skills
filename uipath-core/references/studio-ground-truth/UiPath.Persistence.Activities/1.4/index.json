@@ -1,0 +1,67 @@
+{
+  "package": "UiPath.Persistence.Activities",
+  "version": "1.4",
+  "concrete_version": "1.4.8",
+  "harvested_at": "2026-04-25T08:38:47+00:00",
+  "activities": {
+    "AssignTasks": {
+      "status": "ok",
+      "class_name": "UiPath.Persistence.Activities.Tasks.AssignTasks",
+      "size": 502
+    },
+    "ForwardTask": {
+      "status": "ok",
+      "class_name": "UiPath.Persistence.Activities.Tasks.ForwardTask",
+      "size": 376
+    },
+    "GetAppTasks": {
+      "status": "ok",
+      "class_name": "UiPath.Persistence.Activities.UserAction.GetAppTasks",
+      "size": 1413,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "WaitForUserActionAndResume": {
+      "status": "ok",
+      "class_name": "UiPath.Persistence.Activities.UserAction.WaitForUserActionAndResume",
+      "size": 1430,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "CreateFormTask": {
+      "status": "ok",
+      "class_name": null,
+      "size": 2893,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "WaitForFormTaskAndResume": {
+      "status": "ok",
+      "class_name": null,
+      "size": 1432,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "CreateExternalTask": {
+      "status": "ok",
+      "class_name": null,
+      "size": 1664,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "WaitForExternalTaskAndResume": {
+      "status": "ok",
+      "class_name": null,
+      "size": 1432,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    },
+    "GetFormTasks": {
+      "status": "ok",
+      "class_name": null,
+      "size": 1428,
+      "harvest_method": "studio_wizard_manual_user_provided",
+      "source_file": "Main.xaml"
+    }
+  }
+}

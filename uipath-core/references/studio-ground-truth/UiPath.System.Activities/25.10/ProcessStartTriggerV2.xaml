@@ -1,0 +1,3 @@
+<Activity x:Class="ProcessStartTriggerV2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ProcessStartTriggerV2 ProcessName="{x:Null}" Enabled="True" SchedulingMode="Sequential" TriggerId="f2cbec65-a675-4dc6-8bb2-0e6266453233" />
+</Activity>

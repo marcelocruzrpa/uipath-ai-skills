@@ -1,0 +1,12 @@
+<Activity x:Class="GetActiveWindow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetActiveWindow ApplicationWindow="{x:Null}">
+    <ui:GetActiveWindow.Body>
+      <ActivityAction x:TypeArguments="x:Object">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:GetActiveWindow.Body>
+  </ui:GetActiveWindow>
+</Activity>

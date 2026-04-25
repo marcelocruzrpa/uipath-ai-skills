@@ -1,0 +1,14 @@
+<Activity x:Class="Activate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:Activate DelayBefore="{x:Null}" DelayMS="{x:Null}">
+    <ui:Activate.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="63fc6cd2-2fa3-44c8-b8e4-d4657730a2a0">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </ui:Activate.Target>
+  </ui:Activate>
+</Activity>

@@ -1,0 +1,9 @@
+<Activity x:Class="InvokeVBAX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:InvokeVBAX CodeFilePath="{x:Null}" EntryMethodName="{x:Null}" Result="{x:Null}" Workbook="{x:Null}">
+    <ueab:InvokeVBAX.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ueab:InvokeVBAX.Body>
+  </ueab:InvokeVBAX>
+</Activity>

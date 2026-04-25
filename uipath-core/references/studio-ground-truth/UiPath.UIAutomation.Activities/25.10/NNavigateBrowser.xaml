@@ -1,3 +1,3 @@
-<Activity x:Class="NNavigateBrowser" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NNavigateBrowser />
+<Activity x:Class="Navigate Browser - Go Back" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NNavigateBrowser DisplayName="Navigate Browser - Go Back" Version="V5" />
 </Activity>

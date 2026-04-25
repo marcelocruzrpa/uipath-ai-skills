@@ -1,0 +1,3 @@
+<Activity x:Class="CustomInput" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:CustomInput Height="{x:Null}" Result="{x:Null}" URI="{x:Null}" Width="{x:Null}" TopMost="True" />
+</Activity>

@@ -5,13 +5,39 @@
   },
   "activities": {
     "CreateFormTask": {
-      "doc_name": "CreateFormTask",
+      "doc_name": "Create Form Task",
       "name": "CreateFormTask",
-      "properties": [],
+      "properties": [
+        "AssignmentCriteria",
+        "BucketFolderPath",
+        "BucketName",
+        "BulkFormLayout",
+        "BulkFormLayoutGuid",
+        "DisplayName",
+        "DynamicFormPath",
+        "EnableBulkEdit",
+        "EnableDynamicForms",
+        "EnableV2",
+        "ExternalTag",
+        "FormData",
+        "FormLayout",
+        "FormLayoutGuid",
+        "GenerateInputFields",
+        "Group",
+        "Labels",
+        "TaskCatalog",
+        "TaskOutput",
+        "TaskPriority",
+        "TaskTitle",
+        "TimeoutMs",
+        "UserNameOrEmail"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upaf",
-      "child_elements": ["FormData"],
-      "xaml_template": "",
+      "child_elements": [
+        "FormData"
+      ],
+      "xaml_template": "<upaf:CreateFormTask BucketFolderPath=\"{x:Null}\" BucketName=\"{x:Null}\" BulkFormLayout=\"{x:Null}\" DynamicFormPath=\"{x:Null}\" ExternalTag=\"{x:Null}\" Group=\"{x:Null}\" Labels=\"{x:Null}\" TaskCatalog=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" BulkFormLayoutGuid=\"70600b92-dbb8-477d-914d-4e2cf8717e21\" DisplayName=\"Create Form Task\" EnableBulkEdit=\"False\" EnableDynamicForms=\"False\" EnableV2=\"False\" FormLayout=\"%[{&quot;mask&quot;:false,&quot;customClass&quot;:&quot;uipath-button-container&quot;,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;table&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;key&quot;,&quot;label&quot;:&quot;label&quot;,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;tableView&quot;:true}]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]}]],&quot;numRows&quot;:1,&quot;numCols&quot;:6,&quot;reorder&quot;:false}]\" FormLayoutGuid=\"eea2a7b7-45b2-4268-a05c-16c6d8715781\" GenerateInputFields=\"True\" TaskOutput=\"[actask]\" TaskPriority=\"Medium\" TaskTitle=\"ac-task\"><upaf:CreateFormTask.AssignmentCriteria><upat:Criteria x:Name=\"__ReferenceID0\" Description=\"SingleUserDescription\" Id=\"SingleUser\" Name=\"Activity_AssignTasks_AssignmentCriteria_SingleUserName\" /></upaf:CreateFormTask.AssignmentCriteria><upaf:CreateFormTask.FormData><scg:Dictionary x:TypeArguments=\"x:String, Argument\" /></upaf:CreateFormTask.FormData></upaf:CreateFormTask>",
       "class_name": "UiPath.Persistence.Activities.FormTask.CreateFormTask",
       "clr_namespace": "UiPath.Persistence.Activities.FormTask",
       "source_package": "UiPath.Persistence.Activities",
@@ -19,13 +45,21 @@
       "harvestable": false
     },
     "WaitForFormTaskAndResume": {
-      "doc_name": "WaitForFormTaskAndResume",
+      "doc_name": "Wait For Form Task And Resume",
       "name": "WaitForFormTaskAndResume",
-      "properties": [],
+      "properties": [
+        "DisplayName",
+        "StatusMessage",
+        "TaskAction",
+        "TaskInput",
+        "TaskOutput",
+        "TimeoutMs",
+        "WaitItemDataObject"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upaf",
       "child_elements": [],
-      "xaml_template": "",
+      "xaml_template": "<upaf:WaitForFormTaskAndResume StatusMessage=\"{x:Null}\" TaskAction=\"{x:Null}\" TimeoutMs=\"{x:Null}\" WaitItemDataObject=\"{x:Null}\" DisplayName=\"Wait for Form Task and Resume\" TaskInput=\"[actask]\" TaskOutput=\"[taskObjectOutput]\" />",
       "class_name": "UiPath.Persistence.Activities.FormTask.WaitForFormTaskAndResume",
       "clr_namespace": "UiPath.Persistence.Activities.FormTask",
       "source_package": "UiPath.Persistence.Activities",
@@ -33,13 +67,24 @@
       "harvestable": false
     },
     "GetFormTasks": {
-      "doc_name": "GetFormTasks",
+      "doc_name": "Get Form Tasks",
       "name": "GetFormTasks",
-      "properties": [],
+      "properties": [
+        "DisplayName",
+        "Expand",
+        "Filter",
+        "OrderBy",
+        "Select",
+        "Skip",
+        "TaskCatalogName",
+        "TaskObjects",
+        "TimeoutMs",
+        "Top"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upaf",
       "child_elements": [],
-      "xaml_template": "",
+      "xaml_template": "<upaf:GetFormTasks Expand=\"{x:Null}\" Filter=\"{x:Null}\" OrderBy=\"{x:Null}\" Select=\"{x:Null}\" Skip=\"{x:Null}\" TaskCatalogName=\"{x:Null}\" TimeoutMs=\"{x:Null}\" Top=\"{x:Null}\" DisplayName=\"Get Form Tasks\" TaskObjects=\"[lisRetrievedTasks]\" />",
       "class_name": "UiPath.Persistence.Activities.FormTask.GetFormTasks",
       "clr_namespace": "UiPath.Persistence.Activities.FormTask",
       "source_package": "UiPath.Persistence.Activities",
@@ -47,13 +92,28 @@
       "harvestable": false
     },
     "CreateExternalTask": {
-      "doc_name": "CreateExternalTask",
+      "doc_name": "Create External Task",
       "name": "CreateExternalTask",
-      "properties": [],
+      "properties": [
+        "AssignmentCriteria",
+        "DisplayName",
+        "ExternalTag",
+        "Group",
+        "Labels",
+        "TaskCatalog",
+        "TaskData",
+        "TaskOutput",
+        "TaskPriority",
+        "TaskTitle",
+        "TimeoutMs",
+        "UserNameOrEmail"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upae",
-      "child_elements": ["TaskData"],
-      "xaml_template": "",
+      "child_elements": [
+        "TaskData"
+      ],
+      "xaml_template": "<upae:CreateExternalTask AssignmentCriteria=\"{x:Reference __ReferenceID0}\" ExternalTag=\"{x:Null}\" Group=\"{x:Null}\" Labels=\"{x:Null}\" TaskCatalog=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" DisplayName=\"Create External Task\" TaskOutput=\"[task]\" TaskPriority=\"Medium\" TaskTitle=\"externa- title\"><upae:CreateExternalTask.TaskData><InArgument x:TypeArguments=\"x:String\" x:Key=\"t\">t</InArgument></upae:CreateExternalTask.TaskData></upae:CreateExternalTask>",
       "class_name": "UiPath.Persistence.Activities.ExternalTask.CreateExternalTask",
       "clr_namespace": "UiPath.Persistence.Activities.ExternalTask",
       "source_package": "UiPath.Persistence.Activities",
@@ -61,13 +121,21 @@
       "harvestable": false
     },
     "WaitForExternalTaskAndResume": {
-      "doc_name": "WaitForExternalTaskAndResume",
+      "doc_name": "Wait For External Task And Resume",
       "name": "WaitForExternalTaskAndResume",
-      "properties": [],
+      "properties": [
+        "DisplayName",
+        "StatusMessage",
+        "TaskAction",
+        "TaskInput",
+        "TaskOutput",
+        "TimeoutMs",
+        "WaitItemDataObject"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upae",
       "child_elements": [],
-      "xaml_template": "",
+      "xaml_template": "<upae:WaitForExternalTaskAndResume StatusMessage=\"{x:Null}\" TaskAction=\"{x:Null}\" TaskOutput=\"{x:Null}\" TimeoutMs=\"{x:Null}\" WaitItemDataObject=\"{x:Null}\" DisplayName=\"Wait For External Task and Resume\" TaskInput=\"[task]\" />",
       "class_name": "UiPath.Persistence.Activities.ExternalTask.WaitForExternalTaskAndResume",
       "clr_namespace": "UiPath.Persistence.Activities.ExternalTask",
       "source_package": "UiPath.Persistence.Activities",
@@ -89,18 +157,97 @@
       "harvestable": false
     },
     "AssignTasks": {
-      "doc_name": "AssignTasks",
+      "doc_name": "Assign Tasks",
       "name": "AssignTasks",
-      "properties": [],
+      "properties": [
+        "EnableMultipleAssignments",
+        "FailedTaskAssignments",
+        "MigrateV144",
+        "TaskAssignmentType",
+        "TaskId",
+        "TaskUserAssignments",
+        "TimeoutMs",
+        "UserNameOrEmail"
+      ],
       "version_attrs": {},
       "namespace_prefix": "upat",
-      "child_elements": ["AssignmentCriteria"],
-      "xaml_template": "",
+      "child_elements": [
+        "AssignmentCriteria"
+      ],
+      "xaml_template": "<upat:AssignTasks FailedTaskAssignments=\"{x:Null}\" TaskId=\"{x:Null}\" TaskUserAssignments=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" EnableMultipleAssignments=\"False\" MigrateV144=\"False\" TaskAssignmentType=\"Assign\" />",
       "class_name": "UiPath.Persistence.Activities.Tasks.AssignTasks",
       "clr_namespace": "UiPath.Persistence.Activities.Tasks",
       "source_package": "UiPath.Persistence.Activities",
       "namespace_match": true,
       "harvestable": false
+    },
+    "ForwardTask": {
+      "doc_name": "Forward Task",
+      "name": "ForwardTask",
+      "properties": [
+        "Comments",
+        "TaskId",
+        "TimeoutMs",
+        "UserNameOrEmail"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Persistence.Activities.Tasks.ForwardTask",
+      "clr_namespace": "UiPath.Persistence.Activities.Tasks",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": true,
+      "harvestable": true,
+      "namespace_prefix": "upat",
+      "child_elements": [],
+      "xaml_template": "<upat:ForwardTask Comments=\"{x:Null}\" TaskId=\"{x:Null}\" TimeoutMs=\"{x:Null}\" UserNameOrEmail=\"{x:Null}\" />"
+    },
+    "GetAppTasks": {
+      "doc_name": "Get App Tasks",
+      "name": "GetAppTasks",
+      "properties": [
+        "DisplayName",
+        "Expand",
+        "Filter",
+        "OrderBy",
+        "Select",
+        "Skip",
+        "TaskCatalogName",
+        "TaskObjects",
+        "TimeoutMs",
+        "Top"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Persistence.Activities.UserAction.GetAppTasks",
+      "clr_namespace": "UiPath.Persistence.Activities.UserAction",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "upau",
+      "child_elements": [
+        "Top"
+      ],
+      "xaml_template": "<upau:GetAppTasks Expand=\"{x:Null}\" Filter=\"{x:Null}\" OrderBy=\"{x:Null}\" Select=\"{x:Null}\" Skip=\"{x:Null}\" TaskCatalogName=\"{x:Null}\" TimeoutMs=\"{x:Null}\" Top=\"{x:Null}\" DisplayName=\"Get App Tasks\" TaskObjects=\"[tasks]\" />"
+    },
+    "WaitForUserActionAndResume": {
+      "doc_name": "Wait For User Action And Resume",
+      "name": "WaitForUserActionAndResume",
+      "properties": [
+        "DisplayName",
+        "StatusMessage",
+        "TaskAction",
+        "TaskInput",
+        "TaskOutput",
+        "TimeoutMs",
+        "WaitItemDataObject"
+      ],
+      "version_attrs": {},
+      "class_name": "UiPath.Persistence.Activities.UserAction.WaitForUserActionAndResume",
+      "clr_namespace": "UiPath.Persistence.Activities.UserAction",
+      "source_package": "UiPath.Persistence.Activities",
+      "namespace_match": false,
+      "harvestable": true,
+      "namespace_prefix": "upau",
+      "child_elements": [],
+      "xaml_template": "<upau:WaitForUserActionAndResume StatusMessage=\"{x:Null}\" TaskAction=\"{x:Null}\" TaskOutput=\"{x:Null}\" TimeoutMs=\"{x:Null}\" WaitItemDataObject=\"{x:Null}\" DisplayName=\"Wait For App Task and Resume\" TaskInput=\"[tasks.First]\" />"
     }
   }
 }

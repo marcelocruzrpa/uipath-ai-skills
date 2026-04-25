@@ -1,0 +1,3 @@
+<Activity x:Class="NewIMAPEmailReceivedTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umai="clr-namespace:UiPath.Mail.Activities.IMAP;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umai:NewIMAPEmailReceivedTrigger ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" Filter="{x:Null}" FilterExpression="{x:Null}" JobData="{x:Null}" Result="{x:Null}" UiPathEvent="{x:Null}" UiPathEventConnector="{x:Null}" UiPathEventObjectId="{x:Null}" UiPathEventObjectType="{x:Null}" IncludeAttachments="False" MailFolder="INBOX" MarkAsRead="False" UseConnectionService="True" WithAttachmentsOnly="False" />
+</Activity>

@@ -1,0 +1,25 @@
+<Activity x:Class="CVScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" UseLocalServer="{x:Null}" CvMethod="ElementDetection, OCR" RequiresDefaultValues="True" SendOnPremData="False" Version="V6">
+    <p:CVScope.Body>
+      <ActivityAction x:TypeArguments="x:Object">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </p:CVScope.Body>
+    <p:CVScope.DesignTimeCacheContainer>
+      <uc:CvCacheContainer />
+    </p:CVScope.DesignTimeCacheContainer>
+    <p:CVScope.OCREngine>
+      <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))" />
+    </p:CVScope.OCREngine>
+    <p:CVScope.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="c854a77d-2731-47b9-9a9f-c3c373326514" WaitForReady="INTERACTIVE">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+      </ui:Target>
+    </p:CVScope.Target>
+  </p:CVScope>
+</Activity>

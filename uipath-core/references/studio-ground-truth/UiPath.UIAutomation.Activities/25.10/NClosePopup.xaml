@@ -1,3 +1,3 @@
-<Activity x:Class="NClosePopup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NClosePopup PopupException="{x:Null}" PopupHandled="{x:Null}" PreferredButtons="{x:Null}" />
+<Activity x:Class="Close Popup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NClosePopup PopupException="{x:Null}" PopupHandled="{x:Null}" DisplayName="Close Popup" PreferredButtons="[New String(){&quot;Close&quot;, &quot;Cancel&quot;}]" Version="V5" />
 </Activity>

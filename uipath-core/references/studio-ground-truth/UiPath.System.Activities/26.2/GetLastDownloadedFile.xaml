@@ -1,0 +1,9 @@
+<Activity x:Class="GetLastDownloadedFile" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetLastDownloadedFile File="{x:Null}" FileResource="{x:Null}" IgnoreFiles="{x:Null}" Timeout="{x:Null}" DownloadFolder="[System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), &quot;Downloads&quot;)]">
+    <ui:GetLastDownloadedFile.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:GetLastDownloadedFile.Body>
+  </ui:GetLastDownloadedFile>
+</Activity>

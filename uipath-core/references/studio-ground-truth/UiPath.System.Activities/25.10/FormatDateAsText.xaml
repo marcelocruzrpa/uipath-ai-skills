@@ -1,0 +1,3 @@
+<Activity x:Class="FormatDateAsText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uasd="clr-namespace:UiPath.Activities.System.Date;assembly=UiPath.System.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uasd:FormatDateAsText Format="{x:Null}" Source="{x:Null}" LocalizationCode="en-US" />
+</Activity>

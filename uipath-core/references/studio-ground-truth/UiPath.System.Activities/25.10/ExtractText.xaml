@@ -1,0 +1,3 @@
+<Activity x:Class="ExtractText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uast:ExtractText EndingText="{x:Null}" FirstMatch="{x:Null}" Results="{x:Null}" Source="{x:Null}" StartingText="{x:Null}" ExtractBaseURLOnly="False" ExtractOptions="BetweenStrings" IgnoreDuplicates="False" MatchCase="False" />
+</Activity>

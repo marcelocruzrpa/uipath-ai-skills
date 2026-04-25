@@ -1,0 +1,15 @@
+<Activity x:Class="ForEachFileX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ForEachFileX Folder="{x:Null}" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX.Body>
+      <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+        <ActivityAction.Argument1>
+          <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+        </ActivityAction.Argument1>
+        <ActivityAction.Argument2>
+          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+        </ActivityAction.Argument2>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ForEachFileX.Body>
+  </ui:ForEachFileX>
+</Activity>

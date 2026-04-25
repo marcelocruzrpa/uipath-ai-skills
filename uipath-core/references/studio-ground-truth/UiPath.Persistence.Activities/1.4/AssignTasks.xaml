@@ -1,0 +1,3 @@
+<Activity x:Class="AssignTasks" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <upat:AssignTasks FailedTaskAssignments="{x:Null}" TaskId="{x:Null}" TaskUserAssignments="{x:Null}" TimeoutMs="{x:Null}" UserNameOrEmail="{x:Null}" EnableMultipleAssignments="False" MigrateV144="False" TaskAssignmentType="Assign" />
+</Activity>

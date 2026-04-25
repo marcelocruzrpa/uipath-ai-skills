@@ -1,0 +1,3 @@
+<Activity x:Class="OutlookMailMessagesTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:umao="clr-namespace:UiPath.Mail.Activities.Outlook;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umao:OutlookMailMessagesTrigger Account="{x:Null}" BodyFilter="{x:Null}" Cc="{x:Null}" From="{x:Null}" SubjectFilter="{x:Null}" To="{x:Null}" BodyIsBuilderTabModified="False" BodyRegexOption="None" Enabled="True" Importance="Any" MailFolder="Inbox" MarkAsRead="False" SchedulingMode="Sequential" SubjectIsBuilderTabModified="False" SubjectRegexOption="None" TriggerId="727b169b-d51a-41a8-99c5-10a745a96b87" WhenOutlookIsClosed="Open" />
+</Activity>

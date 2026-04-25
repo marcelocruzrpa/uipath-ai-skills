@@ -20,7 +20,7 @@
     },
     "AttachDocument": {
       "child_elements": [],
-      "doc_name": "AttachDocument",
+      "doc_name": "Attach Document",
       "name": "AttachDocument",
       "namespace_prefix": "uta",
       "properties": [
@@ -38,7 +38,7 @@
     },
     "BulkAddTestDataQueue": {
       "child_elements": [],
-      "doc_name": "BulkAddTestDataQueue",
+      "doc_name": "Bulk Add Test Data Queue",
       "name": "BulkAddTestDataQueue",
       "namespace_prefix": "uta",
       "properties": [
@@ -57,7 +57,7 @@
     },
     "ComparePdfDocuments": {
       "child_elements": [],
-      "doc_name": "ComparePdfDocuments",
+      "doc_name": "Compare Pdf Documents",
       "name": "ComparePdfDocuments",
       "namespace_prefix": "uta",
       "properties": [
@@ -85,7 +85,7 @@
     },
     "CompareText": {
       "child_elements": [],
-      "doc_name": "CompareText",
+      "doc_name": "Compare Text",
       "name": "CompareText",
       "namespace_prefix": "uta",
       "properties": [
@@ -111,7 +111,7 @@
     },
     "CreateComparisonRule": {
       "child_elements": [],
-      "doc_name": "CreateComparisonRule",
+      "doc_name": "Create Comparison Rule",
       "name": "CreateComparisonRule",
       "namespace_prefix": "uta",
       "properties": [
@@ -132,7 +132,7 @@
     },
     "DeleteTestDataQueueItems": {
       "child_elements": [],
-      "doc_name": "DeleteTestDataQueueItems",
+      "doc_name": "Delete Test Data Queue Items",
       "name": "DeleteTestDataQueueItems",
       "namespace_prefix": "uta",
       "properties": [
@@ -150,7 +150,7 @@
     },
     "GetTestDataQueueItem": {
       "child_elements": [],
-      "doc_name": "GetTestDataQueueItem",
+      "doc_name": "Get Test Data Queue Item",
       "name": "GetTestDataQueueItem",
       "namespace_prefix": "uta",
       "properties": [
@@ -170,7 +170,7 @@
     },
     "GetTestDataQueueItems": {
       "child_elements": [],
-      "doc_name": "GetTestDataQueueItems",
+      "doc_name": "Get Test Data Queue Items",
       "name": "GetTestDataQueueItems",
       "namespace_prefix": "uta",
       "properties": [
@@ -193,7 +193,7 @@
     },
     "GivenName": {
       "child_elements": [],
-      "doc_name": "GivenName",
+      "doc_name": "Given Name",
       "name": "GivenName",
       "namespace_prefix": "utat",
       "properties": [
@@ -209,7 +209,7 @@
     },
     "LastName": {
       "child_elements": [],
-      "doc_name": "LastName",
+      "doc_name": "Last Name",
       "name": "LastName",
       "namespace_prefix": "utat",
       "properties": [
@@ -225,7 +225,7 @@
     },
     "MockActivity": {
       "child_elements": [],
-      "doc_name": "MockActivity",
+      "doc_name": "Mock Activity",
       "name": "MockActivity",
       "namespace_prefix": "utam",
       "properties": [
@@ -243,7 +243,7 @@
       "child_elements": [
         "ItemInformation"
       ],
-      "doc_name": "NewAddTestDataQueueItem",
+      "doc_name": "New Add Test Data Queue Item",
       "name": "NewAddTestDataQueueItem",
       "namespace_prefix": "uta",
       "properties": [
@@ -262,7 +262,7 @@
     },
     "RandomDate": {
       "child_elements": [],
-      "doc_name": "RandomDate",
+      "doc_name": "Random Date",
       "name": "RandomDate",
       "namespace_prefix": "utat",
       "properties": [
@@ -280,7 +280,7 @@
     },
     "RandomNumber": {
       "child_elements": [],
-      "doc_name": "RandomNumber",
+      "doc_name": "Random Number",
       "name": "RandomNumber",
       "namespace_prefix": "utat",
       "properties": [
@@ -299,7 +299,7 @@
     },
     "RandomString": {
       "child_elements": [],
-      "doc_name": "RandomString",
+      "doc_name": "Random String",
       "name": "RandomString",
       "namespace_prefix": "utat",
       "properties": [
@@ -317,7 +317,7 @@
     },
     "RandomValue": {
       "child_elements": [],
-      "doc_name": "RandomValue",
+      "doc_name": "Random Value",
       "name": "RandomValue",
       "namespace_prefix": "utat",
       "properties": [
@@ -337,7 +337,7 @@
         "ActivityToTest",
         "ArgumentsBridgeActivity"
       ],
-      "doc_name": "VerifyControlAttribute",
+      "doc_name": "Verify Control Attribute",
       "name": "VerifyControlAttribute",
       "namespace_prefix": "uta",
       "properties": [
@@ -365,7 +365,7 @@
     },
     "VerifyExpression": {
       "child_elements": [],
-      "doc_name": "VerifyExpression",
+      "doc_name": "Verify Expression",
       "name": "VerifyExpression",
       "namespace_prefix": "uta",
       "properties": [
@@ -389,7 +389,7 @@
     },
     "VerifyExpressionWithOperator": {
       "child_elements": [],
-      "doc_name": "VerifyExpressionWithOperator",
+      "doc_name": "Verify Expression With Operator",
       "name": "VerifyExpressionWithOperator",
       "namespace_prefix": "uta",
       "properties": [
@@ -415,7 +415,7 @@
     },
     "VerifyRange": {
       "child_elements": [],
-      "doc_name": "VerifyRange",
+      "doc_name": "Verify Range",
       "name": "VerifyRange",
       "namespace_prefix": "uta",
       "properties": [

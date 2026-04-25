@@ -1,0 +1,3 @@
+<Activity x:Class="ProcessEndTriggerV2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ProcessEndTriggerV2 ProcessName="{x:Null}" Enabled="True" SchedulingMode="Sequential" TriggerId="0d15f824-2590-4c8a-a60f-94057cd1a8cb" />
+</Activity>

@@ -1,0 +1,7 @@
+<Activity x:Class="StartJob" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:StartJob ArgumentsVariable="{x:Null}" JobId="{x:Null}" Key="{x:Null}" NumberOfRobots="{x:Null}" ProcessName="{x:Null}" TimeoutMS="{x:Null}" JobPriority="Normal" ModernFolder="True" ResumeOnSameContext="False">
+    <ui:StartJob.Arguments>
+      <scg:Dictionary x:TypeArguments="x:String, Argument" />
+    </ui:StartJob.Arguments>
+  </ui:StartJob>
+</Activity>

@@ -1,0 +1,14 @@
+<Activity x:Class="SetFocus" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}">
+    <ui:SetFocus.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="67d2133c-051b-490f-b26b-61357cfabb9d">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </ui:SetFocus.Target>
+  </ui:SetFocus>
+</Activity>

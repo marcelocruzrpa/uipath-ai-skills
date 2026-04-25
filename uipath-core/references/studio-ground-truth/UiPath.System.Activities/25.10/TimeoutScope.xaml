@@ -1,0 +1,9 @@
+<Activity x:Class="TimeoutScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:TimeoutScope ThrowExceptionAfter="{x:Null}" TimeoutMessage="{x:Null}">
+    <ui:TimeoutScope.Body>
+      <ActivityAction x:TypeArguments="Activity">
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:TimeoutScope.Body>
+  </ui:TimeoutScope>
+</Activity>

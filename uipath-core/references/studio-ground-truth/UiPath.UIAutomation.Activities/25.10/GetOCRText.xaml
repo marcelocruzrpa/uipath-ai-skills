@@ -1,0 +1,22 @@
+<Activity x:Class="GetOCRText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:p="http://schemas.uipath.com/workflow/activities/ocr" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetOCRText Text="{x:Null}" WordsInfo="{x:Null}">
+    <ui:GetOCRText.OCREngine>
+      <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+        <ActivityFunc.Argument>
+          <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+        </ActivityFunc.Argument>
+        <p:UiPathDocumentOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" DisplayName="UiPath Document OCR" ExtractWords="True" Image="[Image]" Language="auto" NoopExecution="False" Profile="None" Scale="1" Timeout="100000" UseSeparateOcrProcess="True" />
+      </ActivityFunc>
+    </ui:GetOCRText.OCREngine>
+    <ui:GetOCRText.Target>
+      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="dea49c04-a646-47cc-9b73-781c1c3a9b34">
+        <ui:Target.TimeoutMS>
+          <InArgument x:TypeArguments="x:Int32" />
+        </ui:Target.TimeoutMS>
+        <ui:Target.WaitForReady>
+          <InArgument x:TypeArguments="ui:WaitForReady" />
+        </ui:Target.WaitForReady>
+      </ui:Target>
+    </ui:GetOCRText.Target>
+  </ui:GetOCRText>
+</Activity>

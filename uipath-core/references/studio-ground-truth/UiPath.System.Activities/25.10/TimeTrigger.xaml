@@ -1,0 +1,3 @@
+<Activity x:Class="TimeTrigger" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:TimeTrigger DailyRepeat="{x:Null}" DailyStartingTime="{x:Null}" DaysOfMonthToRunOn="{x:Null}" HourlyRepeat="{x:Null}" HourlyStartingMinutes="{x:Null}" MinuteByMinuteRepeat="{x:Null}" MonthlyDaysToRunOn="{x:Null}" MonthlyRepeat="{x:Null}" MonthlyStartingTime="{x:Null}" Result="{x:Null}" TimeZone="{x:Null}" WeeklyDaysToRunOn="{x:Null}" WeeklyStartingTime="{x:Null}" CronExpression="0 0 12 ? * MON-FRI *" Frequency="MinuteByMinute" MonthDaySelection="DayOfMonth" />
+</Activity>

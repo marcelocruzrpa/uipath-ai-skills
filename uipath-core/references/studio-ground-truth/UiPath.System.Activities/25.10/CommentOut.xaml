@@ -1,0 +1,7 @@
+<Activity x:Class="CommentOut" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:CommentOut>
+    <ui:CommentOut.Body>
+      <Sequence DisplayName="Ignored Activities" />
+    </ui:CommentOut.Body>
+  </ui:CommentOut>
+</Activity>

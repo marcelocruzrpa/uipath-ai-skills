@@ -1,0 +1,7 @@
+<Activity x:Class="SendCalendarInviteX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <umab:SendCalendarInviteX Account="{x:Null}" Description="{x:Null}" EndDate="{x:Null}" Location="{x:Null}" OptionalAttendees="{x:Null}" RequiredAttendees="{x:Null}" StartDate="{x:Null}" StartTime="{x:Null}" Subject="{x:Null}" AlertInterval="00:15:00" AllDayEvent="False" BusyStatus="Busy" DailyRecurrenceStep="1" DailyRecurrenceType="EveryWeekDay" Duration="00:30:00" IsRecurring="False" MaxBodyDocumentSizeMB="2" MonthlyRecurrenceDay="Day" MonthlyRecurrenceDayIndex="1" MonthlyRecurrenceStep="1" MonthlyRecurrenceType="EveryNthDayOnEveryXthMonth" MonthlyRecurrenceWeek="First" RecurrenceEndType="NoEndDate" RecurrencePatternType="Daily" RecurrenceTotalOccurrences="1" SaveWithoutSending="True" WeeklyRecurrenceDays="None" WeeklyRecurrenceStep="1" YearlyRecurrenceDay="Day" YearlyRecurrenceDayIndex="1" YearlyRecurrenceMonth="January" YearlyRecurrenceStep="1" YearlyRecurrenceType="EveryNthDayOfMonth" YearlyRecurrenceWeek="First">
+    <umab:SendCalendarInviteX.Files>
+      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+    </umab:SendCalendarInviteX.Files>
+  </umab:SendCalendarInviteX>
+</Activity>

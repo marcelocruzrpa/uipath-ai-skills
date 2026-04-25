@@ -1,0 +1,3 @@
+<Activity x:Class="GetTableRange" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:GetTableRange Range="{x:Null}" SheetName="{x:Null}" TableName="{x:Null}" IsPivot="False" />
+</Activity>

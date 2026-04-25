@@ -1,0 +1,9 @@
+<Activity x:Class="ModifyText" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:ModifyText OutputText="{x:Null}" SourceText="{x:Null}">
+    <ui:ModifyText.Body>
+      <ActivityAction>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:ModifyText.Body>
+  </ui:ModifyText>
+</Activity>

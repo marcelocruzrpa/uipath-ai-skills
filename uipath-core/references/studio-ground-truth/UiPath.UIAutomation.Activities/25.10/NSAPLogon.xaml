@@ -1,5 +1,5 @@
 <Activity x:Class="NSAPLogon" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NSAPLogon HealingAgentBehavior="Job" ScopeGuid="6644ba5d-ce7e-499b-9da1-957ca5b1da51">
+  <uix:NSAPLogon AttachMode="ByInstance" CloseMode="Never" DelayBetweenRetries="0.5" HealingAgentBehavior="Job" Retries="5" ScopeGuid="67fa4dc2-1293-44b3-91de-1f015c765264" Version="V2">
     <uix:NSAPLogon.Body>
       <ActivityAction x:TypeArguments="x:Object">
         <ActivityAction.Argument>
@@ -15,5 +15,8 @@
         </ActivityFunc.Argument>
       </ActivityFunc>
     </uix:NSAPLogon.OCREngine>
+    <uix:NSAPLogon.TargetApp>
+      <uix:TargetApp Area="0, 0, 0, 0" FilePath="C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe" Selector="&lt;wnd app='saplogon.exe' cls='SAP_FRONTEND_SESSION' /&gt;" Version="V2" />
+    </uix:NSAPLogon.TargetApp>
   </uix:NSAPLogon>
 </Activity>

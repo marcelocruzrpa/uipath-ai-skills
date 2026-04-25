@@ -1,0 +1,21 @@
+<Activity x:Class="SendMail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:SendMail Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" Port="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" Subject="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" UseOAuth="{x:Null}" UseRichTextEditor="{x:Null}" Action="Forward" AttachmentInputMode="None" ConnectionMode="Undefined" EnableSSL="True" IgnoreCRL="False" IsBodyHtml="False" SecureConnection="Auto" UseISConnection="False">
+    <ui:SendMail.AttachmentsBackup>
+      <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="{x:Null}">
+        <usau:BackupSlot.BackupValues>
+          <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+        </usau:BackupSlot.BackupValues>
+      </usau:BackupSlot>
+    </ui:SendMail.AttachmentsBackup>
+    <ui:SendMail.ConnectionDetailsBackupSlot>
+      <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+        <usau:BackupSlot.BackupValues>
+          <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+        </usau:BackupSlot.BackupValues>
+      </usau:BackupSlot>
+    </ui:SendMail.ConnectionDetailsBackupSlot>
+    <ui:SendMail.Files>
+      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+    </ui:SendMail.Files>
+  </ui:SendMail>
+</Activity>

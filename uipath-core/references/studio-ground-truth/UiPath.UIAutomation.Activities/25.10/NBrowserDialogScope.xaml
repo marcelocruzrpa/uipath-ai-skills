@@ -1,3 +1,7 @@
-<Activity x:Class="NBrowserDialogScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NBrowserDialogScope DialogMessage="{x:Null}" />
+<Activity x:Class="Browser Dialog Scope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NBrowserDialogScope DialogMessage="{x:Null}" DialogResponse="Cancel" DisplayName="Browser Dialog Scope" Version="V5" WaitForDialogToAppearTimeout="30">
+    <uix:NBrowserDialogScope.Body>
+      <Sequence DisplayName="Actions that trigger the dialog" />
+    </uix:NBrowserDialogScope.Body>
+  </uix:NBrowserDialogScope>
 </Activity>

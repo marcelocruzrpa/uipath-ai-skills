@@ -1,3 +1,12 @@
-<Activity x:Class="NElementScope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NElementScope ScopeGuid="{x:Null}" HealingAgentBehavior="SameAsCard" InteractionMode="HardwareEvents" IsLoose="False" />
+<Activity x:Class="Element Scope" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NElementScope DisplayName="Element Scope" HealingAgentBehavior="SameAsCard" InteractionMode="HardwareEvents" IsLoose="False" ScopeGuid="691fed1f-41b4-4681-abd6-e997aa777027" Version="V5">
+    <uix:NElementScope.Body>
+      <ActivityAction x:TypeArguments="x:Object">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </uix:NElementScope.Body>
+  </uix:NElementScope>
 </Activity>

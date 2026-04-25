@@ -1,0 +1,3 @@
+<Activity x:Class="AutoFitX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ueab:AutoFitX Range="{x:Null}" Columns="True" Rows="True" />
+</Activity>

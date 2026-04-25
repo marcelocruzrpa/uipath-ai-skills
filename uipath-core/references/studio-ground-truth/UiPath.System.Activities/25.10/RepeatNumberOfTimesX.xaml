@@ -1,0 +1,12 @@
+<Activity x:Class="RepeatNumberOfTimesX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ui:RepeatNumberOfTimesX NumberOfTimes="{x:Null}" StartAt="1">
+    <ui:RepeatNumberOfTimesX.Body>
+      <ActivityAction x:TypeArguments="x:Int32">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItem" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Do" />
+      </ActivityAction>
+    </ui:RepeatNumberOfTimesX.Body>
+  </ui:RepeatNumberOfTimesX>
+</Activity>

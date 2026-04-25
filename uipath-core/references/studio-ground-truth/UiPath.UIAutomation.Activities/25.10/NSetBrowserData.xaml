@@ -1,3 +1,3 @@
-<Activity x:Class="NSetBrowserData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <uix:NSetBrowserData SessionData="{x:Null}" />
+<Activity x:Class="Set Browser Data" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <uix:NSetBrowserData SessionData="{x:Null}" DisplayName="Set Browser Data" Version="V5" />
 </Activity>
