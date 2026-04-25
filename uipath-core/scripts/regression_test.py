@@ -1118,6 +1118,28 @@ def test_add_variables_type_normalization() -> TestResult:
     return t
 
 
+def test_routing_index_idempotent() -> TestResult:
+    """references/routing-index.md matches a fresh regenerate."""
+    t = TestResult("Routing index — generate_routing_index.py --check")
+    script = SCRIPTS_DIR / "generate_routing_index.py"
+    if not script.exists():
+        t.fail(f"generate_routing_index.py not found at {script}")
+        return t
+    res = subprocess.run(
+        [sys.executable, str(script), "--check"],
+        capture_output=True,
+        text=True,
+        cwd=str(SKILL_DIR.parent),
+    )
+    if res.returncode != 0:
+        t.fail("routing-index.md is out of date; re-run generate_routing_index.py")
+        for line in (res.stderr or res.stdout or "").splitlines()[:5]:
+            t.messages.append(f"       {line.strip()}")
+    else:
+        t.ok((res.stdout or "").strip().splitlines()[-1] if res.stdout else "up to date")
+    return t
+
+
 def test_annotations_validate() -> TestResult:
     """Annotation files conform to the schema in references/annotations/SCHEMA.md."""
     t = TestResult("Annotation schema — validate_annotations.py (lenient)")
@@ -1229,6 +1251,7 @@ def main():
             test_add_variables_type_normalization(),
             test_validate_snippet_rejects_non_xaml(),
             test_annotations_validate(),
+            test_routing_index_idempotent(),
         ]
     finally:
         shutil.rmtree(tmpdir, ignore_errors=True)
