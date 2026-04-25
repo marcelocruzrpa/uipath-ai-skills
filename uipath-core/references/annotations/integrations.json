@@ -85,8 +85,9 @@
       },
       "note": "Self-closing tag. Classic Workbook activity — no Excel app needed.",
       "category": "integrations",
-      "description": "Read Range activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Read Range.",
+      "description": "Classic Workbook 'Read Range' — read a worksheet range into a DataTable without opening Excel.",
+      "use_when": "User wants to read a sheet/range into a DataTable via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use ReadRangeX; for classic-with-Excel use ExcelReadRange.",
+      "tags": ["excel", "workbook", "classic", "read", "datatable"],
       "alternatives": [
         {
           "activity": "ReadRangeX",
@@ -97,7 +98,7 @@
           "use_instead_when": "You only need a single cell, not a rectangular range."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "WriteRange": {
       "gen_function": "gen_write_range",
@@ -168,8 +169,9 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Write Range activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Write Range.",
+      "description": "Classic Workbook 'Write Range' — write a DataTable into a worksheet range without opening Excel.",
+      "use_when": "User wants to push a DataTable to a sheet via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use WriteRangeX; to append rather than overwrite use AppendRange.",
+      "tags": ["excel", "workbook", "classic", "write", "datatable"],
       "alternatives": [
         {
           "activity": "WriteRangeX",
@@ -184,7 +186,7 @@
           "use_instead_when": "The destination already has data and you want to append below it instead of overwriting from the start cell."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "WriteCell": {
       "gen_function": "gen_write_cell",
@@ -252,8 +254,9 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Write Cell activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Write Cell.",
+      "description": "Classic Workbook 'Write Cell' — write a single value or formula into one cell without opening Excel.",
+      "use_when": "User wants to set one cell via the classic Workbook API. For a whole DataTable use WriteRange; for modern Excel (X) projects use WriteCellX.",
+      "tags": ["excel", "workbook", "classic", "write", "cell"],
       "alternatives": [
         {
           "activity": "WriteRange",
@@ -264,7 +267,7 @@
           "use_instead_when": "The workflow uses the modern Excel (X) suite rather than classic Workbook activities."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "AppendRange": {
       "gen_function": "gen_append_range",
@@ -325,8 +328,9 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Append Range activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Append Range.",
+      "description": "Classic Workbook 'Append Range' — append a DataTable below the existing data in a sheet without opening Excel.",
+      "use_when": "User wants to add rows under existing data via the classic Workbook API. To overwrite from row 1 use WriteRange; for modern Excel (X) projects use AppendRangeX.",
+      "tags": ["excel", "workbook", "classic", "append", "datatable"],
       "alternatives": [
         {
           "activity": "WriteRange",
@@ -337,7 +341,7 @@
           "use_instead_when": "The workflow uses the modern Excel (X) suite rather than classic Workbook activities."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "ReadPDFText": {
       "gen_function": "gen_read_pdf_text",
@@ -398,9 +402,16 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Read PDF Text activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Read PDF Text.",
-      "_routing_review_needed": true
+      "description": "Extract embedded text from a PDF file into a String variable.",
+      "use_when": "User wants the text layer of a digitally-generated PDF. For scanned/image PDFs use ReadPDFWithOCR; for the page count use GetPDFPageCount.",
+      "tags": ["pdf", "read", "text", "extract"],
+      "alternatives": [
+        {
+          "activity": "ReadPDFWithOCR",
+          "use_instead_when": "The PDF is scanned or image-based and has no embedded text layer."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "ReadPDFWithOCR": {
       "gen_function": "gen_read_pdf_with_ocr",
@@ -474,9 +485,16 @@
       },
       "conditional_attrs": {},
       "category": "integrations",
-      "description": "Read PDF With OCR activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Read PDF With OCR.",
-      "_routing_review_needed": true
+      "description": "Run OCR over a PDF (page-by-page rasterisation) and return the recognised text.",
+      "use_when": "User wants text from a scanned or image-only PDF. For PDFs with an embedded text layer use ReadPDFText (faster, lossless).",
+      "tags": ["pdf", "read", "ocr", "scanned"],
+      "alternatives": [
+        {
+          "activity": "ReadPDFText",
+          "use_instead_when": "The PDF already has an embedded text layer; ReadPDFText is faster and lossless."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "SendMail": {
       "gen_function": "gen_send_mail",
@@ -608,8 +626,9 @@
       },
       "conditional_attrs": {},
       "category": "integrations",
-      "description": "Send Mail activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Send Mail.",
+      "description": "Send an email through an SMTP server (or Integration Service connection).",
+      "use_when": "User wants to send mail via plain SMTP or an Integration Service mail connection. For Outlook desktop use SendOutlookMail; for Exchange Web Services use SendExchangeMail.",
+      "tags": ["mail", "send", "smtp", "integration-service"],
       "alternatives": [
         {
           "activity": "SendOutlookMail",
@@ -620,7 +639,7 @@
           "use_instead_when": "You can authenticate to Exchange Web Services directly rather than relying on a generic SMTP relay."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "GetIMAPMailMessages": {
       "gen_function": "gen_get_imap_mail",
@@ -732,8 +751,9 @@
       },
       "conditional_attrs": {},
       "category": "integrations",
-      "description": "Get IMAP Mail Messages activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Get IMAP Mail Messages.",
+      "description": "Read email messages from an IMAP mailbox folder into a List<MailMessage>.",
+      "use_when": "User wants to fetch mail from an IMAP server (folders, server-side flags). For POP3 use GetPOP3MailMessages; for Exchange/EWS use GetExchangeMailMessages; for an Outlook desktop client use GetOutlookMailMessages.",
+      "tags": ["mail", "read", "imap", "integration-service"],
       "alternatives": [
         {
           "activity": "GetPOP3MailMessages",
@@ -748,7 +768,7 @@
           "use_instead_when": "The robot has a logged-in Outlook desktop client and you want to read from the local profile rather than hit the server over IMAP."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false
     },
     "SaveMailAttachments": {
       "gen_function": "gen_save_mail_attachments",
@@ -829,9 +849,10 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Save Mail Attachments activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Save Mail Attachments.",
-      "_routing_review_needed": true
+      "description": "Save the attachments of a MailMessage to a folder on disk, optionally filtered by extension.",
+      "use_when": "User has a MailMessage from any Get*MailMessages activity and wants its attachments written to disk. Pair with GetIMAPMailMessages, GetOutlookMailMessages, or GetExchangeMailMessages.",
+      "tags": ["mail", "attachment", "save", "file-system"],
+      "_routing_review_needed": false
     },
     "DatabaseConnect": {
       "gen_function": "gen_database_connect",
@@ -890,9 +911,16 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "integrations",
-      "description": "Database Connect activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Database Connect.",
-      "_routing_review_needed": true
+      "description": "Open a database connection from a connection string and return a DatabaseConnection variable for reuse.",
+      "use_when": "User wants to share one connection across multiple subsequent ExecuteQuery / ExecuteNonQuery / BulkInsert / DatabaseTransaction calls. Always pair with DatabaseDisconnect; for one-off queries skip this and pass the connection string directly to ExecuteQuery.",
+      "tags": ["database", "connection", "open"],
+      "alternatives": [
+        {
+          "activity": "DatabaseDisconnect",
+          "use_instead_when": "You already have an open connection and want to close it instead of opening a new one."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "ExecuteQuery": {
       "gen_function": "gen_execute_query",
@@ -987,9 +1015,20 @@
       },
       "conditional_attrs": {},
       "category": "integrations",
-      "description": "Execute Query activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Execute Query.",
-      "_routing_review_needed": true
+      "description": "Run a SELECT query against a database and return the rows as a DataTable.",
+      "use_when": "User wants result rows from a SQL SELECT (or any query that returns a row set). For INSERT/UPDATE/DELETE without a result set use ExecuteNonQuery; for high-volume bulk loads use BulkInsert.",
+      "tags": ["database", "sql", "query", "select", "datatable"],
+      "alternatives": [
+        {
+          "activity": "ExecuteNonQuery",
+          "use_instead_when": "The statement is INSERT/UPDATE/DELETE/DDL and you only need the affected-row count, not a result set."
+        },
+        {
+          "activity": "BulkInsert",
+          "use_instead_when": "You are loading a large DataTable into a single table; BulkInsert is faster than parameterised inserts."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "ExecuteNonQuery": {
       "gen_function": "gen_execute_non_query",
@@ -1084,9 +1123,24 @@
       },
       "conditional_attrs": {},
       "category": "integrations",
-      "description": "Execute Non Query activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Execute Non Query.",
-      "_routing_review_needed": true
+      "description": "Run a SQL statement that does not return rows (INSERT/UPDATE/DELETE/DDL) and return the affected-row count.",
+      "use_when": "User wants to mutate the database (insert/update/delete) or run DDL. For SELECT use ExecuteQuery; for batched loads use BulkInsert; to wrap several statements atomically use DatabaseTransaction.",
+      "tags": ["database", "sql", "non-query", "insert", "update"],
+      "alternatives": [
+        {
+          "activity": "ExecuteQuery",
+          "use_instead_when": "The statement is a SELECT and you need the result rows."
+        },
+        {
+          "activity": "BulkInsert",
+          "use_instead_when": "You are loading a large DataTable into a single target table."
+        },
+        {
+          "activity": "DatabaseTransaction",
+          "use_instead_when": "Several statements must commit or roll back together."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "BulkInsert": {
       "gen_function": null,
@@ -1166,9 +1220,24 @@
       "_review_needed": true,
       "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Bulk Insert activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Bulk Insert.",
-      "_routing_review_needed": true
+      "description": "Bulk-load every row of a DataTable into a target database table using the provider's bulk-copy API.",
+      "use_when": "User has a DataTable whose schema matches an existing table and needs the fastest insert path. Requires a prior DatabaseConnect. For row-by-row inserts use ExecuteNonQuery; to update existing rows use BulkUpdate; to insert one DataTable through the same code path use InsertDataTable.",
+      "tags": ["database", "bulk", "insert", "datatable"],
+      "alternatives": [
+        {
+          "activity": "BulkUpdate",
+          "use_instead_when": "The DataTable rows already exist and need to be updated by primary key rather than appended."
+        },
+        {
+          "activity": "InsertDataTable",
+          "use_instead_when": "You want a generic DataTable insert without the provider's bulk-copy fast path."
+        },
+        {
+          "activity": "ExecuteNonQuery",
+          "use_instead_when": "Only a handful of rows; parameterised INSERTs are simpler than wiring DatabaseConnect+BulkInsert."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "BulkUpdate": {
       "gen_function": null,
@@ -1248,9 +1317,16 @@
       "_review_needed": true,
       "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Bulk Update activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Bulk Update.",
-      "_routing_review_needed": true
+      "description": "Bulk-update existing rows in a target database table from a DataTable matched on primary key.",
+      "use_when": "User has a DataTable whose rows already exist in the target table and need their non-key columns refreshed. Requires a prior DatabaseConnect. To insert new rows use BulkInsert.",
+      "tags": ["database", "bulk", "update", "datatable"],
+      "alternatives": [
+        {
+          "activity": "BulkInsert",
+          "use_instead_when": "The rows are new and should be appended rather than matched and updated."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "InsertDataTable": {
       "gen_function": null,
@@ -1330,9 +1406,20 @@
       "_review_needed": true,
       "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Insert Data Table activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Insert Data Table.",
-      "_routing_review_needed": true
+      "description": "Insert every row of a DataTable into a target database table via parameterised INSERTs.",
+      "use_when": "User wants to push a DataTable into a table without the provider-specific bulk-copy fast path. For high-volume loads use BulkInsert; for hand-written SQL use ExecuteNonQuery.",
+      "tags": ["database", "insert", "datatable"],
+      "alternatives": [
+        {
+          "activity": "BulkInsert",
+          "use_instead_when": "The DataTable is large and the provider supports a bulk-copy API."
+        },
+        {
+          "activity": "ExecuteNonQuery",
+          "use_instead_when": "You want explicit SQL/parameter control rather than the implicit column mapping."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "DatabaseDisconnect": {
       "gen_function": null,
@@ -1375,9 +1462,16 @@
       "_review_needed": true,
       "note": "Self-closing. Pair with a preceding DatabaseConnect. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Database Disconnect activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Database Disconnect.",
-      "_routing_review_needed": true
+      "description": "Close a previously opened DatabaseConnection and release its underlying resources.",
+      "use_when": "User wants to release a connection opened by DatabaseConnect (typically in a Finally block). To open the connection use DatabaseConnect.",
+      "tags": ["database", "connection", "close", "cleanup"],
+      "alternatives": [
+        {
+          "activity": "DatabaseConnect",
+          "use_instead_when": "You need to open a new connection rather than close an existing one."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "DatabaseTransaction": {
       "gen_function": null,
@@ -1446,9 +1540,10 @@
       "_review_needed": true,
       "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Database Transaction activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Database Transaction.",
-      "_routing_review_needed": true
+      "description": "Scope that runs nested database activities inside a single transaction (commit on success, rollback on error).",
+      "use_when": "User wants several ExecuteNonQuery / ExecuteQuery / BulkInsert calls to commit or roll back atomically. For one-off statements skip the transaction wrapper.",
+      "tags": ["database", "transaction", "scope", "atomic"],
+      "_routing_review_needed": false
     },
     "ExportPDFPageAsImage": {
       "gen_function": null,
@@ -1518,9 +1613,16 @@
       "_review_needed": true,
       "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Export PDF Page As Image activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Export PDF Page As Image.",
-      "_routing_review_needed": true
+      "description": "Render one page of a PDF to a PNG/JPG image file at the requested DPI.",
+      "use_when": "User wants a single PDF page as a raster image (for thumbnails, OCR pre-processing, embedding in reports). For all images embedded inside the PDF use ExtractImagesFromPDF; for OCR text use ReadPDFWithOCR.",
+      "tags": ["pdf", "export", "image", "page"],
+      "alternatives": [
+        {
+          "activity": "ExtractImagesFromPDF",
+          "use_instead_when": "You want the images that are already embedded in the PDF (not rasterised page snapshots)."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "ExtractImagesFromPDF": {
       "gen_function": null,
@@ -1571,9 +1673,16 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Extract Images From PDF activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Extract Images From PDF.",
-      "_routing_review_needed": true
+      "description": "Save every embedded image in a PDF to files in an output folder.",
+      "use_when": "User wants the original images embedded inside a PDF (logos, photographs, charts). For rasterised page snapshots use ExportPDFPageAsImage.",
+      "tags": ["pdf", "extract", "image", "embedded"],
+      "alternatives": [
+        {
+          "activity": "ExportPDFPageAsImage",
+          "use_instead_when": "You want a rasterised snapshot of an entire page rather than the embedded image objects."
+        }
+      ],
+      "_routing_review_needed": false
     },
     "ExtractPDFPageRange": {
       "gen_function": null,

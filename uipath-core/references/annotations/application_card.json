@@ -126,9 +126,24 @@
       },
       "conditional_attrs": {},
       "category": "application_card",
-      "description": "N Application Card Open activity from the application card category.",
-      "use_when": "User wants to open or attach to an application or browser context.",
-      "_routing_review_needed": true
+      "description": "Open a browser to a URL inside a UI scope and run the body against that browser instance.",
+      "use_when": "The workflow needs to launch (or re-launch) a browser at a known URL before any UI step. Use NApplicationCardAttach instead when the browser is already open, NApplicationCardDesktopOpen when launching a Windows .exe rather than a URL.",
+      "alternatives": [
+        {
+          "activity": "NApplicationCardAttach",
+          "use_instead_when": "The browser or app is already running and you only need to attach to its window."
+        },
+        {
+          "activity": "NApplicationCardDesktopOpen",
+          "use_instead_when": "The target is a desktop executable launched by file path, not a URL in a browser."
+        }
+      ],
+      "tags": [
+        "scope",
+        "browser",
+        "open"
+      ],
+      "_routing_review_needed": false
     },
     "NApplicationCardAttach": {
       "gen_function": "gen_napplicationcard_attach",
@@ -254,9 +269,25 @@
         }
       },
       "category": "application_card",
-      "description": "N Application Card Attach activity from the application card category.",
-      "use_when": "User wants to open or attach to an application or browser context.",
-      "_routing_review_needed": true
+      "description": "Attach the body to an already-running browser or desktop application via an existing UiElement.",
+      "use_when": "The browser or app is already open (or was opened earlier in the workflow) and you want a scope around it without re-launching. Use NApplicationCardOpen when you must launch a browser URL, NApplicationCardDesktopOpen when launching a desktop executable, NApplicationCardClose to tear the scope down.",
+      "alternatives": [
+        {
+          "activity": "NApplicationCardOpen",
+          "use_instead_when": "You need to launch a browser at a URL rather than attach to an existing one."
+        },
+        {
+          "activity": "NApplicationCardDesktopOpen",
+          "use_instead_when": "You need to launch a desktop executable rather than attach to an open window."
+        }
+      ],
+      "tags": [
+        "scope",
+        "attach",
+        "browser",
+        "desktop"
+      ],
+      "_routing_review_needed": false
     },
     "NApplicationCardClose": {
       "gen_function": "gen_napplicationcard_close",
@@ -365,9 +396,21 @@
         }
       },
       "category": "application_card",
-      "description": "N Application Card Close activity from the application card category.",
-      "use_when": "User wants to open or attach to an application or browser context.",
-      "_routing_review_needed": true
+      "description": "Close the browser or app the body was scoped to once execution exits the card.",
+      "use_when": "You explicitly want to shut down the browser or app at the end of an Open / Attach scope rather than leaving it running. Use NApplicationCardOpen / NApplicationCardAttach when you only need to enter a scope, not close one.",
+      "alternatives": [
+        {
+          "activity": "NApplicationCardAttach",
+          "use_instead_when": "You want to keep the app running after the scope ends rather than close it."
+        }
+      ],
+      "tags": [
+        "scope",
+        "close",
+        "browser",
+        "desktop"
+      ],
+      "_routing_review_needed": false
     },
     "NApplicationCardDesktopOpen": {
       "gen_function": "gen_napplicationcard_desktop_open",
@@ -481,9 +524,25 @@
       },
       "conditional_attrs": {},
       "category": "application_card",
-      "description": "N Application Card Desktop Open activity from the application card category.",
-      "use_when": "User wants to open or attach to an application or browser context.",
-      "_routing_review_needed": true
+      "description": "Launch a Windows desktop executable (by file path) inside a UI scope and run the body against it.",
+      "use_when": "The target is a desktop .exe that must be started before any UI step. Use NApplicationCardOpen for a browser URL instead, NApplicationCardAttach when the desktop app is already running.",
+      "alternatives": [
+        {
+          "activity": "NApplicationCardOpen",
+          "use_instead_when": "The target is a URL opened in a browser rather than a desktop executable."
+        },
+        {
+          "activity": "NApplicationCardAttach",
+          "use_instead_when": "The desktop application is already running and you only need to attach to its window."
+        }
+      ],
+      "tags": [
+        "scope",
+        "desktop",
+        "open",
+        "exe"
+      ],
+      "_routing_review_needed": false
     }
   }
 }

@@ -4,7 +4,7 @@ Auto-generated from `references/annotations/*.json` by
 `uipath-core/scripts/generate_routing_index.py`. Do not hand-edit — edit
 the annotation entries instead, then regenerate.
 
-**463 activities indexed** (supported: 445, wizard-only / unsupported: 18, routing wording review pending: 222).
+**463 activities indexed** (supported: 445, wizard-only / unsupported: 18, routing wording review pending: 184).
 
 ## UI automation (69)
 
@@ -84,10 +84,10 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `NApplicationCardAttach` 🛈 | `gen_napplicationcard_attach` | N Application Card Attach activity from the application card category. | User wants to open or attach to an application or browser context. |
-| `NApplicationCardClose` 🛈 | `gen_napplicationcard_close` | N Application Card Close activity from the application card category. | User wants to open or attach to an application or browser context. |
-| `NApplicationCardDesktopOpen` 🛈 | `gen_napplicationcard_desktop_open` | N Application Card Desktop Open activity from the application card category. | User wants to open or attach to an application or browser context. |
-| `NApplicationCardOpen` 🛈 | `gen_napplicationcard_open` | N Application Card Open activity from the application card category. | User wants to open or attach to an application or browser context. |
+| `NApplicationCardAttach` | `gen_napplicationcard_attach` | Attach the body to an already-running browser or desktop application via an existing UiElement. | The browser or app is already open (or was opened earlier in the workflow) and you want a scope around it without re-launching. Use NApplicationCardOpen when you must launch a browser URL, NApplicationCardDesktopOpen when launching a deskt… |
+| `NApplicationCardClose` | `gen_napplicationcard_close` | Close the browser or app the body was scoped to once execution exits the card. | You explicitly want to shut down the browser or app at the end of an Open / Attach scope rather than leaving it running. Use NApplicationCardOpen / NApplicationCardAttach when you only need to enter a scope, not close one. |
+| `NApplicationCardDesktopOpen` | `gen_napplicationcard_desktop_open` | Launch a Windows desktop executable (by file path) inside a UI scope and run the body against it. | The target is a desktop .exe that must be started before any UI step. Use NApplicationCardOpen for a browser URL instead, NApplicationCardAttach when the desktop app is already running. |
+| `NApplicationCardOpen` | `gen_napplicationcard_open` | Open a browser to a URL inside a UI scope and run the body against that browser instance. | The workflow needs to launch (or re-launch) a browser at a known URL before any UI step. Use NApplicationCardAttach instead when the browser is already open, NApplicationCardDesktopOpen when launching a Windows .exe rather than a URL. |
 
 ## Navigation (4)
 
@@ -404,15 +404,15 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `AppendWriteCsvFile` 🛈 | `gen_write_csv` | Append Write Csv File activity from the file system category. | User wants to perform a filesystem operation: Append Write Csv File. |
-| `CopyFile` 🛈 | `gen_copy_file` | Copy File activity from the file system category. | User wants to perform a filesystem operation: Copy File. |
-| `CreateDirectory` 🛈 | `gen_create_directory` | Create Directory activity from the file system category. | User wants to perform a filesystem operation: Create Directory. |
-| `DeleteFileX` 🛈 | `gen_delete_file` | Delete File X activity from the file system category. | User wants to perform a filesystem operation: Delete File X. |
-| `MoveFile` 🛈 | `gen_move_file` | Move File activity from the file system category. | User wants to perform a filesystem operation: Move File. |
-| `PathExists` 🛈 | `gen_path_exists` | Path Exists activity from the file system category. | User wants to perform a filesystem operation: Path Exists. |
-| `ReadCsvFile` 🛈 | `gen_read_csv` | Read Csv File activity from the file system category. | User wants to perform a filesystem operation: Read Csv File. |
-| `ReadTextFile` 🛈 | `gen_read_text_file` | Read Text File activity from the file system category. | User wants to perform a filesystem operation: Read Text File. |
-| `WriteTextFile` 🛈 | `gen_write_text_file` | Write Text File activity from the file system category. | User wants to perform a filesystem operation: Write Text File. |
+| `AppendWriteCsvFile` | `gen_write_csv` | Write or append a DataTable to a delimited file (CSV / TSV) with configurable delimiter, headers, and quoting. | You have a DataTable to persist as CSV / TSV (one-shot write or row-append). Use WriteTextFile when the payload is unstructured text; use ReadCsvFile to load a CSV back into a DataTable. |
+| `CopyFile` | `gen_copy_file` | Copy a file from a source path to a destination path, optionally overwriting an existing target. | You want a duplicate of a file at a new location and need the original to remain in place. Use MoveFile when the source should be removed after the transfer. |
+| `CreateDirectory` | `gen_create_directory` | Create a directory at the given path, including any missing parent directories; succeeds silently if the folder already exists. | You need an output / archive folder to exist before writing files into it. Use PathExists when you only want to test for a folder, not ensure one. |
+| `DeleteFileX` | `gen_delete_file` | Permanently delete the file at the given path; raises if the path does not exist. | You want to remove a file from disk after processing. Use PathExists first when the path may not exist and you do not want an exception; use MoveFile when the file should be archived rather than discarded. |
+| `MoveFile` | `gen_move_file` | Move a file from a source path to a destination path, optionally overwriting an existing target; the source no longer exists after the call. | You want to relocate a file (e.g. archive a processed item) and the source path should be empty afterwards. Use CopyFile when the source must remain in place. |
+| `PathExists` | `gen_path_exists` | Check whether a file or folder exists at the given path and write the boolean result to a variable. | You want to branch on a path's presence before deleting, copying, or reading it. Use CreateDirectory when the goal is to ensure a folder exists rather than just test for it. |
+| `ReadCsvFile` | `gen_read_csv` | Parse a delimited CSV / TSV file from disk into a DataTable, optionally treating the first row as headers. | The file is column-oriented data (CSV, TSV, pipe-delimited) you want as a DataTable for ForEachRow / DataTable activities. Use ReadTextFile for unstructured text; use AppendWriteCsvFile to write a DataTable back out. |
+| `ReadTextFile` | `gen_read_text_file` | Read the entire contents of a text file into a string variable. | You want raw text (config, template, log) handed back as one string. Use ReadCsvFile when the file is delimited and should be parsed into a DataTable; use WriteTextFile to push text the other direction. |
+| `WriteTextFile` | `gen_write_text_file` | Write a string variable to a text file at the given path, overwriting any existing file. | You have generated text (a report, config, JSON payload as text) and want it persisted as a single file. Use AppendWriteCsvFile when the data is tabular and should be written column-aware; use ReadTextFile to load text the other direction. |
 
 ## HTTP & JSON (10)
 
@@ -433,17 +433,17 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `InputDialog` 🛈 | `gen_input_dialog` | Input Dialog activity from the dialogs category. | User wants to display a UI dialog (Input Dialog) and read its result. |
-| `MessageBox` 🛈 | `gen_message_box` | Message Box activity from the dialogs category. | User wants to display a UI dialog (Message Box) and read its result. |
+| `InputDialog` | `gen_input_dialog` | Show an interactive prompt that asks the user for a string (or one of a fixed set of options) and returns the response. | An attended workflow needs a value supplied by the human at runtime (free text, password, or a dropdown choice). Use MessageBox when you only need to display information without collecting input; use orchestrator forms / Action Center when… |
+| `MessageBox` | `gen_message_box` | Display a modal message box to the attended user and block the workflow until they dismiss it. | An attended workflow needs to surface information or pause for confirmation. Prefer LogMessage for unattended logging that should not interrupt execution; use InputDialog when you actually need a typed response back. |
 
 ## Error handling & retry (4)
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `Rethrow` 🛈 | `gen_rethrow` | Rethrow activity from the error handling category. | User wants to handle exceptions or retries via Rethrow. |
-| `RetryScope` 🛈 | `gen_retryscope` | Retry Scope activity from the error handling category. | User wants to handle exceptions or retries via Retry Scope. |
-| `Throw` 🛈 | `gen_throw` | Throw activity from the error handling category. | User wants to handle exceptions or retries via Throw. |
-| `TryCatch` 🛈 | `gen_try_catch` | TryCatch activity from the error handling category. | User wants to handle exceptions or retries via TryCatch. |
+| `Rethrow` | `gen_rethrow` | Re-emit the exception that the enclosing TryCatch is currently handling, preserving its original type and stack. | You are inside a Catch and want to do partial work (logging, cleanup) before letting the same exception bubble up unchanged. Use Throw when you want to raise a different / new exception instead. |
+| `RetryScope` | `gen_retryscope` | Run the body and re-execute it up to N times when it fails or its condition stays unmet, then surface the final exception. | The activity inside is calling something flaky (network call, slow UI, eventual-consistency lookup) where the right response to a transient failure is just to try again. Use TryCatch when the failure has a meaningful alternative code path;… |
+| `Throw` | `gen_throw` | Raise a new exception built from a VB expression, aborting the current branch with a typed reason. | A business-rule violation or unrecoverable condition must stop execution and surface a specific exception type to the caller. Use Rethrow when you want to re-emit the exception that the surrounding TryCatch already caught; use TryCatch whe… |
+| `TryCatch` | `gen_try_catch` | Run a Try block and route any exception to one of several typed Catch handlers, with an optional Finally block that always executes. | An expected exception type has a meaningful recovery path (log, fall back, swallow) that should keep the workflow running. Use RetryScope when the failure is a transient external glitch you simply want to retry; use Throw when you want to … |
 
 ## Invoke (workflow / code) (3)
 
@@ -483,30 +483,30 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `AppendRange` 🛈 | `gen_append_range` | Append Range activity from the integrations category. | User wants to integrate with an external system using Append Range. |
-| `BulkInsert` 🛈 | `BulkInsert` (data-driven) | Bulk Insert activity from the integrations category. | User wants to integrate with an external system using Bulk Insert. |
-| `BulkUpdate` 🛈 | `BulkUpdate` (data-driven) | Bulk Update activity from the integrations category. | User wants to integrate with an external system using Bulk Update. |
-| `DatabaseConnect` 🛈 | `gen_database_connect` | Database Connect activity from the integrations category. | User wants to integrate with an external system using Database Connect. |
-| `DatabaseDisconnect` 🛈 | `DatabaseDisconnect` (data-driven) | Database Disconnect activity from the integrations category. | User wants to integrate with an external system using Database Disconnect. |
-| `DatabaseTransaction` 🛈 | `DatabaseTransaction` (data-driven) | Database Transaction activity from the integrations category. | User wants to integrate with an external system using Database Transaction. |
-| `ExecuteNonQuery` 🛈 | `gen_execute_non_query` | Execute Non Query activity from the integrations category. | User wants to integrate with an external system using Execute Non Query. |
-| `ExecuteQuery` 🛈 | `gen_execute_query` | Execute Query activity from the integrations category. | User wants to integrate with an external system using Execute Query. |
-| `ExportPDFPageAsImage` 🛈 | `ExportPDFPageAsImage` (data-driven) | Export PDF Page As Image activity from the integrations category. | User wants to integrate with an external system using Export PDF Page As Image. |
-| `ExtractImagesFromPDF` 🛈 | `ExtractImagesFromPDF` (data-driven) | Extract Images From PDF activity from the integrations category. | User wants to integrate with an external system using Extract Images From PDF. |
+| `AppendRange` | `gen_append_range` | Classic Workbook 'Append Range' — append a DataTable below the existing data in a sheet without opening Excel. | User wants to add rows under existing data via the classic Workbook API. To overwrite from row 1 use WriteRange; for modern Excel (X) projects use AppendRangeX. |
+| `BulkInsert` | `BulkInsert` (data-driven) | Bulk-load every row of a DataTable into a target database table using the provider's bulk-copy API. | User has a DataTable whose schema matches an existing table and needs the fastest insert path. Requires a prior DatabaseConnect. For row-by-row inserts use ExecuteNonQuery; to update existing rows use BulkUpdate; to insert one DataTable th… |
+| `BulkUpdate` | `BulkUpdate` (data-driven) | Bulk-update existing rows in a target database table from a DataTable matched on primary key. | User has a DataTable whose rows already exist in the target table and need their non-key columns refreshed. Requires a prior DatabaseConnect. To insert new rows use BulkInsert. |
+| `DatabaseConnect` | `gen_database_connect` | Open a database connection from a connection string and return a DatabaseConnection variable for reuse. | User wants to share one connection across multiple subsequent ExecuteQuery / ExecuteNonQuery / BulkInsert / DatabaseTransaction calls. Always pair with DatabaseDisconnect; for one-off queries skip this and pass the connection string direct… |
+| `DatabaseDisconnect` | `DatabaseDisconnect` (data-driven) | Close a previously opened DatabaseConnection and release its underlying resources. | User wants to release a connection opened by DatabaseConnect (typically in a Finally block). To open the connection use DatabaseConnect. |
+| `DatabaseTransaction` | `DatabaseTransaction` (data-driven) | Scope that runs nested database activities inside a single transaction (commit on success, rollback on error). | User wants several ExecuteNonQuery / ExecuteQuery / BulkInsert calls to commit or roll back atomically. For one-off statements skip the transaction wrapper. |
+| `ExecuteNonQuery` | `gen_execute_non_query` | Run a SQL statement that does not return rows (INSERT/UPDATE/DELETE/DDL) and return the affected-row count. | User wants to mutate the database (insert/update/delete) or run DDL. For SELECT use ExecuteQuery; for batched loads use BulkInsert; to wrap several statements atomically use DatabaseTransaction. |
+| `ExecuteQuery` | `gen_execute_query` | Run a SELECT query against a database and return the rows as a DataTable. | User wants result rows from a SQL SELECT (or any query that returns a row set). For INSERT/UPDATE/DELETE without a result set use ExecuteNonQuery; for high-volume bulk loads use BulkInsert. |
+| `ExportPDFPageAsImage` | `ExportPDFPageAsImage` (data-driven) | Render one page of a PDF to a PNG/JPG image file at the requested DPI. | User wants a single PDF page as a raster image (for thumbnails, OCR pre-processing, embedding in reports). For all images embedded inside the PDF use ExtractImagesFromPDF; for OCR text use ReadPDFWithOCR. |
+| `ExtractImagesFromPDF` | `ExtractImagesFromPDF` (data-driven) | Save every embedded image in a PDF to files in an output folder. | User wants the original images embedded inside a PDF (logos, photographs, charts). For rasterised page snapshots use ExportPDFPageAsImage. |
 | `ExtractPDFPageRange` 🛈 | `ExtractPDFPageRange` (data-driven) | Extract PDF Page Range activity from the integrations category. | User wants to integrate with an external system using Extract PDF Page Range. |
-| `GetIMAPMailMessages` 🛈 | `gen_get_imap_mail` | Get IMAP Mail Messages activity from the integrations category. | User wants to integrate with an external system using Get IMAP Mail Messages. |
+| `GetIMAPMailMessages` | `gen_get_imap_mail` | Read email messages from an IMAP mailbox folder into a List<MailMessage>. | User wants to fetch mail from an IMAP server (folders, server-side flags). For POP3 use GetPOP3MailMessages; for Exchange/EWS use GetExchangeMailMessages; for an Outlook desktop client use GetOutlookMailMessages. |
 | `GetPDFPageCount` 🛈 | `GetPDFPageCount` (data-driven) | Get PDF Page Count activity from the integrations category. | User wants to integrate with an external system using Get PDF Page Count. |
-| `InsertDataTable` 🛈 | `InsertDataTable` (data-driven) | Insert Data Table activity from the integrations category. | User wants to integrate with an external system using Insert Data Table. |
+| `InsertDataTable` | `InsertDataTable` (data-driven) | Insert every row of a DataTable into a target database table via parameterised INSERTs. | User wants to push a DataTable into a table without the provider-specific bulk-copy fast path. For high-volume loads use BulkInsert; for hand-written SQL use ExecuteNonQuery. |
 | `JoinPDF` 🛈 | `JoinPDF` (data-driven) | Join PDF activity from the integrations category. | User wants to integrate with an external system using Join PDF. |
 | `ManagePDFPassword` 🛈 | `ManagePDFPassword` (data-driven) | Manage PDF Password activity from the integrations category. | User wants to integrate with an external system using Manage PDF Password. |
-| `ReadPDFText` 🛈 | `gen_read_pdf_text` | Read PDF Text activity from the integrations category. | User wants to integrate with an external system using Read PDF Text. |
-| `ReadPDFWithOCR` 🛈 | `gen_read_pdf_with_ocr` | Read PDF With OCR activity from the integrations category. | User wants to integrate with an external system using Read PDF With OCR. |
-| `ReadRange` 🛈 | `gen_read_range` | Read Range activity from the integrations category. | User wants to integrate with an external system using Read Range. |
+| `ReadPDFText` | `gen_read_pdf_text` | Extract embedded text from a PDF file into a String variable. | User wants the text layer of a digitally-generated PDF. For scanned/image PDFs use ReadPDFWithOCR; for the page count use GetPDFPageCount. |
+| `ReadPDFWithOCR` | `gen_read_pdf_with_ocr` | Run OCR over a PDF (page-by-page rasterisation) and return the recognised text. | User wants text from a scanned or image-only PDF. For PDFs with an embedded text layer use ReadPDFText (faster, lossless). |
+| `ReadRange` | `gen_read_range` | Classic Workbook 'Read Range' — read a worksheet range into a DataTable without opening Excel. | User wants to read a sheet/range into a DataTable via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use ReadRangeX; for classic-with-Excel use ExcelReadRange. |
 | `ReadXPSText` 🛈 | `ReadXPSText` (data-driven) | Read XPS Text activity from the integrations category. | User wants to integrate with an external system using Read XPS Text. |
-| `SaveMailAttachments` 🛈 | `gen_save_mail_attachments` | Save Mail Attachments activity from the integrations category. | User wants to integrate with an external system using Save Mail Attachments. |
-| `SendMail` 🛈 | `gen_send_mail` | Send Mail activity from the integrations category. | User wants to integrate with an external system using Send Mail. |
-| `WriteCell` 🛈 | `gen_write_cell` | Write Cell activity from the integrations category. | User wants to integrate with an external system using Write Cell. |
-| `WriteRange` 🛈 | `gen_write_range` | Write Range activity from the integrations category. | User wants to integrate with an external system using Write Range. |
+| `SaveMailAttachments` | `gen_save_mail_attachments` | Save the attachments of a MailMessage to a folder on disk, optionally filtered by extension. | User has a MailMessage from any Get*MailMessages activity and wants its attachments written to disk. Pair with GetIMAPMailMessages, GetOutlookMailMessages, or GetExchangeMailMessages. |
+| `SendMail` | `gen_send_mail` | Send an email through an SMTP server (or Integration Service connection). | User wants to send mail via plain SMTP or an Integration Service mail connection. For Outlook desktop use SendOutlookMail; for Exchange Web Services use SendExchangeMail. |
+| `WriteCell` | `gen_write_cell` | Classic Workbook 'Write Cell' — write a single value or formula into one cell without opening Excel. | User wants to set one cell via the classic Workbook API. For a whole DataTable use WriteRange; for modern Excel (X) projects use WriteCellX. |
+| `WriteRange` | `gen_write_range` | Classic Workbook 'Write Range' — write a DataTable into a worksheet range without opening Excel. | User wants to push a DataTable to a sheet via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use WriteRangeX; to append rather than overwrite use AppendRange. |
 
 ## Testing (18)
 
@@ -558,7 +558,7 @@ them in Studio rather than calling the dispatcher.
 | `UpdateChartX` | wizard-only | StudioX 'Update Chart' (wizard-only) - updates the data range or properties of an existing chart. |
 | `VerifyControlAttribute` | wizard-only | Verify Control Attribute (wizard-only) — must be configured through UiPath Studio's interactive wizard. |
 
-## Alternatives (57)
+## Alternatives (84)
 
 Each row pairs an activity with its documented substitutes and the
 trigger that picks the substitute over the canonical activity.
@@ -570,12 +570,22 @@ trigger that picks the substitute over the canonical activity.
 | `AppendRange` | `AppendRangeX` | The workflow uses the modern Excel (X) suite rather than classic Workbook activities. |
 | `AppendRangeX` | `AppendRange` | You are using the classic ExcelApplicationScope rather than a modern Use Excel File scope. |
 | `AppendRangeX` | `WriteRangeX` | The destination is empty (or you want to overwrite) rather than append below existing rows. |
+| `AppendWriteCsvFile` | `ReadCsvFile` | You actually want to load a CSV from disk into a DataTable, not write one out. |
+| `AppendWriteCsvFile` | `WriteTextFile` | The payload is unstructured text rather than a DataTable that needs delimiter-aware formatting. |
 | `Assign` | `MultipleAssign` | You need to set two or more variables in one node; one MultipleAssign keeps related writes together. |
 | `Assign` | `BuildDataTable` | You are creating a DataTable with a fixed schema rather than assigning a scalar value. |
 | `BuildDataTable` | `Assign` | You only need to set a single variable; BuildDataTable is for constructing a tabular value with explicit columns/rows. |
 | `BuildDataTable` | `GenerateDataTable` | The source is a delimited string (CSV/TSV-style) that should be parsed into a table rather than typed in column-by-column. |
 | `BulkAddQueueItems` | `AddQueueItem` | You only have a single item to enqueue; the bulk path is overkill. |
+| `BulkInsert` | `BulkUpdate` | The DataTable rows already exist and need to be updated by primary key rather than appended. |
+| `BulkInsert` | `InsertDataTable` | You want a generic DataTable insert without the provider's bulk-copy fast path. |
+| `BulkInsert` | `ExecuteNonQuery` | Only a handful of rows; parameterised INSERTs are simpler than wiring DatabaseConnect+BulkInsert. |
+| `BulkUpdate` | `BulkInsert` | The rows are new and should be appended rather than matched and updated. |
+| `CopyFile` | `MoveFile` | The source should not remain at the original location after the transfer. |
+| `DatabaseConnect` | `DatabaseDisconnect` | You already have an open connection and want to close it instead of opening a new one. |
+| `DatabaseDisconnect` | `DatabaseConnect` | You need to open a new connection rather than close an existing one. |
 | `Delay` | `RetryScope` | You actually need to wait for a condition to succeed (with retry/backoff) rather than burn a fixed amount of time. |
+| `DeleteFileX` | `MoveFile` | The file should be archived to another folder rather than destroyed. |
 | `ExcelApplicationCard` | `ExcelApplicationScope` | You are using classic (non-modern-design) activities and just need a workbook scope around them. |
 | `ExcelApplicationCard` | `ExcelProcessScopeX` | You need a process-wide configuration covering multiple workbooks rather than a card around one Excel session. |
 | `ExcelApplicationScope` | `ExcelProcessScopeX` | The workflow runs the modern (X) Excel activities and you want a process-level scope that covers multiple workbooks rather than per-file. |
@@ -584,6 +594,13 @@ trigger that picks the substitute over the canonical activity.
 | `ExcelProcessScopeX` | `ExcelApplicationCard` | You are authoring inside the Modern Design Application Card pattern rather than a process-level scope. |
 | `ExcelReadColumn` | `ReadRangeX` | You need a rectangular range with multiple columns, not a single column of values. |
 | `ExcelReadColumn` | `ReadCellValueX` | You only need one cell from the column. |
+| `ExecuteNonQuery` | `ExecuteQuery` | The statement is a SELECT and you need the result rows. |
+| `ExecuteNonQuery` | `BulkInsert` | You are loading a large DataTable into a single target table. |
+| `ExecuteNonQuery` | `DatabaseTransaction` | Several statements must commit or roll back together. |
+| `ExecuteQuery` | `ExecuteNonQuery` | The statement is INSERT/UPDATE/DELETE/DDL and you only need the affected-row count, not a result set. |
+| `ExecuteQuery` | `BulkInsert` | You are loading a large DataTable into a single table; BulkInsert is faster than parameterised inserts. |
+| `ExportPDFPageAsImage` | `ExtractImagesFromPDF` | You want the images that are already embedded in the PDF (not rasterised page snapshots). |
+| `ExtractImagesFromPDF` | `ExportPDFPageAsImage` | You want a rasterised snapshot of an entire page rather than the embedded image objects. |
 | `FilterDataTable` | `LookupDataTable` | You need a single matching row's value for a key, not a full filtered subset. |
 | `FilterDataTable` | `JoinDataTables` | You need to combine columns from two tables on a key rather than filter rows of one table. |
 | `Flowchart` | `StateMachine` | The graph has long-lived states with entry/exit actions and explicit triggers; StateMachine models that better than free-form arrows. |
@@ -613,6 +630,9 @@ trigger that picks the substitute over the canonical activity.
 | `If` | `IfElseIfV2` | You have a chain of mutually exclusive boolean conditions and want explicit else-if branches rather than nested If activities. |
 | `IfElseIfV2` | `If` | You only have one boolean branch (with optional else); the chained form is unnecessary. |
 | `IfElseIfV2` | `Switch` | Every branch tests the same value against a constant; Switch is clearer for n-way dispatch on one expression. |
+| `InputDialog` | `MessageBox` | You only need to show information or get an OK acknowledgement, not collect typed input. |
+| `InsertDataTable` | `BulkInsert` | The DataTable is large and the provider supports a bulk-copy API. |
+| `InsertDataTable` | `ExecuteNonQuery` | You want explicit SQL/parameter control rather than the implicit column mapping. |
 | `InvokeCode` | `InvokeWorkflowFile` | The behavior is reusable and worth modeling as its own XAML workflow with named arguments. |
 | `InvokeCode` | `InvokeMethod` | You just need to call one method on an existing object; reflection is lighter than a code block. |
 | `InvokeMethod` | `InvokeCode` | You need more than one statement, control flow, or local variables; a code block is more natural than reflection. |
@@ -623,8 +643,18 @@ trigger that picks the substitute over the canonical activity.
 | `JoinDataTables` | `LookupDataTable` | You only need to fetch a single value for a key rather than produce a joined result table. |
 | `LookupDataTable` | `FilterDataTable` | You need every matching row, not just the first hit's value. |
 | `LookupDataTable` | `JoinDataTables` | You want all matching rows merged with their right-side columns, not just one looked-up scalar. |
+| `MessageBox` | `InputDialog` | You need to read a value typed by the user, not just show information. |
+| `MessageBox` | `LogMessage` | The workflow is unattended or you only want a log entry rather than a blocking UI prompt. |
+| `MoveFile` | `CopyFile` | The original file must remain at its source location after the operation. |
 | `MultipleAssign` | `Assign` | You are only setting a single variable; one Assign is simpler than the multi-row form. |
 | `MultipleAssign` | `BuildDataTable` | The target is a tabular value with a fixed schema, not a set of scalars. |
+| `NApplicationCardAttach` | `NApplicationCardOpen` | You need to launch a browser at a URL rather than attach to an existing one. |
+| `NApplicationCardAttach` | `NApplicationCardDesktopOpen` | You need to launch a desktop executable rather than attach to an open window. |
+| `NApplicationCardClose` | `NApplicationCardAttach` | You want to keep the app running after the scope ends rather than close it. |
+| `NApplicationCardDesktopOpen` | `NApplicationCardOpen` | The target is a URL opened in a browser rather than a desktop executable. |
+| `NApplicationCardDesktopOpen` | `NApplicationCardAttach` | The desktop application is already running and you only need to attach to its window. |
+| `NApplicationCardOpen` | `NApplicationCardAttach` | The browser or app is already running and you only need to attach to its window. |
+| `NApplicationCardOpen` | `NApplicationCardDesktopOpen` | The target is a desktop executable launched by file path, not a URL in a browser. |
 | `NCheck` | `NClick` | The target is a generic button or link rather than a checkbox/radio; a raw click is enough. |
 | `NCheck` | `NSelectItem` | The control is a dropdown/list rather than a check or radio toggle. |
 | `NCheck` | `NCheckState` | You only need to read whether the box is checked, not change it. |
@@ -655,15 +685,20 @@ trigger that picks the substitute over the canonical activity.
 | `NTakeScreenshot` | `NHover` | You need to trigger the application's hover behavior rather than capture the screen. |
 | `NTypeInto` | `NSetText` | The field already accepts a direct value-set and you do not need keystroke-level fidelity (faster, no focus needed). |
 | `NTypeInto` | `NSetClipboard` | The value is large or contains characters the target does not accept via keystrokes; paste from the clipboard instead. |
+| `PathExists` | `CreateDirectory` | You actually want to ensure the folder exists, not merely test it. |
 | `ReadCell` | `ReadRange` | You need more than a single cell; ReadRange returns a rectangular block as a DataTable. |
 | `ReadCell` | `ReadCellValueX` | The workflow uses the modern Excel (X) suite rather than the classic Workbook activities. |
 | `ReadCsvFile` | `ReadTextFile` | The file is plain text without delimited columns; you want the raw string, not a parsed DataTable. |
+| `ReadPDFText` | `ReadPDFWithOCR` | The PDF is scanned or image-based and has no embedded text layer. |
+| `ReadPDFWithOCR` | `ReadPDFText` | The PDF already has an embedded text layer; ReadPDFText is faster and lossless. |
 | `ReadRange` | `ReadRangeX` | The workflow uses the modern Modern Excel (X) suite with Use Excel File scope rather than the classic ExcelApplicationScope. |
 | `ReadRange` | `ReadCell` | You only need a single cell, not a rectangular range. |
 | `ReadRangeX` | `ReadRange` | You are inside a classic ExcelApplicationScope/Workbook scope rather than a modern Use Excel File context. |
 | `ReadRangeX` | `ReadCellValueX` | You only need the value of one cell; ReadRangeX is for rectangular ranges. |
 | `ReadRangeX` | `ExcelReadColumn` | You want every cell in one column without specifying the row count. |
 | `ReadTextFile` | `ReadCsvFile` | The file is a delimited CSV/TSV that should be parsed into a DataTable rather than handed back as a string. |
+| `Rethrow` | `Throw` | You want to raise a new exception (different type or message), not forward the one you caught. |
+| `RetryScope` | `TryCatch` | On failure you want a different code path (log, fall back, swallow) rather than another attempt. |
 | `SendExchangeMail` | `SendOutlookMail` | There is a logged-in Outlook desktop client; let it deliver the mail so it follows local Outlook rules. |
 | `SendExchangeMail` | `SendMail` | You do not have Exchange credentials and only need to push through a generic SMTP relay. |
 | `SendMail` | `SendOutlookMail` | There is a logged-in Outlook desktop client and you want messages to be sent through it (so they land in Sent Items, follow Outlook rules, etc.). |
@@ -673,6 +708,9 @@ trigger that picks the substitute over the canonical activity.
 | `StateMachine` | `Flowchart` | The graph is a one-shot decision tree with no persistent states; Flowchart is lighter weight than a state machine. |
 | `Switch` | `If` | You only need a binary true/false branch on a boolean expression. |
 | `Switch` | `IfElseIfV2` | The branches depend on different boolean expressions (not values of one expression) and you want labeled else-if clauses. |
+| `Throw` | `Rethrow` | You are inside a Catch block and want to forward the original exception unchanged rather than construct a new one. |
+| `TryCatch` | `RetryScope` | The failure is a transient external problem and the right response is to retry the same activity, not to handle a different code path. |
+| `TryCatch` | `Throw` | You actually want to raise a new exception, not catch one. |
 | `WriteCell` | `WriteRange` | You are writing a DataTable or multiple cells, not a single cell. |
 | `WriteCell` | `WriteCellX` | The workflow uses the modern Excel (X) suite rather than classic Workbook activities. |
 | `WriteCellX` | `WriteCell` | You are using the classic Workbook activities rather than the modern Excel (X) suite. |
@@ -683,8 +721,10 @@ trigger that picks the substitute over the canonical activity.
 | `WriteRangeX` | `WriteRange` | You are using the classic ExcelApplicationScope/Workbook scope, not a modern Use Excel File scope. |
 | `WriteRangeX` | `WriteCellX` | You are writing a single cell value rather than a DataTable. |
 | `WriteRangeX` | `AppendRangeX` | You want to append below the existing data instead of overwriting from the start cell. |
+| `WriteTextFile` | `AppendWriteCsvFile` | The data is tabular (DataTable) and needs delimiter-aware CSV formatting. |
+| `WriteTextFile` | `ReadTextFile` | You actually want to load text from disk, not write it. |
 
 
 ---
-_Index footer:_ 463 activities, 16 categories, 18 unsupported, 222 review-pending. Regenerate with `python uipath-core/scripts/generate_routing_index.py`.
+_Index footer:_ 463 activities, 16 categories, 18 unsupported, 184 review-pending. Regenerate with `python uipath-core/scripts/generate_routing_index.py`.
 

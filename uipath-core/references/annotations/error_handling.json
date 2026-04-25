@@ -90,9 +90,25 @@
       },
       "conditional_attrs": {},
       "category": "error_handling",
-      "description": "TryCatch activity from the error handling category.",
-      "use_when": "User wants to handle exceptions or retries via TryCatch.",
-      "_routing_review_needed": true
+      "description": "Run a Try block and route any exception to one of several typed Catch handlers, with an optional Finally block that always executes.",
+      "use_when": "An expected exception type has a meaningful recovery path (log, fall back, swallow) that should keep the workflow running. Use RetryScope when the failure is a transient external glitch you simply want to retry; use Throw when you want to abort with a typed exception rather than handle one.",
+      "alternatives": [
+        {
+          "activity": "RetryScope",
+          "use_instead_when": "The failure is a transient external problem and the right response is to retry the same activity, not to handle a different code path."
+        },
+        {
+          "activity": "Throw",
+          "use_instead_when": "You actually want to raise a new exception, not catch one."
+        }
+      ],
+      "tags": [
+        "exception",
+        "try-catch",
+        "handler",
+        "finally"
+      ],
+      "_routing_review_needed": false
     },
     "Throw": {
       "gen_function": "gen_throw",
@@ -132,9 +148,20 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "error_handling",
-      "description": "Throw activity from the error handling category.",
-      "use_when": "User wants to handle exceptions or retries via Throw.",
-      "_routing_review_needed": true
+      "description": "Raise a new exception built from a VB expression, aborting the current branch with a typed reason.",
+      "use_when": "A business-rule violation or unrecoverable condition must stop execution and surface a specific exception type to the caller. Use Rethrow when you want to re-emit the exception that the surrounding TryCatch already caught; use TryCatch when you want to handle, not raise.",
+      "alternatives": [
+        {
+          "activity": "Rethrow",
+          "use_instead_when": "You are inside a Catch block and want to forward the original exception unchanged rather than construct a new one."
+        }
+      ],
+      "tags": [
+        "exception",
+        "throw",
+        "abort"
+      ],
+      "_routing_review_needed": false
     },
     "Rethrow": {
       "gen_function": "gen_rethrow",
@@ -166,9 +193,20 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "error_handling",
-      "description": "Rethrow activity from the error handling category.",
-      "use_when": "User wants to handle exceptions or retries via Rethrow.",
-      "_routing_review_needed": true
+      "description": "Re-emit the exception that the enclosing TryCatch is currently handling, preserving its original type and stack.",
+      "use_when": "You are inside a Catch and want to do partial work (logging, cleanup) before letting the same exception bubble up unchanged. Use Throw when you want to raise a different / new exception instead.",
+      "alternatives": [
+        {
+          "activity": "Throw",
+          "use_instead_when": "You want to raise a new exception (different type or message), not forward the one you caught."
+        }
+      ],
+      "tags": [
+        "exception",
+        "rethrow",
+        "catch"
+      ],
+      "_routing_review_needed": false
     },
     "RetryScope": {
       "gen_function": "gen_retryscope",
@@ -237,9 +275,20 @@
       },
       "conditional_attrs": {},
       "category": "error_handling",
-      "description": "Retry Scope activity from the error handling category.",
-      "use_when": "User wants to handle exceptions or retries via Retry Scope.",
-      "_routing_review_needed": true
+      "description": "Run the body and re-execute it up to N times when it fails or its condition stays unmet, then surface the final exception.",
+      "use_when": "The activity inside is calling something flaky (network call, slow UI, eventual-consistency lookup) where the right response to a transient failure is just to try again. Use TryCatch when the failure has a meaningful alternative code path; do NOT wrap NetHttpRequest (it has its own built-in retry).",
+      "alternatives": [
+        {
+          "activity": "TryCatch",
+          "use_instead_when": "On failure you want a different code path (log, fall back, swallow) rather than another attempt."
+        }
+      ],
+      "tags": [
+        "retry",
+        "transient",
+        "scope"
+      ],
+      "_routing_review_needed": false
     }
   }
 }

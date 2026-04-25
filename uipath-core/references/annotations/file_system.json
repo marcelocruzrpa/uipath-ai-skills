@@ -63,9 +63,20 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Copy File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Copy File.",
-      "_routing_review_needed": true
+      "description": "Copy a file from a source path to a destination path, optionally overwriting an existing target.",
+      "use_when": "You want a duplicate of a file at a new location and need the original to remain in place. Use MoveFile when the source should be removed after the transfer.",
+      "alternatives": [
+        {
+          "activity": "MoveFile",
+          "use_instead_when": "The source should not remain at the original location after the transfer."
+        }
+      ],
+      "tags": [
+        "file",
+        "copy",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "MoveFile": {
       "gen_function": "gen_move_file",
@@ -128,9 +139,20 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Move File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Move File.",
-      "_routing_review_needed": true
+      "description": "Move a file from a source path to a destination path, optionally overwriting an existing target; the source no longer exists after the call.",
+      "use_when": "You want to relocate a file (e.g. archive a processed item) and the source path should be empty afterwards. Use CopyFile when the source must remain in place.",
+      "alternatives": [
+        {
+          "activity": "CopyFile",
+          "use_instead_when": "The original file must remain at its source location after the operation."
+        }
+      ],
+      "tags": [
+        "file",
+        "move",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "DeleteFileX": {
       "gen_function": "gen_delete_file",
@@ -171,9 +193,20 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. No ContinueOnError property exists on this activity.",
       "category": "file_system",
-      "description": "Delete File X activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Delete File X.",
-      "_routing_review_needed": true
+      "description": "Permanently delete the file at the given path; raises if the path does not exist.",
+      "use_when": "You want to remove a file from disk after processing. Use PathExists first when the path may not exist and you do not want an exception; use MoveFile when the file should be archived rather than discarded.",
+      "alternatives": [
+        {
+          "activity": "MoveFile",
+          "use_instead_when": "The file should be archived to another folder rather than destroyed."
+        }
+      ],
+      "tags": [
+        "file",
+        "delete",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "PathExists": {
       "gen_function": "gen_path_exists",
@@ -235,9 +268,21 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Path Exists activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Path Exists.",
-      "_routing_review_needed": true
+      "description": "Check whether a file or folder exists at the given path and write the boolean result to a variable.",
+      "use_when": "You want to branch on a path's presence before deleting, copying, or reading it. Use CreateDirectory when the goal is to ensure a folder exists rather than just test for it.",
+      "alternatives": [
+        {
+          "activity": "CreateDirectory",
+          "use_instead_when": "You actually want to ensure the folder exists, not merely test it."
+        }
+      ],
+      "tags": [
+        "path",
+        "exists",
+        "check",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "CreateDirectory": {
       "gen_function": "gen_create_directory",
@@ -281,9 +326,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Create Directory activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Create Directory.",
-      "_routing_review_needed": true
+      "description": "Create a directory at the given path, including any missing parent directories; succeeds silently if the folder already exists.",
+      "use_when": "You need an output / archive folder to exist before writing files into it. Use PathExists when you only want to test for a folder, not ensure one.",
+      "tags": [
+        "directory",
+        "create",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "ReadTextFile": {
       "gen_function": "gen_read_text_file",
@@ -355,15 +405,21 @@
       },
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Read Text File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Read Text File.",
+      "description": "Read the entire contents of a text file into a string variable.",
+      "use_when": "You want raw text (config, template, log) handed back as one string. Use ReadCsvFile when the file is delimited and should be parsed into a DataTable; use WriteTextFile to push text the other direction.",
       "alternatives": [
         {
           "activity": "ReadCsvFile",
           "use_instead_when": "The file is a delimited CSV/TSV that should be parsed into a DataTable rather than handed back as a string."
         }
       ],
-      "_routing_review_needed": true
+      "tags": [
+        "file",
+        "read",
+        "text",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "WriteTextFile": {
       "gen_function": "gen_write_text_file",
@@ -437,9 +493,25 @@
       },
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Write Text File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Write Text File.",
-      "_routing_review_needed": true
+      "description": "Write a string variable to a text file at the given path, overwriting any existing file.",
+      "use_when": "You have generated text (a report, config, JSON payload as text) and want it persisted as a single file. Use AppendWriteCsvFile when the data is tabular and should be written column-aware; use ReadTextFile to load text the other direction.",
+      "alternatives": [
+        {
+          "activity": "AppendWriteCsvFile",
+          "use_instead_when": "The data is tabular (DataTable) and needs delimiter-aware CSV formatting."
+        },
+        {
+          "activity": "ReadTextFile",
+          "use_instead_when": "You actually want to load text from disk, not write it."
+        }
+      ],
+      "tags": [
+        "file",
+        "write",
+        "text",
+        "windows-fs"
+      ],
+      "_routing_review_needed": false
     },
     "ReadCsvFile": {
       "gen_function": "gen_read_csv",
@@ -547,15 +619,21 @@
       },
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Read Csv File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Read Csv File.",
+      "description": "Parse a delimited CSV / TSV file from disk into a DataTable, optionally treating the first row as headers.",
+      "use_when": "The file is column-oriented data (CSV, TSV, pipe-delimited) you want as a DataTable for ForEachRow / DataTable activities. Use ReadTextFile for unstructured text; use AppendWriteCsvFile to write a DataTable back out.",
       "alternatives": [
         {
           "activity": "ReadTextFile",
           "use_instead_when": "The file is plain text without delimited columns; you want the raw string, not a parsed DataTable."
         }
       ],
-      "_routing_review_needed": true
+      "tags": [
+        "file",
+        "csv",
+        "datatable",
+        "read"
+      ],
+      "_routing_review_needed": false
     },
     "AppendWriteCsvFile": {
       "gen_function": "gen_write_csv",
@@ -661,9 +739,26 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "file_system",
-      "description": "Append Write Csv File activity from the file system category.",
-      "use_when": "User wants to perform a filesystem operation: Append Write Csv File.",
-      "_routing_review_needed": true
+      "description": "Write or append a DataTable to a delimited file (CSV / TSV) with configurable delimiter, headers, and quoting.",
+      "use_when": "You have a DataTable to persist as CSV / TSV (one-shot write or row-append). Use WriteTextFile when the payload is unstructured text; use ReadCsvFile to load a CSV back into a DataTable.",
+      "alternatives": [
+        {
+          "activity": "ReadCsvFile",
+          "use_instead_when": "You actually want to load a CSV from disk into a DataTable, not write one out."
+        },
+        {
+          "activity": "WriteTextFile",
+          "use_instead_when": "The payload is unstructured text rather than a DataTable that needs delimiter-aware formatting."
+        }
+      ],
+      "tags": [
+        "file",
+        "csv",
+        "datatable",
+        "write",
+        "append"
+      ],
+      "_routing_review_needed": false
     }
   }
 }
