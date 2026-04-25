@@ -3,7 +3,7 @@
   "module": "mail_extended",
   "activities": {
     "GetOutlookMailMessages": {
-      "gen_function": "gen_get_outlook_mail_messages",
+      "gen_function": null,
       "element_tag": "ui:GetOutlookMailMessages",
       "hint_size_key": "GetOutlookMailMessages",
       "params": {
@@ -112,10 +112,10 @@
         }
       },
       "conditional_attrs": {},
-      "note": "Retrieves Outlook mail messages. Requires Outlook connection."
+      "note": "Retrieves Outlook mail messages. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "MoveOutlookMessage": {
-      "gen_function": "gen_move_outlook_message",
+      "gen_function": null,
       "element_tag": "ui:MoveOutlookMessage",
       "hint_size_key": "MoveOutlookMessage",
       "params": {
@@ -168,10 +168,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Moves an Outlook mail message to a specified folder."
+      "note": "Self-closing tag. Moves an Outlook mail message to a specified folder. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "SendOutlookMail": {
-      "gen_function": "gen_send_outlook_mail",
+      "gen_function": null,
       "element_tag": "ui:SendOutlookMail",
       "hint_size_key": "SendOutlookMail",
       "params": {
@@ -260,7 +260,11 @@
           "attr": "Importance",
           "required": false,
           "default": "Normal",
-          "enum": ["Normal", "High", "Low"],
+          "enum": [
+            "Normal",
+            "High",
+            "Low"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -287,7 +291,7 @@
         }
       },
       "conditional_attrs": {},
-      "note": "Sends an email via Outlook. Requires Outlook connection."
+      "note": "Sends an email via Outlook. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "OutlookApplicationCard": {
       "_unsupported_reason": "wizard-only",

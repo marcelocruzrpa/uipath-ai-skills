@@ -3,7 +3,7 @@
   "module": "testing",
   "activities": {
     "VerifyExpression": {
-      "gen_function": "gen_verify_expression",
+      "gen_function": null,
       "element_tag": "uta:VerifyExpression",
       "hint_size_key": "VerifyExpression",
       "params": {
@@ -63,10 +63,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Verifies a Boolean expression is true."
+      "note": "Self-closing tag. Verifies a Boolean expression is true. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "VerifyExpressionWithOperator": {
-      "gen_function": "gen_verify_expression_with_operator",
+      "gen_function": null,
       "element_tag": "uta:VerifyExpressionWithOperator",
       "hint_size_key": "VerifyExpressionWithOperator",
       "params": {
@@ -92,7 +92,17 @@
           "attr": "Operator",
           "required": false,
           "default": "Equality",
-          "enum": ["Equality", "Inequality", "GreaterThan", "LessThan", "GreaterThanOrEqual", "LessThanOrEqual", "Contains", "StartsWith", "EndsWith"],
+          "enum": [
+            "Equality",
+            "Inequality",
+            "GreaterThan",
+            "LessThan",
+            "GreaterThanOrEqual",
+            "LessThanOrEqual",
+            "Contains",
+            "StartsWith",
+            "EndsWith"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -144,10 +154,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two expressions with a specified operator."
+      "note": "Self-closing tag. Compares two expressions with a specified operator. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "VerifyRange": {
-      "gen_function": "gen_verify_range",
+      "gen_function": null,
       "element_tag": "uta:VerifyRange",
       "hint_size_key": "VerifyRange",
       "params": {
@@ -218,7 +228,10 @@
           "attr": "VerificationType",
           "required": false,
           "default": "is within",
-          "enum": ["is within", "is not within"],
+          "enum": [
+            "is within",
+            "is not within"
+          ],
           "escape": "xml",
           "bracket_wrap": false,
           "type": "string"
@@ -234,10 +247,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Verifies a numeric expression falls within a range."
+      "note": "Self-closing tag. Verifies a numeric expression falls within a range. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ComparePdfDocuments": {
-      "gen_function": "gen_compare_pdf_documents",
+      "gen_function": null,
       "element_tag": "uta:ComparePdfDocuments",
       "hint_size_key": "ComparePdfDocuments",
       "params": {
@@ -299,7 +312,11 @@
           "attr": "ComparisonType",
           "required": false,
           "default": "Line",
-          "enum": ["Line", "Word", "Character"],
+          "enum": [
+            "Line",
+            "Word",
+            "Character"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -325,10 +342,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two PDF documents for differences."
+      "note": "Self-closing tag. Compares two PDF documents for differences. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "CompareText": {
-      "gen_function": "gen_compare_text",
+      "gen_function": null,
       "element_tag": "uta:CompareText",
       "hint_size_key": "CompareText",
       "params": {
@@ -390,7 +407,11 @@
           "attr": "ComparisonType",
           "required": false,
           "default": "Line",
-          "enum": ["Line", "Word", "Character"],
+          "enum": [
+            "Line",
+            "Word",
+            "Character"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -414,10 +435,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two text strings for differences."
+      "note": "Self-closing tag. Compares two text strings for differences. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "CreateComparisonRule": {
-      "gen_function": "gen_create_comparison_rule",
+      "gen_function": null,
       "element_tag": "uta:CreateComparisonRule",
       "hint_size_key": "CreateComparisonRule",
       "params": {
@@ -470,7 +491,11 @@
           "attr": "ComparisonRuleType",
           "required": false,
           "default": "RegexRule",
-          "enum": ["RegexRule", "IgnoreRule", "ReplaceRule"],
+          "enum": [
+            "RegexRule",
+            "IgnoreRule",
+            "ReplaceRule"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -482,10 +507,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Creates a comparison rule for document comparison."
+      "note": "Self-closing tag. Creates a comparison rule for document comparison. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetTestDataQueueItem": {
-      "gen_function": "gen_get_test_data_queue_item",
+      "gen_function": null,
       "element_tag": "uta:GetTestDataQueueItem",
       "hint_size_key": "GetTestDataQueueItem",
       "params": {
@@ -549,10 +574,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Retrieves an item from a test data queue."
+      "note": "Self-closing tag. Retrieves an item from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetTestDataQueueItems": {
-      "gen_function": "gen_get_test_data_queue_items",
+      "gen_function": null,
       "element_tag": "uta:GetTestDataQueueItems",
       "hint_size_key": "GetTestDataQueueItems",
       "params": {
@@ -596,7 +621,11 @@
           "attr": "TestDataQueueItemStatus",
           "required": false,
           "default": "All",
-          "enum": ["All", "Unconsumed", "Consumed"],
+          "enum": [
+            "All",
+            "Unconsumed",
+            "Consumed"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -627,10 +656,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Retrieves multiple items from a test data queue."
+      "note": "Self-closing tag. Retrieves multiple items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "BulkAddTestDataQueue": {
-      "gen_function": "gen_bulk_add_test_data_queue",
+      "gen_function": null,
       "element_tag": "uta:BulkAddTestDataQueue",
       "hint_size_key": "BulkAddTestDataQueue",
       "params": {
@@ -685,10 +714,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue."
+      "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "DeleteTestDataQueueItems": {
-      "gen_function": "gen_delete_test_data_queue_items",
+      "gen_function": null,
       "element_tag": "uta:DeleteTestDataQueueItems",
       "hint_size_key": "DeleteTestDataQueueItems",
       "params": {
@@ -734,10 +763,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Deletes items from a test data queue."
+      "note": "Self-closing tag. Deletes items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "AttachDocument": {
-      "gen_function": "gen_attach_document",
+      "gen_function": null,
       "element_tag": "uta:AttachDocument",
       "hint_size_key": "AttachDocument",
       "params": {
@@ -783,10 +812,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Attaches a document to the current test case result."
+      "note": "Self-closing tag. Attaches a document to the current test case result. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "RandomString": {
-      "gen_function": "gen_random_string",
+      "gen_function": null,
       "element_tag": "utat:RandomString",
       "hint_size_key": "RandomString",
       "params": {
@@ -830,7 +859,11 @@
           "attr": "Case",
           "required": false,
           "default": "LowerCase",
-          "enum": ["LowerCase", "UpperCase", "MixedCase"],
+          "enum": [
+            "LowerCase",
+            "UpperCase",
+            "MixedCase"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -839,10 +872,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random string of specified length."
+      "note": "Self-closing tag. Generates a random string of specified length. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "RandomNumber": {
-      "gen_function": "gen_random_number",
+      "gen_function": null,
       "element_tag": "utat:RandomNumber",
       "hint_size_key": "RandomNumber",
       "params": {
@@ -904,10 +937,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random number within the specified range."
+      "note": "Self-closing tag. Generates a random number within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "RandomDate": {
-      "gen_function": "gen_random_date",
+      "gen_function": null,
       "element_tag": "utat:RandomDate",
       "hint_size_key": "RandomDate",
       "params": {
@@ -960,10 +993,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random date within the specified range."
+      "note": "Self-closing tag. Generates a random date within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "RandomValue": {
-      "gen_function": "gen_random_value",
+      "gen_function": null,
       "element_tag": "utat:RandomValue",
       "hint_size_key": "RandomValue",
       "params": {
@@ -1007,10 +1040,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Picks a random value from a list or file."
+      "note": "Self-closing tag. Picks a random value from a list or file. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GivenName": {
-      "gen_function": "gen_given_name",
+      "gen_function": null,
       "element_tag": "utat:GivenName",
       "hint_size_key": "GivenName",
       "params": {
@@ -1045,10 +1078,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random given/first name."
+      "note": "Self-closing tag. Generates a random given/first name. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "LastName": {
-      "gen_function": "gen_last_name",
+      "gen_function": null,
       "element_tag": "utat:LastName",
       "hint_size_key": "LastName",
       "params": {
@@ -1083,10 +1116,10 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random last/family name."
+      "note": "Self-closing tag. Generates a random last/family name. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "Address": {
-      "gen_function": "gen_address",
+      "gen_function": null,
       "element_tag": "utat:Address",
       "hint_size_key": "Address",
       "params": {
@@ -1139,7 +1172,7 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random address."
+      "note": "Self-closing tag. Generates a random address. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "VerifyControlAttribute": {
       "_unsupported_reason": "wizard-only",

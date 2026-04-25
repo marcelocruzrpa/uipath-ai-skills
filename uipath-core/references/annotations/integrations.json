@@ -973,7 +973,7 @@
       "conditional_attrs": {}
     },
     "BulkInsert": {
-      "gen_function": "gen_bulkinsert",
+      "gen_function": null,
       "element_tag": "ui:BulkInsert",
       "hint_size_key": "BulkInsert",
       "params": {
@@ -1048,10 +1048,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "BulkUpdate": {
-      "gen_function": "gen_bulkupdate",
+      "gen_function": null,
       "element_tag": "ui:BulkUpdate",
       "hint_size_key": "BulkUpdate",
       "params": {
@@ -1126,10 +1126,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "InsertDataTable": {
-      "gen_function": "gen_insertdatatable",
+      "gen_function": null,
       "element_tag": "ui:InsertDataTable",
       "hint_size_key": "InsertDataTable",
       "params": {
@@ -1204,10 +1204,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema."
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "DatabaseDisconnect": {
-      "gen_function": "gen_databasedisconnect",
+      "gen_function": null,
       "element_tag": "ui:DatabaseDisconnect",
       "hint_size_key": "DatabaseDisconnect",
       "params": {
@@ -1245,10 +1245,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing. Pair with a preceding DatabaseConnect."
+      "note": "Self-closing. Pair with a preceding DatabaseConnect. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "DatabaseTransaction": {
-      "gen_function": "gen_databasetransaction",
+      "gen_function": null,
       "element_tag": "ui:DatabaseTransaction",
       "hint_size_key": "DatabaseTransaction",
       "params": {
@@ -1312,10 +1312,10 @@
       },
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities."
+      "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ExportPDFPageAsImage": {
-      "gen_function": "gen_exportpdfpageasimage",
+      "gen_function": null,
       "element_tag": "upap:ExportPDFPageAsImage",
       "hint_size_key": "ExportPDFPageAsImage",
       "params": {
@@ -1380,10 +1380,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities."
+      "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ExtractImagesFromPDF": {
-      "gen_function": "gen_extractimagesfrompdf",
+      "gen_function": null,
       "element_tag": "upap:ExtractImagesFromPDF",
       "hint_size_key": "ExtractImagesFromPDF",
       "params": {
@@ -1428,10 +1428,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ExtractPDFPageRange": {
-      "gen_function": "gen_extractpdfpagerange",
+      "gen_function": null,
       "element_tag": "upap:ExtractPDFPageRange",
       "hint_size_key": "ExtractPDFPageRange",
       "params": {
@@ -1486,10 +1487,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetPDFPageCount": {
-      "gen_function": "gen_getpdfpagecount",
+      "gen_function": null,
       "element_tag": "upap:GetPDFPageCount",
       "hint_size_key": "GetPDFPageCount",
       "params": {
@@ -1535,10 +1537,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "JoinPDF": {
-      "gen_function": "gen_joinpdf",
+      "gen_function": null,
       "element_tag": "upap:JoinPDF",
       "hint_size_key": "JoinPDF",
       "params": {
@@ -1584,10 +1587,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ManagePDFPassword": {
-      "gen_function": "gen_managepdfpassword",
+      "gen_function": null,
       "element_tag": "upap:ManagePDFPassword",
       "hint_size_key": "ManagePDFPassword",
       "params": {
@@ -1653,10 +1657,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required."
+      "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ReadXPSText": {
-      "gen_function": "gen_readxpstext",
+      "gen_function": null,
       "element_tag": "ui:ReadXPSText",
       "hint_size_key": "ReadXPSText",
       "params": {
@@ -1712,10 +1716,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:)."
+      "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:). (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ReadXPSWithOCR": {
-      "gen_function": "gen_read_xps_with_ocr",
+      "gen_function": null,
       "element_tag": "ui:ReadXPSWithOCR",
       "hint_size_key": "ReadXPSWithOCR",
       "params": {},
@@ -1723,7 +1727,7 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_unsupported_reason": "wizard-only",
-      "note": "ReadXPSWithOCR requires an OCREngine ActivityFunc delegate (same shape as ReadPDFWithOCR). Emit via hand-written generator (see gen_read_pdf_with_ocr in integrations.py) rather than data-driven fallback.",
+      "note": "ReadXPSWithOCR requires an OCREngine ActivityFunc delegate (same shape as ReadPDFWithOCR). Emit via hand-written generator (see gen_read_pdf_with_ocr in integrations.py) rather than data-driven fallback. (dispatched via gen_from_annotation; element_tag drives emission)",
       "_review_needed": true,
       "_unsupported_detail": "requires-ocr-engine-delegate; emit via gen_read_pdf_with_ocr pattern"
     }

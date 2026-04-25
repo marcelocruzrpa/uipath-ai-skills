@@ -261,7 +261,7 @@
       "note": "Self-closing tag."
     },
     "DeserializeJsonArray": {
-      "gen_function": "gen_deserializejsonarray",
+      "gen_function": null,
       "element_tag": "ui:DeserializeJsonArray",
       "hint_size_key": "DeserializeJsonArray",
       "params": {
@@ -309,10 +309,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing."
+      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "DeserializeXml": {
-      "gen_function": "gen_deserializexml",
+      "gen_function": null,
       "element_tag": "ui:DeserializeXml",
       "hint_size_key": "DeserializeXml",
       "params": {
@@ -359,10 +359,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing."
+      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "ExecuteXPath": {
-      "gen_function": "gen_executexpath",
+      "gen_function": null,
       "element_tag": "ui:ExecuteXPath",
       "hint_size_key": "ExecuteXPath",
       "params": {
@@ -419,10 +419,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed."
+      "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetNodes": {
-      "gen_function": "gen_getnodes",
+      "gen_function": null,
       "element_tag": "ui:GetNodes",
       "hint_size_key": "GetNodes",
       "params": {
@@ -478,10 +478,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetXMLNodes": {
-      "gen_function": "gen_getxmlnodes",
+      "gen_function": null,
       "element_tag": "ui:GetXMLNodes",
       "hint_size_key": "GetXMLNodes",
       "params": {
@@ -536,10 +537,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed."
+      "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GetXMLNodeAttributes": {
-      "gen_function": "gen_getxmlnodeattributes",
+      "gen_function": null,
       "element_tag": "ui:GetXMLNodeAttributes",
       "hint_size_key": "GetXMLNodeAttributes",
       "params": {
@@ -586,10 +587,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "SerializeJson": {
-      "gen_function": "gen_serializejson",
+      "gen_function": null,
       "element_tag": "uwaj:SerializeJson",
       "hint_size_key": "SerializeJson",
       "params": {
@@ -637,10 +639,10 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix."
+      "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix. (dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "HttpClient": {
-      "gen_function": "gen_httpclient",
+      "gen_function": null,
       "element_tag": "ui:HttpClient",
       "hint_size_key": "HttpClient",
       "params": {
@@ -840,7 +842,7 @@
       },
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root."
+      "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root. (dispatched via gen_from_annotation; element_tag drives emission)"
     }
   }
 }

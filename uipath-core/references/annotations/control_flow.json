@@ -843,7 +843,7 @@
       "conditional_attrs": {}
     },
     "Delay": {
-      "gen_function": "gen_delay",
+      "gen_function": null,
       "element_tag": "sa:Delay",
       "hint_size_key": "Delay",
       "params": {
@@ -879,7 +879,7 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Pauses workflow execution for the specified duration. Lint 109 warns against using Delay — prefer ShouldStop + loop pattern."
+      "note": "Self-closing tag. Pauses workflow execution for the specified duration. Lint 109 warns against using Delay — prefer ShouldStop + loop pattern. (dispatched via gen_from_annotation; element_tag drives emission)"
     }
   }
 }

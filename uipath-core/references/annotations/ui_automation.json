@@ -1037,7 +1037,7 @@
       "_review_needed": false
     },
     "GoogleCloudOCR": {
-      "gen_function": "gen_google_cloud_ocr",
+      "gen_function": null,
       "element_tag": "ui:GoogleCloudOCR",
       "params": {
         "display_name": {
@@ -1176,10 +1176,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "GoogleOCR": {
-      "gen_function": "gen_google_ocr",
+      "gen_function": null,
       "element_tag": "ui:GoogleOCR",
       "params": {
         "display_name": {
@@ -1325,10 +1326,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "MicrosoftAzureComputerVisionOCR": {
-      "gen_function": "gen_microsoft_azure_computer_vision_ocr",
+      "gen_function": null,
       "element_tag": "ui:MicrosoftAzureComputerVisionOCR",
       "params": {
         "display_name": {
@@ -1466,14 +1468,15 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NAccessibilityCheck": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false
     },
     "NApplicationCard": {
-      "gen_function": "gen_n_application_card",
+      "gen_function": null,
       "element_tag": "uix:NApplicationCard",
       "params": {
         "display_name": {
@@ -1515,10 +1518,11 @@
           "arg_name": "WSSessionData"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NBlockUserInput": {
-      "gen_function": "gen_n_block_user_input",
+      "gen_function": null,
       "element_tag": "uix:NBlockUserInput",
       "params": {
         "display_name": {
@@ -1575,10 +1579,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NBrowserDialogScope": {
-      "gen_function": "gen_n_browser_dialog_scope",
+      "gen_function": null,
       "element_tag": "uix:NBrowserDialogScope",
       "params": {
         "display_name": {
@@ -1644,10 +1649,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NBrowserFilePickerScope": {
-      "gen_function": "gen_n_browser_file_picker_scope",
+      "gen_function": null,
       "element_tag": "uix:NBrowserFilePickerScope",
       "params": {
         "display_name": {
@@ -1704,10 +1710,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NCheckElement": {
-      "gen_function": "gen_n_check_element",
+      "gen_function": null,
       "element_tag": "uix:NCheckElement",
       "params": {
         "display_name": {
@@ -1775,10 +1782,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NClickTrigger": {
-      "gen_function": "gen_n_click_trigger",
+      "gen_function": null,
       "element_tag": "uix:NClickTrigger",
       "params": {
         "display_name": {
@@ -1839,10 +1847,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NClosePopup": {
-      "gen_function": "gen_n_close_popup",
+      "gen_function": null,
       "element_tag": "uix:NClosePopup",
       "params": {
         "display_name": {
@@ -1912,10 +1921,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NDragAndDrop": {
-      "gen_function": "gen_n_drag_and_drop",
+      "gen_function": null,
       "element_tag": "uix:NDragAndDrop",
       "params": {
         "display_name": {
@@ -1974,10 +1984,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NElementScope": {
-      "gen_function": "gen_n_element_scope",
+      "gen_function": null,
       "element_tag": "uix:NElementScope",
       "params": {
         "display_name": {
@@ -2047,14 +2058,15 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NExtractFormDataGeneric": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false
     },
     "NFillForm": {
-      "gen_function": "gen_n_fill_form",
+      "gen_function": null,
       "element_tag": "uix:NFillForm",
       "params": {
         "display_name": {
@@ -2113,10 +2125,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NFindElements": {
-      "gen_function": "gen_n_find_elements",
+      "gen_function": null,
       "element_tag": "uix:NFindElements",
       "params": {
         "display_name": {
@@ -2202,10 +2215,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NForEachUiElement": {
-      "gen_function": "gen_n_for_each_ui_element",
+      "gen_function": null,
       "element_tag": "uix:NForEachUiElement",
       "params": {
         "display_name": {
@@ -2273,10 +2287,11 @@
           "arg_name": "CurrentIndex"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NGetBrowserData": {
-      "gen_function": "gen_n_get_browser_data",
+      "gen_function": null,
       "element_tag": "uix:NGetBrowserData",
       "params": {
         "display_name": {
@@ -2328,10 +2343,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NGetClipboard": {
-      "gen_function": "gen_n_get_clipboard",
+      "gen_function": null,
       "element_tag": "uix:NGetClipboard",
       "params": {
         "display_name": {
@@ -2399,10 +2415,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NHighlight": {
-      "gen_function": "gen_n_highlight",
+      "gen_function": null,
       "element_tag": "uix:NHighlight",
       "params": {
         "display_name": {
@@ -2462,10 +2479,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NInjectJsScript": {
-      "gen_function": "gen_n_inject_js_script",
+      "gen_function": null,
       "element_tag": "uix:NInjectJsScript",
       "params": {
         "display_name": {
@@ -2549,10 +2567,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NKeyboardTrigger": {
-      "gen_function": "gen_n_keyboard_trigger",
+      "gen_function": null,
       "element_tag": "uix:NKeyboardTrigger",
       "params": {
         "display_name": {
@@ -2613,10 +2632,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NNavigateBrowser": {
-      "gen_function": "gen_n_navigate_browser",
+      "gen_function": null,
       "element_tag": "uix:NNavigateBrowser",
       "params": {
         "display_name": {
@@ -2659,10 +2679,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPCallTransaction": {
-      "gen_function": "gen_nsap_call_transaction",
+      "gen_function": null,
       "element_tag": "uix:NSAPCallTransaction",
       "params": {
         "display_name": {
@@ -2724,10 +2745,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPClickPictureOnScreen": {
-      "gen_function": "gen_nsap_click_picture_on_screen",
+      "gen_function": null,
       "element_tag": "uix:NSAPClickPictureOnScreen",
       "params": {
         "display_name": {
@@ -2787,10 +2809,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPClickToolbarButton": {
-      "gen_function": "gen_nsap_click_toolbar_button",
+      "gen_function": null,
       "element_tag": "uix:NSAPClickToolbarButton",
       "params": {
         "display_name": {
@@ -2859,10 +2882,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPExpandALVHierarchicalTable": {
-      "gen_function": "gen_nsap_expand_alv_hierarchical_table",
+      "gen_function": null,
       "element_tag": "uix:NSAPExpandALVHierarchicalTable",
       "params": {
         "display_name": {
@@ -2932,10 +2956,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPExpandALVTree": {
-      "gen_function": "gen_nsap_expand_alv_tree",
+      "gen_function": null,
       "element_tag": "uix:NSAPExpandALVTree",
       "params": {
         "display_name": {
@@ -2995,10 +3020,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPExpandTree": {
-      "gen_function": "gen_nsap_expand_tree",
+      "gen_function": null,
       "element_tag": "uix:NSAPExpandTree",
       "params": {
         "display_name": {
@@ -3067,10 +3093,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPLogin": {
-      "gen_function": "gen_nsap_login",
+      "gen_function": null,
       "element_tag": "uix:NSAPLogin",
       "params": {
         "display_name": {
@@ -3116,10 +3143,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPLogon": {
-      "gen_function": "gen_nsap_logon",
+      "gen_function": null,
       "element_tag": "uix:NSAPLogon",
       "params": {
         "display_name": {
@@ -3161,10 +3189,11 @@
           "arg_name": "WSSessionData"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPReadStatusbar": {
-      "gen_function": "gen_nsap_read_statusbar",
+      "gen_function": null,
       "element_tag": "uix:NSAPReadStatusbar",
       "params": {
         "display_name": {
@@ -3253,10 +3282,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPSelectDatesInCalendar": {
-      "gen_function": "gen_nsap_select_dates_in_calendar",
+      "gen_function": null,
       "element_tag": "uix:NSAPSelectDatesInCalendar",
       "params": {
         "display_name": {
@@ -3316,10 +3346,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPSelectMenuItem": {
-      "gen_function": "gen_nsap_select_menu_item",
+      "gen_function": null,
       "element_tag": "uix:NSAPSelectMenuItem",
       "params": {
         "display_name": {
@@ -3372,10 +3403,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSAPTableCellScope": {
-      "gen_function": "gen_nsap_table_cell_scope",
+      "gen_function": null,
       "element_tag": "uix:NSAPTableCellScope",
       "params": {
         "display_name": {
@@ -3435,10 +3467,11 @@
         }
       },
       "conditional_attrs": {},
-      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present."
+      "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetBrowserData": {
-      "gen_function": "gen_n_set_browser_data",
+      "gen_function": null,
       "element_tag": "uix:NSetBrowserData",
       "params": {
         "display_name": {
@@ -3490,10 +3523,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetClipboard": {
-      "gen_function": "gen_n_set_clipboard",
+      "gen_function": null,
       "element_tag": "uix:NSetClipboard",
       "params": {
         "display_name": {
@@ -3561,10 +3595,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetFocus": {
-      "gen_function": "gen_n_set_focus",
+      "gen_function": null,
       "element_tag": "uix:NSetFocus",
       "params": {
         "display_name": {
@@ -3623,10 +3658,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetRuntimeBrowser": {
-      "gen_function": "gen_n_set_runtime_browser",
+      "gen_function": null,
       "element_tag": "uix:NSetRuntimeBrowser",
       "params": {
         "display_name": {
@@ -3669,10 +3705,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetText": {
-      "gen_function": "gen_n_set_text",
+      "gen_function": null,
       "element_tag": "uix:NSetText",
       "params": {
         "display_name": {
@@ -3731,14 +3768,15 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NSetValue": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false
     },
     "NTakeScreenshot": {
-      "gen_function": "gen_n_take_screenshot",
+      "gen_function": null,
       "element_tag": "uix:NTakeScreenshot",
       "params": {
         "display_name": {
@@ -3798,10 +3836,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NUITask": {
-      "gen_function": "gen_nui_task",
+      "gen_function": null,
       "element_tag": "uix:NUITask",
       "params": {
         "display_name": {
@@ -3858,10 +3897,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NUnblockUserInput": {
-      "gen_function": "gen_n_unblock_user_input",
+      "gen_function": null,
       "element_tag": "uix:NUnblockUserInput",
       "params": {
         "display_name": {
@@ -3920,10 +3960,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     },
     "NWindowOperation": {
-      "gen_function": "gen_n_window_operation",
+      "gen_function": null,
       "element_tag": "uix:NWindowOperation",
       "params": {
         "display_name": {
@@ -3982,7 +4023,8 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": false
+      "_review_needed": false,
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
     }
   }
 }
