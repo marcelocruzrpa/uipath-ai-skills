@@ -57,7 +57,11 @@
           "content": "InArgument/OutArgument/InOutArgument elements with x:TypeArguments and x:Key (only when arguments provided)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "invoke",
+      "description": "Invoke Workflow File activity from the invoke category.",
+      "use_when": "User wants to invoke another workflow or piece of code via Invoke Workflow File.",
+      "_routing_review_needed": true
     },
     "InvokeCode": {
       "gen_function": "gen_invoke_code",
@@ -98,7 +102,10 @@
           "attr": "Language",
           "required": false,
           "default": "VBNet",
-          "enum": ["VBNet", "CSharp"],
+          "enum": [
+            "VBNet",
+            "CSharp"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -124,7 +131,11 @@
           "content": "InArgument/OutArgument/InOutArgument elements with x:TypeArguments and x:Key (only when arguments provided)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "invoke",
+      "description": "Invoke Code activity from the invoke category.",
+      "use_when": "User wants to invoke another workflow or piece of code via Invoke Code.",
+      "_routing_review_needed": true
     },
     "InvokeMethod": {
       "gen_function": "gen_invoke_method",
@@ -207,7 +218,11 @@
           "content": "InArgument with x:TypeArguments for instance method target (only when target_object provided)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "invoke",
+      "description": "Invoke Method activity from the invoke category.",
+      "use_when": "User wants to invoke another workflow or piece of code via Invoke Method.",
+      "_routing_review_needed": true
     }
   }
 }

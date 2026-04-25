@@ -63,7 +63,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Verifies a Boolean expression is true. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Verifies a Boolean expression is true. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Verify Expression activity from the testing category.",
+      "use_when": "User wants to author or run a test via Verify Expression.",
+      "_routing_review_needed": true
     },
     "VerifyExpressionWithOperator": {
       "gen_function": null,
@@ -154,7 +158,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two expressions with a specified operator. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Compares two expressions with a specified operator. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Verify Expression With Operator activity from the testing category.",
+      "use_when": "User wants to author or run a test via Verify Expression With Operator.",
+      "_routing_review_needed": true
     },
     "VerifyRange": {
       "gen_function": null,
@@ -247,7 +255,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Verifies a numeric expression falls within a range. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Verifies a numeric expression falls within a range. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Verify Range activity from the testing category.",
+      "use_when": "User wants to author or run a test via Verify Range.",
+      "_routing_review_needed": true
     },
     "ComparePdfDocuments": {
       "gen_function": null,
@@ -342,7 +354,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two PDF documents for differences. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Compares two PDF documents for differences. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Compare Pdf Documents activity from the testing category.",
+      "use_when": "User wants to author or run a test via Compare Pdf Documents.",
+      "_routing_review_needed": true
     },
     "CompareText": {
       "gen_function": null,
@@ -435,7 +451,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Compares two text strings for differences. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Compares two text strings for differences. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Compare Text activity from the testing category.",
+      "use_when": "User wants to author or run a test via Compare Text.",
+      "_routing_review_needed": true
     },
     "CreateComparisonRule": {
       "gen_function": null,
@@ -507,7 +527,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Creates a comparison rule for document comparison. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Creates a comparison rule for document comparison. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Create Comparison Rule activity from the testing category.",
+      "use_when": "User wants to author or run a test via Create Comparison Rule.",
+      "_routing_review_needed": true
     },
     "GetTestDataQueueItem": {
       "gen_function": null,
@@ -574,7 +598,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Retrieves an item from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Retrieves an item from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Get Test Data Queue Item activity from the testing category.",
+      "use_when": "User wants to author or run a test via Get Test Data Queue Item.",
+      "_routing_review_needed": true
     },
     "GetTestDataQueueItems": {
       "gen_function": null,
@@ -656,7 +684,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Retrieves multiple items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Retrieves multiple items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Get Test Data Queue Items activity from the testing category.",
+      "use_when": "User wants to author or run a test via Get Test Data Queue Items.",
+      "_routing_review_needed": true
     },
     "BulkAddTestDataQueue": {
       "gen_function": null,
@@ -714,7 +746,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Bulk Add Test Data Queue activity from the testing category.",
+      "use_when": "User wants to author or run a test via Bulk Add Test Data Queue.",
+      "_routing_review_needed": true
     },
     "DeleteTestDataQueueItems": {
       "gen_function": null,
@@ -763,7 +799,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Deletes items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Deletes items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Delete Test Data Queue Items activity from the testing category.",
+      "use_when": "User wants to author or run a test via Delete Test Data Queue Items.",
+      "_routing_review_needed": true
     },
     "AttachDocument": {
       "gen_function": null,
@@ -812,7 +852,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Attaches a document to the current test case result. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Attaches a document to the current test case result. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Attach Document activity from the testing category.",
+      "use_when": "User wants to author or run a test via Attach Document.",
+      "_routing_review_needed": true
     },
     "RandomString": {
       "gen_function": null,
@@ -872,7 +916,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random string of specified length. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random string of specified length. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Random String activity from the testing category.",
+      "use_when": "User wants to author or run a test via Random String.",
+      "_routing_review_needed": true
     },
     "RandomNumber": {
       "gen_function": null,
@@ -937,7 +985,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random number within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random number within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Random Number activity from the testing category.",
+      "use_when": "User wants to author or run a test via Random Number.",
+      "_routing_review_needed": true
     },
     "RandomDate": {
       "gen_function": null,
@@ -993,7 +1045,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random date within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random date within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Random Date activity from the testing category.",
+      "use_when": "User wants to author or run a test via Random Date.",
+      "_routing_review_needed": true
     },
     "RandomValue": {
       "gen_function": null,
@@ -1040,7 +1096,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Picks a random value from a list or file. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Picks a random value from a list or file. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Random Value activity from the testing category.",
+      "use_when": "User wants to author or run a test via Random Value.",
+      "_routing_review_needed": true
     },
     "GivenName": {
       "gen_function": null,
@@ -1078,7 +1138,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random given/first name. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random given/first name. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Given Name activity from the testing category.",
+      "use_when": "User wants to author or run a test via Given Name.",
+      "_routing_review_needed": true
     },
     "LastName": {
       "gen_function": null,
@@ -1116,7 +1180,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random last/family name. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random last/family name. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Last Name activity from the testing category.",
+      "use_when": "User wants to author or run a test via Last Name.",
+      "_routing_review_needed": true
     },
     "Address": {
       "gen_function": null,
@@ -1172,22 +1240,38 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Generates a random address. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Generates a random address. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "testing",
+      "description": "Address activity from the testing category.",
+      "use_when": "User wants to author or run a test via Address.",
+      "_routing_review_needed": true
     },
     "VerifyControlAttribute": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "VerifyControlAttribute wraps an ActivityAction+ActivityFunc pair; requires Studio wizard to configure the target activity."
+      "note": "VerifyControlAttribute wraps an ActivityAction+ActivityFunc pair; requires Studio wizard to configure the target activity.",
+      "category": "testing",
+      "description": "Verify Control Attribute (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Verify Control Attribute. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "MockActivity": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "MockActivity wraps a Sequence child to replace a mocked activity; requires Studio configuration."
+      "note": "MockActivity wraps a Sequence child to replace a mocked activity; requires Studio configuration.",
+      "category": "testing",
+      "description": "Mock Activity (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Mock Activity. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "NewAddTestDataQueueItem": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "NewAddTestDataQueueItem uses an ItemInformation dictionary child that requires Studio wizard configuration."
+      "note": "NewAddTestDataQueueItem uses an ItemInformation dictionary child that requires Studio wizard configuration.",
+      "category": "testing",
+      "description": "New Add Test Data Queue Item (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate New Add Test Data Queue Item. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     }
   }
 }

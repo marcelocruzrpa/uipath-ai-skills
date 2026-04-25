@@ -47,7 +47,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Modern Excel Read Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Modern Excel Read Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Read Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Range X.",
+      "_routing_review_needed": true
     },
     "WriteRangeX": {
       "gen_function": null,
@@ -103,7 +107,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Modern Excel Write Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Modern Excel Write Range (used inside ExcelApplicationCard scope). (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Write Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Write Range X.",
+      "_routing_review_needed": true
     },
     "AutoFillX": {
       "gen_function": null,
@@ -141,7 +149,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Auto-fills a range in an Excel workbook. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Auto-fills a range in an Excel workbook. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Auto Fill X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Auto Fill X.",
+      "_routing_review_needed": true
     },
     "FilterX": {
       "gen_function": null,
@@ -215,7 +227,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Applies a filter to an Excel range. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Applies a filter to an Excel range. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Filter X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Filter X.",
+      "_routing_review_needed": true
     },
     "FilterPivotTableX": {
       "gen_function": null,
@@ -280,7 +296,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Filters a pivot table in Excel. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Filters a pivot table in Excel. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Filter Pivot Table X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Filter Pivot Table X.",
+      "_routing_review_needed": true
     },
     "InsertExcelChartX": {
       "gen_function": null,
@@ -358,37 +378,65 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Inserts a chart into an Excel worksheet. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Inserts a chart into an Excel worksheet. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "excel",
+      "description": "Insert Excel Chart X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Insert Excel Chart X.",
+      "_routing_review_needed": true
     },
     "ExcelApplicationCard": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ExcelApplicationCard is a scope activity with ActivityAction body requiring Studio configuration to open/attach to workbooks."
+      "note": "ExcelApplicationCard is a scope activity with ActivityAction body requiring Studio configuration to open/attach to workbooks.",
+      "category": "excel",
+      "description": "Excel Application Card (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Excel Application Card. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ExcelProcessScopeX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ExcelProcessScopeX is a scope activity controlling an Excel process instance; requires Studio configuration."
+      "note": "ExcelProcessScopeX is a scope activity controlling an Excel process instance; requires Studio configuration.",
+      "category": "excel",
+      "description": "Excel Process Scope X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Excel Process Scope X. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ExcelForEachRowX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ExcelForEachRowX uses a dual-argument ActivityAction body (CurrentRow, CurrentIndex) requiring Studio configuration."
+      "note": "ExcelForEachRowX uses a dual-argument ActivityAction body (CurrentRow, CurrentIndex) requiring Studio configuration.",
+      "category": "excel",
+      "description": "Excel For Each Row X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Excel For Each Row X. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ForEachSheetX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ForEachSheetX uses a dual-argument ActivityAction body (CurrentSheet, CurrentIndex) requiring Studio configuration."
+      "note": "ForEachSheetX uses a dual-argument ActivityAction body (CurrentSheet, CurrentIndex) requiring Studio configuration.",
+      "category": "excel",
+      "description": "For Each Sheet X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate For Each Sheet X. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "UpdateChartX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "UpdateChartX wraps an ActivityAction body for chart update operations requiring Studio configuration."
+      "note": "UpdateChartX wraps an ActivityAction body for chart update operations requiring Studio configuration.",
+      "category": "excel",
+      "description": "Update Chart X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Update Chart X. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ChangeDataRangeModification": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ChangeDataRangeModification has no resolvable CLR namespace and cannot be emitted without Studio wizard."
+      "note": "ChangeDataRangeModification has no resolvable CLR namespace and cannot be emitted without Studio wizard.",
+      "category": "excel",
+      "description": "ChangeDataRangeModification (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate ChangeDataRangeModification. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "AddSensitivityLabelX": {
       "gen_function": "gen_add_sensitivity_label_x",
@@ -461,7 +509,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Add Sensitivity Label X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Add Sensitivity Label X.",
+      "_routing_review_needed": true
     },
     "AppendCsvFile": {
       "gen_function": "gen_append_csv_file",
@@ -528,7 +580,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Append Csv File activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Append Csv File.",
+      "_routing_review_needed": true
     },
     "AppendRangeX": {
       "gen_function": "gen_append_range_x",
@@ -606,7 +662,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Append Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Append Range X.",
+      "_routing_review_needed": true
     },
     "AutoFitX": {
       "gen_function": "gen_auto_fit_x",
@@ -664,7 +724,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Auto Fit X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Auto Fit X.",
+      "_routing_review_needed": true
     },
     "ChangePivotTableDataSourceX": {
       "gen_function": "gen_change_pivot_table_data_source_x",
@@ -728,7 +792,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Change Pivot Table Data Source X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Change Pivot Table Data Source X.",
+      "_routing_review_needed": true
     },
     "ClearRangeX": {
       "gen_function": "gen_clear_range_x",
@@ -785,7 +853,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Clear Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Clear Range X.",
+      "_routing_review_needed": true
     },
     "CloseWorkbook": {
       "gen_function": "gen_close_workbook",
@@ -840,7 +912,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Close Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Close Workbook.",
+      "_routing_review_needed": true
     },
     "CopyChartToClipboardX": {
       "gen_function": "gen_copy_chart_to_clipboard_x",
@@ -907,7 +983,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Copy Chart To Clipboard X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Copy Chart To Clipboard X.",
+      "_routing_review_needed": true
     },
     "CopyPasteRangeX": {
       "gen_function": "gen_copy_paste_range_x",
@@ -974,7 +1054,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Copy Paste Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Copy Paste Range X.",
+      "_routing_review_needed": true
     },
     "CreateNewWorkbook": {
       "gen_function": "gen_create_new_workbook",
@@ -1040,7 +1124,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Create New Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Create New Workbook.",
+      "_routing_review_needed": true
     },
     "CreatePivotTable": {
       "gen_function": "gen_create_pivot_table",
@@ -1153,7 +1241,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Create Pivot Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Create Pivot Table.",
+      "_routing_review_needed": true
     },
     "CreatePivotTableX": {
       "gen_function": "gen_create_pivot_table_x",
@@ -1225,7 +1317,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Create Pivot Table X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Create Pivot Table X.",
+      "_routing_review_needed": true
     },
     "CreatePivotTableXv2": {
       "gen_function": "gen_create_pivot_table_xv2",
@@ -1297,7 +1393,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Create Pivot Table Xv2 activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Create Pivot Table Xv2.",
+      "_routing_review_needed": true
     },
     "CreateTableX": {
       "gen_function": "gen_create_table_x",
@@ -1372,7 +1472,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Create Table X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Create Table X.",
+      "_routing_review_needed": true
     },
     "DeleteColumnX": {
       "gen_function": "gen_delete_column_x",
@@ -1438,7 +1542,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Delete Column X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Delete Column X.",
+      "_routing_review_needed": true
     },
     "DeleteRowsX": {
       "gen_function": "gen_delete_rows_x",
@@ -1505,7 +1613,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Delete Rows X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Delete Rows X.",
+      "_routing_review_needed": true
     },
     "DeleteSheetX": {
       "gen_function": "gen_delete_sheet_x",
@@ -1560,7 +1672,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Delete Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Delete Sheet X.",
+      "_routing_review_needed": true
     },
     "DuplicateSheetX": {
       "gen_function": "gen_duplicate_sheet_x",
@@ -1617,7 +1733,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Duplicate Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Duplicate Sheet X.",
+      "_routing_review_needed": true
     },
     "ExcelAppendRange": {
       "gen_function": "gen_excel_append_range",
@@ -1674,7 +1794,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Append Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Append Range.",
+      "_routing_review_needed": true
     },
     "ExcelApplicationScope": {
       "gen_function": "gen_excel_application_scope",
@@ -1737,7 +1861,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Application Scope activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Application Scope.",
+      "_routing_review_needed": true
     },
     "ExcelAutoFillRange": {
       "gen_function": "gen_excel_auto_fill_range",
@@ -1803,7 +1931,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Auto Fill Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Auto Fill Range.",
+      "_routing_review_needed": true
     },
     "ExcelCloseWorkbook": {
       "gen_function": "gen_excel_close_workbook",
@@ -1858,7 +1990,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Close Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Close Workbook.",
+      "_routing_review_needed": true
     },
     "ExcelCopyPasteRange": {
       "gen_function": "gen_excel_copy_paste_range",
@@ -1933,7 +2069,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Copy Paste Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Copy Paste Range.",
+      "_routing_review_needed": true
     },
     "ExcelCopySheet": {
       "gen_function": "gen_excel_copy_sheet",
@@ -1999,7 +2139,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Copy Sheet activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Copy Sheet.",
+      "_routing_review_needed": true
     },
     "ExcelCreatePivotTable": {
       "gen_function": "gen_excel_create_pivot_table",
@@ -2074,7 +2218,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Create Pivot Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Create Pivot Table.",
+      "_routing_review_needed": true
     },
     "ExcelCreateTable": {
       "gen_function": "gen_excel_create_table",
@@ -2140,7 +2288,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Create Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Create Table.",
+      "_routing_review_needed": true
     },
     "ExcelDeleteColumn": {
       "gen_function": "gen_excel_delete_column",
@@ -2206,7 +2358,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Delete Column activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Delete Column.",
+      "_routing_review_needed": true
     },
     "ExcelDeleteRange": {
       "gen_function": "gen_excel_delete_range",
@@ -2265,7 +2421,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Delete Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Delete Range.",
+      "_routing_review_needed": true
     },
     "ExcelFilterTable": {
       "gen_function": "gen_excel_filter_table",
@@ -2340,7 +2500,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Filter Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Filter Table.",
+      "_routing_review_needed": true
     },
     "ExcelForEachRow": {
       "gen_function": "gen_excel_for_each_row",
@@ -2395,7 +2559,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel For Each Row activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel For Each Row.",
+      "_routing_review_needed": true
     },
     "ExcelGetCellColor": {
       "gen_function": "gen_excel_get_cell_color",
@@ -2453,7 +2621,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Get Cell Color activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Get Cell Color.",
+      "_routing_review_needed": true
     },
     "ExcelGetSelectedRange": {
       "gen_function": "gen_excel_get_selected_range",
@@ -2508,7 +2680,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Get Selected Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Get Selected Range.",
+      "_routing_review_needed": true
     },
     "ExcelGetTableRange": {
       "gen_function": "gen_excel_get_table_range",
@@ -2575,7 +2751,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Get Table Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Get Table Range.",
+      "_routing_review_needed": true
     },
     "ExcelGetWorkbookSheet": {
       "gen_function": "gen_excel_get_workbook_sheet",
@@ -2639,7 +2819,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Get Workbook Sheet activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Get Workbook Sheet.",
+      "_routing_review_needed": true
     },
     "ExcelGetWorkbookSheets": {
       "gen_function": "gen_excel_get_workbook_sheets",
@@ -2694,7 +2878,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Get Workbook Sheets activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Get Workbook Sheets.",
+      "_routing_review_needed": true
     },
     "ExcelInsertColumn": {
       "gen_function": "gen_excel_insert_column",
@@ -2769,7 +2957,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Insert Column activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Insert Column.",
+      "_routing_review_needed": true
     },
     "ExcelInsertDeleteColumns": {
       "gen_function": "gen_excel_insert_delete_columns",
@@ -2828,7 +3020,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Insert Delete Columns activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Insert Delete Columns.",
+      "_routing_review_needed": true
     },
     "ExcelInsertDeleteRows": {
       "gen_function": "gen_excel_insert_delete_rows",
@@ -2887,7 +3083,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Insert Delete Rows activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Insert Delete Rows.",
+      "_routing_review_needed": true
     },
     "ExcelLookUpRange": {
       "gen_function": "gen_excel_look_up_range",
@@ -2962,7 +3162,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Look Up Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Look Up Range.",
+      "_routing_review_needed": true
     },
     "ExcelReadCell": {
       "gen_function": "gen_excel_read_cell",
@@ -3020,7 +3224,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Read Cell activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Read Cell.",
+      "_routing_review_needed": true
     },
     "ExcelReadCellFormula": {
       "gen_function": "gen_excel_read_cell_formula",
@@ -3078,7 +3286,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Read Cell Formula activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Read Cell Formula.",
+      "_routing_review_needed": true
     },
     "ExcelReadColumn": {
       "gen_function": "gen_excel_read_column",
@@ -3136,7 +3348,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Read Column activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Read Column.",
+      "_routing_review_needed": true
     },
     "ExcelReadRange": {
       "gen_function": "gen_excel_read_range",
@@ -3194,7 +3410,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Read Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Read Range.",
+      "_routing_review_needed": true
     },
     "ExcelReadRow": {
       "gen_function": "gen_excel_read_row",
@@ -3252,7 +3472,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Read Row activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Read Row.",
+      "_routing_review_needed": true
     },
     "ExcelRefreshPivotTable": {
       "gen_function": "gen_excel_refresh_pivot_table",
@@ -3309,7 +3533,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Refresh Pivot Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Refresh Pivot Table.",
+      "_routing_review_needed": true
     },
     "ExcelRemoveDuplicatesRange": {
       "gen_function": "gen_excel_remove_duplicates_range",
@@ -3366,7 +3594,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Remove Duplicates Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Remove Duplicates Range.",
+      "_routing_review_needed": true
     },
     "ExcelSaveWorkbook": {
       "gen_function": "gen_excel_save_workbook",
@@ -3412,7 +3644,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Save Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Save Workbook.",
+      "_routing_review_needed": true
     },
     "ExcelSelectRange": {
       "gen_function": "gen_excel_select_range",
@@ -3469,7 +3705,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Select Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Select Range.",
+      "_routing_review_needed": true
     },
     "ExcelSetRangeColor": {
       "gen_function": "gen_excel_set_range_color",
@@ -3527,7 +3767,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Set Range Color activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Set Range Color.",
+      "_routing_review_needed": true
     },
     "ExcelSortTable": {
       "gen_function": "gen_excel_sort_table",
@@ -3594,7 +3838,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Sort Table activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Sort Table.",
+      "_routing_review_needed": true
     },
     "ExcelWriteCell": {
       "gen_function": "gen_excel_write_cell",
@@ -3652,7 +3900,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Write Cell activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Write Cell.",
+      "_routing_review_needed": true
     },
     "ExcelWriteRange": {
       "gen_function": "gen_excel_write_range",
@@ -3711,7 +3963,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Excel Write Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Excel Write Range.",
+      "_routing_review_needed": true
     },
     "ExecuteMacro": {
       "gen_function": "gen_execute_macro",
@@ -3784,7 +4040,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Execute Macro activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Execute Macro.",
+      "_routing_review_needed": true
     },
     "ExecuteMacroX": {
       "gen_function": "gen_execute_macro_x",
@@ -3853,7 +4113,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Execute Macro X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Execute Macro X.",
+      "_routing_review_needed": true
     },
     "ExportExcelToCsvX": {
       "gen_function": "gen_export_excel_to_csv_x",
@@ -3917,7 +4181,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Export Excel To Csv X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Export Excel To Csv X.",
+      "_routing_review_needed": true
     },
     "FillRangeX": {
       "gen_function": "gen_fill_range_x",
@@ -3981,7 +4249,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Fill Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Fill Range X.",
+      "_routing_review_needed": true
     },
     "FindFirstLastDataRowX": {
       "gen_function": "gen_find_first_last_data_row_x",
@@ -4070,7 +4342,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Find First Last Data Row X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Find First Last Data Row X.",
+      "_routing_review_needed": true
     },
     "FindReplaceValueX": {
       "gen_function": "gen_find_replace_value_x",
@@ -4155,7 +4431,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Find Replace Value X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Find Replace Value X.",
+      "_routing_review_needed": true
     },
     "FormatRangeX": {
       "gen_function": "gen_format_range_x",
@@ -4228,7 +4508,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Format Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Format Range X.",
+      "_routing_review_needed": true
     },
     "GetCellColor": {
       "gen_function": "gen_get_cell_color",
@@ -4301,7 +4585,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Cell Color activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Cell Color.",
+      "_routing_review_needed": true
     },
     "GetCellColorX": {
       "gen_function": "gen_get_cell_color_x",
@@ -4365,7 +4653,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Cell Color X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Cell Color X.",
+      "_routing_review_needed": true
     },
     "GetSelectedRangeX": {
       "gen_function": "gen_get_selected_range_x",
@@ -4429,7 +4721,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Selected Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Selected Range X.",
+      "_routing_review_needed": true
     },
     "GetSensitivityLabelX": {
       "gen_function": "gen_get_sensitivity_label_x",
@@ -4493,7 +4789,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Sensitivity Label X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Sensitivity Label X.",
+      "_routing_review_needed": true
     },
     "GetSheets": {
       "gen_function": "gen_get_sheets",
@@ -4548,7 +4848,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Sheets activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Sheets.",
+      "_routing_review_needed": true
     },
     "GetTableRange": {
       "gen_function": "gen_get_table_range",
@@ -4623,7 +4927,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Get Table Range activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Get Table Range.",
+      "_routing_review_needed": true
     },
     "InsertColumnX": {
       "gen_function": "gen_insert_column_x",
@@ -4708,7 +5016,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Insert Column X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Insert Column X.",
+      "_routing_review_needed": true
     },
     "InsertRowsX": {
       "gen_function": "gen_insert_rows_x",
@@ -4784,7 +5096,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Insert Rows X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Insert Rows X.",
+      "_routing_review_needed": true
     },
     "InsertSheetX": {
       "gen_function": "gen_insert_sheet_x",
@@ -4848,7 +5164,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Insert Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Insert Sheet X.",
+      "_routing_review_needed": true
     },
     "InvokeVBA": {
       "gen_function": "gen_invoke_vba",
@@ -4914,7 +5234,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Invoke VBA activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Invoke VBA.",
+      "_routing_review_needed": true
     },
     "InvokeVBAX": {
       "gen_function": "gen_invoke_vbax",
@@ -4992,7 +5316,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Invoke VBAX activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Invoke VBAX.",
+      "_routing_review_needed": true
     },
     "LookupX": {
       "gen_function": "gen_lookup_x",
@@ -5074,7 +5402,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Lookup X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Lookup X.",
+      "_routing_review_needed": true
     },
     "MatchFunctionX": {
       "gen_function": "gen_match_function_x",
@@ -5149,7 +5481,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Match Function X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Match Function X.",
+      "_routing_review_needed": true
     },
     "OpenWorkbook": {
       "gen_function": "gen_open_workbook",
@@ -5224,7 +5560,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Open Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Open Workbook.",
+      "_routing_review_needed": true
     },
     "ProtectSheetX": {
       "gen_function": "gen_protect_sheet_x",
@@ -5299,7 +5639,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Protect Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Protect Sheet X.",
+      "_routing_review_needed": true
     },
     "ReadCell": {
       "gen_function": "gen_read_cell",
@@ -5372,7 +5716,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Cell activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Cell.",
+      "_routing_review_needed": true
     },
     "ReadCellFormula": {
       "gen_function": "gen_read_cell_formula",
@@ -5445,7 +5793,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Cell Formula activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Cell Formula.",
+      "_routing_review_needed": true
     },
     "ReadCellFormulaX": {
       "gen_function": "gen_read_cell_formula_x",
@@ -5509,7 +5861,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Cell Formula X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Cell Formula X.",
+      "_routing_review_needed": true
     },
     "ReadCellValueX": {
       "gen_function": "gen_read_cell_value_x",
@@ -5575,7 +5931,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Cell Value X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Cell Value X.",
+      "_routing_review_needed": true
     },
     "ReadColumn": {
       "gen_function": "gen_read_column",
@@ -5648,7 +6008,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Column activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Column.",
+      "_routing_review_needed": true
     },
     "ReadRow": {
       "gen_function": "gen_read_row",
@@ -5721,7 +6085,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Read Row activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Read Row.",
+      "_routing_review_needed": true
     },
     "RefreshDataConnectionsX": {
       "gen_function": "gen_refresh_data_connections_x",
@@ -5776,7 +6144,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Refresh Data Connections X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Refresh Data Connections X.",
+      "_routing_review_needed": true
     },
     "RefreshPivotTableX": {
       "gen_function": "gen_refresh_pivot_table_x",
@@ -5840,7 +6212,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Refresh Pivot Table X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Refresh Pivot Table X.",
+      "_routing_review_needed": true
     },
     "RemoveDuplicatesX": {
       "gen_function": "gen_remove_duplicates_x",
@@ -5904,7 +6280,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Remove Duplicates X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Remove Duplicates X.",
+      "_routing_review_needed": true
     },
     "RenameSheetX": {
       "gen_function": "gen_rename_sheet_x",
@@ -5968,7 +6348,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Rename Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Rename Sheet X.",
+      "_routing_review_needed": true
     },
     "SaveAsPdfX": {
       "gen_function": "gen_save_as_pdf_x",
@@ -6052,7 +6436,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Save As Pdf X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Save As Pdf X.",
+      "_routing_review_needed": true
     },
     "SaveExcelFileAsX": {
       "gen_function": "gen_save_excel_file_as_x",
@@ -6118,7 +6506,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Save Excel File As X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Save Excel File As X.",
+      "_routing_review_needed": true
     },
     "SaveExcelFileX": {
       "gen_function": "gen_save_excel_file_x",
@@ -6173,7 +6565,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Save Excel File X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Save Excel File X.",
+      "_routing_review_needed": true
     },
     "SelectRangeX": {
       "gen_function": "gen_select_range_x",
@@ -6228,7 +6624,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Select Range X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Select Range X.",
+      "_routing_review_needed": true
     },
     "SequenceX": {
       "gen_function": "gen_sequence_x",
@@ -6274,7 +6674,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Sequence X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Sequence X.",
+      "_routing_review_needed": true
     },
     "SetRangeColor": {
       "gen_function": "gen_set_range_color",
@@ -6347,7 +6751,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Set Range Color activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Set Range Color.",
+      "_routing_review_needed": true
     },
     "SortX": {
       "gen_function": "gen_sort_x",
@@ -6400,7 +6808,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Sort X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Sort X.",
+      "_routing_review_needed": true
     },
     "TextToColumnsX": {
       "gen_function": "gen_text_to_columns_x",
@@ -6492,7 +6904,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Text To Columns X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Text To Columns X.",
+      "_routing_review_needed": true
     },
     "UnprotectSheetX": {
       "gen_function": "gen_unprotect_sheet_x",
@@ -6565,7 +6981,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Unprotect Sheet X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Unprotect Sheet X.",
+      "_routing_review_needed": true
     },
     "VLookupX": {
       "gen_function": "gen_v_lookup_x",
@@ -6649,7 +7069,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "V Lookup X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using V Lookup X.",
+      "_routing_review_needed": true
     },
     "WithWorkbook": {
       "gen_function": "gen_with_workbook",
@@ -6720,7 +7144,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "With Workbook activity from the excel category.",
+      "use_when": "User wants to interact with Excel using With Workbook.",
+      "_routing_review_needed": true
     },
     "WriteCellX": {
       "gen_function": "gen_write_cell_x",
@@ -6784,7 +7212,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Write Cell X activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Write Cell X.",
+      "_routing_review_needed": true
     },
     "WriteCsvFile": {
       "gen_function": "gen_write_csv_file",
@@ -6853,7 +7285,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "excel",
+      "description": "Write Csv File activity from the excel category.",
+      "use_when": "User wants to interact with Excel using Write Csv File.",
+      "_routing_review_needed": true
     }
   }
 }

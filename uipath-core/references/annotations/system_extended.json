@@ -65,7 +65,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Add Or Subtract From Date activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Add Or Subtract From Date.",
+      "_routing_review_needed": true
     },
     "AddTransactionItem": {
       "gen_function": "gen_add_transaction_item",
@@ -147,7 +151,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Add Transaction Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Add Transaction Item.",
+      "_routing_review_needed": true
     },
     "AppendLine": {
       "gen_function": "gen_append_line",
@@ -222,7 +230,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Append Line activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Append Line.",
+      "_routing_review_needed": true
     },
     "Beep": {
       "gen_function": "gen_beep",
@@ -268,7 +280,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Beep activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Beep.",
+      "_routing_review_needed": true
     },
     "BeginProcess": {
       "gen_function": "gen_begin_process",
@@ -325,7 +341,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Begin Process activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Begin Process.",
+      "_routing_review_needed": true
     },
     "ChangeCase": {
       "gen_function": "gen_change_case",
@@ -382,7 +402,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Change Case activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Change Case.",
+      "_routing_review_needed": true
     },
     "CheckFalse": {
       "gen_function": "gen_check_false",
@@ -446,7 +470,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Check False activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Check False.",
+      "_routing_review_needed": true
     },
     "CheckTrue": {
       "gen_function": "gen_check_true",
@@ -510,7 +538,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Check True activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Check True.",
+      "_routing_review_needed": true
     },
     "ClearDataTable": {
       "gen_function": "gen_clear_data_table",
@@ -565,7 +597,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Clear Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Clear Data Table.",
+      "_routing_review_needed": true
     },
     "CombineText": {
       "gen_function": "gen_combine_text",
@@ -631,7 +667,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Combine Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Combine Text.",
+      "_routing_review_needed": true
     },
     "CompressFiles": {
       "gen_function": "gen_compress_files",
@@ -737,7 +777,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Compress Files activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Compress Files.",
+      "_routing_review_needed": true
     },
     "CopyFolderX": {
       "gen_function": "gen_copy_folder_x",
@@ -822,7 +866,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Copy Folder X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Copy Folder X.",
+      "_routing_review_needed": true
     },
     "CreateFile": {
       "gen_function": "gen_create_file",
@@ -904,7 +952,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Create File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Create File.",
+      "_routing_review_needed": true
     },
     "CustomInput": {
       "gen_function": "gen_custom_input",
@@ -988,7 +1040,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Custom Input activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Custom Input.",
+      "_routing_review_needed": true
     },
     "Delete": {
       "gen_function": "gen_delete",
@@ -1061,7 +1117,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Delete activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Delete.",
+      "_routing_review_needed": true
     },
     "DeleteFolderX": {
       "gen_function": "gen_delete_folder_x",
@@ -1118,7 +1178,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Delete Folder X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Delete Folder X.",
+      "_routing_review_needed": true
     },
     "DeleteQueueItems": {
       "gen_function": "gen_delete_queue_items",
@@ -1182,7 +1246,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Delete Queue Items activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Delete Queue Items.",
+      "_routing_review_needed": true
     },
     "DeleteStorageFile": {
       "gen_function": "gen_delete_storage_file",
@@ -1255,7 +1323,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Delete Storage File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Delete Storage File.",
+      "_routing_review_needed": true
     },
     "DisableTrigger": {
       "gen_function": "gen_disable_trigger",
@@ -1310,7 +1382,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Disable Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Disable Trigger.",
+      "_routing_review_needed": true
     },
     "DownloadFileFromUrl": {
       "gen_function": "gen_download_file_from_url",
@@ -1403,7 +1479,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Download File From Url activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Download File From Url.",
+      "_routing_review_needed": true
     },
     "DownloadStorageFile": {
       "gen_function": "gen_download_storage_file",
@@ -1485,7 +1565,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Download Storage File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Download Storage File.",
+      "_routing_review_needed": true
     },
     "EnableTrigger": {
       "gen_function": "gen_enable_trigger",
@@ -1540,7 +1624,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Enable Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Enable Trigger.",
+      "_routing_review_needed": true
     },
     "EvaluateBusinessRule": {
       "gen_function": "gen_evaluate_business_rule",
@@ -1613,7 +1701,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Evaluate Business Rule activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Evaluate Business Rule.",
+      "_routing_review_needed": true
     },
     "ExecutePowerShell": {
       "gen_function": "gen_execute_power_shell",
@@ -1725,7 +1817,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Execute Power Shell activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Execute Power Shell.",
+      "_routing_review_needed": true
     },
     "ExtractDateTime": {
       "gen_function": "gen_extract_date_time",
@@ -1800,7 +1896,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Extract Date Time activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Extract Date Time.",
+      "_routing_review_needed": true
     },
     "ExtractFiles": {
       "gen_function": "gen_extract_files",
@@ -1905,7 +2005,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Extract Files activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Extract Files.",
+      "_routing_review_needed": true
     },
     "ExtractText": {
       "gen_function": "gen_extract_text",
@@ -2001,7 +2105,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Extract Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Extract Text.",
+      "_routing_review_needed": true
     },
     "FileChangeTrigger": {
       "gen_function": "gen_file_change_trigger",
@@ -2069,7 +2177,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "File Change Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger.",
+      "_routing_review_needed": true
     },
     "FileChangeTriggerV2": {
       "gen_function": "gen_file_change_trigger_v2",
@@ -2151,7 +2263,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "File Change Trigger V2 activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger V2.",
+      "_routing_review_needed": true
     },
     "FileChangeTriggerV3": {
       "gen_function": "gen_file_change_trigger_v3",
@@ -2230,7 +2346,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "File Change Trigger V3 activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger V3.",
+      "_routing_review_needed": true
     },
     "FileExistsX": {
       "gen_function": "gen_file_exists_x",
@@ -2294,7 +2414,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "File Exists X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via File Exists X.",
+      "_routing_review_needed": true
     },
     "FindAndReplace": {
       "gen_function": "gen_find_and_replace",
@@ -2369,7 +2493,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Find And Replace activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Find And Replace.",
+      "_routing_review_needed": true
     },
     "FolderExistsX": {
       "gen_function": "gen_folder_exists_x",
@@ -2433,7 +2561,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Folder Exists X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Folder Exists X.",
+      "_routing_review_needed": true
     },
     "ForEachFolderX": {
       "gen_function": "gen_for_each_folder_x",
@@ -2488,7 +2620,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "For Each Folder X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via For Each Folder X.",
+      "_routing_review_needed": true
     },
     "FormatDateAsText": {
       "gen_function": "gen_format_date_as_text",
@@ -2554,7 +2690,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Format Date As Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Format Date As Text.",
+      "_routing_review_needed": true
     },
     "FormatValue": {
       "gen_function": "gen_format_value",
@@ -2609,7 +2749,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Format Value activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Format Value.",
+      "_routing_review_needed": true
     },
     "GetCurrentJobInfo": {
       "gen_function": "gen_get_current_job_info",
@@ -2664,7 +2808,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Current Job Info activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Current Job Info.",
+      "_routing_review_needed": true
     },
     "GetEnvironmentFolder": {
       "gen_function": "gen_get_environment_folder",
@@ -2721,7 +2869,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Environment Folder activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Environment Folder.",
+      "_routing_review_needed": true
     },
     "GetEnvironmentVariable": {
       "gen_function": "gen_get_environment_variable",
@@ -2785,7 +2937,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Environment Variable activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Environment Variable.",
+      "_routing_review_needed": true
     },
     "GetFileInfoX": {
       "gen_function": "gen_get_file_info_x",
@@ -2849,7 +3005,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get File Info X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get File Info X.",
+      "_routing_review_needed": true
     },
     "GetFolderInfoX": {
       "gen_function": "gen_get_folder_info_x",
@@ -2915,7 +3075,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Folder Info X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Folder Info X.",
+      "_routing_review_needed": true
     },
     "GetJobs": {
       "gen_function": "gen_get_jobs",
@@ -3006,7 +3170,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Jobs activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Jobs.",
+      "_routing_review_needed": true
     },
     "GetLastDownloadedFile": {
       "gen_function": "gen_get_last_downloaded_file",
@@ -3086,7 +3254,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Last Downloaded File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Last Downloaded File.",
+      "_routing_review_needed": true
     },
     "GetProcesses": {
       "gen_function": "gen_get_processes",
@@ -3150,7 +3322,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Processes activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Processes.",
+      "_routing_review_needed": true
     },
     "GetQueueItems": {
       "gen_function": "gen_get_queue_items",
@@ -3280,7 +3456,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Queue Items activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Queue Items.",
+      "_routing_review_needed": true
     },
     "GetRowItem": {
       "gen_function": "gen_get_row_item",
@@ -3371,7 +3551,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Row Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Row Item.",
+      "_routing_review_needed": true
     },
     "GetSecret": {
       "gen_function": "gen_get_secret",
@@ -3444,7 +3628,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Secret activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Secret.",
+      "_routing_review_needed": true
     },
     "GetTransactionItem": {
       "gen_function": "gen_get_transaction_item",
@@ -3528,7 +3716,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Transaction Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Transaction Item.",
+      "_routing_review_needed": true
     },
     "GetUsernamePasswordX": {
       "gen_function": "gen_get_username_password_x",
@@ -3613,7 +3805,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Get Username Password X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Get Username Password X.",
+      "_routing_review_needed": true
     },
     "GlobalVariableChangedTrigger": {
       "gen_function": "gen_global_variable_changed_trigger",
@@ -3672,7 +3868,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Global Variable Changed Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Global Variable Changed Trigger.",
+      "_routing_review_needed": true
     },
     "InterruptibleDoWhile": {
       "gen_function": "gen_interruptible_do_while",
@@ -3723,7 +3923,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Interruptible Do While activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Interruptible Do While.",
+      "_routing_review_needed": true
     },
     "InterruptibleWhile": {
       "gen_function": "gen_interruptible_while",
@@ -3774,7 +3978,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Interruptible While activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Interruptible While.",
+      "_routing_review_needed": true
     },
     "InvokeComMethod": {
       "gen_function": "gen_invoke_com_method",
@@ -3858,7 +4066,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Invoke Com Method activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Invoke Com Method.",
+      "_routing_review_needed": true
     },
     "InvokeProcess": {
       "gen_function": "gen_invoke_process",
@@ -3940,7 +4152,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Invoke Process activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Invoke Process.",
+      "_routing_review_needed": true
     },
     "InvokeVBScript": {
       "gen_function": "gen_invoke_vb_script",
@@ -4042,7 +4258,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Invoke VB Script activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Invoke VB Script.",
+      "_routing_review_needed": true
     },
     "InvokeWorkflowInteractive": {
       "gen_function": "gen_invoke_workflow_interactive",
@@ -4122,7 +4342,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Invoke Workflow Interactive activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Invoke Workflow Interactive.",
+      "_routing_review_needed": true
     },
     "IsMatch": {
       "gen_function": "gen_is_match",
@@ -4189,7 +4413,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Is Match activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Is Match.",
+      "_routing_review_needed": true
     },
     "ListStorageFiles": {
       "gen_function": "gen_list_storage_files",
@@ -4273,7 +4501,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "List Storage Files activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via List Storage Files.",
+      "_routing_review_needed": true
     },
     "ManualTrigger": {
       "gen_function": "gen_manual_trigger",
@@ -4328,7 +4560,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Manual Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Manual Trigger.",
+      "_routing_review_needed": true
     },
     "Matches": {
       "gen_function": "gen_matches",
@@ -4404,7 +4640,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Matches activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Matches.",
+      "_routing_review_needed": true
     },
     "ModifyDate": {
       "gen_function": "gen_modify_date",
@@ -4482,7 +4722,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Modify Date activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Modify Date.",
+      "_routing_review_needed": true
     },
     "ModifyText": {
       "gen_function": "gen_modify_text",
@@ -4542,7 +4786,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Modify Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Modify Text.",
+      "_routing_review_needed": true
     },
     "MoveFolderX": {
       "gen_function": "gen_move_folder_x",
@@ -4608,7 +4856,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Move Folder X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Move Folder X.",
+      "_routing_review_needed": true
     },
     "NotifyGlobalVariableChanged": {
       "gen_function": "gen_notify_global_variable_changed",
@@ -4663,7 +4915,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Notify Global Variable Changed activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Notify Global Variable Changed.",
+      "_routing_review_needed": true
     },
     "OrchestratorHttpRequest": {
       "gen_function": "gen_orchestrator_http_request",
@@ -4756,7 +5012,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Orchestrator Http Request activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Orchestrator Http Request.",
+      "_routing_review_needed": true
     },
     "Placeholder": {
       "gen_function": "gen_placeholder",
@@ -4804,7 +5064,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Placeholder activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Placeholder.",
+      "_routing_review_needed": true
     },
     "PostponeTransactionItem": {
       "gen_function": "gen_postpone_transaction_item",
@@ -4877,7 +5141,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Postpone Transaction Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Postpone Transaction Item.",
+      "_routing_review_needed": true
     },
     "ProcessEndTrigger": {
       "gen_function": "gen_process_end_trigger",
@@ -4946,7 +5214,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Process End Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Process End Trigger.",
+      "_routing_review_needed": true
     },
     "ProcessEndTriggerV2": {
       "gen_function": "gen_process_end_trigger_v2",
@@ -5005,7 +5277,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Process End Trigger V2 activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Process End Trigger V2.",
+      "_routing_review_needed": true
     },
     "ProcessStartTrigger": {
       "gen_function": "gen_process_start_trigger",
@@ -5074,7 +5350,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Process Start Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Process Start Trigger.",
+      "_routing_review_needed": true
     },
     "ProcessStartTriggerV2": {
       "gen_function": "gen_process_start_trigger_v2",
@@ -5133,7 +5413,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Process Start Trigger V2 activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Process Start Trigger V2.",
+      "_routing_review_needed": true
     },
     "ProcessTrackingScope": {
       "gen_function": "gen_process_tracking_scope",
@@ -5236,7 +5520,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Process Tracking Scope activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Process Tracking Scope.",
+      "_routing_review_needed": true
     },
     "QueueTrigger": {
       "gen_function": "gen_queue_trigger",
@@ -5313,7 +5601,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Queue Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Queue Trigger.",
+      "_routing_review_needed": true
     },
     "RaiseAlert": {
       "gen_function": "gen_raise_alert",
@@ -5379,7 +5671,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Raise Alert activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Raise Alert.",
+      "_routing_review_needed": true
     },
     "ReadStorageText": {
       "gen_function": "gen_read_storage_text",
@@ -5452,7 +5748,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Read Storage Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Read Storage Text.",
+      "_routing_review_needed": true
     },
     "RemoveDataRow": {
       "gen_function": "gen_remove_data_row",
@@ -5525,7 +5825,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Remove Data Row activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Remove Data Row.",
+      "_routing_review_needed": true
     },
     "RenameFileX": {
       "gen_function": "gen_rename_file_x",
@@ -5609,7 +5913,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Rename File X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Rename File X.",
+      "_routing_review_needed": true
     },
     "RenameFolderX": {
       "gen_function": "gen_rename_folder_x",
@@ -5673,7 +5981,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Rename Folder X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Rename Folder X.",
+      "_routing_review_needed": true
     },
     "RepeatNumberOfTimesX": {
       "gen_function": "gen_repeat_number_of_times_x",
@@ -5726,7 +6038,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Repeat Number Of Times X activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Repeat Number Of Times X.",
+      "_routing_review_needed": true
     },
     "RepeatTrigger": {
       "gen_function": "gen_repeat_trigger",
@@ -5785,7 +6101,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Repeat Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Repeat Trigger.",
+      "_routing_review_needed": true
     },
     "Replace": {
       "gen_function": "gen_replace",
@@ -5861,7 +6181,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Replace activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Replace.",
+      "_routing_review_needed": true
     },
     "ReportStatus": {
       "gen_function": "gen_report_status",
@@ -5907,7 +6231,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Report Status activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Report Status.",
+      "_routing_review_needed": true
     },
     "ResetTimer": {
       "gen_function": "gen_reset_timer",
@@ -5962,7 +6290,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Reset Timer activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Reset Timer.",
+      "_routing_review_needed": true
     },
     "ResumeTimer": {
       "gen_function": "gen_resume_timer",
@@ -6017,7 +6349,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Resume Timer activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Resume Timer.",
+      "_routing_review_needed": true
     },
     "Return": {
       "gen_function": "gen_return",
@@ -6063,7 +6399,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Return activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Return.",
+      "_routing_review_needed": true
     },
     "RunJob": {
       "gen_function": "gen_run_job",
@@ -6177,7 +6517,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Run Job activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Run Job.",
+      "_routing_review_needed": true
     },
     "SelectFile": {
       "gen_function": "gen_select_file",
@@ -6261,7 +6605,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Select File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Select File.",
+      "_routing_review_needed": true
     },
     "SelectFolder": {
       "gen_function": "gen_select_folder",
@@ -6316,7 +6664,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Select Folder activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Select Folder.",
+      "_routing_review_needed": true
     },
     "SendEmailNotification": {
       "gen_function": "gen_send_email_notification",
@@ -6416,7 +6768,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Send Email Notification activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Send Email Notification.",
+      "_routing_review_needed": true
     },
     "SetAsset": {
       "gen_function": "gen_set_asset",
@@ -6489,7 +6845,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Asset activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Asset.",
+      "_routing_review_needed": true
     },
     "SetCredential": {
       "gen_function": "gen_set_credential",
@@ -6580,7 +6940,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Credential activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Credential.",
+      "_routing_review_needed": true
     },
     "SetEnvironmentVariable": {
       "gen_function": "gen_set_environment_variable",
@@ -6644,7 +7008,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Environment Variable activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Environment Variable.",
+      "_routing_review_needed": true
     },
     "SetSecret": {
       "gen_function": "gen_set_secret",
@@ -6726,7 +7094,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Secret activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Secret.",
+      "_routing_review_needed": true
     },
     "SetTaskStatus": {
       "gen_function": "gen_set_task_status",
@@ -6790,7 +7162,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Task Status activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Task Status.",
+      "_routing_review_needed": true
     },
     "SetTraceStatus": {
       "gen_function": "gen_set_trace_status",
@@ -6854,7 +7230,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Trace Status activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Trace Status.",
+      "_routing_review_needed": true
     },
     "SetTransactionProgress": {
       "gen_function": "gen_set_transaction_progress",
@@ -6927,7 +7307,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Transaction Progress activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Transaction Progress.",
+      "_routing_review_needed": true
     },
     "SetTransactionStatus": {
       "gen_function": "gen_set_transaction_status",
@@ -7012,7 +7396,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Set Transaction Status activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Set Transaction Status.",
+      "_routing_review_needed": true
     },
     "SplitText": {
       "gen_function": "gen_split_text",
@@ -7087,7 +7475,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Split Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Split Text.",
+      "_routing_review_needed": true
     },
     "StartJob": {
       "gen_function": "gen_start_job",
@@ -7191,7 +7583,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Start Job activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Start Job.",
+      "_routing_review_needed": true
     },
     "StartTimer": {
       "gen_function": "gen_start_timer",
@@ -7246,7 +7642,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Start Timer activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Start Timer.",
+      "_routing_review_needed": true
     },
     "StartTriggers": {
       "gen_function": "gen_start_triggers",
@@ -7321,7 +7721,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Start Triggers activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Start Triggers.",
+      "_routing_review_needed": true
     },
     "StopJob": {
       "gen_function": "gen_stop_job",
@@ -7394,7 +7798,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Stop Job activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Stop Job.",
+      "_routing_review_needed": true
     },
     "StopTimer": {
       "gen_function": "gen_stop_timer",
@@ -7449,7 +7857,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Stop Timer activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Stop Timer.",
+      "_routing_review_needed": true
     },
     "StopTriggers": {
       "gen_function": "gen_stop_triggers",
@@ -7497,7 +7909,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Stop Triggers activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Stop Triggers.",
+      "_routing_review_needed": true
     },
     "TextToLeftRight": {
       "gen_function": "gen_text_to_left_right",
@@ -7581,7 +7997,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Text To Left Right activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Text To Left Right.",
+      "_routing_review_needed": true
     },
     "TimeTrigger": {
       "gen_function": "gen_time_trigger",
@@ -7748,7 +8168,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Time Trigger activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Time Trigger.",
+      "_routing_review_needed": true
     },
     "TimeoutScope": {
       "gen_function": "gen_timeout_scope",
@@ -7808,7 +8232,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Timeout Scope activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Timeout Scope.",
+      "_routing_review_needed": true
     },
     "TrackObject": {
       "gen_function": "gen_track_object",
@@ -7901,7 +8329,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Track Object activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Track Object.",
+      "_routing_review_needed": true
     },
     "TriggerScope": {
       "gen_function": "gen_trigger_scope",
@@ -7949,7 +8381,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Trigger Scope activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Trigger Scope.",
+      "_routing_review_needed": true
     },
     "UpdateRowItem": {
       "gen_function": "gen_update_row_item",
@@ -8031,7 +8467,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Update Row Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Update Row Item.",
+      "_routing_review_needed": true
     },
     "UploadStorageFile": {
       "gen_function": "gen_upload_storage_file",
@@ -8122,7 +8562,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Upload Storage File activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Upload Storage File.",
+      "_routing_review_needed": true
     },
     "WaitQueueItem": {
       "gen_function": "gen_wait_queue_item",
@@ -8206,7 +8650,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Wait Queue Item activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Wait Queue Item.",
+      "_routing_review_needed": true
     },
     "WriteStorageText": {
       "gen_function": "gen_write_storage_text",
@@ -8288,7 +8736,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "data_operations",
+      "description": "Write Storage Text activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Write Storage Text.",
+      "_routing_review_needed": true
     }
   }
 }

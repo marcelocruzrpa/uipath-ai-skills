@@ -124,7 +124,11 @@
           "content": "TargetApp with Area, BrowserType (auto-detected), Selector, Url, and empty Arguments/FilePath/WorkingDirectory InArguments"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "application_card",
+      "description": "N Application Card Open activity from the application card category.",
+      "use_when": "User wants to open or attach to an application or browser context.",
+      "_routing_review_needed": true
     },
     "NApplicationCardAttach": {
       "gen_function": "gen_napplicationcard_attach",
@@ -190,7 +194,12 @@
           "attr": "InteractionMode",
           "required": false,
           "default": null,
-          "enum": ["Simulate", "DebuggerApi", "HardwareEvents", "WindowMessages"],
+          "enum": [
+            "Simulate",
+            "DebuggerApi",
+            "HardwareEvents",
+            "WindowMessages"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string",
@@ -237,9 +246,17 @@
         }
       },
       "conditional_attrs": {
-        "AttachMode": {"note": "ByInstance when desktop=True, SingleWindow when desktop=False"},
-        "IsIncognito": {"omit_when": "desktop=true"}
-      }
+        "AttachMode": {
+          "note": "ByInstance when desktop=True, SingleWindow when desktop=False"
+        },
+        "IsIncognito": {
+          "omit_when": "desktop=true"
+        }
+      },
+      "category": "application_card",
+      "description": "N Application Card Attach activity from the application card category.",
+      "use_when": "User wants to open or attach to an application or browser context.",
+      "_routing_review_needed": true
     },
     "NApplicationCardClose": {
       "gen_function": "gen_napplicationcard_close",
@@ -343,8 +360,14 @@
         }
       },
       "conditional_attrs": {
-        "IsIncognito": {"omit_when": "desktop=true"}
-      }
+        "IsIncognito": {
+          "omit_when": "desktop=true"
+        }
+      },
+      "category": "application_card",
+      "description": "N Application Card Close activity from the application card category.",
+      "use_when": "User wants to open or attach to an application or browser context.",
+      "_routing_review_needed": true
     },
     "NApplicationCardDesktopOpen": {
       "gen_function": "gen_napplicationcard_desktop_open",
@@ -456,7 +479,11 @@
           "content": "TargetApp with Area, FilePath (escaped VB expr), Selector, and empty Arguments/WorkingDirectory InArguments. No Url/BrowserType (desktop app)."
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "application_card",
+      "description": "N Application Card Desktop Open activity from the application card category.",
+      "use_when": "User wants to open or attach to an application or browser context.",
+      "_routing_review_needed": true
     }
   }
 }

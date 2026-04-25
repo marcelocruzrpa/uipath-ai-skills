@@ -112,7 +112,11 @@
         }
       },
       "conditional_attrs": {},
-      "note": "Retrieves Outlook mail messages. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Retrieves Outlook mail messages. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "mail",
+      "description": "Get Outlook Mail Messages activity from the mail category.",
+      "use_when": "User wants to send or process email using Get Outlook Mail Messages.",
+      "_routing_review_needed": true
     },
     "MoveOutlookMessage": {
       "gen_function": null,
@@ -168,7 +172,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Moves an Outlook mail message to a specified folder. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Moves an Outlook mail message to a specified folder. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "mail",
+      "description": "Move Outlook Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Move Outlook Message.",
+      "_routing_review_needed": true
     },
     "SendOutlookMail": {
       "gen_function": null,
@@ -291,17 +299,29 @@
         }
       },
       "conditional_attrs": {},
-      "note": "Sends an email via Outlook. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Sends an email via Outlook. Requires Outlook connection. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "mail",
+      "description": "Send Outlook Mail activity from the mail category.",
+      "use_when": "User wants to send or process email using Send Outlook Mail.",
+      "_routing_review_needed": true
     },
     "OutlookApplicationCard": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "OutlookApplicationCard is a scope activity with ActivityAction body requiring Studio configuration."
+      "note": "OutlookApplicationCard is a scope activity with ActivityAction body requiring Studio configuration.",
+      "category": "mail",
+      "description": "Outlook Application Card (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Outlook Application Card. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ForEachEmailX": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
-      "note": "ForEachEmailX iterates over emails with a dual-argument ActivityAction body requiring Studio configuration."
+      "note": "ForEachEmailX iterates over emails with a dual-argument ActivityAction body requiring Studio configuration.",
+      "category": "mail",
+      "description": "For Each Email X (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate For Each Email X. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ArchiveMailX": {
       "gen_function": "gen_archive_mail_x",
@@ -356,7 +376,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Archive Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Archive Mail X.",
+      "_routing_review_needed": true
     },
     "CreateDraft": {
       "gen_function": "gen_create_draft",
@@ -578,7 +602,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Create Draft activity from the mail category.",
+      "use_when": "User wants to send or process email using Create Draft.",
+      "_routing_review_needed": true
     },
     "CreateHtmlContent": {
       "gen_function": "gen_create_html_content",
@@ -633,7 +661,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Create Html Content activity from the mail category.",
+      "use_when": "User wants to send or process email using Create Html Content.",
+      "_routing_review_needed": true
     },
     "DeleteImapMailMessage": {
       "gen_function": "gen_delete_imap_mail_message",
@@ -774,7 +806,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Delete Imap Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Delete Imap Mail Message.",
+      "_routing_review_needed": true
     },
     "DeleteLotusNotesMailMessage": {
       "gen_function": "gen_delete_lotus_notes_mail_message",
@@ -856,7 +892,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Delete Lotus Notes Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Delete Lotus Notes Mail Message.",
+      "_routing_review_needed": true
     },
     "DeleteMail": {
       "gen_function": "gen_delete_mail",
@@ -996,7 +1036,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Delete Mail activity from the mail category.",
+      "use_when": "User wants to send or process email using Delete Mail.",
+      "_routing_review_needed": true
     },
     "DeleteMailX": {
       "gen_function": "gen_delete_mail_x",
@@ -1051,7 +1095,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Delete Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Delete Mail X.",
+      "_routing_review_needed": true
     },
     "DeleteOutlookMailMessage": {
       "gen_function": "gen_delete_outlook_mail_message",
@@ -1108,7 +1156,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Delete Outlook Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Delete Outlook Mail Message.",
+      "_routing_review_needed": true
     },
     "ExchangeScope": {
       "gen_function": "gen_exchange_scope",
@@ -1253,7 +1305,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Exchange Scope activity from the mail category.",
+      "use_when": "User wants to send or process email using Exchange Scope.",
+      "_routing_review_needed": true
     },
     "ForwardMailX": {
       "gen_function": "gen_forward_mail_x",
@@ -1365,7 +1421,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Forward Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Forward Mail X.",
+      "_routing_review_needed": true
     },
     "GetEmailById": {
       "gen_function": "gen_get_email_by_id",
@@ -1438,7 +1498,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Get Email By Id activity from the mail category.",
+      "use_when": "User wants to send or process email using Get Email By Id.",
+      "_routing_review_needed": true
     },
     "GetExchangeMailMessages": {
       "gen_function": "gen_get_exchange_mail_messages",
@@ -1612,7 +1676,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Get Exchange Mail Messages activity from the mail category.",
+      "use_when": "User wants to send or process email using Get Exchange Mail Messages.",
+      "_routing_review_needed": true
     },
     "GetLotusNotesMailMessages": {
       "gen_function": "gen_get_lotus_notes_mail_messages",
@@ -1700,7 +1768,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Get Lotus Notes Mail Messages activity from the mail category.",
+      "use_when": "User wants to send or process email using Get Lotus Notes Mail Messages.",
+      "_routing_review_needed": true
     },
     "GetMailMessageFromFile": {
       "gen_function": "gen_get_mail_message_from_file",
@@ -1764,7 +1836,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Get Mail Message From File activity from the mail category.",
+      "use_when": "User wants to send or process email using Get Mail Message From File.",
+      "_routing_review_needed": true
     },
     "GetPOP3MailMessages": {
       "gen_function": "gen_get_pop3_mail_messages",
@@ -1890,7 +1966,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Get POP3 Mail Messages activity from the mail category.",
+      "use_when": "User wants to send or process email using Get POP3 Mail Messages.",
+      "_routing_review_needed": true
     },
     "MarkMailAsReadX": {
       "gen_function": "gen_mark_mail_as_read_x",
@@ -1947,7 +2027,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Mark Mail As Read X activity from the mail category.",
+      "use_when": "User wants to send or process email using Mark Mail As Read X.",
+      "_routing_review_needed": true
     },
     "MarkOutlookMailAsRead": {
       "gen_function": "gen_mark_outlook_mail_as_read",
@@ -2004,7 +2088,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Mark Outlook Mail As Read activity from the mail category.",
+      "use_when": "User wants to send or process email using Mark Outlook Mail As Read.",
+      "_routing_review_needed": true
     },
     "MoveIMAPMailMessageToFolder": {
       "gen_function": "gen_move_imap_mail_message_to_folder",
@@ -2155,7 +2243,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Move IMAP Mail Message To Folder activity from the mail category.",
+      "use_when": "User wants to send or process email using Move IMAP Mail Message To Folder.",
+      "_routing_review_needed": true
     },
     "MoveLotusNotesMailMessage": {
       "gen_function": "gen_move_lotus_notes_mail_message",
@@ -2246,7 +2338,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Move Lotus Notes Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Move Lotus Notes Mail Message.",
+      "_routing_review_needed": true
     },
     "MoveMailX": {
       "gen_function": "gen_move_mail_x",
@@ -2310,7 +2406,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Move Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Move Mail X.",
+      "_routing_review_needed": true
     },
     "MoveMessageToFolder": {
       "gen_function": "gen_move_message_to_folder",
@@ -2467,7 +2567,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Move Message To Folder activity from the mail category.",
+      "use_when": "User wants to send or process email using Move Message To Folder.",
+      "_routing_review_needed": true
     },
     "NewIMAPEmailReceivedTrigger": {
       "gen_function": "gen_new_imap_email_received_trigger",
@@ -2609,7 +2713,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "New IMAP Email Received Trigger activity from the mail category.",
+      "use_when": "User wants to send or process email using New IMAP Email Received Trigger.",
+      "_routing_review_needed": true
     },
     "OutlookMailMessagesTrigger": {
       "gen_function": "gen_outlook_mail_messages_trigger",
@@ -2721,7 +2829,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Outlook Mail Messages Trigger activity from the mail category.",
+      "use_when": "User wants to send or process email using Outlook Mail Messages Trigger.",
+      "_routing_review_needed": true
     },
     "ReplyToMailX": {
       "gen_function": "gen_reply_to_mail_x",
@@ -2834,7 +2946,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Reply To Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Reply To Mail X.",
+      "_routing_review_needed": true
     },
     "ReplyToOutlookMailMessage": {
       "gen_function": "gen_reply_to_outlook_mail_message",
@@ -2955,7 +3071,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Reply To Outlook Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Reply To Outlook Mail Message.",
+      "_routing_review_needed": true
     },
     "SaveExchangeAttachements": {
       "gen_function": "gen_save_exchange_attachements",
@@ -3121,7 +3241,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Save Exchange Attachements activity from the mail category.",
+      "use_when": "User wants to send or process email using Save Exchange Attachements.",
+      "_routing_review_needed": true
     },
     "SaveMail": {
       "gen_function": "gen_save_mail",
@@ -3194,7 +3318,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Save Mail activity from the mail category.",
+      "use_when": "User wants to send or process email using Save Mail.",
+      "_routing_review_needed": true
     },
     "SaveMailAttachmentsX": {
       "gen_function": "gen_save_mail_attachments_x",
@@ -3270,7 +3398,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Save Mail Attachments X activity from the mail category.",
+      "use_when": "User wants to send or process email using Save Mail Attachments X.",
+      "_routing_review_needed": true
     },
     "SaveMailX": {
       "gen_function": "gen_save_mail_x",
@@ -3343,7 +3475,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Save Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Save Mail X.",
+      "_routing_review_needed": true
     },
     "SaveOutlookMailMessage": {
       "gen_function": "gen_save_outlook_mail_message",
@@ -3419,7 +3555,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Save Outlook Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Save Outlook Mail Message.",
+      "_routing_review_needed": true
     },
     "SendCalendarInviteX": {
       "gen_function": "gen_send_calendar_invite_x",
@@ -3572,7 +3712,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Send Calendar Invite X activity from the mail category.",
+      "use_when": "User wants to send or process email using Send Calendar Invite X.",
+      "_routing_review_needed": true
     },
     "SendExchangeMail": {
       "gen_function": "gen_send_exchange_mail",
@@ -3796,7 +3940,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Send Exchange Mail activity from the mail category.",
+      "use_when": "User wants to send or process email using Send Exchange Mail.",
+      "_routing_review_needed": true
     },
     "SendLotusNotesMailMessage": {
       "gen_function": "gen_send_lotus_notes_mail_message",
@@ -3945,7 +4093,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Send Lotus Notes Mail Message activity from the mail category.",
+      "use_when": "User wants to send or process email using Send Lotus Notes Mail Message.",
+      "_routing_review_needed": true
     },
     "SendMailX": {
       "gen_function": "gen_send_mail_x",
@@ -4068,7 +4220,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Send Mail X activity from the mail category.",
+      "use_when": "User wants to send or process email using Send Mail X.",
+      "_routing_review_needed": true
     },
     "SetOutlookMailCategories": {
       "gen_function": "gen_set_outlook_mail_categories",
@@ -4132,7 +4288,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "mail",
+      "description": "Set Outlook Mail Categories activity from the mail category.",
+      "use_when": "User wants to send or process email using Set Outlook Mail Categories.",
+      "_routing_review_needed": true
     }
   }
 }

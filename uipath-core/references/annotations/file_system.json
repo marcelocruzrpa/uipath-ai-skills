@@ -61,7 +61,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Copy File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Copy File.",
+      "_routing_review_needed": true
     },
     "MoveFile": {
       "gen_function": "gen_move_file",
@@ -122,7 +126,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Move File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Move File.",
+      "_routing_review_needed": true
     },
     "DeleteFileX": {
       "gen_function": "gen_delete_file",
@@ -161,7 +169,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. No ContinueOnError property exists on this activity."
+      "note": "Self-closing tag. No ContinueOnError property exists on this activity.",
+      "category": "file_system",
+      "description": "Delete File X activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Delete File X.",
+      "_routing_review_needed": true
     },
     "PathExists": {
       "gen_function": "gen_path_exists",
@@ -200,7 +212,10 @@
           "attr": "PathType",
           "required": false,
           "default": "File",
-          "enum": ["File", "Folder"],
+          "enum": [
+            "File",
+            "Folder"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -218,7 +233,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Path Exists activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Path Exists.",
+      "_routing_review_needed": true
     },
     "CreateDirectory": {
       "gen_function": "gen_create_directory",
@@ -260,7 +279,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Create Directory activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Create Directory.",
+      "_routing_review_needed": true
     },
     "ReadTextFile": {
       "gen_function": "gen_read_text_file",
@@ -326,9 +349,15 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {
-        "Encoding": {"omit_when": ""}
+        "Encoding": {
+          "omit_when": ""
+        }
       },
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Read Text File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Read Text File.",
+      "_routing_review_needed": true
     },
     "WriteTextFile": {
       "gen_function": "gen_write_text_file",
@@ -396,9 +425,15 @@
       },
       "child_elements": {},
       "conditional_attrs": {
-        "Encoding": {"omit_when": ""}
+        "Encoding": {
+          "omit_when": ""
+        }
       },
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Write Text File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Write Text File.",
+      "_routing_review_needed": true
     },
     "ReadCsvFile": {
       "gen_function": "gen_read_csv",
@@ -455,7 +490,14 @@
           "attr": "Delimitator",
           "required": false,
           "default": "Comma",
-          "enum": ["Comma", "Tab", "Semicolon", "Caret", "Pipe", "Custom"],
+          "enum": [
+            "Comma",
+            "Tab",
+            "Semicolon",
+            "Caret",
+            "Pipe",
+            "Custom"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string",
@@ -465,7 +507,12 @@
           "attr": "Encoding",
           "required": false,
           "default": "UTF8",
-          "enum": ["UTF8", "Unicode", "ASCII", "Default"],
+          "enum": [
+            "UTF8",
+            "Unicode",
+            "ASCII",
+            "Default"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string",
@@ -485,10 +532,18 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {
-        "Encoding": {"omit_when": "UTF8"},
-        "IncludeColumnNames": {"omit_when": true}
+        "Encoding": {
+          "omit_when": "UTF8"
+        },
+        "IncludeColumnNames": {
+          "omit_when": true
+        }
       },
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Read Csv File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Read Csv File.",
+      "_routing_review_needed": true
     },
     "AppendWriteCsvFile": {
       "gen_function": "gen_write_csv",
@@ -545,7 +600,10 @@
           "attr": "CsvAction",
           "required": false,
           "default": "Write",
-          "enum": ["Write", "Append"],
+          "enum": [
+            "Write",
+            "Append"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -554,7 +612,14 @@
           "attr": "Delimitator",
           "required": false,
           "default": "Comma",
-          "enum": ["Comma", "Tab", "Semicolon", "Caret", "Pipe", "Custom"],
+          "enum": [
+            "Comma",
+            "Tab",
+            "Semicolon",
+            "Caret",
+            "Pipe",
+            "Custom"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string",
@@ -582,7 +647,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "file_system",
+      "description": "Append Write Csv File activity from the file system category.",
+      "use_when": "User wants to perform a filesystem operation: Append Write Csv File.",
+      "_routing_review_needed": true
     }
   }
 }

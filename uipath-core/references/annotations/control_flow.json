@@ -70,7 +70,11 @@
           "content": "Sequence DisplayName='Else' with else_content (only when else_content is non-empty)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "If activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with If.",
+      "_routing_review_needed": true
     },
     "IfElseIfV2": {
       "gen_function": "gen_if_else_if",
@@ -131,7 +135,11 @@
           "content": "Sequence DisplayName='Else' (only when else_content is non-empty)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "If Else If V2 activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with If Else If V2.",
+      "_routing_review_needed": true
     },
     "Switch": {
       "gen_function": "gen_switch",
@@ -215,7 +223,11 @@
           "content": "Each case is a Sequence with x:Key attribute for the case label"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "Switch activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with Switch.",
+      "_routing_review_needed": true
     },
     "ForEach": {
       "gen_function": "gen_foreach",
@@ -297,7 +309,11 @@
           "content": "ActivityAction with DelegateInArgument and inner Sequence"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "ForEach activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with ForEach.",
+      "_routing_review_needed": true
     },
     "ForEachRow": {
       "gen_function": "gen_foreach_row",
@@ -370,7 +386,11 @@
           "arg_name": "CurrentRow"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "For Each Row activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with For Each Row.",
+      "_routing_review_needed": true
     },
     "ForEachFileX": {
       "gen_function": "gen_foreach_file",
@@ -456,7 +476,11 @@
           "content": "ActivityAction x:TypeArguments='si:FileInfo, x:Int32' with Argument1 (CurrentFile) and Argument2 (CurrentIndex) DelegateInArguments"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "For Each File X activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with For Each File X.",
+      "_routing_review_needed": true
     },
     "While": {
       "gen_function": "gen_while",
@@ -517,7 +541,11 @@
           "content": "Sequence DisplayName='Body' with body_content"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "While activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with While.",
+      "_routing_review_needed": true
     },
     "DoWhile": {
       "gen_function": "gen_do_while",
@@ -578,7 +606,11 @@
           "content": "Sequence DisplayName='Body' with body_content"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "DoWhile activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with DoWhile.",
+      "_routing_review_needed": true
     },
     "Flowchart": {
       "gen_function": "gen_flowchart",
@@ -663,7 +695,11 @@
           "content": "FlowDecision x:Name with VisualBasicValue condition, True/False x:Reference branches"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "Flowchart activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with Flowchart.",
+      "_routing_review_needed": true
     },
     "StateMachine": {
       "gen_function": "gen_state_machine",
@@ -719,7 +755,11 @@
           "content": "State (or FinalState) elements with Entry and Transitions"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "State Machine activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with State Machine.",
+      "_routing_review_needed": true
     },
     "Parallel": {
       "gen_function": "gen_parallel",
@@ -770,7 +810,11 @@
         "CompletionCondition": {
           "omit_when": ""
         }
-      }
+      },
+      "category": "control_flow",
+      "description": "Parallel activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with Parallel.",
+      "_routing_review_needed": true
     },
     "ParallelForEach": {
       "gen_function": "gen_parallel_foreach",
@@ -840,7 +884,11 @@
           "content": "ActivityAction with DelegateInArgument and body_xml"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "control_flow",
+      "description": "Parallel For Each activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with Parallel For Each.",
+      "_routing_review_needed": true
     },
     "Delay": {
       "gen_function": null,
@@ -879,7 +927,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. Pauses workflow execution for the specified duration. Lint 109 warns against using Delay — prefer ShouldStop + loop pattern. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing tag. Pauses workflow execution for the specified duration. Lint 109 warns against using Delay — prefer ShouldStop + loop pattern. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "control_flow",
+      "description": "Delay activity from the control flow category.",
+      "use_when": "User wants to control workflow execution flow with Delay.",
+      "_routing_review_needed": true
     }
   }
 }

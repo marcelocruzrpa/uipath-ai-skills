@@ -60,7 +60,11 @@
           "attr": "Priority",
           "required": false,
           "default": "Normal",
-          "enum": ["Normal", "High", "Low"],
+          "enum": [
+            "Normal",
+            "High",
+            "Low"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -95,13 +99,17 @@
           "content": "Bare InArgument x:TypeArguments='x:String' elements with x:Key (NO Dictionary wrapper)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "orchestrator",
+      "description": "Add Queue Item activity from the orchestrator category.",
+      "use_when": "User wants to interact with UiPath Orchestrator via Add Queue Item.",
+      "_routing_review_needed": true
     },
     "BulkAddQueueItems": {
       "gen_function": "gen_bulk_add_queue_items",
       "element_tag": "ui:BulkAddQueueItems",
       "hint_size_key": "BulkAddQueueItems",
-      "note": "Wrapped in RetryScope automatically",
+      "note": "Self-closing tag inside RetryScope.",
       "params": {
         "queue_name": {
           "attr": "QueueName",
@@ -155,7 +163,10 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag inside RetryScope."
+      "category": "orchestrator",
+      "description": "Bulk Add Queue Items activity from the orchestrator category.",
+      "use_when": "User wants to interact with UiPath Orchestrator via Bulk Add Queue Items.",
+      "_routing_review_needed": true
     },
     "GetQueueItem": {
       "gen_function": "gen_get_queue_item",
@@ -233,7 +244,11 @@
           "content": "<InArgument x:TypeArguments=\"x:Int32\" />"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "orchestrator",
+      "description": "Get Queue Item activity from the orchestrator category.",
+      "use_when": "User wants to interact with UiPath Orchestrator via Get Queue Item.",
+      "_routing_review_needed": true
     },
     "GetRobotCredential": {
       "gen_function": "gen_getrobotcredential",
@@ -292,7 +307,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "orchestrator",
+      "description": "Get Robot Credential activity from the orchestrator category.",
+      "use_when": "User wants to interact with UiPath Orchestrator via Get Robot Credential.",
+      "_routing_review_needed": true
     },
     "GetRobotAsset": {
       "gen_function": "gen_get_robot_asset",
@@ -344,7 +363,11 @@
           "attr": "CacheStrategy",
           "required": false,
           "default": "None",
-          "enum": ["None", "PerRobot", "Global"],
+          "enum": [
+            "None",
+            "PerRobot",
+            "Global"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -378,7 +401,11 @@
           "content": "<OutArgument x:TypeArguments=\"{output_type}\">[{output_variable}]</OutArgument>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "orchestrator",
+      "description": "Get Robot Asset activity from the orchestrator category.",
+      "use_when": "User wants to interact with UiPath Orchestrator via Get Robot Asset.",
+      "_routing_review_needed": true
     }
   }
 }

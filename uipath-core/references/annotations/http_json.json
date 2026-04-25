@@ -198,7 +198,11 @@
           "content": "<InArgument x:TypeArguments=\"s:Nullable(x:Int32)\"><Literal x:TypeArguments=\"s:Nullable(x:Int32)\" Value=\"{timeout_ms}\" /></InArgument>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "http_json",
+      "description": "Net Http Request activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Net Http Request.",
+      "_routing_review_needed": true
     },
     "DeserializeJson": {
       "gen_function": "gen_deserialize_json",
@@ -258,7 +262,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "http_json",
+      "description": "Deserialize Json activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Json.",
+      "_routing_review_needed": true
     },
     "DeserializeJsonArray": {
       "gen_function": null,
@@ -309,7 +317,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Deserialize Json Array activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Json Array.",
+      "_routing_review_needed": true
     },
     "DeserializeXml": {
       "gen_function": null,
@@ -359,7 +371,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Deserialize Xml activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Xml.",
+      "_routing_review_needed": true
     },
     "ExecuteXPath": {
       "gen_function": null,
@@ -419,7 +435,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Execute X Path activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Execute X Path.",
+      "_routing_review_needed": true
     },
     "GetNodes": {
       "gen_function": null,
@@ -479,7 +499,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Get Nodes activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Get Nodes.",
+      "_routing_review_needed": true
     },
     "GetXMLNodes": {
       "gen_function": null,
@@ -537,7 +561,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Get XML Nodes activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Get XML Nodes.",
+      "_routing_review_needed": true
     },
     "GetXMLNodeAttributes": {
       "gen_function": null,
@@ -588,7 +616,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Get XML Node Attributes activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Get XML Node Attributes.",
+      "_routing_review_needed": true
     },
     "SerializeJson": {
       "gen_function": null,
@@ -639,7 +671,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Serialize Json activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Serialize Json.",
+      "_routing_review_needed": true
     },
     "HttpClient": {
       "gen_function": null,
@@ -842,7 +878,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "http_json",
+      "description": "Http Client activity from the http json category.",
+      "use_when": "User wants to perform an HTTP or JSON operation: Http Client.",
+      "_routing_review_needed": true
     }
   }
 }

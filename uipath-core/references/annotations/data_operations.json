@@ -68,7 +68,11 @@
           "content": "<InArgument x:TypeArguments=\"{value_type}\">[{value_expression}]</InArgument>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "data_operations",
+      "description": "Assign activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Assign.",
+      "_routing_review_needed": true
     },
     "MultipleAssign": {
       "gen_function": "gen_multiple_assign",
@@ -112,7 +116,11 @@
           "content": "scg:List x:TypeArguments='ui:AssignOperation' with AssignOperation elements containing To (OutArgument) and Value (InArgument)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "data_operations",
+      "description": "Multiple Assign activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Multiple Assign.",
+      "_routing_review_needed": true
     },
     "VariablesBlock": {
       "gen_function": "gen_variables_block",
@@ -134,7 +142,10 @@
           "attr": null,
           "required": false,
           "default": "Sequence",
-          "enum": ["Sequence", "Flowchart"],
+          "enum": [
+            "Sequence",
+            "Flowchart"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -142,7 +153,11 @@
       },
       "fixed_attrs": {},
       "child_elements": {},
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "data_operations",
+      "description": "Variables Block activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Variables Block.",
+      "_routing_review_needed": true
     },
     "BuildDataTable": {
       "gen_function": "gen_build_data_table",
@@ -201,7 +216,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag. TableInfo attribute contains XML-escaped XSD schema string."
+      "note": "Self-closing tag. TableInfo attribute contains XML-escaped XSD schema string.",
+      "category": "data_operations",
+      "description": "Build Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Build Data Table.",
+      "_routing_review_needed": true
     },
     "AddDataRow": {
       "gen_function": "gen_add_data_row",
@@ -251,7 +270,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Add Data Row activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Add Data Row.",
+      "_routing_review_needed": true
     },
     "AddDataColumn": {
       "gen_function": "gen_add_data_column",
@@ -316,7 +339,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Add Data Column activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Add Data Column.",
+      "_routing_review_needed": true
     },
     "RemoveDataColumn": {
       "gen_function": "gen_remove_data_column",
@@ -368,7 +395,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Remove Data Column activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Remove Data Column.",
+      "_routing_review_needed": true
     },
     "FilterDataTable": {
       "gen_function": "gen_filter_data_table",
@@ -418,7 +449,10 @@
           "attr": "FilterRowsMode",
           "required": false,
           "default": "Keep",
-          "enum": ["Keep", "Remove"],
+          "enum": [
+            "Keep",
+            "Remove"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -427,7 +461,10 @@
           "attr": "SelectColumnsMode",
           "required": false,
           "default": "Remove",
-          "enum": ["Keep", "Remove"],
+          "enum": [
+            "Keep",
+            "Remove"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -453,7 +490,11 @@
           "content": "<scg:List x:TypeArguments=\"InArgument\" Capacity=\"4\"><x:Null /></scg:List>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "data_operations",
+      "description": "Filter Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Filter Data Table.",
+      "_routing_review_needed": true
     },
     "SortDataTable": {
       "gen_function": "gen_sort_data_table",
@@ -492,7 +533,10 @@
           "attr": "SortOrder",
           "required": false,
           "default": "Ascending",
-          "enum": ["Ascending", "Descending"],
+          "enum": [
+            "Ascending",
+            "Descending"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -522,7 +566,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Sort Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Sort Data Table.",
+      "_routing_review_needed": true
     },
     "RemoveDuplicateRows": {
       "gen_function": "gen_remove_duplicate_rows",
@@ -570,7 +618,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Remove Duplicate Rows activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Remove Duplicate Rows.",
+      "_routing_review_needed": true
     },
     "OutputDataTable": {
       "gen_function": "gen_output_data_table",
@@ -618,7 +670,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Output Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Output Data Table.",
+      "_routing_review_needed": true
     },
     "JoinDataTables": {
       "gen_function": "gen_join_data_tables",
@@ -676,7 +732,11 @@
           "attr": "JoinType",
           "required": false,
           "default": "Inner",
-          "enum": ["Inner", "Left", "Full"],
+          "enum": [
+            "Inner",
+            "Left",
+            "Full"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -698,7 +758,11 @@
           "content": "scg:List x:TypeArguments='ui:JoinOperationArgument' with JoinOperationArgument elements"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "data_operations",
+      "description": "Join Data Tables activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Join Data Tables.",
+      "_routing_review_needed": true
     },
     "LookupDataTable": {
       "gen_function": "gen_lookup_data_table",
@@ -782,7 +846,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Lookup Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Lookup Data Table.",
+      "_routing_review_needed": true
     },
     "MergeDataTable": {
       "gen_function": "gen_merge_data_table",
@@ -821,7 +889,12 @@
           "attr": "MissingSchemaAction",
           "required": false,
           "default": "Add",
-          "enum": ["Add", "Ignore", "Error", "AddWithKey"],
+          "enum": [
+            "Add",
+            "Ignore",
+            "Error",
+            "AddWithKey"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -839,7 +912,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Merge Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Merge Data Table.",
+      "_routing_review_needed": true
     },
     "GenerateDataTable": {
       "gen_function": "gen_generate_data_table",
@@ -909,7 +986,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "data_operations",
+      "description": "Generate Data Table activity from the data operations category.",
+      "use_when": "User wants to manipulate a DataTable or collection via Generate Data Table.",
+      "_routing_review_needed": true
     }
   }
 }

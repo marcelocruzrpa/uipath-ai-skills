@@ -88,7 +88,11 @@
           "content": "Sequence DisplayName='Finally' (only when finally_content is non-empty)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "error_handling",
+      "description": "TryCatch activity from the error handling category.",
+      "use_when": "User wants to handle exceptions or retries via TryCatch.",
+      "_routing_review_needed": true
     },
     "Throw": {
       "gen_function": "gen_throw",
@@ -126,7 +130,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "error_handling",
+      "description": "Throw activity from the error handling category.",
+      "use_when": "User wants to handle exceptions or retries via Throw.",
+      "_routing_review_needed": true
     },
     "Rethrow": {
       "gen_function": "gen_rethrow",
@@ -156,7 +164,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "error_handling",
+      "description": "Rethrow activity from the error handling category.",
+      "use_when": "User wants to handle exceptions or retries via Rethrow.",
+      "_routing_review_needed": true
     },
     "RetryScope": {
       "gen_function": "gen_retryscope",
@@ -223,7 +235,11 @@
           "content": "<ActivityFunc x:TypeArguments=\"x:Boolean\" />"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "error_handling",
+      "description": "Retry Scope activity from the error handling category.",
+      "use_when": "User wants to handle exceptions or retries via Retry Scope.",
+      "_routing_review_needed": true
     }
   }
 }

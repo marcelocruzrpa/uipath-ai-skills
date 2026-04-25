@@ -84,7 +84,11 @@
           "content": "<OutArgument x:TypeArguments=\"x:String\">[{result_variable}]</OutArgument>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "dialogs",
+      "description": "Input Dialog activity from the dialogs category.",
+      "use_when": "User wants to display a UI dialog (Input Dialog) and read its result.",
+      "_routing_review_needed": true
     },
     "MessageBox": {
       "gen_function": "gen_message_box",
@@ -127,7 +131,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "dialogs",
+      "description": "Message Box activity from the dialogs category.",
+      "use_when": "User wants to display a UI dialog (Message Box) and read its result.",
+      "_routing_review_needed": true
     }
   }
 }

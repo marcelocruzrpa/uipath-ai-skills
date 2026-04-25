@@ -108,7 +108,11 @@
           "omit_when": "is_secure=true",
           "replacement_attr": "SecureText"
         }
-      }
+      },
+      "category": "ui_automation",
+      "description": "TypeInto activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via TypeInto.",
+      "_routing_review_needed": true
     },
     "NClick": {
       "gen_function": "gen_nclick",
@@ -199,7 +203,11 @@
           "content": null
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "Click activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Click.",
+      "_routing_review_needed": true
     },
     "NCheck": {
       "gen_function": "gen_ncheck",
@@ -275,7 +283,11 @@
           "content": null
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "CheckUncheck activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via CheckUncheck.",
+      "_routing_review_needed": true
     },
     "NHover": {
       "gen_function": "gen_nhover",
@@ -368,7 +380,11 @@
         "HoverTime": {
           "omit_when": null
         }
-      }
+      },
+      "category": "ui_automation",
+      "description": "Hover activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Hover.",
+      "_routing_review_needed": true
     },
     "NKeyboardShortcuts": {
       "gen_function": "gen_nkeyboardshortcuts",
@@ -477,7 +493,11 @@
           "note": "Only emitted when selector is non-empty; otherwise self-closing element"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "KeyboardShortcuts activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via KeyboardShortcuts.",
+      "_routing_review_needed": true
     },
     "NDoubleClick": {
       "gen_function": "gen_ndoubleclick",
@@ -558,7 +578,11 @@
           "content": null
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "N Double Click activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via N Double Click.",
+      "_routing_review_needed": true
     },
     "NRightClick": {
       "gen_function": "gen_nrightclick",
@@ -627,7 +651,11 @@
           "content": null
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "N Right Click activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via N Right Click.",
+      "_routing_review_needed": true
     },
     "NGetText": {
       "gen_function": "gen_ngettext",
@@ -711,7 +739,11 @@
           "note": "Only emitted when selector is provided (not in_ui_element mode)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "GetText activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via GetText.",
+      "_routing_review_needed": true
     },
     "NCheckState": {
       "gen_function": "gen_ncheckstate",
@@ -835,7 +867,11 @@
         "OutUiElement": {
           "omit_when": ""
         }
-      }
+      },
+      "category": "ui_automation",
+      "description": "CheckAppState activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via CheckAppState.",
+      "_routing_review_needed": true
     },
     "NSelectItem": {
       "gen_function": "gen_nselectitem",
@@ -921,7 +957,11 @@
           "content": null
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "SelectItem activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SelectItem.",
+      "_routing_review_needed": true
     },
     "NMouseScroll": {
       "gen_function": "gen_nmousescroll",
@@ -1022,19 +1062,35 @@
           "content": "<uix:SearchedElement><uix:SearchedElement.InUiElement><InArgument x:TypeArguments=\"ui:UiElement\" /></uix:SearchedElement.InUiElement><uix:SearchedElement.OutUiElement><OutArgument x:TypeArguments=\"ui:UiElement\" /></uix:SearchedElement.OutUiElement><uix:SearchedElement.Target>{selector}</uix:SearchedElement.Target><uix:SearchedElement.Timeout><InArgument x:TypeArguments=\"x:Double\" /></uix:SearchedElement.Timeout></uix:SearchedElement>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "ui_automation",
+      "description": "MouseScroll activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via MouseScroll.",
+      "_routing_review_needed": true
     },
     "ApplicationEventTrigger": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "ApplicationEventTrigger (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate ApplicationEventTrigger. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "ExtractUIData": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "ExtractUIData (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate ExtractUIData. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "GetAttribute": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "GetAttribute (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate GetAttribute. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "GoogleCloudOCR": {
       "gen_function": null,
@@ -1177,7 +1233,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "Google Cloud OCR activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Google Cloud OCR.",
+      "_routing_review_needed": true
     },
     "GoogleOCR": {
       "gen_function": null,
@@ -1327,7 +1387,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "TesseractOCR activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via TesseractOCR.",
+      "_routing_review_needed": true
     },
     "MicrosoftAzureComputerVisionOCR": {
       "gen_function": null,
@@ -1469,11 +1533,19 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "Microsoft Azure Computer Vision OCR activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Microsoft Azure Computer Vision OCR.",
+      "_routing_review_needed": true
     },
     "NAccessibilityCheck": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "AccessibilityCheck (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate AccessibilityCheck. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "NApplicationCard": {
       "gen_function": null,
@@ -1519,7 +1591,11 @@
         }
       },
       "conditional_attrs": {},
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "ApplicationCard activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via ApplicationCard.",
+      "_routing_review_needed": true
     },
     "NBlockUserInput": {
       "gen_function": null,
@@ -1580,7 +1656,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "BlockUserInput activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via BlockUserInput.",
+      "_routing_review_needed": true
     },
     "NBrowserDialogScope": {
       "gen_function": null,
@@ -1650,7 +1730,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "BrowserDialogScope activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via BrowserDialogScope.",
+      "_routing_review_needed": true
     },
     "NBrowserFilePickerScope": {
       "gen_function": null,
@@ -1711,7 +1795,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "BrowserFilePickerScope activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via BrowserFilePickerScope.",
+      "_routing_review_needed": true
     },
     "NCheckElement": {
       "gen_function": null,
@@ -1783,7 +1871,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "CheckElement activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via CheckElement.",
+      "_routing_review_needed": true
     },
     "NClickTrigger": {
       "gen_function": null,
@@ -1848,7 +1940,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "ClickTrigger activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via ClickTrigger.",
+      "_routing_review_needed": true
     },
     "NClosePopup": {
       "gen_function": null,
@@ -1922,7 +2018,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "ClosePopup activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via ClosePopup.",
+      "_routing_review_needed": true
     },
     "NDragAndDrop": {
       "gen_function": null,
@@ -1985,7 +2085,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "DragAndDrop activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via DragAndDrop.",
+      "_routing_review_needed": true
     },
     "NElementScope": {
       "gen_function": null,
@@ -2059,11 +2163,19 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "ElementScope activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via ElementScope.",
+      "_routing_review_needed": true
     },
     "NExtractFormDataGeneric": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "ExtractFormData (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate ExtractFormData. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "NFillForm": {
       "gen_function": null,
@@ -2126,7 +2238,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "FillFormUsingAI activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via FillFormUsingAI.",
+      "_routing_review_needed": true
     },
     "NFindElements": {
       "gen_function": null,
@@ -2216,7 +2332,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "FindElements activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via FindElements.",
+      "_routing_review_needed": true
     },
     "NForEachUiElement": {
       "gen_function": null,
@@ -2288,7 +2408,11 @@
         }
       },
       "conditional_attrs": {},
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "ForEachUiElement activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via ForEachUiElement.",
+      "_routing_review_needed": true
     },
     "NGetBrowserData": {
       "gen_function": null,
@@ -2344,7 +2468,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "GetBrowserData activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via GetBrowserData.",
+      "_routing_review_needed": true
     },
     "NGetClipboard": {
       "gen_function": null,
@@ -2416,7 +2544,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "GetClipboard activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via GetClipboard.",
+      "_routing_review_needed": true
     },
     "NHighlight": {
       "gen_function": null,
@@ -2480,7 +2612,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "Highlight activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Highlight.",
+      "_routing_review_needed": true
     },
     "NInjectJsScript": {
       "gen_function": null,
@@ -2568,7 +2704,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "InjectJsScript activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via InjectJsScript.",
+      "_routing_review_needed": true
     },
     "NKeyboardTrigger": {
       "gen_function": null,
@@ -2633,7 +2773,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "KeyboardTrigger activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via KeyboardTrigger.",
+      "_routing_review_needed": true
     },
     "NNavigateBrowser": {
       "gen_function": null,
@@ -2680,7 +2824,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "NavigateBrowser activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via NavigateBrowser.",
+      "_routing_review_needed": true
     },
     "NSAPCallTransaction": {
       "gen_function": null,
@@ -2746,7 +2894,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPCallTransaction activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPCallTransaction.",
+      "_routing_review_needed": true
     },
     "NSAPClickPictureOnScreen": {
       "gen_function": null,
@@ -2810,7 +2962,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPClickPictureOnScreen activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPClickPictureOnScreen.",
+      "_routing_review_needed": true
     },
     "NSAPClickToolbarButton": {
       "gen_function": null,
@@ -2883,7 +3039,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPClickToolbarButton activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPClickToolbarButton.",
+      "_routing_review_needed": true
     },
     "NSAPExpandALVHierarchicalTable": {
       "gen_function": null,
@@ -2957,7 +3117,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPExpandALVHierarchicalTable activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPExpandALVHierarchicalTable.",
+      "_routing_review_needed": true
     },
     "NSAPExpandALVTree": {
       "gen_function": null,
@@ -3021,7 +3185,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPExpandALVTree activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPExpandALVTree.",
+      "_routing_review_needed": true
     },
     "NSAPExpandTree": {
       "gen_function": null,
@@ -3094,7 +3262,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPExpandTree activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPExpandTree.",
+      "_routing_review_needed": true
     },
     "NSAPLogin": {
       "gen_function": null,
@@ -3144,7 +3316,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPLogin activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPLogin.",
+      "_routing_review_needed": true
     },
     "NSAPLogon": {
       "gen_function": null,
@@ -3190,7 +3366,11 @@
         }
       },
       "conditional_attrs": {},
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPLogon activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPLogon.",
+      "_routing_review_needed": true
     },
     "NSAPReadStatusbar": {
       "gen_function": null,
@@ -3283,7 +3463,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPReadStatusbar activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPReadStatusbar.",
+      "_routing_review_needed": true
     },
     "NSAPSelectDatesInCalendar": {
       "gen_function": null,
@@ -3347,7 +3531,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPSelectDatesInCalendar activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPSelectDatesInCalendar.",
+      "_routing_review_needed": true
     },
     "NSAPSelectMenuItem": {
       "gen_function": null,
@@ -3404,7 +3592,11 @@
       "conditional_attrs": {},
       "_review_needed": false,
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPSelectMenuItem activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPSelectMenuItem.",
+      "_routing_review_needed": true
     },
     "NSAPTableCellScope": {
       "gen_function": null,
@@ -3468,7 +3660,11 @@
       },
       "conditional_attrs": {},
       "_sap_note": "Must be used inside an NSAPLogon scope. Generator emits a warning if no SAP session context is present.",
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SAPTableCellScope activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SAPTableCellScope.",
+      "_routing_review_needed": true
     },
     "NSetBrowserData": {
       "gen_function": null,
@@ -3524,7 +3720,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SetBrowserData activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SetBrowserData.",
+      "_routing_review_needed": true
     },
     "NSetClipboard": {
       "gen_function": null,
@@ -3596,7 +3796,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SetClipboard activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SetClipboard.",
+      "_routing_review_needed": true
     },
     "NSetFocus": {
       "gen_function": null,
@@ -3659,7 +3863,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SetFocus activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SetFocus.",
+      "_routing_review_needed": true
     },
     "NSetRuntimeBrowser": {
       "gen_function": null,
@@ -3706,7 +3914,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SetRuntimeBrowser activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SetRuntimeBrowser.",
+      "_routing_review_needed": true
     },
     "NSetText": {
       "gen_function": null,
@@ -3769,11 +3981,19 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "SetText activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via SetText.",
+      "_routing_review_needed": true
     },
     "NSetValue": {
       "_unsupported_reason": "wizard-only",
-      "_review_needed": false
+      "_review_needed": false,
+      "category": "ui_automation",
+      "description": "UpdateUIElementUsingAI (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate UpdateUIElementUsingAI. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     },
     "NTakeScreenshot": {
       "gen_function": null,
@@ -3837,7 +4057,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "TakeScreenshot activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via TakeScreenshot.",
+      "_routing_review_needed": true
     },
     "NUITask": {
       "gen_function": null,
@@ -3898,7 +4122,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "UITasksWithAI activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via UITasksWithAI.",
+      "_routing_review_needed": true
     },
     "NUnblockUserInput": {
       "gen_function": null,
@@ -3961,7 +4189,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "UnblockUserInput activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via UnblockUserInput.",
+      "_routing_review_needed": true
     },
     "NWindowOperation": {
       "gen_function": null,
@@ -4024,7 +4256,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": false,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "ui_automation",
+      "description": "WindowOperations activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via WindowOperations.",
+      "_routing_review_needed": true
     },
     "Activate": {
       "gen_function": "gen_activate",
@@ -4102,7 +4338,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Activate activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Activate.",
+      "_routing_review_needed": true
     },
     "CVScope": {
       "gen_function": "gen_cv_scope",
@@ -4194,7 +4434,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "CV Scope activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via CV Scope.",
+      "_routing_review_needed": true
     },
     "CvExtractDataTableWithDescriptor": {
       "gen_function": "gen_cv_extract_data_table_with_descriptor",
@@ -4277,7 +4521,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Cv Extract Data Table With Descriptor activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Cv Extract Data Table With Descriptor.",
+      "_routing_review_needed": true
     },
     "CvGetTextWithDescriptor": {
       "gen_function": "gen_cv_get_text_with_descriptor",
@@ -4355,7 +4603,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Cv Get Text With Descriptor activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Cv Get Text With Descriptor.",
+      "_routing_review_needed": true
     },
     "CvHighlightWithDescriptor": {
       "gen_function": "gen_cv_highlight_with_descriptor",
@@ -4439,7 +4691,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Cv Highlight With Descriptor activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Cv Highlight With Descriptor.",
+      "_routing_review_needed": true
     },
     "CvHoverWithDescriptor": {
       "gen_function": "gen_cv_hover_with_descriptor",
@@ -4507,7 +4763,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Cv Hover With Descriptor activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Cv Hover With Descriptor.",
+      "_routing_review_needed": true
     },
     "CvTypeIntoWithDescriptor": {
       "gen_function": "gen_cv_type_into_with_descriptor",
@@ -4619,7 +4879,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Cv Type Into With Descriptor activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Cv Type Into With Descriptor.",
+      "_routing_review_needed": true
     },
     "FindChildren": {
       "gen_function": "gen_find_children",
@@ -4699,7 +4963,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Find Children activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Find Children.",
+      "_routing_review_needed": true
     },
     "GetActiveWindow": {
       "gen_function": "gen_get_active_window",
@@ -4750,7 +5018,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Get Active Window activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Get Active Window.",
+      "_routing_review_needed": true
     },
     "GetOCRText": {
       "gen_function": "gen_get_ocr_text",
@@ -4828,7 +5100,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Get OCR Text activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Get OCR Text.",
+      "_routing_review_needed": true
     },
     "HideWindow": {
       "gen_function": "gen_hide_window",
@@ -4883,7 +5159,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Hide Window activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Hide Window.",
+      "_routing_review_needed": true
     },
     "LoadImage": {
       "gen_function": "gen_load_image",
@@ -4947,7 +5227,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Load Image activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Load Image.",
+      "_routing_review_needed": true
     },
     "SaveImage": {
       "gen_function": "gen_save_image",
@@ -5011,7 +5295,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Save Image activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Save Image.",
+      "_routing_review_needed": true
     },
     "SelectMultipleItems": {
       "gen_function": "gen_select_multiple_items",
@@ -5125,7 +5413,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Select Multiple Items activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Select Multiple Items.",
+      "_routing_review_needed": true
     },
     "SetFocus": {
       "gen_function": "gen_set_focus",
@@ -5203,7 +5495,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Set Focus activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Set Focus.",
+      "_routing_review_needed": true
     },
     "SetWebAttribute": {
       "gen_function": "gen_set_web_attribute",
@@ -5308,7 +5604,11 @@
         }
       },
       "conditional_attrs": {},
-      "_review_needed": true
+      "_review_needed": true,
+      "category": "ui_automation",
+      "description": "Set Web Attribute activity from the ui automation category.",
+      "use_when": "User wants to interact with a UI element via Set Web Attribute.",
+      "_routing_review_needed": true
     }
   }
 }

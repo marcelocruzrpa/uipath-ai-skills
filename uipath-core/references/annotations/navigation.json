@@ -62,7 +62,11 @@
           "content": "Inline viewstate_block with is_expanded=True"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "navigation",
+      "description": "GoToURL activity from the navigation category.",
+      "use_when": "User wants to navigate within the host application: GoToURL.",
+      "_routing_review_needed": true
     },
     "NGetUrl": {
       "gen_function": "gen_ngeturl",
@@ -112,7 +116,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing element, no children. Must be inside NApplicationCard scope."
+      "note": "Self-closing element, no children. Must be inside NApplicationCard scope.",
+      "category": "navigation",
+      "description": "GetURL activity from the navigation category.",
+      "use_when": "User wants to navigate within the host application: GetURL.",
+      "_routing_review_needed": true
     },
     "NExtractDataGeneric": {
       "gen_function": "gen_nextractdata",
@@ -218,7 +226,10 @@
           "attr": "LimitExtractionTo",
           "required": false,
           "default": "None",
-          "enum": ["None", "CurrentPage"],
+          "enum": [
+            "None",
+            "CurrentPage"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -240,7 +251,11 @@
           "content": "TargetAnchorable with FullSelectorArgument, Guid, ScopeSelectorArgument, SearchSteps=Selector, Version=V6"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "navigation",
+      "description": "ExtractData activity from the navigation category.",
+      "use_when": "User wants to navigate within the host application: ExtractData.",
+      "_routing_review_needed": true
     },
     "PickLoginValidation": {
       "gen_function": "gen_pick_login_validation",
@@ -422,7 +437,11 @@
       },
       "fixed_attrs": {},
       "child_elements": {},
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "navigation",
+      "description": "Pick Login Validation activity from the navigation category.",
+      "use_when": "User wants to navigate within the host application: Pick Login Validation.",
+      "_routing_review_needed": true
     }
   }
 }

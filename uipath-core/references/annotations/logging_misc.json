@@ -39,7 +39,12 @@
           "attr": "Level",
           "required": false,
           "default": "Info",
-          "enum": ["Info", "Warn", "Error", "Trace"],
+          "enum": [
+            "Info",
+            "Warn",
+            "Error",
+            "Trace"
+          ],
           "escape": null,
           "bracket_wrap": false,
           "type": "string"
@@ -48,7 +53,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Log Message activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Log Message.",
+      "_routing_review_needed": true
     },
     "Comment": {
       "gen_function": "gen_comment",
@@ -87,7 +96,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Comment activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Comment.",
+      "_routing_review_needed": true
     },
     "CommentOut": {
       "gen_function": "gen_comment_out",
@@ -139,7 +152,11 @@
           "content": "Sequence DisplayName='Ignored Activities' with body_content and viewstate_block"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "logging_misc",
+      "description": "Comment Out activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Comment Out.",
+      "_routing_review_needed": true
     },
     "Break": {
       "gen_function": "gen_break",
@@ -170,7 +187,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Break activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Break.",
+      "_routing_review_needed": true
     },
     "Continue": {
       "gen_function": "gen_continue",
@@ -201,7 +222,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Continue activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Continue.",
+      "_routing_review_needed": true
     },
     "KillProcess": {
       "gen_function": "gen_kill_process",
@@ -240,7 +265,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Kill Process activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Kill Process.",
+      "_routing_review_needed": true
     },
     "TerminateWorkflow": {
       "gen_function": "gen_terminate_workflow",
@@ -283,7 +312,11 @@
           "content": "<InArgument x:TypeArguments=\"s:Exception\">[{reason_expression}]</InArgument>"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "logging_misc",
+      "description": "Terminate Workflow activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Terminate Workflow.",
+      "_routing_review_needed": true
     },
     "ShouldStop": {
       "gen_function": "gen_should_stop",
@@ -321,7 +354,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "logging_misc",
+      "description": "Should Stop activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Should Stop.",
+      "_routing_review_needed": true
     },
     "AddLogFields": {
       "gen_function": "gen_add_log_fields",
@@ -364,7 +401,11 @@
           "content": "scg:List x:TypeArguments='ui:AddLogField' with AddLogField elements (FieldName + FieldValue attrs)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "logging_misc",
+      "description": "Add Log Fields activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Add Log Fields.",
+      "_routing_review_needed": true
     },
     "RemoveLogFields": {
       "gen_function": "gen_remove_log_fields",
@@ -407,7 +448,11 @@
           "content": "scg:List x:TypeArguments='x:String' with x:String elements"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "logging_misc",
+      "description": "Remove Log Fields activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Remove Log Fields.",
+      "_routing_review_needed": true
     },
     "TakeScreenshotAndSave": {
       "gen_function": "gen_take_screenshot_and_save",
@@ -470,7 +515,11 @@
           "content": "<ui:Target ClippingRegion=\"{x:Null}\" Element=\"{x:Null}\" Selector=\"{x:Null}\" WaitForReady=\"INTERACTIVE\" />"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "logging_misc",
+      "description": "Take Screenshot And Save activity from the logging misc category.",
+      "use_when": "User wants to log or perform a miscellaneous helper task: Take Screenshot And Save.",
+      "_routing_review_needed": true
     }
   }
 }

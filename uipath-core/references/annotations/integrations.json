@@ -83,7 +83,11 @@
           "replacement_value": "{x:Null}"
         }
       },
-      "note": "Self-closing tag. Classic Workbook activity — no Excel app needed."
+      "note": "Self-closing tag. Classic Workbook activity — no Excel app needed.",
+      "category": "integrations",
+      "description": "Read Range activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Read Range.",
+      "_routing_review_needed": true
     },
     "WriteRange": {
       "gen_function": "gen_write_range",
@@ -152,7 +156,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Write Range activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Write Range.",
+      "_routing_review_needed": true
     },
     "WriteCell": {
       "gen_function": "gen_write_cell",
@@ -218,7 +226,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Write Cell activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Write Cell.",
+      "_routing_review_needed": true
     },
     "AppendRange": {
       "gen_function": "gen_append_range",
@@ -277,7 +289,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Append Range activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Append Range.",
+      "_routing_review_needed": true
     },
     "ReadPDFText": {
       "gen_function": "gen_read_pdf_text",
@@ -336,7 +352,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Read PDF Text activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Read PDF Text.",
+      "_routing_review_needed": true
     },
     "ReadPDFWithOCR": {
       "gen_function": "gen_read_pdf_with_ocr",
@@ -408,7 +428,11 @@
           "content": "ActivityFunc x:TypeArguments='sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))' with DelegateInArgument and GoogleOCR (Tesseract) element"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "integrations",
+      "description": "Read PDF With OCR activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Read PDF With OCR.",
+      "_routing_review_needed": true
     },
     "SendMail": {
       "gen_function": "gen_send_mail",
@@ -538,7 +562,11 @@
           "content": "<scg:List x:TypeArguments=\"p:InArgument(x:String)\" Capacity=\"0\" />"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "integrations",
+      "description": "Send Mail activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Send Mail.",
+      "_routing_review_needed": true
     },
     "GetIMAPMailMessages": {
       "gen_function": "gen_get_imap_mail",
@@ -648,7 +676,11 @@
           "content": "BackupSlot x:TypeArguments='umae:ConnectionDetails' with BackupValues dictionary"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "integrations",
+      "description": "Get IMAP Mail Messages activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Get IMAP Mail Messages.",
+      "_routing_review_needed": true
     },
     "SaveMailAttachments": {
       "gen_function": "gen_save_mail_attachments",
@@ -727,7 +759,11 @@
       },
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Save Mail Attachments activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Save Mail Attachments.",
+      "_routing_review_needed": true
     },
     "DatabaseConnect": {
       "gen_function": "gen_database_connect",
@@ -784,7 +820,11 @@
       "fixed_attrs": {},
       "child_elements": {},
       "conditional_attrs": {},
-      "note": "Self-closing tag."
+      "note": "Self-closing tag.",
+      "category": "integrations",
+      "description": "Database Connect activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Database Connect.",
+      "_routing_review_needed": true
     },
     "ExecuteQuery": {
       "gen_function": "gen_execute_query",
@@ -877,7 +917,11 @@
           "content": "scg:Dictionary x:TypeArguments='x:String, p:Argument' with InArgument elements (only when parameters provided)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "integrations",
+      "description": "Execute Query activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Execute Query.",
+      "_routing_review_needed": true
     },
     "ExecuteNonQuery": {
       "gen_function": "gen_execute_non_query",
@@ -970,7 +1014,11 @@
           "content": "scg:Dictionary x:TypeArguments='x:String, p:Argument' with InArgument elements (only when parameters provided)"
         }
       },
-      "conditional_attrs": {}
+      "conditional_attrs": {},
+      "category": "integrations",
+      "description": "Execute Non Query activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Execute Non Query.",
+      "_routing_review_needed": true
     },
     "BulkInsert": {
       "gen_function": null,
@@ -1048,7 +1096,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Bulk Insert activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Bulk Insert.",
+      "_routing_review_needed": true
     },
     "BulkUpdate": {
       "gen_function": null,
@@ -1126,7 +1178,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Bulk Update activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Bulk Update.",
+      "_routing_review_needed": true
     },
     "InsertDataTable": {
       "gen_function": null,
@@ -1204,7 +1260,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Requires prior DatabaseConnect whose DatabaseConnection output is passed as db_connection_variable. TableName is a literal column-matched table. DataTable must match the target schema. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Insert Data Table activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Insert Data Table.",
+      "_routing_review_needed": true
     },
     "DatabaseDisconnect": {
       "gen_function": null,
@@ -1245,7 +1305,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Self-closing. Pair with a preceding DatabaseConnect. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Self-closing. Pair with a preceding DatabaseConnect. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Database Disconnect activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Database Disconnect.",
+      "_routing_review_needed": true
     },
     "DatabaseTransaction": {
       "gen_function": null,
@@ -1312,7 +1376,11 @@
       },
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Wraps statements in a transaction. Body must contain the DB activities to execute transactionally. Generator emits empty Sequence placeholder — caller must inject body activities. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Database Transaction activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Database Transaction.",
+      "_routing_review_needed": true
     },
     "ExportPDFPageAsImage": {
       "gen_function": null,
@@ -1380,7 +1448,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Namespace upap: = clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Export PDF Page As Image activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Export PDF Page As Image.",
+      "_routing_review_needed": true
     },
     "ExtractImagesFromPDF": {
       "gen_function": null,
@@ -1429,7 +1501,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Extract Images From PDF activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Extract Images From PDF.",
+      "_routing_review_needed": true
     },
     "ExtractPDFPageRange": {
       "gen_function": null,
@@ -1488,7 +1564,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Extract PDF Page Range activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Extract PDF Page Range.",
+      "_routing_review_needed": true
     },
     "GetPDFPageCount": {
       "gen_function": null,
@@ -1538,7 +1618,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Get PDF Page Count activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Get PDF Page Count.",
+      "_routing_review_needed": true
     },
     "JoinPDF": {
       "gen_function": null,
@@ -1588,7 +1672,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "(dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Join PDF activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Join PDF.",
+      "_routing_review_needed": true
     },
     "ManagePDFPassword": {
       "gen_function": null,
@@ -1657,7 +1745,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required. (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required. (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Manage PDF Password activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Manage PDF Password.",
+      "_routing_review_needed": true
     },
     "ReadXPSText": {
       "gen_function": null,
@@ -1716,7 +1808,11 @@
       "child_elements": {},
       "conditional_attrs": {},
       "_review_needed": true,
-      "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:). (dispatched via gen_from_annotation; element_tag drives emission)"
+      "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:). (dispatched via gen_from_annotation; element_tag drives emission)",
+      "category": "integrations",
+      "description": "Read XPS Text activity from the integrations category.",
+      "use_when": "User wants to integrate with an external system using Read XPS Text.",
+      "_routing_review_needed": true
     },
     "ReadXPSWithOCR": {
       "gen_function": null,
@@ -1729,7 +1825,11 @@
       "_unsupported_reason": "wizard-only",
       "note": "ReadXPSWithOCR requires an OCREngine ActivityFunc delegate (same shape as ReadPDFWithOCR). Emit via hand-written generator (see gen_read_pdf_with_ocr in integrations.py) rather than data-driven fallback. (dispatched via gen_from_annotation; element_tag drives emission)",
       "_review_needed": true,
-      "_unsupported_detail": "requires-ocr-engine-delegate; emit via gen_read_pdf_with_ocr pattern"
+      "_unsupported_detail": "requires-ocr-engine-delegate; emit via gen_read_pdf_with_ocr pattern",
+      "category": "integrations",
+      "description": "Read XPS With OCR (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
+      "use_when": "Do not auto-generate Read XPS With OCR. Direct the user to author it in UiPath Studio.",
+      "_routing_review_needed": true
     }
   }
 }
