@@ -249,29 +249,15 @@ App `type` is auto-detected from selector prefix: `<wnd>` → desktop, `<html>` 
 from scripts.generate_activities import *
 ```
 
-**Most-used generators (top 10):**
+**Pick the right generator with `references/routing-index.md`** — auto-generated from
+`references/annotations/*.json`, lists every activity with its `description`,
+`use_when`, and (where authored) `alternatives`. Wizard-only activities are
+listed in the "don't auto-generate" section so you can stop guessing.
 
-| Function | Activity | Key params |
-|---|---|---|
-| `gen_napplicationcard_open()` | NApplicationCard (Launch) | `display_name`, `url_variable`, `out_ui_element`, `scope_guid`, `body_content` |
-| `gen_napplicationcard_attach()` | NApplicationCard (Action) | `display_name`, `ui_element_variable`, `scope_guid`, `body_content` |
-| `gen_napplicationcard_desktop_open()` | NApplicationCard (Desktop) | `display_name`, `file_path_variable`, `out_ui_element`, `scope_guid`, `body_content` |
-| `gen_ntypeinto()` | NTypeInto | `display_name`, `selector`, `text_variable`, `id_ref`, `scope_id`, `is_secure=False` |
-| `gen_nclick()` | NClick | `display_name`, `selector`, `id_ref`, `scope_id` |
-| `gen_ncheck()` | NCheck (checkbox) | `display_name`, `selector`, `id_ref`, `scope_id`, `action="Check"/"Uncheck"/"Toggle"` |
-| `gen_ngettext()` | NGetText | `display_name`, `output_variable`, `id_ref`, `scope_id`, `selector=` OR `in_ui_element=` |
-| `gen_getrobotcredential()` | GetRobotCredential | `asset_name_variable`, `username_variable`, `password_variable`, `id_ref` |
-| `gen_invoke_workflow()` | InvokeWorkflowFile | `workflow_path`, `display_name`, `id_ref`, `arguments={}` |
-| `gen_pick_login_validation()` | Pick (2-branch) | `success_selector`, `error_selector`, `error_ui_variable`, `scope_id`, + idref params |
-| `gen_try_catch()` | TryCatch | `try_content`, `try_sequence_idref`, `id_ref`, `catches` |
-| `gen_logmessage()` | LogMessage | `message`, `id_ref`, `level="Info"` |
-| `gen_build_data_table()` | BuildDataTable | `datatable_variable`, `columns=[(name, type)]`, `id_ref`, `initial_rows=` |
-| `gen_create_form_task()` | CreateFormTask | `task_title_expr`, `task_output_variable`, `form_layout_json`, `id_ref`, `form_data=` |
-| `gen_wait_for_form_task()` | WaitForFormTaskAndResume | `task_input_variable`, `id_ref` |
-| `gen_get_imap_mail()` | GetIMAPMailMessages | `messages_variable`, `id_ref`, `filter_expression_variable=`, `mail_folder=` |
-| `gen_save_mail_attachments()` | SaveMailAttachments | `message_variable`, `folder_path_variable`, `id_ref`, `file_filter=` |
-
-For all 95 core generators + plugin extensions → `generation.md` § Activity Generators.
+For full generator signatures and parameter reference → `generation.md` § Activity Generators.
+The previously hand-maintained "most-used generators" table that lived here was
+removed in favor of the auto-generated index — it covered 14 of 95 generators
+and rotted whenever new ones landed.
 
 ## Framework Wiring (modify_framework.py)
 

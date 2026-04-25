@@ -105,6 +105,7 @@ If you are about to present an architectural plan and have NOT produced a `Phase
 
 | Task | File | Section guidance (for large files) |
 |---|---|---|
+| **Pick the right activity for an intent** | `references/routing-index.md` (auto-generated) | Grep for the user's intent or the closest activity name. Don't guess generator names from filenames. |
 | Core activities (Assign, Log, Delay, InputDialog) | `xaml-foundations.md` (165 lines) | Read in full |
 | Control flow (If, ForEach, While, Flowchart) | `xaml-control-flow.md` (208 lines) | Read in full |
 | DataTable ops, file system | `xaml-data.md` (255 lines) | Grep for activity name |
@@ -193,6 +194,7 @@ Before generating ANY XAML, determine project context:
 | `references/expr-datatable.md` | DataTable operations: Select, Compute, filter, sort, lookup, merge, clone, column ops, row iteration. **Large file — grep for section.** |
 | `references/expr-strings-datetime.md` | String (split, join, trim, replace, format), DateTime (parse, format, diff, business days), file/path, numeric, regex. **Large file — grep for section.** |
 | `references/expr-collections-json.md` | Array/List, Dictionary, JSON (JObject, JArray, parse, query, build), LINQ on typed collections, type conversions, Queue Item. **Large file — grep for section.** |
+| `references/routing-index.md` | **Activity selection index** — auto-generated from `references/annotations/*.json`. Maps user intent → generator with `description` + `use_when` per activity, plus a "don't auto-generate" section listing wizard-only activities. **Consult this BEFORE guessing a generator name.** Regenerate with `uipath-core/scripts/generate_routing_index.py`. |
 | `references/golden-templates.md` | Template catalog — patterns extracted from each real template file |
 | `references/scaffolding.md` | Template selection, NuGet mapping, XAML validation, project scaffolding (variants, dispatcher/performer, transaction types), full project generation checklist |
 | `references/decomposition.md` | Naming conventions, decomposition rules (universal 1-8, browser 9-13, desktop 14), common process patterns, argument design, Login/Launch pattern, REFramework Init/Close, UiElement chain |
