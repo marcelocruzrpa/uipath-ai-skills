@@ -206,7 +206,7 @@
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strInvoiceNumber, strInvoiceDate, strInvoiceDueDate, strInvoiceTotal}]" DataTable="[dt_invoices]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="797,185" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {strInvoiceNumber, strInvoiceDate, strInvoiceDueDate, strInvoiceTotal}]" DataTable="[dt_invoices]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="797,185" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachFileX.Body>

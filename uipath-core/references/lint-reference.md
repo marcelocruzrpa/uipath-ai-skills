@@ -2,7 +2,7 @@
 
 Validation rules for `scripts/validate_xaml --lint`. Search by lint number to find the fix.
 
-**Lint checks** (`--lint`) — 65 numbered lint rules (+ plugin lint rules), grouped by severity. When fixing a lint warning, find its number below for the fix reference.
+**Lint checks** (`--lint`) — 80 numbered lint rules (+ plugin lint rules), grouped by severity. When fixing a lint warning, find its number below for the fix reference.
 
 **🔴 Studio crash (file won't open or activity crashes Studio on load):**
 
@@ -38,9 +38,14 @@ Validation rules for `scripts/validate_xaml --lint`. Search by lint number to fi
 | 56 | Argument direction tag doesn't match key prefix (`io_` ≠ OutArgument) → silent data loss | `io_` → InOutArgument, `out_` → OutArgument, `in_` → InArgument |
 | 60 | InvokeWorkflowFile missing required io_/out_ arguments from target | Target declares these but caller doesn't pass them — output silently lost |
 | 67 | Variables used in expressions but never declared | Add `<Variable>` or `<x:Property>` declaration |
-| 71 | Double-escaped quotes `&amp;quot;` in VB.NET expressions | Use `""` not `&amp;quot;` inside `[brackets]` |
+| 70 | Invalid `EmptyFieldMode` enum on NTypeInto (Clear, Empty, Reset, …) | Only `None`, `SingleLine`, `MultiLine` are valid. **Auto-fixable via `--fix`** (maps common hallucinations to `SingleLine`). |
+| 71 | Double-escaped quotes `&amp;quot;` in VB.NET expressions | Use `""` not `&amp;quot;` inside `[brackets]`. **Auto-fixable via `--fix`.** |
 | 81 | Undeclared variable bound in InvokeWorkflowFile Out/InOut argument in Main.xaml | Declare the variable in Main.xaml's Variables panel |
-| 83 | Double-bracketed expression `[[...]]` | UiPath uses single brackets `[expr]` |
+| 83 | Double-bracketed expression `[[...]]` | UiPath uses single brackets `[expr]`. **Auto-fixable via `--fix`.** |
+| 89 | Selector inner attributes use double quotes (`tag=&quot;H1&quot;`) | UiPath selectors require single-quoted values (`tag='H1'`). **Auto-fixable via `--fix`.** |
+| 90 | Selector contents double-XML-escaped (`&amp;lt;` instead of `&lt;`) | Selector engine sees literal `&lt;` and never matches a real element. **Auto-fixable via `--fix`.** |
+| 93 | Invalid `x:Type[]` array reference (e.g. `x:String[]`) | The `x` xmlns is the XAML namespace, not System. Use the `s:` prefix (`s:String[]`, `s:Int32[]`, …). **Auto-fixable via `--fix`.** |
+| 99 | Fully-qualified CLR type name inside `x:TypeArguments` (e.g. `System.Exception`) | XAML cannot resolve dotted FQ names in type-arg contexts. Use the xmlns-prefixed shortname (`s:Exception`, `x:String`, `sd:DataTable`, …). **Auto-fixable via `--fix`.** |
 
 **🟢 Best practice / architecture / security:**
 

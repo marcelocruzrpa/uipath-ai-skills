@@ -216,6 +216,109 @@ def lint_wrong_type_xmlns_prefix(ctx: FileContext, result: ValidationResult):
         )
 
 
+_RE_X_ARRAY_TYPE = re.compile(
+    r'x:(String|Int32|Boolean|Double|DateTime|Decimal)\[\]'
+)
+
+# FQ CLR types that should appear xmlns-prefixed (s:, x:, sd:, ss:, ui:).
+_FQDN_TYPES = (
+    "System.Exception",
+    "System.String",
+    "System.Boolean",
+    "System.Int32",
+    "System.Object",
+    "System.Data.DataTable",
+    "System.Data.DataRow",
+    "System.Security.SecureString",
+    "UiPath.Core.Activities.BusinessRuleException",
+)
+
+
+@lint_rule(93)
+def lint_invalid_x_array_type(ctx: FileContext, result: ValidationResult):
+    """Lint 93: x:String[] / x:Int32[] (and other ``x:Primitive[]``)
+    array types are invalid in XAML.
+
+    The ``x`` xmlns is the XAML namespace, not the System CLR namespace.
+    Primitive arrays must use the ``s:`` prefix (mapped to System) —
+    e.g. ``s:String[]``, ``s:Int32[]``. Using ``x:String[]`` causes
+    Studio to fail with "The type x:String[] could not be resolved".
+    Auto-fix (--fix) rewrites the prefix.
+    """
+    try:
+        content = ctx.active_content
+    except Exception:
+        return
+
+    hits = _RE_X_ARRAY_TYPE.findall(content)
+    if hits:
+        types = sorted(set(hits))
+        result.error(
+            f"[lint 93] {len(hits)} invalid x:Type[] array reference(s): "
+            f"{', '.join('x:' + t + '[]' for t in types)} — the 'x' "
+            f"xmlns is the XAML namespace, not System. Use the 's:' "
+            f"prefix (s:String[], s:Int32[], …). Auto-fix (--fix) "
+            f"rewrites them."
+        )
+
+
+@lint_rule(99)
+def lint_fqdn_type_arguments(ctx: FileContext, result: ValidationResult):
+    """Lint 99: Fully-qualified CLR type names appear inside XAML
+    type-resolution contexts where a xmlns-prefixed shortname is required.
+
+    XAML cannot resolve dotted CLR FQ names like
+    ``x:TypeArguments=\"System.Exception\"`` — Studio expects the
+    xmlns-prefixed shortname (``s:Exception``, ``x:String``,
+    ``sd:DataTable``, ``ss:SecureString``, ``ui:BusinessRuleException``).
+    Hand-written or model-generated XAML often pastes the FQ name and
+    Studio rejects it with 'type ... could not be resolved'.
+    Auto-fix (--fix) rewrites the FQ name to the prefixed form.
+
+    Detection is intentionally scoped to:
+      - ``x:TypeArguments=\"...\"`` attribute values, and
+      - ``<Catch x:TypeArguments=\"FQ\">`` / ``<ActivityAction
+        x:TypeArguments=\"FQ\">`` / ``<DelegateInArgument
+        x:TypeArguments=\"FQ\">`` shapes.
+    Dotted FQ names inside VB expression brackets (e.g.
+    ``[New System.Net.NetworkCredential(...)]`` or
+    ``Dictionary(Of System.String, System.String)``) are valid VB and
+    are not flagged.
+    """
+    try:
+        content = ctx.active_content
+    except Exception:
+        return
+
+    # Collect the contents of every x:TypeArguments="..." attribute.
+    type_arg_blocks = [m.group(1) for m in re.finditer(
+        r'x:TypeArguments="([^"]*)"', content
+    )]
+    if not type_arg_blocks:
+        return
+
+    found = []
+    for fqdn in _FQDN_TYPES:
+        # Word-boundary match so 'System.Exception' doesn't shadow
+        # 'System.ExceptionDispatchInfo'. Trailing lookahead avoids
+        # matching 'System.Data.DataTableExtensions' etc.
+        pattern = re.compile(rf'\b{re.escape(fqdn)}\b(?!\w)')
+        n = sum(len(pattern.findall(blk)) for blk in type_arg_blocks)
+        if n:
+            found.append((fqdn, n))
+
+    if found:
+        breakdown = ", ".join(f"{fqdn} x{n}" for fqdn, n in found)
+        result.error(
+            f"[lint 99] {sum(n for _, n in found)} fully-qualified CLR "
+            f"type reference(s) inside x:TypeArguments ({breakdown}) — "
+            f"XAML cannot resolve dotted FQ names in type-arg contexts. "
+            f"Use the xmlns-prefixed shortname (System.Exception → "
+            f"s:Exception, System.String → x:String, System.Data.DataTable "
+            f"→ sd:DataTable, etc.). Auto-fix (--fix) rewrites them."
+        )
+
+
 @lint_rule(95)
 def lint_unprefixed_argument_types(ctx: FileContext, result: ValidationResult):
     """Lint 95: Detect unprefixed generic types in x:Property declarations.

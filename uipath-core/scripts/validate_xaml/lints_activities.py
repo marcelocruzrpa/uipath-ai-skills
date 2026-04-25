@@ -515,6 +515,42 @@ def lint_interaction_mode_wrong_activity(ctx: FileContext, result: ValidationRes
             )
 
 
+@lint_rule(70)
+def lint_invalid_empty_field_mode(ctx: FileContext, result: ValidationResult):
+    """Lint 70: NTypeInto EmptyFieldMode has an invalid enum value.
+
+    The EmptyFieldMode property accepts only the enum values 'None',
+    'SingleLine', and 'MultiLine'. Hallucinated values like 'Clear',
+    'Empty', 'Reset', 'ClearField', 'ClearAll', 'Single', 'Multi'
+    cause Studio to reject the XAML with 'Cannot convert string to
+    UiPath.UIAutomationNext.Enums.NEmptyFieldMode'. Auto-fix maps
+    common hallucinations to the closest valid value.
+    """
+    try:
+        content = ctx.active_content
+    except Exception:
+        return
+
+    if "EmptyFieldMode=" not in content:
+        return
+
+    valid = {"None", "SingleLine", "MultiLine"}
+    bad = []
+    for m in re.finditer(r'EmptyFieldMode="([^"]*)"', content):
+        value = m.group(1)
+        if value not in valid:
+            bad.append(value)
+
+    if bad:
+        result.error(
+            f"[lint 70] {len(bad)} invalid EmptyFieldMode value(s): "
+            f"{sorted(set(bad))} — only 'None', 'SingleLine', 'MultiLine' "
+            f"are accepted. Studio rejects with 'Cannot convert string to "
+            f"NEmptyFieldMode'. Auto-fix (--fix) maps common hallucinations "
+            f"like 'Clear' or 'Empty' to 'SingleLine'."
+        )
+
+
 @lint_rule(54)
 def lint_queue_name_property(ctx: FileContext, result: ValidationResult):
     """Lint 54: AddQueueItem/GetQueueItem uses QueueName instead of QueueType.

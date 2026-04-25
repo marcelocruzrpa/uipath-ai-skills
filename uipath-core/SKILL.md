@@ -201,7 +201,7 @@ Before generating ANY XAML, determine project context:
 | `references/generation.md` | Object Repository, Workflow Generation CLI (JSON spec format, 95 core generators + plugin extensions), Activity Generators (usage pattern, what model provides vs what generators lock down) |
 | `references/ui-inspection.md` | Playwright MCP workflow (login gate, 5-step process, element mapping), Desktop inspection (PowerShell, inspect-ui-tree.ps1, framework detection) |
 | `references/skill-guide.md` | **Index + examples.** Routes to scaffolding/decomposition/generation/ui-inspection. Contains 7 worked examples + anti-example |
-| `references/lint-reference.md` | **75 lint rules** by severity, searchable by lint number (core rules; plugins add more) |
+| `references/lint-reference.md` | **80 lint rules** by severity, searchable by lint number (core rules; plugins add more) |
 | `references/playwright-selectors.md` | Playwright MCP → UiPath selector mapping |
 | `references/config-sample.md` | Config.xlsx three-sheet reference (Settings, Constants, Assets), key naming conventions, sheet placement decision flowchart, required keys output format |
 | `references/cheat-sheet.md` | JSON spec patterns (multiple_assign, if, try_catch, foreach_row, pick_login_validation, filter_data_table, add_queue_item, selectors.json), modify_framework.py CLI+Python API, valid enum values, naming, quick rules |

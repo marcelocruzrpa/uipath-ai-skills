@@ -103,6 +103,73 @@ def lint_selector_quality(ctx: FileContext, result: ValidationResult):
         )
 
 
+_SELECTOR_ATTRS = ("FullSelectorArgument", "FuzzySelectorArgument", "Selector")
+
+
+@lint_rule(89)
+def lint_selector_double_quotes(ctx: FileContext, result: ValidationResult):
+    """Lint 89: Selector inner attributes use double quotes (&quot;...&quot;)
+    instead of single quotes ('...').
+
+    UiPath selector strings use single quotes for attribute values
+    (e.g. ``<webctrl tag='H1' aaname='Dashboard' />``). Hand-written or
+    copy-pasted selectors often arrive with double quotes
+    (``tag=&quot;H1&quot;``), which Studio still parses but the runtime
+    selector engine treats as part of the value, breaking element
+    matching. Auto-fix (--fix) rewrites the inner quotes to single
+    quotes inside the selector attribute.
+    """
+    content = ctx.active_content
+
+    hits = 0
+    for attr in _SELECTOR_ATTRS:
+        for m in re.finditer(rf'{attr}="([^"]*)"', content):
+            sel_value = m.group(1)
+            if "&quot;" not in sel_value:
+                continue
+            # Selector inner attributes look like ``\\w+=&quot;...&quot;``
+            if re.search(r'\w+=&quot;', sel_value):
+                hits += 1
+
+    if hits:
+        result.error(
+            f"[lint 89] {hits} selector(s) use double-quoted inner "
+            f"attributes (e.g. tag=&quot;H1&quot;) — UiPath selectors "
+            f"require single-quoted values (tag='H1'). Auto-fix (--fix) "
+            f"rewrites them in place."
+        )
+
+
+@lint_rule(90)
+def lint_selector_double_escaped(ctx: FileContext, result: ValidationResult):
+    """Lint 90: Selector contents are double-XML-escaped
+    (``&amp;lt;`` / ``&amp;gt;`` instead of ``&lt;`` / ``&gt;``).
+
+    A correctly-encoded selector inside an XAML attribute looks like
+    ``Selector=\"&lt;webctrl ... /&gt;\"``. When a tool (or hand-edit)
+    runs XML escaping a second time, the angle brackets become
+    ``&amp;lt;``/``&amp;gt;`` — Studio loads the file, but the literal
+    ``&lt;`` text reaches the selector engine and never matches a real
+    element. Auto-fix (--fix) restores the single-escaped form.
+    """
+    content = ctx.active_content
+
+    hits = 0
+    for attr in _SELECTOR_ATTRS:
+        for m in re.finditer(rf'{attr}="([^"]*)"', content):
+            sel_value = m.group(1)
+            if "&amp;lt;" in sel_value or "&amp;gt;" in sel_value:
+                hits += 1
+
+    if hits:
+        result.error(
+            f"[lint 90] {hits} selector(s) double-XML-escaped "
+            f"(&amp;lt;/&amp;gt; instead of &lt;/&gt;) — selector engine "
+            f"sees literal '&lt;' text and never matches a real element. "
+            f"Auto-fix (--fix) restores the single-escaped form."
+        )
+
+
 @lint_rule(110)
 def lint_invoke_bare_typearguments(ctx: FileContext, result: ValidationResult):
     """Lint 110: InvokeWorkflowFile argument with unresolved TypeArguments.
