@@ -1,0 +1,60 @@
+{
+  "totals": {
+    "rows": 460,
+    "covered": 157,
+    "wizard-only": 18,
+    "broken-annotation": 0,
+    "uncovered-but-harvestable": 285,
+    "uncovered-not-harvestable": 0
+  },
+  "per_package": {
+    "UiPath.Excel.Activities/3.4": {
+      "total": 116,
+      "covered": 13,
+      "wizard-only": 6,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 97,
+      "uncovered-not-harvestable": 0
+    },
+    "UiPath.Mail.Activities/2.8": {
+      "total": 43,
+      "covered": 6,
+      "wizard-only": 2,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 35,
+      "uncovered-not-harvestable": 0
+    },
+    "UiPath.System.Activities/25.10": {
+      "total": 163,
+      "covered": 49,
+      "wizard-only": 1,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 113,
+      "uncovered-not-harvestable": 0
+    },
+    "UiPath.System.Activities/26.2": {
+      "total": 41,
+      "covered": 17,
+      "wizard-only": 0,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 24,
+      "uncovered-not-harvestable": 0
+    },
+    "UiPath.Testing.Activities/25.10": {
+      "total": 21,
+      "covered": 18,
+      "wizard-only": 3,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 0,
+      "uncovered-not-harvestable": 0
+    },
+    "UiPath.UIAutomation.Activities/25.10": {
+      "total": 76,
+      "covered": 54,
+      "wizard-only": 6,
+      "broken-annotation": 0,
+      "uncovered-but-harvestable": 16,
+      "uncovered-not-harvestable": 0
+    }
+  }
+}
