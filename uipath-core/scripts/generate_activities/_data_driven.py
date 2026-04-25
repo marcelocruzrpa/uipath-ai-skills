@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,92 @@ from ._xml_utils import _selector_xml
 # top-level generator module (which depends on this one).
 # ---------------------------------------------------------------------------
 _ROOT_SCOPE_SENTINEL = "00000000-0000-0000-0000-000000000000"
+
+
+# ---------------------------------------------------------------------------
+# Prefix → namespace URI table for inline xmlns binding.
+#
+# When an annotation entry's element_tag uses a prefix that is *not* declared
+# by the standard project Main.xaml header (see _STANDARD_XMLNS_PREFIXES below),
+# the dispatcher emits an inline ``xmlns:<prefix>="..."`` declaration on the
+# opening tag of the activity element. This keeps generated fragments XML-valid
+# in any host document, even when the host's <Activity> root has not been
+# pre-augmented via scaffold_project._ensure_xmlns().
+#
+# Rationale: Studio's hand-authored XAML always declares package-specific
+# prefixes (``ueawb``, ``uasd``, ``uascw``, ``upap`` …) at the file root.
+# When our scaffolds inject backfilled activities into a Sequence body of a
+# pre-existing Main.xaml that lacks those declarations, the file becomes ill-
+# formed. Emitting xmlns inline on the activity tag is valid XAML and means
+# every dispatched activity is self-contained — no cross-file coupling.
+#
+# Source: harvested from every ``xmlns:<prefix>="..."`` declaration across
+# uipath-core/references/studio-ground-truth/**/*.xaml and the version-profile
+# packages.
+# ---------------------------------------------------------------------------
+_KNOWN_PREFIX_NAMESPACES: dict[str, str] = {
+    # UiPath core / uix
+    "ui": "http://schemas.uipath.com/workflow/activities",
+    "uix": "http://schemas.uipath.com/workflow/activities/uix",
+    # CV / OCR shared 'p' prefix — Studio rebinds per-file; default to CV here
+    # since it is the more common usage in our annotation corpus.
+    "p": "http://schemas.uipath.com/workflow/activities/cv",
+    # System.Activities sub-packages
+    "uas": "clr-namespace:UiPath.Activities.System;assembly=UiPath.System.Activities",
+    "uast": "clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities",
+    "uasd": "clr-namespace:UiPath.Activities.System.Date;assembly=UiPath.System.Activities",
+    "uasf": "clr-namespace:UiPath.Activities.System.FileOperations;assembly=UiPath.System.Activities",
+    "uasj": "clr-namespace:UiPath.Activities.System.Jobs;assembly=UiPath.System.Activities",
+    "uasom": "clr-namespace:UiPath.Activities.System.Orchestrator.Mail;assembly=UiPath.System.Activities",
+    "uascw": "clr-namespace:UiPath.Activities.System.Compression.Workflow;assembly=UiPath.System.Activities",
+    "ucap": "clr-namespace:UiPath.Core.Activities.ProcessTracking;assembly=UiPath.System.Activities",
+    "ucas": "clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities",
+    # Excel
+    "ue": "clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities",
+    "ueab": "clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities",
+    "ueawb": "clr-namespace:UiPath.Excel.Activities.Windows.Business;assembly=UiPath.Excel.Activities",
+    # Mail
+    "um": "clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities",
+    "umab": "clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities",
+    "umae": "clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities",
+    "umai": "clr-namespace:UiPath.Mail.Activities.IMAP;assembly=UiPath.Mail.Activities",
+    "umao": "clr-namespace:UiPath.Mail.Activities.Outlook;assembly=UiPath.Mail.Activities",
+    "umla": "clr-namespace:UiPath.Mail.LotusNotes.Activities;assembly=UiPath.Mail.Activities",
+    "umabh": "clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities",
+    "usau": "clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities",
+    # CV cache container + System.ComponentModel
+    "uc": "clr-namespace:UiPath.CV;assembly=UiPath.CV",
+    "sc": "clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter",
+    # PDF
+    "upap": "clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities",
+    # Testing
+    "uta": "clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities",
+    "utam": "clr-namespace:UiPath.Testing.Activities.Mocks;assembly=UiPath.Testing.Activities",
+    "utat": "clr-namespace:UiPath.Testing.Activities.TestData;assembly=UiPath.Testing.Activities",
+    # UIAutomationNext models
+    "uuam": "clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities",
+    # Web
+    "uwah": "clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities",
+    "uwaj": "clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities",
+    # System.Activities builtins
+    "sa": "clr-namespace:System.Activities;assembly=System.Activities",
+    # System.Data alt prefix (used by NExtractDataGeneric / persistence)
+    "sd2": "clr-namespace:System.Data;assembly=System.Data.Common",
+}
+
+# Prefixes always declared by the canonical project Main.xaml scaffold header.
+# Element tags using these prefixes never need inline xmlns binding.
+_STANDARD_XMLNS_PREFIXES: frozenset[str] = frozenset({
+    "x",        # XAML core (always)
+    "mc",       # markup-compatibility
+    "sap",      # WF presentation 2009
+    "sap2010",  # WF presentation 2010
+    "s",        # System
+    "scg",      # System.Collections.Generic
+    "sco",      # System.Collections.ObjectModel
+    "sd",       # System.Data / System.Drawing (handled per-template)
+    "ui",       # UiPath core activities
+})
 
 
 # ---------------------------------------------------------------------------
@@ -64,6 +151,56 @@ def _review_needed_opt_in() -> bool:
     if not val:
         return False
     return val.strip().lower() not in ("0", "false")
+
+
+_PREFIX_REF_RE = re.compile(r"\b([a-zA-Z][a-zA-Z0-9_]*):[A-Za-z_]")
+
+
+def _collect_referenced_prefixes(*texts: str) -> list[str]:
+    """Return the de-duplicated, declaration-order list of prefix tokens
+    referenced anywhere in ``texts`` (element tag, fixed-attr values, ...).
+
+    Standard prefixes are filtered out; only prefixes that need an inline
+    xmlns binding survive. Order is preserved so the resulting xmlns
+    declarations are stable across invocations (helps test-snapshot diffs).
+    """
+    seen: dict[str, None] = {}
+    for text in texts:
+        if not text:
+            continue
+        for m in _PREFIX_REF_RE.finditer(text):
+            pfx = m.group(1)
+            if pfx in _STANDARD_XMLNS_PREFIXES:
+                continue
+            if pfx in _KNOWN_PREFIX_NAMESPACES and pfx not in seen:
+                seen[pfx] = None
+    return list(seen)
+
+
+def _xmlns_decls_for_tag(element_tag: str, *extra_texts: str) -> str:
+    """Return inline ``xmlns:<prefix>="..."`` declarations needed by element_tag.
+
+    The element tag drives the primary prefix; ``extra_texts`` (fixed-attr
+    values, child-element static blocks) are scanned for additional prefix
+    references such as ``x:TypeArguments="sd2:DataTable"``.
+
+    A prefix gets an inline binding only when it:
+      1. is *not* one of the project Main.xaml standard prefixes
+         (``_STANDARD_XMLNS_PREFIXES``), AND
+      2. has a known URI in ``_KNOWN_PREFIX_NAMESPACES``.
+
+    Unknown prefixes are silently skipped — the resulting XAML will fail XML
+    parse, surfacing the missing mapping in battle tests so we can register it.
+
+    Returns an empty string when no inline binding is needed (the common case
+    for ``ui:`` and ``uix:`` activities).
+    """
+    prefixes = _collect_referenced_prefixes(element_tag, *extra_texts)
+    if not prefixes:
+        return ""
+    return "".join(
+        f' xmlns:{p}="{_KNOWN_PREFIX_NAMESPACES[p]}"' for p in prefixes
+    )
 
 # ---------------------------------------------------------------------------
 # Module-level annotation cache — one load per process
@@ -352,12 +489,23 @@ def gen_from_annotation(
     # ------------------------------------------------------------------
     # Assemble final XAML
     # ------------------------------------------------------------------
+    # Inline xmlns binding for any non-standard prefix referenced by the
+    # element tag, fixed_attr values, or static child-element blocks. This
+    # lets the dispatcher emit XAML that parses standalone — without the host
+    # Main.xaml having to pre-declare every package-specific prefix at root.
+    fixed_value_blob = " ".join(str(v) for v in fixed_attrs.values())
+    static_block_blob = " ".join(
+        str(c.get("content") or "") for c in child_elements.values()
+        if isinstance(c, dict)
+    )
+    xmlns_inline = _xmlns_decls_for_tag(element_tag, fixed_value_blob, static_block_blob)
+
     if not children_xml_parts:
-        return f"{i}<{element_tag} {attrs_str} />"
+        return f"{i}<{element_tag}{xmlns_inline} {attrs_str} />"
 
     children_block = "\n".join(children_xml_parts)
     return (
-        f"{i}<{element_tag} {attrs_str}>\n"
+        f"{i}<{element_tag}{xmlns_inline} {attrs_str}>\n"
         f"{children_block}\n"
         f"{i}</{element_tag}>"
     )

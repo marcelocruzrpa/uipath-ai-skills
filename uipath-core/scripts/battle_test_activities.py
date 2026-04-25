@@ -80,7 +80,29 @@ _NS_WRAP_OPEN = (
     'xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" '
     'xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" '
     'xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" '
-    'xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities">'
+    'xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" '
+    # Additional prefixes harvested from ground-truth XAML for backfilled
+    # activities (System sub-packages, Excel Windows.Business, Mail variants,
+    # CV/OCR 'p:' prefix, sd2: alt System.Data binding). Kept in sync with
+    # _KNOWN_PREFIX_NAMESPACES in generate_activities/_data_driven.py.
+    'xmlns:p="http://schemas.uipath.com/workflow/activities/cv" '
+    'xmlns:uas="clr-namespace:UiPath.Activities.System;assembly=UiPath.System.Activities" '
+    'xmlns:uast="clr-namespace:UiPath.Activities.System.Text;assembly=UiPath.System.Activities" '
+    'xmlns:uasd="clr-namespace:UiPath.Activities.System.Date;assembly=UiPath.System.Activities" '
+    'xmlns:uasf="clr-namespace:UiPath.Activities.System.FileOperations;assembly=UiPath.System.Activities" '
+    'xmlns:uasj="clr-namespace:UiPath.Activities.System.Jobs;assembly=UiPath.System.Activities" '
+    'xmlns:uasom="clr-namespace:UiPath.Activities.System.Orchestrator.Mail;assembly=UiPath.System.Activities" '
+    'xmlns:uascw="clr-namespace:UiPath.Activities.System.Compression.Workflow;assembly=UiPath.System.Activities" '
+    'xmlns:ucap="clr-namespace:UiPath.Core.Activities.ProcessTracking;assembly=UiPath.System.Activities" '
+    'xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" '
+    'xmlns:ueawb="clr-namespace:UiPath.Excel.Activities.Windows.Business;assembly=UiPath.Excel.Activities" '
+    'xmlns:umai="clr-namespace:UiPath.Mail.Activities.IMAP;assembly=UiPath.Mail.Activities" '
+    'xmlns:umao="clr-namespace:UiPath.Mail.Activities.Outlook;assembly=UiPath.Mail.Activities" '
+    'xmlns:umla="clr-namespace:UiPath.Mail.LotusNotes.Activities;assembly=UiPath.Mail.Activities" '
+    'xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" '
+    'xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" '
+    'xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" '
+    'xmlns:sd2="clr-namespace:System.Data;assembly=System.Data.Common">'
 )
 _NS_WRAP_CLOSE = "</x>"
 
