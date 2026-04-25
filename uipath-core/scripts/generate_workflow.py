@@ -802,15 +802,22 @@ def _generate_activity(spec: dict, scope_id: str, counter: _IdRefCounter,
 
     # Final fallback: try the data-driven generator (annotation corpus).
     # Lets activities described purely in references/annotations/*.json be
-    # emitted without a hand-written gen_* function. Wraps WizardOnly /
-    # MissingScope / ReviewNeeded errors as ValueError("Cannot generate ...")
-    # so the dispatcher always raises a single, user-friendly exception type.
+    # emitted without a hand-written gen_* function.
+    #
+    # Exception policy:
+    #   - WizardOnlyActivityError: let it propagate as its own type so callers
+    #     (e.g. battle_test_activities.py) can distinguish "wizard-only refusal"
+    #     from generic dispatch errors. The CLI's `except Exception` catch-all
+    #     in main() still surfaces a useful message.
+    #   - MissingScopeError: already a ValueError subclass — wrapping is
+    #     redundant and hides the type from any future caller that wants to
+    #     recover. Let it propagate.
+    #   - ReviewNeededError: wrap as ValueError so the CLI message is uniform
+    #     ("Cannot generate ...: ...") for activities awaiting human review.
     try:
         from generate_activities._data_driven import (
             gen_from_annotation,
-            MissingScopeError,
             ReviewNeededError,
-            WizardOnlyActivityError,
         )
     except ImportError:
         raise ValueError(f"Unknown generator: {gen}")
@@ -821,7 +828,7 @@ def _generate_activity(spec: dict, scope_id: str, counter: _IdRefCounter,
     except KeyError:
         # No annotation entry — preserve the original "Unknown generator" message
         raise ValueError(f"Unknown generator: {gen}")
-    except (WizardOnlyActivityError, MissingScopeError, ReviewNeededError) as e:
+    except ReviewNeededError as e:
         raise ValueError(f"Cannot generate {gen!r}: {e}") from e
 
 

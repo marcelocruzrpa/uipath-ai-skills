@@ -10,6 +10,7 @@ ProjectVersion.unsupported_packages(), not by these file-level lints.
 """
 
 import json
+import logging
 import re
 import sys
 from pathlib import Path
@@ -17,6 +18,8 @@ from pathlib import Path
 from ._registry import lint_rule
 from ._context import FileContext, ValidationResult
 
+
+_LOG = logging.getLogger(__name__)
 
 _PROFILES_DIR = Path(__file__).resolve().parents[2] / "references" / "version-profiles"
 
@@ -114,6 +117,11 @@ def _detect_version_sensitive_activities() -> set[str]:
     When ``version_band`` is unavailable, returns the fallback set so lint
     wiring does not crash at import time (the lints themselves still no-op
     via ``_VERSION_BAND_AVAILABLE``).
+
+    Hardened against malformed profile data: each `dict.get(...)` is paired
+    with an isinstance check so a profile carrying ``"version_attrs": null``
+    or ``"activities": null`` (valid JSON, common in the corpus for sparsely
+    annotated activities) is skipped rather than crashing module import.
     """
     if not _VERSION_BAND_AVAILABLE:
         return set(_FALLBACK_VERSION_SENSITIVE)
@@ -121,15 +129,27 @@ def _detect_version_sensitive_activities() -> set[str]:
     activity_versions: dict[str, dict[str, str]] = {}
 
     for band, packages in _merged_band_profile_versions().items():
+        if not isinstance(packages, dict):
+            continue
         for package, profile_version in packages.items():
             if profile_version is None:
                 continue
             data = _load_profile_data(package, profile_version)
-            if data is None:
+            if not isinstance(data, dict):
                 continue
 
-            for act_name, act_data in data.get("activities", {}).items():
-                for tag, version in act_data.get("version_attrs", {}).items():
+            activities = data.get("activities") or {}
+            if not isinstance(activities, dict):
+                continue
+            for act_name, act_data in activities.items():
+                if not isinstance(act_data, dict):
+                    continue
+                vattrs = act_data.get("version_attrs") or {}
+                if not isinstance(vattrs, dict):
+                    continue
+                for tag, version in vattrs.items():
+                    if not isinstance(version, str):
+                        continue
                     entry = activity_versions.setdefault(tag, {})
                     entry[band] = version
 
@@ -148,16 +168,61 @@ def _detect_version_sensitive_activities() -> set[str]:
     return sensitive if sensitive else set(_FALLBACK_VERSION_SENSITIVE)
 
 
-_VERSION_SENSITIVE_ACTIVITIES = _detect_version_sensitive_activities()
+def _safe_detect_version_sensitive_activities() -> set[str]:
+    """Wrap :func:`_detect_version_sensitive_activities` in a hard fail-safe.
+
+    Module import-time work walks the on-disk profile corpus and merges plugin
+    registrations. Any uncaught exception there would brick the entire
+    ``validate_xaml`` package import (every consumer crashes, not just lints
+    120/121/122). We swallow unexpected errors here and fall back to the
+    static set so import always succeeds.
+    """
+    try:
+        return _detect_version_sensitive_activities()
+    except Exception as exc:  # pragma: no cover — defensive only
+        _LOG.warning(
+            "lints_version_compat: _detect_version_sensitive_activities failed "
+            "(%s: %s); using fallback set.",
+            type(exc).__name__, exc,
+        )
+        return set(_FALLBACK_VERSION_SENSITIVE)
+
+
+_VERSION_SENSITIVE_ACTIVITIES = _safe_detect_version_sensitive_activities()
 
 _BAND_EXPECTED_CACHE: dict[str, dict[str, str]] = {}
 
 
+def _invalidate_cache() -> None:
+    """Reset module-level caches so the next lint call rebuilds them.
+
+    Intended for callers (e.g. ``plugin_loader.load_plugins`` post-reload) that
+    register new version profiles or band mappings after this module was first
+    imported. Without invalidation, ``_VERSION_SENSITIVE_ACTIVITIES`` and
+    ``_BAND_EXPECTED_CACHE`` would carry stale entries from the initial scan.
+
+    The plugin loader does NOT currently call this — wiring is up to F3 — but
+    exposing the helper unblocks that work and is safe to call at any time.
+    """
+    global _VERSION_SENSITIVE_ACTIVITIES
+    _VERSION_SENSITIVE_ACTIVITIES = _safe_detect_version_sensitive_activities()
+    _BAND_EXPECTED_CACHE.clear()
+
+
 def _version_key(ver: str) -> tuple[int, ...]:
-    """Return a sortable tuple-of-ints for a dotted profile version string."""
+    """Return a sortable tuple-of-ints for a dotted profile version string.
+
+    Unparseable strings (typos like ``"25.10."``, prerelease tags like
+    ``"25.10-rc1"``) are returned as ``()`` so callers can filter them out.
+    A debug log line records the drop so developers can spot a corrupt entry
+    when tracing why a lint went silent. (R2a M2.)
+    """
     try:
         return tuple(int(x) for x in ver.split("."))
-    except ValueError:
+    except (ValueError, AttributeError):
+        _LOG.debug(
+            "lints_version_compat: dropping unparseable profile version %r", ver,
+        )
         return ()
 
 
@@ -170,12 +235,20 @@ def _build_band_expected_versions(band: str) -> dict[str, str]:
     earlier ones — activities present only in earlier profiles keep their
     earlier version_attrs (fallback), but conflicts resolve in favor of the
     band's canonical profile.
+
+    Hardened against malformed profile data the same way
+    ``_detect_version_sensitive_activities`` is — an explicit ``null`` for
+    ``activities`` or ``version_attrs`` is skipped rather than crashing.
     """
     if band in _BAND_EXPECTED_CACHE:
         return _BAND_EXPECTED_CACHE[band]
     expected: dict[str, str] = {}
     plugin_profiles = _get_plugin_profiles()
-    for package, profile_version in _merged_band_profile_versions().get(band, {}).items():
+    band_packages = _merged_band_profile_versions().get(band) or {}
+    if not isinstance(band_packages, dict):
+        _BAND_EXPECTED_CACHE[band] = expected
+        return expected
+    for package, profile_version in band_packages.items():
         if profile_version is None:
             continue
         canonical_key = _version_key(profile_version)
@@ -193,28 +266,118 @@ def _build_band_expected_versions(band: str) -> dict[str, str]:
         available = [v for v in available if _version_key(v) <= canonical_key]
         for ver in available:
             data = _load_profile_data(package, ver)
-            if data is None:
+            if not isinstance(data, dict):
                 continue
-            for act_name, act_data in data.get("activities", {}).items():
-                for tag, version in act_data.get("version_attrs", {}).items():
+            activities = data.get("activities") or {}
+            if not isinstance(activities, dict):
+                continue
+            for act_name, act_data in activities.items():
+                if not isinstance(act_data, dict):
+                    continue
+                vattrs = act_data.get("version_attrs") or {}
+                if not isinstance(vattrs, dict):
+                    continue
+                for tag, version in vattrs.items():
+                    if not isinstance(version, str):
+                        continue
                     expected[tag] = version
     _BAND_EXPECTED_CACHE[band] = expected
     return expected
 
 
-# Attributes introduced in UIAutomation 25.10+
-_V25_ONLY_ATTRIBUTES = {
+# ---------------------------------------------------------------------------
+# Lint 121 — band-25-only attribute set
+# ---------------------------------------------------------------------------
+# Schema field: each profile entry under ``activities[<name>]`` MAY carry an
+# ``attrs_introduced_in: {attr_name: band_string}`` map declaring which band
+# first introduced a given XAML attribute. When populated across the merged
+# profile corpus, lint 121 derives its v25-only set from that data so adding
+# a new 25.10 attribute is a one-line profile edit, not a code change.
+# When no profile carries the marker (today's corpus has it as null), the
+# hard-coded fallback below applies. (R2a H1.)
+
+# Fallback set used when no profile ships ``attrs_introduced_in`` data.
+# Update only if every profile JSON omits the marker for the given attr.
+_V25_ONLY_ATTRIBUTES_FALLBACK: tuple[str, ...] = (
     "HealingAgentBehavior",
     "ClipboardMode",
-}
+)
+
+
+def _build_v25_only_attributes() -> set[str]:
+    """Derive the band-25-only attribute set from profile metadata.
+
+    Walks every band/package profile and collects attributes whose
+    ``attrs_introduced_in[attr]`` value parses as ``>= 25``. If no profile
+    carries the marker, returns the static fallback tuple verbatim.
+    """
+    if not _VERSION_BAND_AVAILABLE:
+        return set(_V25_ONLY_ATTRIBUTES_FALLBACK)
+
+    derived: set[str] = set()
+    saw_marker = False
+    try:
+        for band, packages in _merged_band_profile_versions().items():
+            if not isinstance(packages, dict):
+                continue
+            for package, profile_version in packages.items():
+                if profile_version is None:
+                    continue
+                data = _load_profile_data(package, profile_version)
+                if not isinstance(data, dict):
+                    continue
+                activities = data.get("activities") or {}
+                if not isinstance(activities, dict):
+                    continue
+                for act_data in activities.values():
+                    if not isinstance(act_data, dict):
+                        continue
+                    introduced = act_data.get("attrs_introduced_in") or {}
+                    if not isinstance(introduced, dict):
+                        continue
+                    saw_marker = saw_marker or bool(introduced)
+                    for attr_name, intro_band in introduced.items():
+                        if not isinstance(attr_name, str):
+                            continue
+                        if not isinstance(intro_band, str):
+                            continue
+                        try:
+                            if int(intro_band.split(".")[0]) >= 25:
+                                derived.add(attr_name)
+                        except (ValueError, AttributeError):
+                            continue
+    except Exception as exc:  # pragma: no cover — defensive only
+        _LOG.warning(
+            "lints_version_compat: _build_v25_only_attributes failed "
+            "(%s: %s); using fallback set.",
+            type(exc).__name__, exc,
+        )
+        return set(_V25_ONLY_ATTRIBUTES_FALLBACK)
+
+    if not saw_marker:
+        return set(_V25_ONLY_ATTRIBUTES_FALLBACK)
+    return derived or set(_V25_ONLY_ATTRIBUTES_FALLBACK)
+
+
+_V25_ONLY_ATTRIBUTES: set[str] = _build_v25_only_attributes()
 
 # Namespace URI for UiPath UIAutomation Next activities.
 # ElementTree uses Clark notation: {uri}LocalName
 _UIX_NAMESPACE_URI = "http://schemas.uipath.com/workflow/activities/uiautomationnext"
 
 # Pre-compiled version patterns for lint 120 and 122
-_RE_VERSION_V5_PLUS = re.compile(r"^V([5-9]|\d{2,})$")
-_RE_VERSION_ANY = re.compile(r"^V\d+$")
+# Accept dotted variants like "V5.1" as well as canonical "V5" (R2a M3) so a
+# future Studio emission shape doesn't silently disable the lint.
+_RE_VERSION_V5_PLUS = re.compile(r"^V([5-9]|\d{2,})(\.\d+)*$")
+_RE_VERSION_ANY = re.compile(r"^V\d+(\.\d+)*$")
+
+
+# UX choice (R2a H2): all three lints SILENTLY no-op on a malformed band.
+# The user-visible signal for an unparseable band belongs upstream — at the
+# scaffold/`ProjectVersion.effective_band()` boundary, not at file-level lint
+# evaluation. Emitting per-file warnings on every XAML traversed produces N
+# duplicates per project for a single root-cause problem. Lint 120/121 used
+# to emit warnings; that path was dropped to align with lint 122.
 
 
 @lint_rule(120)
@@ -228,11 +391,8 @@ def lint_version_v5_below_25(ctx: FileContext, result: ValidationResult):
     try:
         if int(band) >= 25:
             return
-    except ValueError:
-        result.warn(
-            f"[lint 120] versionBand {band!r} is not parseable as an integer; "
-            f"version-compat checks skipped"
-        )
+    except (ValueError, TypeError):
+        # Malformed band — silent no-op (see comment above).
         return
 
     if ctx.tree is None:
@@ -263,11 +423,8 @@ def lint_healing_agent_below_25(ctx: FileContext, result: ValidationResult):
     try:
         if int(band) >= 25:
             return
-    except ValueError:
-        result.warn(
-            f"[lint 121] versionBand {band!r} is not parseable as an integer; "
-            f"version-compat checks skipped"
-        )
+    except (ValueError, TypeError):
+        # Malformed band — silent no-op (see comment above).
         return
 
     if ctx.tree is None:

@@ -48,6 +48,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 PROFILES_DIR = REPO_ROOT / "uipath-core" / "references" / "version-profiles"
 GROUND_TRUTH_DIR = REPO_ROOT / "uipath-core" / "references" / "studio-ground-truth"
 
+# Module-level binding so _backfill_one and _discover_pairs see the override
+# from `--profiles-dir` without threading it through every signature.
+_active_profiles_dir: Path = PROFILES_DIR
+
 # Common Studio xmlns needed to parse snippets in isolation.
 _WRAPPER_NS = (
     'xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" '
@@ -186,8 +190,127 @@ def _extract_activity_info(
     return snippet, ns_prefix, children
 
 
+# Attribute names whose VALUE encodes a per-activity version marker. Studio
+# bumps these (e.g. Version="V5") when the activity's API changes incompatibly,
+# which lint 122 (lint_version_band_mismatch) cross-checks against the band's
+# expected profile. Includes the bare "Version" attribute and any *-Version
+# suffix; localnames are matched case-sensitively.
+_VERSION_ATTR_LOCAL_RE = re.compile(r"^([A-Z][A-Za-z0-9]*)?Version$")
+
+
+def _camel_case_split(name: str) -> str:
+    """Split a CamelCase identifier into space-separated words.
+
+    Best-effort heuristic for doc_name when no Studio find-activities lookup is
+    available. Handles common cases ("WriteRange" -> "Write Range",
+    "OCREngine" -> "OCR Engine", "InvokeWorkflowFile" -> "Invoke Workflow File").
+    Suboptimal for N-prefixed UIAutomation activities ("NClick" -> "N Click"
+    where Studio actually shows "Click") and embedded numerics — those remain
+    a gap; a follow-up could call `uip rpa find-activities` for exact strings.
+    """
+    if not name:
+        return name
+    s = re.sub(r"(?<=[a-z0-9])([A-Z])", r" \1", name)
+    s = re.sub(r"(?<=[A-Z])([A-Z][a-z])", r" \1", s)
+    return s
+
+
+def _extract_properties_and_version_attrs(
+    el: ET.Element | None, short_class: str
+) -> tuple[list[str], dict[str, str]]:
+    """Return (properties, version_attrs) extracted from the activity element.
+
+    properties: sorted union of every attribute name set on the activity
+        element plus every dotted-child element local name (e.g.
+        "<ui:SendMail.AttachmentsBackup>" contributes "AttachmentsBackup").
+        Captures only what the default template emits — not the activity's
+        full API surface — but is strictly better than [].
+
+    version_attrs: lookup dict consumed by lints_version_compat (lint 122).
+        - The bare `Version="VN"` attribute is keyed by *short_class* (the
+          activity's short name) per the lint convention: the lint reads
+          `expected.get(localname)` where localname == activity tag.
+        - Other `*Version` attrs (ExchangeVersion, ClientVersion, etc.) are
+          keyed by attribute localname; they're informational and not
+          lint-actionable today.
+    """
+    if el is None:
+        return [], {}
+    props: set[str] = set()
+    version_attrs: dict[str, str] = {}
+    for attr_name, attr_value in el.attrib.items():
+        local = attr_name.rsplit("}", 1)[-1]
+        # Strip the {namespace} prefix; xmlns:* declarations don't appear in attrib.
+        if local.startswith("{") or local == "Class":
+            continue
+        props.add(local)
+        if local == "Version":
+            version_attrs[short_class] = attr_value
+        elif _VERSION_ATTR_LOCAL_RE.fullmatch(local):
+            version_attrs[local] = attr_value
+    dot_prefix = short_class + "."
+    for child in el:
+        local = child.tag.rsplit("}", 1)[-1]
+        if local.startswith(dot_prefix):
+            props.add(local[len(dot_prefix):])
+    return sorted(props), version_attrs
+
+
+def _namespace_match_from_element(el: ET.Element | None, clr_namespace: str) -> bool:
+    """Return True iff the activity element's xmlns is a clr-namespace URI matching clr_namespace.
+
+    XAML xmlns URIs come in two flavours:
+      - clr-namespace:Foo.Bar;assembly=...  → encodes a real CLR namespace
+      - http://schemas.../activities         → schema URL, no CLR mapping (always False)
+    """
+    if el is None or not clr_namespace:
+        return False
+    tag = el.tag
+    if not tag.startswith("{"):
+        return False
+    uri = tag[1:].split("}", 1)[0]
+    if not uri.startswith("clr-namespace:"):
+        return False
+    ns_part = uri[len("clr-namespace:"):].split(";", 1)[0].strip()
+    return ns_part == clr_namespace
+
+
+def _build_stub_entry(
+    activity_key: str,
+    pkg: str,
+    index_entry: dict,
+    snippet: str,
+    ns_prefix: str | None,
+    children: list[str],
+    el: ET.Element | None,
+) -> dict:
+    """Construct a profile entry for an activity newly discovered via harvest.
+
+    Loss-free fields are derived from harvest data; lossy fields default to
+    safe neutral values (see plan: doc_name=name, properties=[], version_attrs={}).
+    """
+    class_name = (index_entry or {}).get("class_name") or ""
+    clr_namespace = class_name.rsplit(".", 1)[0] if "." in class_name else ""
+    props, version_attrs = _extract_properties_and_version_attrs(el, activity_key)
+    return {
+        "doc_name": _camel_case_split(activity_key),
+        "name": activity_key,
+        "properties": props,
+        "version_attrs": version_attrs,
+        "class_name": class_name or None,
+        "clr_namespace": clr_namespace or None,
+        "source_package": pkg,
+        "namespace_match": _namespace_match_from_element(el, clr_namespace),
+        "harvestable": True,
+        "namespace_prefix": ns_prefix,
+        "child_elements": children,
+        "xaml_template": snippet,
+    }
+
+
 def _backfill_one(
-    pkg: str, ver: str, dry_run: bool, force: bool
+    pkg: str, ver: str, dry_run: bool, force: bool,
+    add_missing: bool = False, enrich_fields: bool = False,
 ) -> dict[str, int]:
     """Process one package/version pair. Returns stats dict."""
     stats = {
@@ -199,6 +322,9 @@ def _backfill_one(
         "skipped_case_mismatch": 0,
         "skipped_no_profile_entry": 0,
         "skipped_no_snippet": 0,
+        "added_missing": 0,
+        "skipped_missing_no_snippet": 0,
+        "enriched_fields": 0,
     }
 
     harvest_dir = GROUND_TRUTH_DIR / pkg / ver
@@ -216,7 +342,7 @@ def _backfill_one(
     }
 
     # Locate profile JSON.
-    profile_path = PROFILES_DIR / pkg / f"{ver}.json"
+    profile_path = _active_profiles_dir / pkg / f"{ver}.json"
     if not profile_path.exists():
         print(f"  INFO: no profile at {profile_path} — skipping {pkg}@{ver}")
         return stats
@@ -291,17 +417,115 @@ def _backfill_one(
         changed = True
         print(f"  fill {pkg}@{ver} {activity_key} ({len(snippet)} chars)")
 
-    # Report harvested XAML files not found in profile (case-mismatch or new).
+    # Handle harvested XAML files not found in profile.
     profile_keys_lower = {k.lower() for k in activities}
-    for hk in harvested_keys:
-        if hk.lower() not in profile_keys_lower:
+    index_activities = index.get("activities", {}) or {}
+    for hk in sorted(harvested_keys):
+        if hk.lower() in profile_keys_lower:
+            continue
+        if not add_missing:
             print(
                 f"  INFO: harvested '{hk}.xaml' has no profile entry in {pkg}@{ver} — skipped",
                 file=sys.stderr,
             )
             stats["skipped_no_profile_entry"] += 1
+            continue
+
+        xaml_path = harvest_dir / f"{hk}.xaml"
+        if not xaml_path.exists():
+            stats["skipped_missing_no_snippet"] += 1
+            continue
+        snippet, ns_prefix, children = _extract_activity_info(xaml_path, hk)
+        if snippet is None:
+            print(
+                f"  SKIP {pkg}@{ver} {hk} (add-missing): could not extract snippet from XAML",
+                file=sys.stderr,
+            )
+            stats["skipped_missing_no_snippet"] += 1
+            continue
+
+        el = _parse_activity_element(xaml_path.read_text(encoding="utf-8"), hk)
+        stub = _build_stub_entry(
+            activity_key=hk,
+            pkg=pkg,
+            index_entry=index_activities.get(hk, {}),
+            snippet=snippet,
+            ns_prefix=ns_prefix,
+            children=children,
+            el=el,
+        )
+
+        if dry_run:
+            print(
+                f"  [DRY-RUN] would add {pkg}@{ver} {hk}: "
+                f"class_name={stub['class_name']!r}, "
+                f"namespace_prefix={ns_prefix!r}, "
+                f"children={children}"
+            )
+        else:
+            activities[hk] = stub
+            print(f"  add  {pkg}@{ver} {hk} ({len(snippet)} chars)")
+            changed = True
+        stats["added_missing"] += 1
+
+    # Enrich pass — populate properties / version_attrs / doc_name from harvest
+    # XAML for any entry where those fields are still empty/default. Runs over
+    # the full merged set of entries (existing + just-added stubs).
+    if enrich_fields:
+        for activity_key, activity_meta in activities.items():
+            xaml_path = harvest_dir / f"{activity_key}.xaml"
+            if not xaml_path.exists():
+                continue
+            el = _parse_activity_element(xaml_path.read_text(encoding="utf-8"), activity_key)
+            if el is None:
+                continue
+            props, ver_attrs = _extract_properties_and_version_attrs(el, activity_key)
+            entry_changed = False
+
+            if not activity_meta.get("properties") and props:
+                if dry_run:
+                    print(f"  [DRY-RUN] would enrich {pkg}@{ver} {activity_key}.properties "
+                          f"(+{len(props)})")
+                else:
+                    activity_meta["properties"] = props
+                entry_changed = True
+
+            current_va = activity_meta.get("version_attrs") or {}
+            # Corrective: an entry whose only key is the literal "Version" was
+            # written by an earlier broken extractor pass. The lint convention
+            # keys by activity short name; overwrite buggy entries.
+            buggy_version_key = (
+                set(current_va.keys()) == {"Version"}
+                and activity_key not in current_va
+            )
+            if (not current_va or buggy_version_key) and ver_attrs:
+                if dry_run:
+                    label = "fix" if buggy_version_key else "would enrich"
+                    print(f"  [DRY-RUN] would {label} {pkg}@{ver} {activity_key}.version_attrs "
+                          f"= {ver_attrs}")
+                else:
+                    activity_meta["version_attrs"] = ver_attrs
+                entry_changed = True
+
+            current_doc = activity_meta.get("doc_name")
+            if current_doc in (None, "", activity_key):
+                better = _camel_case_split(activity_key)
+                if better != current_doc:
+                    if dry_run:
+                        print(f"  [DRY-RUN] would enrich {pkg}@{ver} {activity_key}.doc_name "
+                              f"-> {better!r}")
+                    else:
+                        activity_meta["doc_name"] = better
+                    entry_changed = True
+
+            if entry_changed:
+                stats["enriched_fields"] += 1
+                if not dry_run:
+                    changed = True
 
     if changed and not dry_run:
+        # Ensure profile dict reflects any in-place mutation to activities.
+        profile["activities"] = activities
         out = json.dumps(profile, indent=2, ensure_ascii=False) + "\n"
         profile_path.write_text(out, encoding="utf-8")
         print(f"  Wrote {profile_path}")
@@ -315,7 +539,7 @@ def _discover_pairs() -> list[tuple[str, str]]:
     for harvest_ver_dir in sorted(GROUND_TRUTH_DIR.rglob("index.json")):
         ver = harvest_ver_dir.parent.name
         pkg = harvest_ver_dir.parent.parent.name
-        if (PROFILES_DIR / pkg / f"{ver}.json").exists():
+        if (_active_profiles_dir / pkg / f"{ver}.json").exists():
             pairs.append((pkg, ver))
     return pairs
 
@@ -333,7 +557,26 @@ def main() -> int:
                         help="Print what would change without writing any files")
     parser.add_argument("--force", action="store_true",
                         help="Overwrite even existing non-null xaml_template entries")
+    parser.add_argument("--add-missing", action="store_true",
+                        help="Also add stub entries for harvested activities that are not "
+                             "yet in the profile (uses safe defaults for doc_name, "
+                             "properties, version_attrs).")
+    parser.add_argument("--enrich-fields", action="store_true",
+                        help="For every entry where properties/version_attrs are empty or "
+                             "doc_name equals name, derive better values from the harvested "
+                             "XAML (attributes/dotted children for properties, *Version "
+                             "attrs for version_attrs, CamelCase split for doc_name).")
+    parser.add_argument("--profiles-dir", metavar="PATH",
+                        help="Override the version-profiles directory. Default: "
+                             "uipath-core/references/version-profiles. Use this to backfill "
+                             "plugin-owned profiles like uipath-tasks/references/version-profiles.")
     args = parser.parse_args()
+
+    global _active_profiles_dir
+    if args.profiles_dir:
+        _active_profiles_dir = Path(args.profiles_dir).resolve()
+        if not _active_profiles_dir.is_dir():
+            parser.error(f"--profiles-dir does not exist: {_active_profiles_dir}")
 
     if args.package and not args.version:
         parser.error("--package requires --version")
@@ -347,7 +590,9 @@ def main() -> int:
         pairs = [(args.package, args.version)]
 
     mode = "DRY-RUN" if args.dry_run else "APPLY"
-    print(f"backfill_profile_templates — mode={mode}, pairs={len(pairs)}, force={args.force}")
+    print(f"backfill_profile_templates — mode={mode}, pairs={len(pairs)}, "
+          f"force={args.force}, add_missing={args.add_missing}, "
+          f"enrich_fields={args.enrich_fields}")
     print()
 
     total: dict[str, int] = {
@@ -359,19 +604,27 @@ def main() -> int:
         "skipped_case_mismatch": 0,
         "skipped_no_profile_entry": 0,
         "skipped_no_snippet": 0,
+        "added_missing": 0,
+        "skipped_missing_no_snippet": 0,
+        "enriched_fields": 0,
     }
 
     for pkg, ver in pairs:
         print(f"{pkg}@{ver}")
-        stats = _backfill_one(pkg, ver, dry_run=args.dry_run, force=args.force)
+        stats = _backfill_one(
+            pkg, ver,
+            dry_run=args.dry_run, force=args.force,
+            add_missing=args.add_missing, enrich_fields=args.enrich_fields,
+        )
         for k in total:
             total[k] += stats[k]
         # Per-pair summary line.
         print(
             f"  -> filled={stats['filled']}, "
+            f"added_missing={stats['added_missing']}, "
+            f"enriched={stats['enriched_fields']}, "
             f"skipped_existing={stats['skipped_existing']}, "
-            f"no_harvest={stats['skipped_no_harvest']}, "
-            f"case_mismatch={stats['skipped_case_mismatch']}"
+            f"no_harvest={stats['skipped_no_harvest']}"
         )
         print()
 

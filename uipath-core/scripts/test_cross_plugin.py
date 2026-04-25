@@ -28,6 +28,12 @@ GENERATOR = SCRIPTS_DIR / "generate_workflow.py"
 VALIDATOR = SCRIPTS_DIR / "validate_xaml"
 SCAFFOLD = SCRIPTS_DIR / "scaffold_project.py"
 
+# SAP-WinGUI plugin lives only on `feature/sap-wingui-skill` and has never been
+# merged to `main` or `feature/version-compatibility-v2`. Gate SAP-specific
+# assertions on plugin presence (mirrors the pattern in test_plugin_version_profiles.py).
+SAP_PLUGIN_DIR = SKILL_DIR.parent / "uipath-sap-wingui" / "extensions"
+SAP_AVAILABLE = SAP_PLUGIN_DIR.exists()
+
 
 class TestResult:
     def __init__(self, name: str):
@@ -276,6 +282,11 @@ def test_scaffold_with_persistence(tmpdir: str) -> TestResult:
 
 def test_sap_plugin_integrity() -> TestResult:
     """Verify SAP WinGUI plugin registers generators, lints, and namespaces."""
+    if not SAP_AVAILABLE:
+        t = TestResult("SAP WinGUI plugin integrity — SKIPPED (uipath-sap-wingui not on this branch)")
+        t.ok("Skipped — SAP plugin source not present at uipath-sap-wingui/extensions")
+        return t
+
     t = TestResult("SAP WinGUI plugin integrity — registries populated")
 
     sys.path.insert(0, str(SCRIPTS_DIR))
@@ -334,6 +345,11 @@ def test_sap_plugin_integrity() -> TestResult:
 
 def test_sap_generators_produce_valid_xml() -> TestResult:
     """SAP generators produce structurally valid XML fragments."""
+    if not SAP_AVAILABLE:
+        t = TestResult("SAP generators — SKIPPED (uipath-sap-wingui not on this branch)")
+        t.ok("Skipped — SAP plugin source not present at uipath-sap-wingui/extensions")
+        return t
+
     t = TestResult("SAP generators — valid XML output")
 
     sys.path.insert(0, str(SCRIPTS_DIR))
@@ -625,10 +641,13 @@ def test_api_version_mismatch() -> TestResult:
         else:
             t.fail("Tasks generator 'create_form_task' missing after mismatch test")
 
-        if "sap_logon" in gens:
-            t.ok("SAP WinGUI generator 'sap_logon' still present")
+        if SAP_AVAILABLE:
+            if "sap_logon" in gens:
+                t.ok("SAP WinGUI generator 'sap_logon' still present")
+            else:
+                t.fail("SAP WinGUI generator 'sap_logon' missing after mismatch test")
         else:
-            t.fail("SAP WinGUI generator 'sap_logon' missing after mismatch test")
+            t.ok("SAP WinGUI presence check skipped — uipath-sap-wingui not on this branch")
 
     except Exception as e:
         t.fail(f"Error during API version mismatch test: {type(e).__name__}: {e}")

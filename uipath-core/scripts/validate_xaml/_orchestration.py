@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import sys
 from pathlib import Path
 
 from ._context import FileContext, ValidationResult
@@ -30,6 +31,11 @@ def _read_version_band(project_dir: str | None) -> str | None:
 
     Quiet on any failure (missing file, invalid JSON, missing field) — lints
     that need a band check ``ctx.target_version_band is None`` and no-op.
+
+    The schema expects a string (e.g. ``"25"``), but a project.json authored
+    with ``"versionBand": 25`` (int) is silently coerced to ``"25"`` so lint
+    122's string-keyed lookup works. A one-line stderr nudge surfaces the
+    schema deviation. Other JSON types collapse to ``None``. (R2b M1.)
     """
     if not project_dir:
         return None
@@ -38,9 +44,21 @@ def _read_version_band(project_dir: str | None) -> str | None:
         return None
     try:
         with open(pj_path, "r", encoding="utf-8-sig") as f:
-            return json.load(f).get("versionBand")
+            value = json.load(f).get("versionBand")
     except (OSError, json.JSONDecodeError):
         return None
+    if value is None or value == "":
+        return None
+    if isinstance(value, str):
+        return value
+    if isinstance(value, int) and not isinstance(value, bool):
+        print(
+            f"warning: project.json versionBand is an int ({value!r}); "
+            f"schema expects a string. Coerced to {str(value)!r}.",
+            file=sys.stderr,
+        )
+        return str(value)
+    return None
 
 
 def validate_xaml_file(filepath: str, project_dir: str | None = None,

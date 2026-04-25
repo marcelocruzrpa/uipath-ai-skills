@@ -608,6 +608,27 @@ if __name__ == "__main__":
         except (ImportError, ValueError) as e:
             print(f"WARNING: Could not derive versionBand from deps ({e}). "
                   f"versionBand will be omitted.", file=sys.stderr)
+    elif effective_band is not None and merged_deps:
+        # --band was explicit. Defensively derive from deps too: if the
+        # year-based deps point at a different band, surface the disagreement
+        # to stderr (explicit user input still wins — no hard error). This
+        # closes the silent skew between project.json's stamped versionBand
+        # and the actual pinned activity packages.
+        try:
+            from version_band import derive_band_from_deps, UnsupportedBandError
+            derived = derive_band_from_deps(merged_deps)
+            if derived is not None and derived != effective_band:
+                print(
+                    f"Warning: --band {effective_band} disagrees with "
+                    f"deps-derived band {derived}; using --band as authoritative",
+                    file=sys.stderr,
+                )
+        except UnsupportedBandError as e:
+            print(f"Warning: deps imply unsupported band ({e}); "
+                  f"using --band {effective_band} as authoritative", file=sys.stderr)
+        except (ImportError, ValueError):
+            # Best-effort cross-check; never block scaffolding on a derive failure.
+            pass
 
     try:
         scaffold_project(args.name, args.description, args.output, args.variant,

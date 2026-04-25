@@ -15,14 +15,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Lint 120 (error): Version="V5"+ attributes on UiX activities are invalid below band 25
 - Lint 121 (error): HealingAgentBehavior / ClipboardMode attributes don't exist below band 25 (introduced in 25.10+)
 - Lint 122 (error): cross-band `Version` attribute mismatch — activity Version attr does not match the target band's profile
-- Lints 120-122 are opt-in: they fire only when `project.json` contains an explicit `"versionBand"` field
+- Lints 120-122 are opt-in: they fire only when `project.json` contains an explicit `"versionBand"` field (opt-in via `versionBand` in `project.json`; lints 120/121 additionally gate on `band ≥ 25`, lint 122 additionally gates on profile-data presence for the (package, band) pair)
 - `scaffold_project.py` auto-stamps `versionBand` when year-based dependencies are supplied via `--deps` — the band is derived from the resolved deps by `derive_band_from_deps()` in `version_band.py` (returns the max year-based band present, falls back to `None` when no year-based dep is resolved). Keeps the opt-in contract for bare scaffolds while closing the gap where downstream lints 120-122 stayed dormant on every freshly scaffolded project.
-- Project-level warning: whenever a declared `versionBand` + a dependency in that band lacks a usable profile JSON, the validator warns that lint 122 will silently no-op for that package until the profile is harvested
 - **Plugin API v2 in `plugin_loader.py`** — new `register_version_profile` / `register_band_profile_mapping` / `get_version_profiles` / `get_band_profile_mappings`; `PLUGIN_API_VERSION` bumped 1 → 2. Plugins can now ship per-band activity profiles that lint 122 enforces. `uipath-tasks` registers `UiPath.Persistence.Activities/1.4` for bands 25 and 26.
-- **`generate_workflow.py` dispatcher fall-through** — the dispatcher now tries `gen_from_annotation` before raising `Unknown generator`, so activities described purely in `references/annotations/*.json` can be emitted without a hand-written `gen_*` function. `WizardOnlyActivityError`, `MissingScopeError`, and `ReviewNeededError` are wrapped as `ValueError("Cannot generate ...")`.
+- **`generate_workflow.py` dispatcher fall-through** — the dispatcher now tries `gen_from_annotation` before raising `Unknown generator`, so activities described purely in `references/annotations/*.json` can be emitted without a hand-written `gen_*` function. `WizardOnlyActivityError`, `MissingScopeError`, and `ReviewNeededError` are wrapped as `ValueError("Cannot generate ...")`. Adds one new core generator (`gen_from_annotation` in `generate_activities/_data_driven.py`); core generator total is now 95.
 - Version profiles for UIAutomation 25.10, System 25.10 and 26.2, Excel 3.4, Mail 2.8, Testing 25.10 (uipath-core) and Persistence 1.4 (uipath-tasks)
 - Annotation corpus (`references/annotations/*.json`) — 202 activity entries across 16 annotation files; data-driven generator engine in `generate_activities/_data_driven.py`
-- Studio harvest tooling under `scripts/tools/`: `harvest_studio_xaml.py`, `compare_to_ground_truth.py`, `validate_with_studio.py`, `battle_test_activities.py`, `battle_test_studio.py`, `annotate_profile_schema.py`, `backfill_annotations.py`, `backfill_profile_templates.py`
+- Studio harvest tooling under `scripts/`: `harvest_studio_xaml.py`, `compare_to_ground_truth.py`, `validate_with_studio.py`, `battle_test_activities.py`, `battle_test_studio.py`, `annotate_profile_schema.py`, `backfill_annotations.py`, `backfill_profile_templates.py`
 
 ### Fixed
 
@@ -30,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Security
 
-- `defusedxml` safe-fallback pattern applied across the new harvest/backfill tooling (`backfill_annotations.py`, `backfill_profile_templates.py`, `compare_to_ground_truth.py`, `battle_test_activities.py`) for defense-in-depth against XXE/billion-laughs in XAML parsing (consistent with `validate_xaml/_structural.py`)
+- `defusedxml` safe-fallback pattern applied across the new harvest/backfill tooling for defense-in-depth against XXE/billion-laughs in XAML parsing. Coverage on this branch: `backfill_annotations.py`, `backfill_profile_templates.py`, `compare_to_ground_truth.py`, `battle_test_activities.py`, `import_wizard_xaml.py` (untracked), `harvest_all_supported.py` (untracked)
 
 ### Internal
 
@@ -38,11 +37,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - New `test_lints_version_compat_integration.py` drives the real `validate_project()` pipeline against the fixtures and asserts lints 120/121/122 fire (and stay silent) end-to-end. Without it, breakage between the lint dispatcher and the version-compat lint module would not be caught by the existing helper-level tests.
 - Wired `lints_version_compat` into `validate_xaml/__init__.py` so lints 120/121/122 register with `_LINT_REGISTRY` on package import. Added `target_version_band` to `FileContext.__slots__` and propagated `versionBand` from `project.json` through `validate_project()` / `validate_xaml_file()` so the lints actually run against real projects (the unit tests passed previously by importing helpers directly; the dispatcher path was dead).
 - `pytest uipath-core/tests/` now reports **166 passed** (no skips, no xfails)
+- `SKILL.md` and `references/cheat-sheet.md` core-generator and lint-rule counts updated to match the code (was `94 generators` / `71 lint rules`; now `95 generators` / `75 lint rules`). The 71→75 lint drift is partly pre-existing (main was already at 72); this branch adds lints 120/121/122 and the new `gen_from_annotation` core generator
 
 ### Migration
 
 - **Plugin API v1 → v2.** Out-of-tree plugins that explicitly declare `REQUIRED_API_VERSION = 1` will now fail to load with `API version mismatch: plugin wants v1, core provides v2`. Plugins that do not declare `REQUIRED_API_VERSION` are unaffected. To upgrade: bump `REQUIRED_API_VERSION` to `2` (no API surface was removed; v2 only adds `register_version_profile` / `register_band_profile_mapping` and their getters). The in-tree `uipath-tasks` plugin was bumped in the same commit as the core change.
-- **Sparse band-26 profiles are intentional.** `UiPath.System.Activities/26.2.json` ships only the activities whose XAML differs from `25.10.json` (currently `InvokeCode`, `InvokeWorkflowFile`, `LogMessage`); other activities inherit their `version_attrs` from `25.10.json` via the canonical-version walk in `_build_band_expected_versions`. UIAutomation has no 26.x stable yet, so cross-band UIAutomation drift is not currently checked. This is the documented fallback path — not a missing-profile bug.
+- **Plugin migration (v1→v2):** Bump `REQUIRED_API_VERSION = 2` in your plugin's `extensions/__init__.py`. The new registration helpers are `register_version_profile(package, profile_version, profile_dict)` and `register_band_profile_mapping(band, package, profile_version)`. Call `register_band_profile_mapping` once per `(band, package)` pair (not once per package). On API-version mismatch, plugin_loader rolls back every registration the plugin made before the mismatch was detected. See `uipath-tasks/extensions/__init__.py:33,266-278` for a worked example.
+- **Partial band-26 profiles are intentional.** `UiPath.System.Activities/26.2.json` is a partial profile (41/163 activities). `_build_band_expected_versions` loads every available profile for the package up to the band's canonical version in ascending order, so activities missing from 26.2.json fall back to their 25.10.json `version_attrs`. The currently-shipping 26.2.json carries the activities harvested from Studio 26.2; the rest still resolve correctly through the canonical-version walk. UIAutomation has no 26.x stable yet, so cross-band UIAutomation drift is not currently checked.
 
 ---
 

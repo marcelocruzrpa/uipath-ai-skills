@@ -1,6 +1,6 @@
 # UiPath XAML Cheat Sheet
 
-Quick-reference for generator commands and rules. For XAML output, **always use generators** — never hand-write activity XAML. Full 93-generator API with all parameters: see `skill-guide.md` § Activity Generators.
+Quick-reference for generator commands and rules. For XAML output, **always use generators** — never hand-write activity XAML. Full 95-generator API with all parameters: see `skill-guide.md` § Activity Generators.
 
 ## ⛔ Workflow Creation: JSON Spec → .xaml (PRIMARY)
 
@@ -271,7 +271,7 @@ from scripts.generate_activities import *
 | `gen_get_imap_mail()` | GetIMAPMailMessages | `messages_variable`, `id_ref`, `filter_expression_variable=`, `mail_folder=` |
 | `gen_save_mail_attachments()` | SaveMailAttachments | `message_variable`, `folder_path_variable`, `id_ref`, `file_filter=` |
 
-For all 94 core generators + plugin extensions → `generation.md` § Activity Generators.
+For all 95 core generators + plugin extensions → `generation.md` § Activity Generators.
 
 ## Framework Wiring (modify_framework.py)
 

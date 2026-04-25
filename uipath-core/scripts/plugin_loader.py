@@ -14,10 +14,14 @@ Usage from core scripts:
     load_plugins()  # call once at module level or in main()
 """
 
+import copy
 import importlib.util
+import re
 import sys
+import threading
 import warnings
 from pathlib import Path
+from types import MappingProxyType
 
 # ---------------------------------------------------------------------------
 # Plugin API version — bump when registration API signatures change
@@ -48,6 +52,21 @@ _version_profiles = {}          # (package, profile_version) -> profile dict (co
 _band_profile_mappings = {}     # band (e.g. "25") -> dict(package -> profile_version)
 _loaded = False
 _load_failures = []  # list of (skill_name, error_str) tuples
+
+# Module-level lock guards mutations of `_loaded` and the registry dicts during
+# `load_plugins()` and the `register_*` mutators. Read APIs (`get_*`) do not
+# acquire the lock — they are safe because they return MappingProxyType views
+# (or take defensive copies) and Python dict reads are atomic for plain key
+# access. Plugin authors must not call register_* concurrently from multiple
+# threads without holding _registry_lock themselves.
+#
+# Reentrant: load_plugins() holds the lock while exec'ing each plugin module,
+# and that plugin's top-level code calls register_* which re-acquires the lock.
+_registry_lock = threading.RLock()
+
+# Validation patterns for register_version_profile / register_band_profile_mapping
+_PROFILE_VERSION_RE = re.compile(r"^\d+(\.\d+){0,3}$")
+_BAND_RE = re.compile(r"^\d+$")
 
 
 # ---------------------------------------------------------------------------
@@ -183,8 +202,36 @@ def register_version_profile(package, profile_version, profile):
                          version installed in a project.
         profile: Profile dict, same shape as
                  references/version-profiles/<pkg>/<ver>.json.
+
+    Raises:
+        ValueError: if `package` is not a non-empty str, if `profile_version`
+                    does not look like a dotted-int version (regex
+                    ``^\\d+(\\.\\d+){0,3}$``), or if `profile` is not a dict.
     """
-    _version_profiles[(package, profile_version)] = profile
+    if not isinstance(package, str) or not package:
+        raise ValueError(
+            f"register_version_profile: 'package' must be a non-empty str, got {package!r}"
+        )
+    if not isinstance(profile_version, str) or not profile_version:
+        raise ValueError(
+            f"register_version_profile: 'profile_version' must be a non-empty str, got {profile_version!r}"
+        )
+    if not _PROFILE_VERSION_RE.match(profile_version):
+        raise ValueError(
+            f"register_version_profile: 'profile_version' must match "
+            f"r'^\\d+(\\.\\d+){{0,3}}$' (e.g. '1.4', '25.10'), got {profile_version!r}"
+        )
+    if not isinstance(profile, dict):
+        raise ValueError(
+            f"register_version_profile: 'profile' must be a dict, got {type(profile).__name__}"
+        )
+    with _registry_lock:
+        if (package, profile_version) in _version_profiles:
+            warnings.warn(
+                f"[plugin_loader] Duplicate version_profile registration: "
+                f"({package!r}, {profile_version!r}) — overwriting prior registration"
+            )
+        _version_profiles[(package, profile_version)] = profile
 
 
 def register_band_profile_mapping(band, package, profile_version):
@@ -199,8 +246,43 @@ def register_band_profile_mapping(band, package, profile_version):
         package: NuGet package ID.
         profile_version: Profile-file version registered via
                          register_version_profile.
+
+    Raises:
+        ValueError: if `band` is not a non-empty digit-string, if `package`
+                    is not a non-empty str, or if `profile_version` is not a
+                    non-empty str matching the dotted-int profile shape.
     """
-    _band_profile_mappings.setdefault(band, {})[package] = profile_version
+    if not isinstance(band, str) or not band:
+        raise ValueError(
+            f"register_band_profile_mapping: 'band' must be a non-empty str, got {band!r}"
+        )
+    if not _BAND_RE.match(band):
+        raise ValueError(
+            f"register_band_profile_mapping: 'band' must be a digit-string "
+            f"(e.g. '25', '26'), got {band!r}"
+        )
+    if not isinstance(package, str) or not package:
+        raise ValueError(
+            f"register_band_profile_mapping: 'package' must be a non-empty str, got {package!r}"
+        )
+    if not isinstance(profile_version, str) or not profile_version:
+        raise ValueError(
+            f"register_band_profile_mapping: 'profile_version' must be a non-empty str, "
+            f"got {profile_version!r}"
+        )
+    if not _PROFILE_VERSION_RE.match(profile_version):
+        raise ValueError(
+            f"register_band_profile_mapping: 'profile_version' must match "
+            f"r'^\\d+(\\.\\d+){{0,3}}$' (e.g. '1.4'), got {profile_version!r}"
+        )
+    with _registry_lock:
+        band_map = _band_profile_mappings.setdefault(band, {})
+        if package in band_map:
+            warnings.warn(
+                f"[plugin_loader] Duplicate band_profile_mapping: "
+                f"band={band!r}, package={package!r} — overwriting prior registration"
+            )
+        band_map[package] = profile_version
 
 
 def register_variable_prefix(xaml_type, prefix):
@@ -303,13 +385,31 @@ def get_variable_prefixes():
 
 
 def get_version_profiles():
-    """Return dict of (package, profile_version) -> profile from plugins."""
-    return dict(_version_profiles)
+    """Return read-only mapping of (package, profile_version) -> profile.
+
+    The outer mapping is wrapped in ``types.MappingProxyType`` so callers
+    cannot add or replace registered profiles via the returned view. Inner
+    profile values are returned as deep copies, so mutating a profile
+    obtained from this getter never affects the registered profile. To
+    register or replace a profile, call ``register_version_profile``.
+    """
+    snapshot = {key: copy.deepcopy(profile) for key, profile in _version_profiles.items()}
+    return MappingProxyType(snapshot)
 
 
 def get_band_profile_mappings():
-    """Return dict of band -> dict(package -> profile_version) from plugins."""
-    return {b: dict(pkgs) for b, pkgs in _band_profile_mappings.items()}
+    """Return read-only mapping of band -> mapping(package -> profile_version).
+
+    Both the outer band mapping and each inner per-band mapping are wrapped
+    in ``types.MappingProxyType``. Values are plain strings so no deep copy
+    is needed. To add or change a mapping, call
+    ``register_band_profile_mapping``.
+    """
+    snapshot = {
+        b: MappingProxyType(dict(pkgs))
+        for b, pkgs in _band_profile_mappings.items()
+    }
+    return MappingProxyType(snapshot)
 
 
 # ---------------------------------------------------------------------------
@@ -328,136 +428,178 @@ def get_load_failures():
 def load_plugins():
     """Discover and load skill extensions from subdirectories of core root.
 
-    Scans <core_root>/**/extensions/__init__.py. Each extension is imported
-    under a unique module name to avoid collisions between skills.
+    Plugin layout (hard contract):
+        ``<skill_root>/<plugin_name>/extensions/__init__.py``
 
-    Safe to call multiple times — only loads once.
+    where ``<skill_root>`` is the parent directory of ``uipath-core/``. Each
+    extension's ``__init__.py`` is imported under a unique module name so
+    skills do not collide. Plugins must live at exactly one level below the
+    skill root — nested layouts (``<skill_root>/<a>/<b>/extensions/``),
+    alternate file names, and entry points outside ``<skill_root>`` are not
+    discovered.
+
+    Each plugin module must declare ``REQUIRED_API_VERSION = N`` matching
+    ``PLUGIN_API_VERSION`` (currently 2). Plugins that omit the declaration
+    or declare a mismatched value are rejected with a hard failure and have
+    all their partial registrations rolled back.
+
+    Safe to call multiple times — only loads once. Acquires a module-level
+    lock for the duration of discovery to serialise concurrent callers.
 
     Returns:
         list of (skill_name, error_str) for any plugins that failed to load.
         Empty list means all plugins loaded successfully.
     """
     global _loaded
-    if _loaded:
-        return list(_load_failures)
-    _loaded = True
+    with _registry_lock:
+        if _loaded:
+            return list(_load_failures)
+        _loaded = True
 
-    core_root = Path(__file__).resolve().parent.parent  # uipath-core-alpha/
+        core_root = Path(__file__).resolve().parent.parent  # core_root resolves to uipath-core/
 
-    # Ensure core scripts/ is on sys.path so extensions can import helpers
-    scripts_dir = str(core_root / "scripts")
-    if scripts_dir not in sys.path:
-        sys.path.insert(0, scripts_dir)
+        # Ensure core scripts/ is on sys.path so extensions can import helpers
+        scripts_dir = str(core_root / "scripts")
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
 
-    # Scan sibling directories at the same level as uipath-core-alpha.
-    # Skills like uipath-tasks live alongside core in the parent
-    # directory (e.g. uipath-ai-skills/uipath-tasks/).
-    skill_root = core_root.parent  # e.g. uipath-ai-skills/
+        # Scan sibling directories at the same level as uipath-core/.
+        # Skills like uipath-tasks live alongside core in the parent
+        # directory (e.g. uipath-ai-skills/uipath-tasks/).
+        skill_root = core_root.parent  # e.g. uipath-ai-skills/
 
-    for child in sorted(skill_root.iterdir()):
-        if not child.is_dir():
-            continue
-        ext_init = child / "extensions" / "__init__.py"
-        if not ext_init.exists():
-            continue
+        # Track sanitized module names already taken in this call so we can
+        # detect Windows / case-sensitive-FS collisions where two sibling
+        # plugin dirs differ only in case (or only in chars that the
+        # sanitizer collapses).
+        _sanitized_seen = {}  # sanitized_name -> originating Path
 
-        # Sanitize module name — replace all non-identifier chars
-        sanitized = child.name.replace('-', '_').replace(' ', '_').replace('.', '_')
-        pkg_name = f"_skill_ext_{sanitized}"
-        if pkg_name in sys.modules:
-            continue
+        for child in sorted(skill_root.iterdir()):
+            if not child.is_dir():
+                continue
+            ext_init = child / "extensions" / "__init__.py"
+            if not ext_init.exists():
+                continue
 
-        # Load the extensions/ dir as a proper Python package.
-        # This enables relative imports (.generators, .lint_rules, etc.)
-        # without polluting sys.path — each plugin is isolated.
-        ext_dir = child / "extensions"
+            # Sanitize module name — replace all non-identifier chars
+            sanitized = child.name.replace('-', '_').replace(' ', '_').replace('.', '_')
+            pkg_name = f"_skill_ext_{sanitized}"
+            if sanitized in _sanitized_seen:
+                prior = _sanitized_seen[sanitized]
+                warnings.warn(
+                    f"[plugin_loader] Plugin name collision: {child!s} and "
+                    f"{prior!s} both sanitize to {pkg_name!r}; skipping the "
+                    f"second. Rename one of the directories to disambiguate."
+                )
+                continue
+            _sanitized_seen[sanitized] = child
+            if pkg_name in sys.modules:
+                continue
 
-        # Snapshot registry state so we can roll back on failure
-        snap_generators = dict(_generators)
-        snap_display = dict(_display_name_map)
-        snap_ui_gens = set(_ui_generators)
-        snap_lint = list(_lint_rules)
-        snap_hooks = list(_scaffold_hooks)
-        snap_ns = dict(_extra_namespaces)
-        snap_known = set(_extra_known_activities)
-        snap_key = list(_extra_key_activities)
-        snap_hallucination = list(_hallucination_patterns)
-        snap_packages = list(_common_packages)
-        snap_graders = dict(_battle_test_graders)
-        snap_specs = dict(_test_specs)
-        snap_lint_fixtures = list(_lint_test_fixtures)
-        snap_type_mappings = dict(_type_mappings)
-        snap_variable_prefixes = dict(_variable_prefixes)
-        snap_version_profiles = dict(_version_profiles)
-        snap_band_mappings = {b: dict(pkgs) for b, pkgs in _band_profile_mappings.items()}
+            # Load the extensions/ dir as a proper Python package.
+            # This enables relative imports (.generators, .lint_rules, etc.)
+            # without polluting sys.path — each plugin is isolated.
+            ext_dir = child / "extensions"
 
-        def _restore_registries():
-            """Roll back all registries to pre-load snapshot."""
-            _generators.clear(); _generators.update(snap_generators)
-            _display_name_map.clear(); _display_name_map.update(snap_display)
-            _ui_generators.clear(); _ui_generators.update(snap_ui_gens)
-            _lint_rules.clear(); _lint_rules.extend(snap_lint)
-            _scaffold_hooks.clear(); _scaffold_hooks.extend(snap_hooks)
-            _extra_namespaces.clear(); _extra_namespaces.update(snap_ns)
-            _extra_known_activities.clear(); _extra_known_activities.update(snap_known)
-            _extra_key_activities.clear(); _extra_key_activities.extend(snap_key)
-            _hallucination_patterns.clear(); _hallucination_patterns.extend(snap_hallucination)
-            _common_packages.clear(); _common_packages.extend(snap_packages)
-            _battle_test_graders.clear(); _battle_test_graders.update(snap_graders)
-            _test_specs.clear(); _test_specs.update(snap_specs)
-            _lint_test_fixtures.clear(); _lint_test_fixtures.extend(snap_lint_fixtures)
-            _type_mappings.clear(); _type_mappings.update(snap_type_mappings)
-            _variable_prefixes.clear(); _variable_prefixes.update(snap_variable_prefixes)
-            _version_profiles.clear(); _version_profiles.update(snap_version_profiles)
-            _band_profile_mappings.clear(); _band_profile_mappings.update(snap_band_mappings)
+            # Snapshot registry state so we can roll back on failure
+            snap_generators = dict(_generators)
+            snap_display = dict(_display_name_map)
+            snap_ui_gens = set(_ui_generators)
+            snap_lint = list(_lint_rules)
+            snap_hooks = list(_scaffold_hooks)
+            snap_ns = dict(_extra_namespaces)
+            snap_known = set(_extra_known_activities)
+            snap_key = list(_extra_key_activities)
+            snap_hallucination = list(_hallucination_patterns)
+            snap_packages = list(_common_packages)
+            snap_graders = dict(_battle_test_graders)
+            snap_specs = dict(_test_specs)
+            snap_lint_fixtures = list(_lint_test_fixtures)
+            snap_type_mappings = dict(_type_mappings)
+            snap_variable_prefixes = dict(_variable_prefixes)
+            snap_version_profiles = dict(_version_profiles)
+            snap_band_mappings = {b: dict(pkgs) for b, pkgs in _band_profile_mappings.items()}
 
-        try:
-            # Register the package first so relative imports resolve
-            pkg_spec = importlib.util.spec_from_file_location(
-                pkg_name, str(ext_init),
-                submodule_search_locations=[str(ext_dir)]
-            )
-            pkg_module = importlib.util.module_from_spec(pkg_spec)
-            sys.modules[pkg_name] = pkg_module  # must be in sys.modules BEFORE exec for relative imports
+            def _restore_registries():
+                """Roll back all registries to pre-load snapshot."""
+                _generators.clear(); _generators.update(snap_generators)
+                _display_name_map.clear(); _display_name_map.update(snap_display)
+                _ui_generators.clear(); _ui_generators.update(snap_ui_gens)
+                _lint_rules.clear(); _lint_rules.extend(snap_lint)
+                _scaffold_hooks.clear(); _scaffold_hooks.extend(snap_hooks)
+                _extra_namespaces.clear(); _extra_namespaces.update(snap_ns)
+                _extra_known_activities.clear(); _extra_known_activities.update(snap_known)
+                _extra_key_activities.clear(); _extra_key_activities.extend(snap_key)
+                _hallucination_patterns.clear(); _hallucination_patterns.extend(snap_hallucination)
+                _common_packages.clear(); _common_packages.extend(snap_packages)
+                _battle_test_graders.clear(); _battle_test_graders.update(snap_graders)
+                _test_specs.clear(); _test_specs.update(snap_specs)
+                _lint_test_fixtures.clear(); _lint_test_fixtures.extend(snap_lint_fixtures)
+                _type_mappings.clear(); _type_mappings.update(snap_type_mappings)
+                _variable_prefixes.clear(); _variable_prefixes.update(snap_variable_prefixes)
+                _version_profiles.clear(); _version_profiles.update(snap_version_profiles)
+                _band_profile_mappings.clear(); _band_profile_mappings.update(snap_band_mappings)
 
-            # Pre-register submodules so `from .generators import X` works.
-            # Scan for .py files in extensions/ and create lazy specs.
-            for py_file in ext_dir.glob("*.py"):
-                if py_file.name == "__init__.py":
-                    continue
-                sub_name = f"{pkg_name}.{py_file.stem}"
-                if sub_name not in sys.modules:
-                    sub_spec = importlib.util.spec_from_file_location(sub_name, str(py_file))
-                    sub_module = importlib.util.module_from_spec(sub_spec)
-                    sys.modules[sub_name] = sub_module
-                    sub_spec.loader.exec_module(sub_module)
+            try:
+                # Register the package first so relative imports resolve
+                pkg_spec = importlib.util.spec_from_file_location(
+                    pkg_name, str(ext_init),
+                    submodule_search_locations=[str(ext_dir)]
+                )
+                pkg_module = importlib.util.module_from_spec(pkg_spec)
+                sys.modules[pkg_name] = pkg_module  # must be in sys.modules BEFORE exec for relative imports
 
-            # Now execute __init__.py — relative imports will find the submodules
-            pkg_spec.loader.exec_module(pkg_module)
+                # Pre-register submodules so `from .generators import X` works.
+                # Scan for .py files in extensions/ and create lazy specs.
+                for py_file in ext_dir.glob("*.py"):
+                    if py_file.name == "__init__.py":
+                        continue
+                    sub_name = f"{pkg_name}.{py_file.stem}"
+                    if sub_name not in sys.modules:
+                        sub_spec = importlib.util.spec_from_file_location(sub_name, str(py_file))
+                        sub_module = importlib.util.module_from_spec(sub_spec)
+                        sys.modules[sub_name] = sub_module
+                        sub_spec.loader.exec_module(sub_module)
 
-            # Check API version compatibility — mismatch is a hard failure
-            required = getattr(pkg_module, "REQUIRED_API_VERSION", None)
-            if required is not None and required != PLUGIN_API_VERSION:
-                error_msg = (f"API version mismatch: plugin wants v{required}, "
-                             f"core provides v{PLUGIN_API_VERSION}")
+                # Now execute __init__.py — relative imports will find the submodules
+                pkg_spec.loader.exec_module(pkg_module)
+
+                # Check API version compatibility — missing or mismatched is a hard failure
+                required = getattr(pkg_module, "REQUIRED_API_VERSION", None)
+                if required is None:
+                    error_msg = (
+                        f"Plugin {child.name} declares no REQUIRED_API_VERSION; "
+                        f"expected {PLUGIN_API_VERSION}. Add "
+                        f"'REQUIRED_API_VERSION = {PLUGIN_API_VERSION}' at module top."
+                    )
+                    _load_failures.append((child.name, error_msg))
+                    _restore_registries()
+                    for key in list(sys.modules):
+                        if key.startswith(pkg_name):
+                            del sys.modules[key]
+                    print(f"[plugin_loader] ERROR: {child.name}: {error_msg}",
+                          file=sys.stderr)
+                elif required != PLUGIN_API_VERSION:
+                    error_msg = (f"API version mismatch: plugin wants v{required}, "
+                                 f"core provides v{PLUGIN_API_VERSION}")
+                    _load_failures.append((child.name, error_msg))
+                    # Roll back module imports and registry entries
+                    _restore_registries()
+                    for key in list(sys.modules):
+                        if key.startswith(pkg_name):
+                            del sys.modules[key]
+                    print(f"[plugin_loader] ERROR: {child.name}: {error_msg}",
+                          file=sys.stderr)
+
+            except Exception as e:
+                error_msg = f"{type(e).__name__}: {e}"
                 _load_failures.append((child.name, error_msg))
-                # Roll back module imports and registry entries
+                # Clean up partial registrations and registry entries
                 _restore_registries()
                 for key in list(sys.modules):
                     if key.startswith(pkg_name):
                         del sys.modules[key]
-                print(f"[plugin_loader] ERROR: {child.name}: {error_msg}",
+                print(f"[plugin_loader] Warning: failed to load extension from {child.name}: {error_msg}",
                       file=sys.stderr)
-
-        except Exception as e:
-            error_msg = f"{type(e).__name__}: {e}"
-            _load_failures.append((child.name, error_msg))
-            # Clean up partial registrations and registry entries
-            _restore_registries()
-            for key in list(sys.modules):
-                if key.startswith(pkg_name):
-                    del sys.modules[key]
-            print(f"[plugin_loader] Warning: failed to load extension from {child.name}: {error_msg}",
-                  file=sys.stderr)
 
     return list(_load_failures)

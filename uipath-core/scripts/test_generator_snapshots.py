@@ -57,6 +57,13 @@ except ImportError:
 # Skip specs that intentionally fail generation
 SKIP_SPECS = {"delay_and_misc"}
 
+# SAP-WinGUI plugin lives only on `feature/sap-wingui-skill` and has never been
+# merged. When the plugin source isn't on disk, skip specs that depend on its
+# generators (sap_wingui_workflow). Mirrors gating in test_cross_plugin.py.
+SAP_PLUGIN_DIR = SKILL_DIR.parent / "uipath-sap-wingui" / "extensions"
+SAP_AVAILABLE = SAP_PLUGIN_DIR.exists()
+SAP_DEPENDENT_SPECS = {"sap_wingui_workflow"}
+
 # UUID regex: matches standard 8-4-4-4-12 hex format
 _RE_UUID = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', re.IGNORECASE)
 
@@ -108,6 +115,9 @@ def update_golden_files():
     for name, spec in sorted(SPECS.items()):
         if name in SKIP_SPECS:
             continue
+        if name in SAP_DEPENDENT_SPECS and not SAP_AVAILABLE:
+            print(f"  SKIP     {name} — uipath-sap-wingui not on this branch")
+            continue
         try:
             normalized = generate_and_normalize(spec)
             target = _target_dir(name)
@@ -121,13 +131,18 @@ def update_golden_files():
     print(f"\n{updated} golden files updated")
 
 
-def run_tests(verbose: bool = False) -> tuple[int, int]:
-    """Run snapshot comparison tests. Returns (passed, failed)."""
+def run_tests(verbose: bool = False) -> tuple[int, int, int]:
+    """Run snapshot comparison tests. Returns (passed, failed, skipped)."""
     passed = 0
     failed = 0
+    skipped = 0
 
     for name, spec in sorted(SPECS.items()):
         if name in SKIP_SPECS:
+            continue
+        if name in SAP_DEPENDENT_SPECS and not SAP_AVAILABLE:
+            print(f"  SKIP  {name} — uipath-sap-wingui not on this branch")
+            skipped += 1
             continue
 
         gp = golden_path(name)
@@ -167,7 +182,7 @@ def run_tests(verbose: bool = False) -> tuple[int, int]:
                     print(f"    ... ({len(diff_lines) - 30} more diff lines)")
             failed += 1
 
-    return passed, failed
+    return passed, failed, skipped
 
 
 def main():
@@ -181,11 +196,14 @@ def main():
     specs_to_test = len(SPECS) - len(SKIP_SPECS)
     print(f"Running {specs_to_test} snapshot tests...\n")
 
-    passed, failed = run_tests(verbose=verbose)
+    passed, failed, skipped = run_tests(verbose=verbose)
     total = passed + failed
 
     print(f"\n{'='*50}")
-    print(f"SNAPSHOT TESTS: {passed}/{total} passed, {failed} failed")
+    summary = f"SNAPSHOT TESTS: {passed}/{total} passed, {failed} failed"
+    if skipped:
+        summary += f", {skipped} skipped"
+    print(summary)
     print(f"{'='*50}")
 
     sys.exit(0 if failed == 0 else 1)

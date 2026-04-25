@@ -7,6 +7,9 @@
   xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Sequence DisplayName="Main" sap2010:WorkflowViewState.IdRef="Sequence_1" sap:VirtualizedContainerService.HintSize="400,300">
-    <uix:NHover DisplayName="Hover Over Element" ScopeIdentifier="00000000-0000-0000-0000-000000000001" Version="V3" sap2010:WorkflowViewState.IdRef="NHover_1" />
+    <!-- NWindowOperation has no Version attribute in its harvested template,
+         so it has no version_attrs entry in the profile. Lint 122 must skip
+         silently for activities not in the expected map (this is the test). -->
+    <uix:NWindowOperation DisplayName="Window Operation" ScopeIdentifier="00000000-0000-0000-0000-000000000001" Version="V3" sap2010:WorkflowViewState.IdRef="NWindowOperation_1" />
   </Sequence>
 </Activity>

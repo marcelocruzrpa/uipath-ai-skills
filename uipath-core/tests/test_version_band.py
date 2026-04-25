@@ -8,18 +8,24 @@ the fix lands.
 import json
 import sys
 from pathlib import Path
+from types import MappingProxyType
 
 import pytest
 
 # Make the scripts package importable without installation.
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
+import version_band as _vb  # noqa: E402  (import after sys.path tweak)
 from version_band import (
+    BAND_PROFILE_VERSIONS,
+    INDEPENDENT_PACKAGE_CAPS,
+    MIN_SUPPORTED_BANDS,
     YEAR_BASED_PACKAGES,
     ProjectVersion,
     UnsupportedBandError,
     derive_band_from_deps,
     detect_project_version,
+    disagreeing_year_based_bands,
     independent_cap,
     is_year_based,
     profile_version_for,
@@ -66,7 +72,21 @@ class TestBandFor:
         (">=25.10",   "25"),  # inequality prefix
         ("~25.10.2",  "25"),  # tilde prefix
     ])
-    def test_band_for_range_prefix_xfail(self, ver, expected):
+    def test_band_for_range_prefix_supported(self, ver, expected):
+        # Was previously named *_xfail; the regex now handles range prefixes
+        # so it's been renamed and the marker dropped (R1 N2).
+        pv = _pv(_UIA, ver)
+        assert pv.band_for(_UIA) == expected
+
+    @pytest.mark.parametrize("ver,expected", [
+        ("(,26.0.0]",  "26"),  # open lower-bound NuGet range
+        ("(*,26.0.0]", "26"),  # wildcard lower bound (seen in some manifests)
+        ("[,26.0.0)",  "26"),  # malformed but observed in the wild
+        ("(,26.0.0)",  "26"),  # open lower-bound, exclusive upper
+    ])
+    def test_band_for_open_lower_bound_ranges(self, ver, expected):
+        # R1 M2 — regex must strip leading commas / wildcards so
+        # open-lower-bound NuGet ranges resolve to a band.
         pv = _pv(_UIA, ver)
         assert pv.band_for(_UIA) == expected
 
@@ -112,6 +132,39 @@ class TestEffectiveBand:
     def test_returns_none_when_no_year_based(self):
         """Returns None when no year-based packages are present."""
         pv = ProjectVersion(package_versions={_EXL: "[3.5.0]"})
+        assert pv.effective_band() is None
+
+    def test_effective_band_rejects_invalid_explicit_band(self):
+        """R1 C1 / CRIT-1 — an in-memory caller passing a profile-version
+        string as ``explicit_band`` must NOT mask a working derived band.
+
+        ``"25.10"`` is a profile version, not a band. ``effective_band``
+        should reject it via ``validate_band`` and fall through to the
+        UIAutomation-derived band ``"25"``.
+        """
+        pv = ProjectVersion(
+            package_versions={_UIA: "[25.10.0]"},
+            explicit_band="25.10",
+        )
+        assert pv.effective_band() == "25"
+
+    @pytest.mark.parametrize("bogus", ["", "25.10", "abc", "2025", "5"])
+    def test_effective_band_falls_back_for_various_invalid_explicit(self, bogus):
+        """Empty string, year-form, single-digit, etc. should all fall
+        through to derivation rather than be returned verbatim."""
+        pv = ProjectVersion(
+            package_versions={_UIA: "[25.10.0]"},
+            explicit_band=bogus,
+        )
+        assert pv.effective_band() == "25"
+
+    def test_effective_band_falls_back_to_none_when_invalid_and_no_deps(self):
+        """If explicit_band is invalid AND no year-based deps are present,
+        effective_band returns None (rather than the invalid value)."""
+        pv = ProjectVersion(
+            package_versions={_EXL: "[3.5.0]"},
+            explicit_band="25.10",
+        )
         assert pv.effective_band() is None
 
 
@@ -211,7 +264,7 @@ class TestIsSupported:
 # ---------------------------------------------------------------------------
 
 class TestValidateBand:
-    @pytest.mark.parametrize("band", ["24", "25", "26"])
+    @pytest.mark.parametrize("band", ["20", "24", "25", "26", "99"])
     def test_accepts_numeric_year_bands(self, band):
         assert validate_band(band) == band
 
@@ -221,9 +274,30 @@ class TestValidateBand:
             validate_band(bad)
 
     def test_raises_on_none(self):
-        """validate_band(None) raises ValueError (via isdigit on None)."""
-        with pytest.raises((ValueError, AttributeError)):
+        """R1 N3 — pin to ValueError (isinstance check rejects None
+        before isdigit could raise AttributeError)."""
+        with pytest.raises(ValueError):
             validate_band(None)
+
+    @pytest.mark.parametrize("bad", [
+        "2025",   # year-form (R1 M1) — looks plausible but bands are 2-digit
+        "0",      # single digit
+        "9",      # single digit, valid-looking
+        "00",     # zero, two-digit but below MIN
+        "01",     # below MIN
+        "19",     # below MIN range [20, 99]
+        "100",    # three digit, above MAX
+    ])
+    def test_rejects_out_of_range_or_year_form(self, bad):
+        """R1 M1 — tighten validate_band to two-digit form within [20, 99]."""
+        with pytest.raises(ValueError):
+            validate_band(bad)
+
+    @pytest.mark.parametrize("bad", [42, 25.0, ["25"], ("25",), {"25"}])
+    def test_rejects_non_string_types(self, bad):
+        """validate_band requires a string — int, float, list, etc. raise."""
+        with pytest.raises(ValueError):
+            validate_band(bad)
 
 
 # ---------------------------------------------------------------------------
@@ -369,3 +443,157 @@ class TestDetectProjectVersion:
         (tmp_path / "project.json").write_text(json.dumps(data), encoding="utf-8")
         with pytest.raises(ValueError, match="versionBand"):
             detect_project_version(tmp_path)
+
+    def test_no_band_fixture_loads_cleanly(self, tmp_path):
+        """R1 N1 — exercise the committed `no_band_project.json` fixture."""
+        src = (FIXTURES / "no_band_project.json").read_text(encoding="utf-8")
+        (tmp_path / "project.json").write_text(src, encoding="utf-8")
+        pv = detect_project_version(tmp_path)
+        assert pv.explicit_band is None
+        assert pv.studio_version == "25.10.0"
+        assert pv.package_versions["UiPath.System.Activities"] == "[25.10.5]"
+        # Falls back to derivation from System.Activities band.
+        assert pv.effective_band() == "25"
+
+    def test_malformed_band_fixture_raises(self, tmp_path):
+        """R1 N1 — exercise the committed `malformed_band_project.json` fixture."""
+        src = (FIXTURES / "malformed_band_project.json").read_text(encoding="utf-8")
+        (tmp_path / "project.json").write_text(src, encoding="utf-8")
+        with pytest.raises(ValueError, match="versionBand"):
+            detect_project_version(tmp_path)
+
+    def test_dependencies_not_an_object_raises_value_error(self, tmp_path):
+        """R1 M5 — malformed `dependencies` (list/string) must surface a clear
+        ValueError, not a raw TypeError from `dict(deps)`."""
+        data = {"name": "BadDeps", "dependencies": ["UiPath.System.Activities"]}
+        (tmp_path / "project.json").write_text(json.dumps(data), encoding="utf-8")
+        with pytest.raises(ValueError, match="dependencies"):
+            detect_project_version(tmp_path)
+
+    def test_dependencies_string_raises_value_error(self, tmp_path):
+        data = {"name": "BadDeps", "dependencies": "not-a-dict"}
+        (tmp_path / "project.json").write_text(json.dumps(data), encoding="utf-8")
+        with pytest.raises(ValueError, match="dependencies"):
+            detect_project_version(tmp_path)
+
+    def test_dependencies_null_treated_as_empty(self, tmp_path):
+        """`dependencies: null` is tolerated as an empty mapping — common in
+        skeleton manifests written by other tools."""
+        data = {"name": "NullDeps", "dependencies": None}
+        (tmp_path / "project.json").write_text(json.dumps(data), encoding="utf-8")
+        pv = detect_project_version(tmp_path)
+        assert pv.package_versions == {}
+
+
+# ---------------------------------------------------------------------------
+# disagreeing_year_based_bands  (HIGH-4 helper)
+# ---------------------------------------------------------------------------
+
+class TestDisagreeingYearBasedBands:
+    def test_empty_when_no_year_based_deps(self):
+        assert disagreeing_year_based_bands({}) == set()
+        assert disagreeing_year_based_bands({_EXL: "[3.4.1]"}) == set()
+
+    def test_single_band_returns_singleton(self):
+        deps = {_SYS: "[25.10.5]", _UIA: "[25.10.30]"}
+        assert disagreeing_year_based_bands(deps) == {"25"}
+
+    def test_disagreement_returns_all_bands(self):
+        """System at 26.x + UIA at 25.x → caller can warn about the spread."""
+        deps = {_SYS: "[26.2.4]", _UIA: "[25.10.30]"}
+        assert disagreeing_year_based_bands(deps) == {"25", "26"}
+
+    def test_derive_picks_max_even_when_disagreement(self):
+        """derive_band_from_deps still returns max(bands) for back-compat —
+        callers must explicitly check `disagreeing_year_based_bands` to surface
+        the disagreement (HIGH-4 contract)."""
+        deps = {_SYS: "[26.2.4]", _UIA: "[25.10.30]"}
+        assert derive_band_from_deps(deps) == "26"
+        assert disagreeing_year_based_bands(deps) == {"25", "26"}
+
+
+# ---------------------------------------------------------------------------
+# Module-level constants are immutable shared state  (CRIT-2)
+# ---------------------------------------------------------------------------
+
+class TestModuleConstantsAreImmutable:
+    """R1 C2 / CRIT-2 — top-level dicts must be MappingProxyType so a stray
+    importer can't poison validation state for the whole process."""
+
+    def test_band_profile_versions_is_mapping_proxy(self):
+        assert isinstance(BAND_PROFILE_VERSIONS, MappingProxyType)
+
+    def test_band_profile_versions_inner_dicts_are_mapping_proxy(self):
+        for band, inner in BAND_PROFILE_VERSIONS.items():
+            assert isinstance(inner, MappingProxyType), (
+                f"BAND_PROFILE_VERSIONS[{band!r}] is not MappingProxyType"
+            )
+
+    def test_min_supported_bands_is_mapping_proxy(self):
+        assert isinstance(MIN_SUPPORTED_BANDS, MappingProxyType)
+
+    def test_independent_package_caps_is_mapping_proxy(self):
+        assert isinstance(INDEPENDENT_PACKAGE_CAPS, MappingProxyType)
+
+    def test_independent_package_caps_inner_dicts_are_mapping_proxy(self):
+        for pkg, inner in INDEPENDENT_PACKAGE_CAPS.items():
+            assert isinstance(inner, MappingProxyType), (
+                f"INDEPENDENT_PACKAGE_CAPS[{pkg!r}] is not MappingProxyType"
+            )
+
+    def test_min_supported_bands_rejects_mutation(self):
+        with pytest.raises(TypeError):
+            MIN_SUPPORTED_BANDS["UiPath.Excel.Activities"] = "99"  # type: ignore[index]
+
+    def test_band_profile_versions_rejects_top_level_mutation(self):
+        with pytest.raises(TypeError):
+            BAND_PROFILE_VERSIONS["27"] = {}  # type: ignore[index]
+
+    def test_band_profile_versions_rejects_inner_mutation(self):
+        with pytest.raises(TypeError):
+            BAND_PROFILE_VERSIONS["25"]["UiPath.System.Activities"] = "00.00"  # type: ignore[index]
+
+    def test_independent_package_caps_rejects_top_level_mutation(self):
+        with pytest.raises(TypeError):
+            INDEPENDENT_PACKAGE_CAPS["UiPath.Excel.Activities"] = {}  # type: ignore[index]
+
+    def test_independent_package_caps_rejects_inner_mutation(self):
+        with pytest.raises(TypeError):
+            INDEPENDENT_PACKAGE_CAPS["UiPath.Excel.Activities"]["25"] = "9."  # type: ignore[index]
+
+
+# ---------------------------------------------------------------------------
+# Invariants drift guard  (HIGH-3)
+# ---------------------------------------------------------------------------
+
+class TestInvariants:
+    """R1 H1 / HIGH-3 — drift guard between BAND_PROFILE_VERSIONS,
+    MIN_SUPPORTED_BANDS, INDEPENDENT_PACKAGE_CAPS, and YEAR_BASED_PACKAGES."""
+
+    def test_invariants_hold_at_import(self):
+        """Re-invoke the import-time validator so any future drift produces a
+        loud test failure, not silently-no-op lints in production."""
+        # Should not raise.
+        _vb._validate_invariants()
+
+    def test_all_year_based_packages_in_every_band(self):
+        for band, profile_map in BAND_PROFILE_VERSIONS.items():
+            missing = YEAR_BASED_PACKAGES - frozenset(profile_map)
+            assert not missing, (
+                f"Band {band!r} is missing year-based packages: "
+                f"{sorted(missing)}"
+            )
+
+    def test_min_supported_bands_reference_known_bands(self):
+        for pkg, b in MIN_SUPPORTED_BANDS.items():
+            assert b in BAND_PROFILE_VERSIONS, (
+                f"MIN_SUPPORTED_BANDS[{pkg!r}]={b!r} not in BAND_PROFILE_VERSIONS"
+            )
+
+    def test_independent_caps_cover_every_band(self):
+        bands = set(BAND_PROFILE_VERSIONS)
+        for pkg, capmap in INDEPENDENT_PACKAGE_CAPS.items():
+            assert set(capmap) == bands, (
+                f"INDEPENDENT_PACKAGE_CAPS[{pkg!r}] band coverage mismatch: "
+                f"{sorted(capmap)} vs {sorted(bands)}"
+            )

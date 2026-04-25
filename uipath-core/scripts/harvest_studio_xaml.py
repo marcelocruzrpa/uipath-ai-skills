@@ -294,6 +294,36 @@ def _extract_xaml(payload) -> str:
 _PKG_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
 _VER_RE = re.compile(r"^[0-9]+(\.[0-9]+){0,3}(-[A-Za-z0-9.]+)?$")
 
+# WF4 built-ins live in System.Activities.dll (the .NET runtime), not in any
+# UiPath NuGet. The CLI's get-default-activity-xaml returns Result=Failure
+# unconditionally for these, and find-activities never surfaces the container
+# variants by short name. Both cases are recorded as benign_skip so they don't
+# masquerade as harvest failures.
+_WF4_CLASS_PREFIX = "System.Activities."
+_WF4_CONTAINER_KEYS = frozenset({"DoWhile", "ForEach", "Switch", "While"})
+_WF4_BENIGN_NOTE = "WF4 built-in; no NuGet template available"
+
+
+def _scrub_wf4_entries(activities: dict) -> int:
+    """Mutate *activities* in place: convert WF4 built-in entries to benign_skip.
+
+    Matches by class_name prefix or by the well-known container short-key set.
+    Returns the count of entries that were converted (for logging).
+    """
+    converted = 0
+    for k, entry in list(activities.items()):
+        cls = (entry or {}).get("class_name") or ""
+        if cls.startswith(_WF4_CLASS_PREFIX) or k in _WF4_CONTAINER_KEYS:
+            if (entry or {}).get("status") == "benign_skip":
+                continue  # already scrubbed
+            activities[k] = {
+                "status": "benign_skip",
+                "class_name": cls or None,
+                "note": _WF4_BENIGN_NOTE,
+            }
+            converted += 1
+    return converted
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
@@ -307,12 +337,35 @@ def main() -> int:
                         help="Continue harvesting after individual activity failures (default)")
     parser.add_argument("--discover", action="store_true",
                         help="Discover the activity list via find-activities instead of reading a profile JSON")
+    parser.add_argument("--scrub-only", action="store_true",
+                        help="Apply WF4-builtin scrub to the existing on-disk index.json "
+                             "for --package/--version and exit. Skips Studio entirely.")
     args = parser.parse_args()
 
     if not _PKG_RE.fullmatch(args.package):
         parser.error(f"--package must match {_PKG_RE.pattern}, got {args.package!r}")
     if not _VER_RE.fullmatch(args.version):
         parser.error(f"--version must match {_VER_RE.pattern}, got {args.version!r}")
+
+    if args.scrub_only:
+        scrub_dir = GROUND_TRUTH_DIR / args.package / args.version
+        scrub_dir_resolved = scrub_dir.resolve()
+        ground_truth_resolved = GROUND_TRUTH_DIR.resolve()
+        if not scrub_dir_resolved.is_relative_to(ground_truth_resolved):
+            print(f"ERROR: refusing to scrub outside ground-truth dir: {scrub_dir_resolved}",
+                  file=sys.stderr)
+            return 2
+        idx_path = scrub_dir / "index.json"
+        if not idx_path.exists():
+            print(f"ERROR: no index.json at {idx_path}", file=sys.stderr)
+            return 2
+        idx = json.loads(idx_path.read_text(encoding="utf-8"))
+        activities = idx.get("activities") or {}
+        converted = _scrub_wf4_entries(activities)
+        idx["activities"] = activities
+        idx_path.write_text(json.dumps(idx, indent=2), encoding="utf-8")
+        print(f"Scrubbed {converted} WF4-builtin entry(ies) in {idx_path}")
+        return 0
 
     profile_path = PROFILES_DIR / args.package / f"{args.version}.json"
     profile_activities = {}
@@ -438,12 +491,29 @@ def main() -> int:
         "harvested_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "activities": dict(existing_activities),
     }
+    pre_scrubbed = _scrub_wf4_entries(index["activities"])
+    if pre_scrubbed:
+        print(f"Pre-scrubbed {pre_scrubbed} WF4-builtin entry(ies) from existing index.")
 
     print(f"Harvesting {len(fqn_map)} of {len(keys)} requested activities...")
     for key in keys:
         fqn = fqn_map.get(key)
         if not fqn:
-            index["activities"][key] = {"status": "unresolved"}
+            if key in _WF4_CONTAINER_KEYS:
+                index["activities"][key] = {
+                    "status": "benign_skip",
+                    "class_name": None,
+                    "note": _WF4_BENIGN_NOTE,
+                }
+            else:
+                index["activities"][key] = {"status": "unresolved"}
+            continue
+        if fqn.startswith(_WF4_CLASS_PREFIX):
+            index["activities"][key] = {
+                "status": "benign_skip",
+                "class_name": fqn,
+                "note": _WF4_BENIGN_NOTE,
+            }
             continue
         try:
             data = _run_uip_json(

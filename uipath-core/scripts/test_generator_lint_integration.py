@@ -31,6 +31,13 @@ SKILL_DIR = SCRIPTS_DIR.parent
 GENERATOR = SCRIPTS_DIR / "generate_workflow.py"
 VALIDATOR = SCRIPTS_DIR / "validate_xaml"
 
+# SAP-WinGUI plugin lives only on `feature/sap-wingui-skill` and has never been
+# merged. When the plugin source isn't on disk, skip specs that depend on its
+# generators (sap_wingui_workflow). This mirrors the gating in test_cross_plugin.py.
+SAP_PLUGIN_DIR = SKILL_DIR.parent / "uipath-sap-wingui" / "extensions"
+SAP_AVAILABLE = SAP_PLUGIN_DIR.exists()
+SAP_DEPENDENT_SPECS = {"sap_wingui_workflow"}
+
 
 # ---------------------------------------------------------------------------
 # Test specs — representative workflows exercising major generator paths
@@ -513,8 +520,12 @@ def main():
     tmpdir = tempfile.mkdtemp(prefix="gen_lint_test_", dir=args.tmpdir)
     results = []
 
+    skipped_names = []
     try:
         for spec_name, spec in SPECS.items():
+            if spec_name in SAP_DEPENDENT_SPECS and not SAP_AVAILABLE:
+                skipped_names.append(spec_name)
+                continue
             result = run_generate_and_lint(spec_name, spec, tmpdir, args.verbose)
             results.append(result)
     finally:
@@ -530,6 +541,8 @@ def main():
         else:
             status = "PASS" if r.passed else "FAIL"
             print(f"{status}  {r.name}")
+    for name in skipped_names:
+        print(f"SKIP  gen→lint: {name} — uipath-sap-wingui not on this branch")
 
     print(f"\n{'='*60}")
     print(f"GENERATOR→LINT: {passed}/{total} passed" +

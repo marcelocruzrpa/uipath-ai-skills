@@ -15,17 +15,19 @@ validation) import from here. No version data is duplicated elsewhere.
 import dataclasses
 import json
 import re
+import types
 from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
 # NuGet version-range prefix regex
 #
-# Handles: "25.10.5", "[25.10.5]", "[25.10.5,)", ">=25.10", "~25.10.2", etc.
+# Handles: "25.10.5", "[25.10.5]", "[25.10.5,)", ">=25.10", "~25.10.2",
+# "(,26.0.0]" (open lower-bound NuGet range), "*", etc.
 # Captures the leading integer (the band) after stripping range-prefix chars.
 # ---------------------------------------------------------------------------
 
-_RANGE_PREFIX_RE = re.compile(r"^[\[\(>=~\s]*(\d+)")
+_RANGE_PREFIX_RE = re.compile(r"^[\[\(\),>=~\^\*\s]*(\d+)")
 
 # ---------------------------------------------------------------------------
 # Year-based packages — major version tracks the Studio release year
@@ -51,15 +53,15 @@ YEAR_BASED_PACKAGES = frozenset({
 # Maintained as checked-in data — do not infer heuristically from the feed.
 # ---------------------------------------------------------------------------
 
-INDEPENDENT_PACKAGE_CAPS = {
-    "UiPath.Excel.Activities":       {"25": "3.", "26": "3."},
-    "UiPath.Mail.Activities":        {"25": "2.", "26": "2."},
-    "UiPath.PDF.Activities":         {"25": "3.", "26": "3."},
-    "UiPath.WebAPI.Activities":      {"25": "2.", "26": "2."},
-    "UiPath.Database.Activities":    {"25": "2.", "26": "2."},
-    "UiPath.Persistence.Activities": {"25": "1.", "26": "1."},
-    "UiPath.FormActivityLibrary":    {"25": "2.", "26": "2."},
-}
+INDEPENDENT_PACKAGE_CAPS = types.MappingProxyType({
+    "UiPath.Excel.Activities":       types.MappingProxyType({"25": "3.", "26": "3."}),
+    "UiPath.Mail.Activities":        types.MappingProxyType({"25": "2.", "26": "2."}),
+    "UiPath.PDF.Activities":         types.MappingProxyType({"25": "3.", "26": "3."}),
+    "UiPath.WebAPI.Activities":      types.MappingProxyType({"25": "2.", "26": "2."}),
+    "UiPath.Database.Activities":    types.MappingProxyType({"25": "2.", "26": "2."}),
+    "UiPath.Persistence.Activities": types.MappingProxyType({"25": "1.", "26": "1."}),
+    "UiPath.FormActivityLibrary":    types.MappingProxyType({"25": "2.", "26": "2."}),
+})
 
 # ---------------------------------------------------------------------------
 # Minimum supported bands — per package
@@ -68,9 +70,9 @@ INDEPENDENT_PACKAGE_CAPS = {
 # Bands below these are rejected with a warning/error.
 # ---------------------------------------------------------------------------
 
-MIN_SUPPORTED_BANDS = {
+MIN_SUPPORTED_BANDS = types.MappingProxyType({
     "UiPath.UIAutomation.Activities": "25",
-}
+})
 
 # ---------------------------------------------------------------------------
 # Band → profile version mapping
@@ -80,14 +82,14 @@ MIN_SUPPORTED_BANDS = {
 # determine which profile/doc version to use.
 # ---------------------------------------------------------------------------
 
-BAND_PROFILE_VERSIONS = {
+BAND_PROFILE_VERSIONS = types.MappingProxyType({
     # Profile versions track the LATEST STABLE NuGet package major.minor per
     # band. Entries MUST match an actually-shipped stable version on the Studio
     # feed — never a prerelease. When a package's band has no stable promotion
     # yet, this maps to the latest stable that DOES exist (usually the prior
     # band's version), so band-aware lints run against real-world XAML rather
     # than aspirational profiles. See memory: policy_stable_only_harvests.md.
-    "25": {
+    "25": types.MappingProxyType({
         "UiPath.System.Activities":        "25.10",
         "UiPath.UIAutomation.Activities":  "25.10",  # 26.x is prerelease-only
         "UiPath.Excel.Activities":         "3.4",    # 3.5 is prerelease-only
@@ -99,8 +101,8 @@ BAND_PROFILE_VERSIONS = {
         "UiPath.Database.Activities":      None,
         "UiPath.Persistence.Activities":   None,
         "UiPath.FormActivityLibrary":      None,
-    },
-    "26": {
+    }),
+    "26": types.MappingProxyType({
         # Band-26 packages without a band-26 stable release fall back to the
         # latest band-25 stable. Update these mappings when UiPath promotes a
         # 26.x stable to the feed.
@@ -115,8 +117,8 @@ BAND_PROFILE_VERSIONS = {
         "UiPath.Database.Activities":      None,
         "UiPath.Persistence.Activities":   None,
         "UiPath.FormActivityLibrary":      None,
-    },
-}
+    }),
+})
 
 
 # ---------------------------------------------------------------------------
@@ -183,17 +185,33 @@ class ProjectVersion:
 
         Priority: explicit ``versionBand`` > UIAutomation dependency band >
         System.Activities dependency band.
+
+        ``explicit_band`` is validated via :func:`validate_band` before being
+        returned. If it fails validation (e.g., a profile version like
+        ``"25.10"`` was passed in by an in-memory caller bypassing
+        :func:`detect_project_version`), falls through to derivation rather
+        than masking a working derived band with a bogus value.
         """
         if self.explicit_band is not None:
-            return self.explicit_band
+            try:
+                validate_band(self.explicit_band)
+                return self.explicit_band
+            except ValueError:
+                # Fall through to derivation — never let an invalid
+                # explicit_band silently disable downstream lints.
+                pass
         return (self.band_for("UiPath.UIAutomation.Activities")
                 or self.band_for("UiPath.System.Activities"))
 
     def unsupported_packages(self) -> list[tuple[str, str, str]]:
         """Return a list of ``(package, detected_band, min_band)`` tuples
-        for every package whose band falls below its minimum."""
+        for every package whose band falls below its minimum.
+
+        Output is sorted by package name for deterministic ordering across
+        runs (callers include error messages and snapshot tests).
+        """
         results = []
-        for package, min_band in MIN_SUPPORTED_BANDS.items():
+        for package, min_band in sorted(MIN_SUPPORTED_BANDS.items()):
             band = self.band_for(package)
             if band is None:
                 continue
@@ -211,12 +229,16 @@ class ProjectVersion:
         year-based package whose major version differs from
         :meth:`effective_band`.  An empty list means all year-based
         dependencies are consistent.
+
+        Output is sorted by package name for deterministic ordering — sets
+        randomise iteration order, which would otherwise cause snapshot
+        churn.
         """
         eff = self.effective_band()
         if eff is None:
             return []
         results = []
-        for package in YEAR_BASED_PACKAGES:
+        for package in sorted(YEAR_BASED_PACKAGES):
             band = self.band_for(package)
             if band is not None and band != eff:
                 results.append((package, band))
@@ -232,27 +254,62 @@ class UnsupportedBandError(ValueError):
     pass
 
 
-def validate_band(band: str) -> str:
-    """Validate that *band* is a numeric version band string.
+_VALID_BAND_RE = re.compile(r"^\d{2}$")
+_BAND_MIN_INT = 20
+_BAND_MAX_INT = 99
 
-    Returns the band unchanged if valid.
-    Raises ``ValueError`` if *band* is not a non-negative integer string.
+
+def validate_band(band: str) -> str:
+    """Validate that *band* is a two-digit version band string in [20, 99].
+
+    Returns the band unchanged if valid. Raises ``ValueError`` for:
+    - ``None`` / empty string / non-string types
+    - non-numeric values (``'abc'``, ``'25.10'``)
+    - year-form values (``'2025'``) — bands are two-digit shorthand
+    - leading-zero / single-digit values (``'00'``, ``'9'``)
+    - integers outside the supported range ``[20, 99]``
+
+    The two-digit form mirrors UiPath Studio's ``versionBand`` shorthand
+    (e.g., ``'25'`` for the 2025 release line).
     """
-    if not band or not band.isdigit():
+    if not isinstance(band, str) or not _VALID_BAND_RE.fullmatch(band):
         raise ValueError(
-            f"Invalid version band {band!r}: must be a numeric string (e.g., '25', '26')"
+            f"Invalid version band {band!r}: must be a two-digit numeric "
+            f"string in [{_BAND_MIN_INT:02d}, {_BAND_MAX_INT:02d}] "
+            f"(e.g., '25', '26')"
+        )
+    n = int(band)
+    if n < _BAND_MIN_INT or n > _BAND_MAX_INT:
+        raise ValueError(
+            f"Invalid version band {band!r}: out of supported range "
+            f"[{_BAND_MIN_INT:02d}, {_BAND_MAX_INT:02d}]"
         )
     return band
 
 
+# Public package-name lookups (`is_year_based`, `profile_version_for`,
+# `independent_cap`, `band_for`, etc.) are CASE-SENSITIVE on the package name.
+# NuGet itself treats package IDs case-insensitively, but our profile data and
+# generator dispatch consistently use the canonical Pascal-Case form
+# (`UiPath.System.Activities`). Callers reading from project.json should pass
+# the package ID exactly as it appears in `dependencies`. Normalize upstream if
+# you need to accept casing variants — these helpers don't normalise for you.
+
 def is_year_based(package: str) -> bool:
-    """Return ``True`` if *package* uses year-based versioning."""
+    """Return ``True`` if *package* uses year-based versioning.
+
+    Case-sensitive: pass the canonical Pascal-Case package ID
+    (e.g., ``"UiPath.System.Activities"``).
+    """
     return package in YEAR_BASED_PACKAGES
 
 
 def profile_version_for(package: str, band: str) -> str | None:
     """Return the upstream doc profile version for *package* in *band*,
-    or ``None`` if no mapping exists."""
+    or ``None`` if no mapping exists.
+
+    Case-sensitive on *package* (see module-level note).
+    """
     band_map = BAND_PROFILE_VERSIONS.get(band)
     if band_map is None:
         return None
@@ -261,24 +318,51 @@ def profile_version_for(package: str, band: str) -> str | None:
 
 def independent_cap(package: str, band: str) -> str | None:
     """Return the version prefix cap for an independent *package* in *band*,
-    or ``None`` if uncapped / unknown."""
+    or ``None`` if uncapped / unknown.
+
+    Case-sensitive on *package* (see module-level note).
+    """
     caps = INDEPENDENT_PACKAGE_CAPS.get(package)
     if caps is None:
         return None
     return caps.get(band)
 
 
+def disagreeing_year_based_bands(deps: dict[str, str]) -> set[str]:
+    """Return the set of distinct year-based bands detected in *deps*.
+
+    A return value with more than one element means year-based dependencies
+    disagree on which band the project lives in (e.g., ``UiPath.System @ 26.x``
+    plus ``UiPath.UIAutomation @ 25.x``). :func:`derive_band_from_deps` resolves
+    that disagreement by picking the maximum, but callers (CLI scaffold,
+    ``scaffold_project --band``) may want to warn the user about the mismatch.
+
+    Empty set means no year-based dep was present.
+    """
+    pv = ProjectVersion(package_versions=dict(deps))
+    bands: set[str] = set()
+    for pkg in YEAR_BASED_PACKAGES:
+        band = pv.band_for(pkg)
+        if band is not None:
+            bands.add(band)
+    return bands
+
+
 def derive_band_from_deps(deps: dict[str, str]) -> str | None:
-    """Derive the minimum version band that accommodates every year-based
-    dependency in *deps*.
+    """Derive the highest band among year-based dependencies in *deps*.
 
     Inspects each :data:`YEAR_BASED_PACKAGES` entry present in *deps* and
-    returns the maximum detected band as a string. When no year-based package
-    appears, returns ``None`` (caller cannot commit to a band).
+    returns ``str(max(detected))`` — the band that all detected year-based
+    deps are forward-compatible with. When no year-based package appears,
+    returns ``None`` (caller cannot commit to a band).
 
     The returned band is always present in :data:`BAND_PROFILE_VERSIONS`;
     otherwise returns ``None`` so the caller can skip stamping ``versionBand``
     rather than emit an unvalidated value.
+
+    When year-based deps disagree (e.g., System @ 26 + UIA @ 25), the chosen
+    band still wins by ``max``. Callers that want to surface the disagreement
+    can compare against :func:`disagreeing_year_based_bands`.
 
     Raises :class:`UnsupportedBandError` if any package's detected band is
     below its entry in :data:`MIN_SUPPORTED_BANDS`.
@@ -320,6 +404,14 @@ def detect_project_version(project_dir: str | Path) -> ProjectVersion:
         data = json.load(f)
 
     deps = data.get("dependencies", {})
+    if deps is None:
+        deps = {}
+    if not isinstance(deps, dict):
+        raise ValueError(
+            f"'dependencies' in {pj_path} is not an object: "
+            f"got {type(deps).__name__}. Expected a JSON object mapping "
+            f"package names to version strings."
+        )
     studio_ver = data.get("studioVersion")
     version_band = data.get("versionBand")
 
@@ -337,3 +429,59 @@ def detect_project_version(project_dir: str | Path) -> ProjectVersion:
         studio_version=studio_ver,
         explicit_band=version_band,
     )
+
+
+# ---------------------------------------------------------------------------
+# Module-level invariant checks
+#
+# Run at import time so a future contributor adding a new band (e.g., "27")
+# without updating every map immediately gets a clear error rather than
+# shipping a silently-no-op lint. Companion test
+# `test_invariants_hold_at_import` re-invokes this so the assertions can be
+# pinned in the test suite as well.
+# ---------------------------------------------------------------------------
+
+def _validate_invariants() -> None:
+    """Assert the band-versioning maps are mutually consistent.
+
+    Checks:
+    - Every band in :data:`BAND_PROFILE_VERSIONS` covers the same package set.
+    - Every package in :data:`YEAR_BASED_PACKAGES` appears in every band's
+      profile map.
+    - Every band referenced in :data:`MIN_SUPPORTED_BANDS` exists in
+      :data:`BAND_PROFILE_VERSIONS`.
+    - Every package in :data:`INDEPENDENT_PACKAGE_CAPS` covers every band in
+      :data:`BAND_PROFILE_VERSIONS`.
+
+    Raises :class:`AssertionError` on any drift.
+    """
+    bands = set(BAND_PROFILE_VERSIONS)
+    pkg_sets = [frozenset(m) for m in BAND_PROFILE_VERSIONS.values()]
+    assert len(set(pkg_sets)) == 1, (
+        f"BAND_PROFILE_VERSIONS bands have inconsistent package keys: "
+        f"{[sorted(s) for s in pkg_sets]}"
+    )
+    for b, m in BAND_PROFILE_VERSIONS.items():
+        missing = YEAR_BASED_PACKAGES - frozenset(m)
+        assert not missing, (
+            f"Band {b!r} missing year-based packages: {sorted(missing)}"
+        )
+    for pkg, minb in MIN_SUPPORTED_BANDS.items():
+        assert minb in bands, (
+            f"MIN_SUPPORTED_BANDS[{pkg!r}]={minb!r} not in "
+            f"BAND_PROFILE_VERSIONS (known bands: {sorted(bands)})"
+        )
+    for pkg, capmap in INDEPENDENT_PACKAGE_CAPS.items():
+        unknown = set(capmap) - bands
+        assert not unknown, (
+            f"INDEPENDENT_PACKAGE_CAPS[{pkg!r}] has unknown bands: "
+            f"{sorted(unknown)}"
+        )
+        missing = bands - set(capmap)
+        assert not missing, (
+            f"INDEPENDENT_PACKAGE_CAPS[{pkg!r}] missing bands: "
+            f"{sorted(missing)}"
+        )
+
+
+_validate_invariants()

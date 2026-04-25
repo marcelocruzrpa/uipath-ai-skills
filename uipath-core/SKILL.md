@@ -2,7 +2,7 @@
 name: uipath-core
 description: >
   Generates UiPath Studio XAML workflows, project scaffolds (sequence/dispatcher/performer),
-  and expressions via 94 deterministic Python generators (plus additional generators from installed plugin skills). Use when the user mentions
+  and expressions via 95 deterministic Python generators (plus additional generators from installed plugin skills). Use when the user mentions
   UiPath, XAML, RPA, REFramework, Orchestrator, or UiPath Studio development.
 ---
 
@@ -196,10 +196,10 @@ Before generating ANY XAML, determine project context:
 | `references/golden-templates.md` | Template catalog — patterns extracted from each real template file |
 | `references/scaffolding.md` | Template selection, NuGet mapping, XAML validation, project scaffolding (variants, dispatcher/performer, transaction types), full project generation checklist |
 | `references/decomposition.md` | Naming conventions, decomposition rules (universal 1-8, browser 9-13, desktop 14), common process patterns, argument design, Login/Launch pattern, REFramework Init/Close, UiElement chain |
-| `references/generation.md` | Object Repository, Workflow Generation CLI (JSON spec format, 94 core generators + plugin extensions), Activity Generators (usage pattern, what model provides vs what generators lock down) |
+| `references/generation.md` | Object Repository, Workflow Generation CLI (JSON spec format, 95 core generators + plugin extensions), Activity Generators (usage pattern, what model provides vs what generators lock down) |
 | `references/ui-inspection.md` | Playwright MCP workflow (login gate, 5-step process, element mapping), Desktop inspection (PowerShell, inspect-ui-tree.ps1, framework detection) |
 | `references/skill-guide.md` | **Index + examples.** Routes to scaffolding/decomposition/generation/ui-inspection. Contains 7 worked examples + anti-example |
-| `references/lint-reference.md` | **71 lint rules** by severity, searchable by lint number (core rules; plugins add more) |
+| `references/lint-reference.md` | **75 lint rules** by severity, searchable by lint number (core rules; plugins add more) |
 | `references/playwright-selectors.md` | Playwright MCP → UiPath selector mapping |
 | `references/config-sample.md` | Config.xlsx three-sheet reference (Settings, Constants, Assets), key naming conventions, sheet placement decision flowchart, required keys output format |
 | `references/cheat-sheet.md` | JSON spec patterns (multiple_assign, if, try_catch, foreach_row, pick_login_validation, filter_data_table, add_queue_item, selectors.json), modify_framework.py CLI+Python API, valid enum values, naming, quick rules |
@@ -219,8 +219,8 @@ Before generating ANY XAML, determine project context:
 | `scripts/scaffold_project.py` | Scaffold UiPath projects (sequence / dispatcher / performer). Customizes Config.xlsx. Dispatcher replaces GetQueueItem with DataTable row indexing. |
 | `scripts/config_xlsx_manager.py` | Add/list/validate Config.xlsx keys. Cross-references XAML Config() refs vs actual sheets. |
 | `scripts/modify_framework.py` | Insert InvokeWorkflowFile into framework files, replace SCAFFOLD.* markers, **wire UiElement argument chain** (`wire-uielement`), **add variables with auto type normalization** (`add-variables`), **replace placeholder expressions** (`set-expression`). ⛔ G-8: Never Edit/Write .xaml directly — use this script or `generate_workflow.py`. |
-| `scripts/generate_activities` | **Deterministic XAML generators** for 94 core activities. Locks down enums, versions, child elements. MANDATORY for NTypeInto, NClick, NGetText, NCheckState, NApplicationCard, etc. Plugin skills add more (e.g., Tasks, SAP WinGUI). |
-| `scripts/generate_workflow.py` | **Generate complete .xaml files from JSON specs.** 94 core generators + plugin generators loaded via `plugin_loader.py`. Covers ALL activities including Pick login validation, TryCatch, ForEachRow, NExtractData, NCheckState. **Pass `--project-dir <project>` to auto-wire Object Repository references** (`Reference=`/`ContentHash=` on TargetAnchorable) from `.objects/refs.json`. ⛔ Do NOT write .xaml by hand — use this CLI instead. |
+| `scripts/generate_activities` | **Deterministic XAML generators** for 95 core activities. Locks down enums, versions, child elements. MANDATORY for NTypeInto, NClick, NGetText, NCheckState, NApplicationCard, etc. Plugin skills add more (e.g., Tasks, SAP WinGUI). |
+| `scripts/generate_workflow.py` | **Generate complete .xaml files from JSON specs.** 95 core generators + plugin generators loaded via `plugin_loader.py`. Covers ALL activities including Pick login validation, TryCatch, ForEachRow, NExtractData, NCheckState. **Pass `--project-dir <project>` to auto-wire Object Repository references** (`Reference=`/`ContentHash=` on TargetAnchorable) from `.objects/refs.json`. ⛔ Do NOT write .xaml by hand — use this CLI instead. |
 | `scripts/generate_object_repository.py` | **Generate Object Repository** (`.objects/` tree). CLI: `python3 generate_object_repository.py --from-selectors selectors.json --project-dir <dir>`. Reads `selectors.json` (written during Playwright inspection) with full app/screen/element hierarchy. Lint 94 is ERROR — project cannot pass validation without populated Object Repository. |
 | `scripts/inspect-ui-tree.ps1` | **Windows-only.** Inspect desktop app UI tree via UIA API. Run via Bash (`powershell -File`). |
 | `scripts/regression_test.py` | Regression tests — validates templates, scaffolding, naming conventions, line count accuracy, skill integrity |

@@ -86,15 +86,17 @@ class TestOptInInvariant:
 
 
 class TestEdgeCases:
-    def test_malformed_band_emits_warnings_not_errors(self):
+    def test_malformed_band_silent_no_op(self):
         # versionBand "25.10" is a profile version, not a band integer.
-        # int("25.10") raises ValueError → lints emit warnings and skip.
+        # int("25.10") raises ValueError. Per R2a H2 the malformed-band path
+        # is a SILENT no-op for all three lints; the user-visible signal
+        # belongs at the scaffold/`ProjectVersion.effective_band()` boundary,
+        # not duplicated per-XAML at lint time.
         results = validate_project(str(_ASSETS / "bad_project_version_compat_malformed_band"), lint=True)
         assert not _fire_numbers(results), \
             "malformed band must not produce false-positive errors"
-        warned = _warn_numbers(results)
-        assert 120 in warned and 121 in warned, \
-            "malformed band must surface warnings on lints 120 and 121"
+        assert not _warn_numbers(results), \
+            "malformed band must NOT emit per-XAML warnings (silent no-op contract)"
 
     def test_unknown_band_99_no_ops(self):
         # Band "99" has no entry in BAND_PROFILE_VERSIONS → lint 122 expected
@@ -110,3 +112,109 @@ class TestEdgeCases:
         results = validate_project(str(_ASSETS / "bad_project_version_compat_missing_profile"), lint=True)
         assert not _fire_numbers(results), \
             "activity absent from profile must not trigger lint 122"
+
+
+class TestProfileShapeHardening:
+    """Regression tests for CRIT-3: malformed profile JSON must not break import."""
+
+    def test_null_version_attrs_does_not_break_import(self):
+        # A plugin (or harvested profile) carrying `"version_attrs": null` /
+        # `"activities": null` would previously crash at module import via
+        # `None.items()` and brick the entire `validate_xaml` package.
+        # _detect_version_sensitive_activities() must skip such entries
+        # gracefully and the dispatch must continue working.
+        import importlib
+
+        # Plugin loader is the supported registration surface. Use it to feed
+        # a profile that has an explicit-null `activities` map and another
+        # whose activity carries a null `version_attrs`.
+        from plugin_loader import register_version_profile, register_band_profile_mapping
+
+        bad_pkg = "Acme.Skill.Profiles.HardeningTest"
+        register_version_profile(bad_pkg, "1.0", {"activities": None})
+        register_version_profile(
+            bad_pkg, "2.0",
+            {"activities": {"FooActivity": {"version_attrs": None}}},
+        )
+        register_band_profile_mapping("25", bad_pkg, "1.0")
+        register_band_profile_mapping("26", bad_pkg, "2.0")
+
+        # Force a rebuild of the version-sensitive cache after registration.
+        import validate_xaml.lints_version_compat as lvc
+        importlib.reload(lvc)
+        # Direct call to the rebuild path must not raise.
+        rebuilt = lvc._safe_detect_version_sensitive_activities()
+        assert isinstance(rebuilt, set)
+        # And `_invalidate_cache` exposed for plugin reload paths must run
+        # cleanly even with the bad profiles registered.
+        lvc._invalidate_cache()
+
+        # End-to-end: validate_project still imports + dispatches lints with
+        # the bad plugin profiles registered.
+        from validate_xaml import validate_project as vp
+        results = vp(str(_ASSETS / "good_project_version_compat"), lint=True)
+        # The good fixture must remain clean — bad plugin profiles must not
+        # bleed errors into clean projects.
+        assert not _fire_numbers(results)
+
+
+class TestVersionRegexAcceptsDottedV5:
+    """Regression test for R2a M3: dotted Version strings (V5.1) must be parseable."""
+
+    def test_v5_dot_1_matches_version_any(self):
+        from validate_xaml.lints_version_compat import _RE_VERSION_ANY, _RE_VERSION_V5_PLUS
+        # _RE_VERSION_ANY (used by lint 122) must accept dotted variants.
+        assert _RE_VERSION_ANY.match("V5") is not None
+        assert _RE_VERSION_ANY.match("V5.1") is not None
+        assert _RE_VERSION_ANY.match("V10") is not None
+        assert _RE_VERSION_ANY.match("V10.2") is not None
+        # _RE_VERSION_V5_PLUS (used by lint 120) must also accept dotted.
+        assert _RE_VERSION_V5_PLUS.match("V5") is not None
+        assert _RE_VERSION_V5_PLUS.match("V5.1") is not None
+        assert _RE_VERSION_V5_PLUS.match("V10") is not None
+        # And reject sub-V5.
+        assert _RE_VERSION_V5_PLUS.match("V4") is None
+        assert _RE_VERSION_V5_PLUS.match("V4.1") is None
+
+
+class TestVersionBandIntCoercion:
+    """Regression test for R2b M1: int versionBand coerced to str."""
+
+    def test_int_version_band_is_coerced(self, tmp_path, capsys):
+        from validate_xaml._orchestration import _read_version_band
+        import json as _json
+        proj = tmp_path / "intband"
+        proj.mkdir()
+        (proj / "project.json").write_text(_json.dumps({
+            "name": "x", "projectId": "y", "main": "Main.xaml",
+            "dependencies": {}, "targetFramework": "Windows",
+            "versionBand": 25,
+        }))
+        result = _read_version_band(str(proj))
+        assert result == "25", f"int 25 should coerce to '25', got {result!r}"
+        captured = capsys.readouterr()
+        assert "versionBand is an int" in captured.err
+
+    def test_string_version_band_passthrough(self, tmp_path):
+        from validate_xaml._orchestration import _read_version_band
+        import json as _json
+        proj = tmp_path / "strband"
+        proj.mkdir()
+        (proj / "project.json").write_text(_json.dumps({
+            "name": "x", "projectId": "y", "main": "Main.xaml",
+            "dependencies": {}, "targetFramework": "Windows",
+            "versionBand": "25",
+        }))
+        assert _read_version_band(str(proj)) == "25"
+
+    def test_unsupported_type_returns_none(self, tmp_path):
+        from validate_xaml._orchestration import _read_version_band
+        import json as _json
+        proj = tmp_path / "listband"
+        proj.mkdir()
+        (proj / "project.json").write_text(_json.dumps({
+            "name": "x", "projectId": "y", "main": "Main.xaml",
+            "dependencies": {}, "targetFramework": "Windows",
+            "versionBand": ["25"],
+        }))
+        assert _read_version_band(str(proj)) is None

@@ -119,6 +119,10 @@ PROJECT_TESTS = [
     ("bad_project_crossfile", "lint 63", "WARN"),
     ("bad_project_cycle", "lint 101", "ERROR"),
     ("bad_project_orphan", "lint 102", "WARN"),
+    # Version-compatibility lints (120/121/122) — directory fixtures with project.json
+    ("bad_project_version_compat", "lint 120", "ERROR"),
+    ("bad_project_version_compat", "lint 121", "ERROR"),
+    ("bad_project_version_compat_band26", "lint 122", "ERROR"),
 ]
 
 
