@@ -55,9 +55,13 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Log Message activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Log Message.",
-      "_routing_review_needed": true
+      "description": "Writes a message to the robot log at the chosen level (Trace/Info/Warn/Error/Fatal).",
+      "use_when": "User wants to record progress or a diagnostic message; for permanent log enrichment use AddLogFields; for raising alerts use RaiseAlert.",
+      "_routing_review_needed": false,
+      "tags": [
+        "logging",
+        "diagnostics"
+      ]
     },
     "Comment": {
       "gen_function": "gen_comment",
@@ -98,9 +102,13 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Comment activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Comment.",
-      "_routing_review_needed": true
+      "description": "Inserts an inline comment annotation in the workflow surface — no runtime effect.",
+      "use_when": "User wants to document intent inline next to activities; for disabling a block of activities use CommentOut.",
+      "_routing_review_needed": false,
+      "tags": [
+        "comment",
+        "documentation"
+      ]
     },
     "CommentOut": {
       "gen_function": "gen_comment_out",
@@ -154,9 +162,14 @@
       },
       "conditional_attrs": {},
       "category": "logging_misc",
-      "description": "Comment Out activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Comment Out.",
-      "_routing_review_needed": true
+      "description": "Disables a block of activities at design-time without deleting them — they remain visible but are skipped at runtime.",
+      "use_when": "User wants to temporarily disable activities while keeping them visible for context; for inline notes use Comment.",
+      "_routing_review_needed": false,
+      "tags": [
+        "comment",
+        "disable",
+        "design-time"
+      ]
     },
     "Break": {
       "gen_function": "gen_break",
@@ -189,9 +202,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Break activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Break.",
-      "_routing_review_needed": true
+      "description": "Exits the enclosing loop (ForEach / While / DoWhile) immediately.",
+      "use_when": "User wants to terminate iteration once a condition is met; for skipping the rest of the current iteration only use Continue.",
+      "_routing_review_needed": false,
+      "tags": [
+        "loop",
+        "control-flow",
+        "break"
+      ]
     },
     "Continue": {
       "gen_function": "gen_continue",
@@ -224,9 +242,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Continue activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Continue.",
-      "_routing_review_needed": true
+      "description": "Skips to the next iteration of the enclosing loop, bypassing remaining activities in the current iteration.",
+      "use_when": "User wants to skip the rest of the current iteration; for terminating the loop entirely use Break.",
+      "_routing_review_needed": false,
+      "tags": [
+        "loop",
+        "control-flow",
+        "continue"
+      ]
     },
     "KillProcess": {
       "gen_function": "gen_kill_process",
@@ -267,9 +290,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Kill Process activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Kill Process.",
-      "_routing_review_needed": true
+      "description": "Forcibly terminates a Windows process by name or process object.",
+      "use_when": "User wants to close a hung application that won't respond to graceful shutdown; for graceful close use NApplicationCard's CloseDialog action when available.",
+      "_routing_review_needed": false,
+      "tags": [
+        "process",
+        "windows",
+        "kill"
+      ]
     },
     "TerminateWorkflow": {
       "gen_function": "gen_terminate_workflow",
@@ -314,9 +342,14 @@
       },
       "conditional_attrs": {},
       "category": "logging_misc",
-      "description": "Terminate Workflow activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Terminate Workflow.",
-      "_routing_review_needed": true
+      "description": "Terminates the running workflow with a status (Successful / Faulted / Cancelled) and optional exception.",
+      "use_when": "User wants to abort the workflow with a definitive outcome; for raising a recoverable exception use Throw inside a TryCatch.",
+      "_routing_review_needed": false,
+      "tags": [
+        "workflow",
+        "terminate",
+        "abort"
+      ]
     },
     "ShouldStop": {
       "gen_function": "gen_should_stop",
@@ -356,9 +389,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "logging_misc",
-      "description": "Should Stop activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Should Stop.",
-      "_routing_review_needed": true
+      "description": "Returns True if the user has requested the job to stop via Orchestrator's Stop button.",
+      "use_when": "User wants to honor cooperative stop signals at safe checkpoints; long loops should check ShouldStop and exit cleanly.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "stop",
+        "cooperative"
+      ]
     },
     "AddLogFields": {
       "gen_function": "gen_add_log_fields",
@@ -403,9 +441,14 @@
       },
       "conditional_attrs": {},
       "category": "logging_misc",
-      "description": "Add Log Fields activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Add Log Fields.",
-      "_routing_review_needed": true
+      "description": "Attaches structured key/value fields to every subsequent LogMessage call within the workflow scope.",
+      "use_when": "User wants to enrich logs with correlation IDs / business keys for downstream filtering; remove with RemoveLogFields when scope ends.",
+      "_routing_review_needed": false,
+      "tags": [
+        "logging",
+        "structured",
+        "context"
+      ]
     },
     "RemoveLogFields": {
       "gen_function": "gen_remove_log_fields",
@@ -450,9 +493,14 @@
       },
       "conditional_attrs": {},
       "category": "logging_misc",
-      "description": "Remove Log Fields activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Remove Log Fields.",
-      "_routing_review_needed": true
+      "description": "Removes previously-added structured log fields by key list.",
+      "use_when": "User wants to clear log context attached by AddLogFields when leaving a scope.",
+      "_routing_review_needed": false,
+      "tags": [
+        "logging",
+        "structured",
+        "context"
+      ]
     },
     "TakeScreenshotAndSave": {
       "gen_function": "gen_take_screenshot_and_save",
@@ -517,9 +565,14 @@
       },
       "conditional_attrs": {},
       "category": "logging_misc",
-      "description": "Take Screenshot And Save activity from the logging misc category.",
-      "use_when": "User wants to log or perform a miscellaneous helper task: Take Screenshot And Save.",
-      "_routing_review_needed": true
+      "description": "Composite that captures a screenshot and persists it to the supplied path in one step.",
+      "use_when": "User wants a quick capture-and-save in error handlers or evidence trails; for take-only into a variable use NTakeScreenshot then SaveImage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "screenshot",
+        "diagnostics",
+        "composite"
+      ]
     }
   }
 }

@@ -67,9 +67,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Add Or Subtract From Date activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Add Or Subtract From Date.",
-      "_routing_review_needed": true
+      "description": "Returns a DateTime offset by N seconds/minutes/hours/days/months/years from an input date.",
+      "use_when": "User wants date arithmetic; for formatting a date use FormatDateAsText; for parsing a string into DateTime use ExtractDateTime.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datetime",
+        "arithmetic"
+      ]
     },
     "AddTransactionItem": {
       "gen_function": "gen_add_transaction_item",
@@ -153,9 +157,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Add Transaction Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Add Transaction Item.",
-      "_routing_review_needed": true
+      "description": "Adds a new transaction item to an Orchestrator queue inside a long-running job context.",
+      "use_when": "User wants to enqueue mid-process; for dispatcher-style bulk loading use BulkAddQueueItems.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "transaction"
+      ]
     },
     "AppendLine": {
       "gen_function": "gen_append_line",
@@ -232,9 +241,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Append Line activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Append Line.",
-      "_routing_review_needed": true
+      "description": "Appends a line of text to an existing text file, creating it if missing.",
+      "use_when": "User wants incremental log/audit writes; for one-shot text writes use Write Text File.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "text",
+        "append"
+      ]
     },
     "Beep": {
       "gen_function": "gen_beep",
@@ -282,9 +296,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Beep activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Beep.",
-      "_routing_review_needed": true
+      "description": "Plays a system beep at a given frequency and duration.",
+      "use_when": "User wants an audible cue (developer/test only); avoid in unattended automations.",
+      "_routing_review_needed": false,
+      "tags": [
+        "audio",
+        "diagnostics"
+      ]
     },
     "BeginProcess": {
       "gen_function": "gen_begin_process",
@@ -343,9 +361,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Begin Process activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Begin Process.",
-      "_routing_review_needed": true
+      "description": "Marks the start of a logical process for tracking and analytics in Insights / Process Mining.",
+      "use_when": "User wants to time a logical process span; pair with the corresponding end-of-process tracking.",
+      "_routing_review_needed": false,
+      "tags": [
+        "analytics",
+        "tracking",
+        "process"
+      ]
     },
     "ChangeCase": {
       "gen_function": "gen_change_case",
@@ -404,9 +427,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Change Case activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Change Case.",
-      "_routing_review_needed": true
+      "description": "Returns a string converted to upper, lower, or title case.",
+      "use_when": "User wants a case transformation; for find/replace use Replace; for trim/split use ModifyText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "case",
+        "transform"
+      ]
     },
     "CheckFalse": {
       "gen_function": "gen_check_false",
@@ -472,9 +500,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Check False activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Check False.",
-      "_routing_review_needed": true
+      "description": "Asserts that a condition is False, throwing on True.",
+      "use_when": "User wants an inline negative assertion; for truthy assertion use CheckTrue; in tests prefer the Verify* family.",
+      "_routing_review_needed": false,
+      "tags": [
+        "assertion",
+        "guard"
+      ]
     },
     "CheckTrue": {
       "gen_function": "gen_check_true",
@@ -540,9 +572,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Check True activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Check True.",
-      "_routing_review_needed": true
+      "description": "Asserts that a condition is True, throwing on False.",
+      "use_when": "User wants an inline positive assertion; for negative assertion use CheckFalse; in tests prefer the Verify* family.",
+      "_routing_review_needed": false,
+      "tags": [
+        "assertion",
+        "guard"
+      ]
     },
     "ClearDataTable": {
       "gen_function": "gen_clear_data_table",
@@ -599,9 +635,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Clear Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Clear Data Table.",
-      "_routing_review_needed": true
+      "description": "Removes all rows from a DataTable while preserving its column schema.",
+      "use_when": "User wants to reset a DataTable for reuse; to drop the schema entirely just rebuild with BuildDataTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "clear"
+      ]
     },
     "CombineText": {
       "gen_function": "gen_combine_text",
@@ -669,9 +709,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Combine Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Combine Text.",
-      "_routing_review_needed": true
+      "description": "Concatenates multiple strings with an optional separator.",
+      "use_when": "User wants to join strings (String.Join equivalent in activity form); for in-place expression use VB's String.Join.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "join",
+        "concat"
+      ]
     },
     "CompressFiles": {
       "gen_function": "gen_compress_files",
@@ -779,9 +824,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Compress Files activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Compress Files.",
-      "_routing_review_needed": true
+      "description": "Compresses one or more files / folders into a ZIP archive.",
+      "use_when": "User wants to bundle artifacts for upload or email; for extraction use ExtractFiles.",
+      "_routing_review_needed": false,
+      "tags": [
+        "zip",
+        "compress",
+        "archive"
+      ]
     },
     "CopyFolderX": {
       "gen_function": "gen_copy_folder_x",
@@ -868,9 +918,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Copy Folder X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Copy Folder X.",
-      "_routing_review_needed": true
+      "description": "Copies a folder (recursive) from source to destination, optionally overwriting.",
+      "use_when": "User wants to duplicate a folder tree; for a single file use Copy File; for moving (not copying) use MoveFolderX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "copy",
+        "filesystem"
+      ]
     },
     "CreateFile": {
       "gen_function": "gen_create_file",
@@ -954,9 +1009,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Create File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Create File.",
-      "_routing_review_needed": true
+      "description": "Creates an empty file at the given path.",
+      "use_when": "User wants a placeholder file; to write content use Write Text File or AppendLine.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "create",
+        "filesystem"
+      ]
     },
     "CustomInput": {
       "gen_function": "gen_custom_input",
@@ -1042,9 +1102,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Custom Input activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Custom Input.",
-      "_routing_review_needed": true
+      "description": "Displays a custom HTML form dialog and captures the user's response.",
+      "use_when": "User wants a richer prompt than InputDialog; for simple text input use InputDialog.",
+      "_routing_review_needed": false,
+      "tags": [
+        "dialog",
+        "form",
+        "input"
+      ]
     },
     "Delete": {
       "gen_function": "gen_delete",
@@ -1119,9 +1184,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Delete activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Delete.",
-      "_routing_review_needed": true
+      "description": "Deletes a file or folder at the given path.",
+      "use_when": "User wants to remove a filesystem entry; for ZIP-and-delete patterns use CompressFiles then Delete.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "folder",
+        "delete"
+      ]
     },
     "DeleteFolderX": {
       "gen_function": "gen_delete_folder_x",
@@ -1180,9 +1250,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Delete Folder X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Delete Folder X.",
-      "_routing_review_needed": true
+      "description": "Deletes a folder (recursive).",
+      "use_when": "User wants to remove a directory tree; for single files use Delete.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "delete",
+        "filesystem"
+      ]
     },
     "DeleteQueueItems": {
       "gen_function": "gen_delete_queue_items",
@@ -1248,9 +1323,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Delete Queue Items activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Delete Queue Items.",
-      "_routing_review_needed": true
+      "description": "Deletes queue items from an Orchestrator queue by ID list or filter.",
+      "use_when": "User wants to purge stale or successful items; pair with GetQueueItems to enumerate first.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "cleanup"
+      ]
     },
     "DeleteStorageFile": {
       "gen_function": "gen_delete_storage_file",
@@ -1325,9 +1405,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Delete Storage File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Delete Storage File.",
-      "_routing_review_needed": true
+      "description": "Deletes a file from an Orchestrator Storage Bucket.",
+      "use_when": "User wants to remove a bucket-stored file; pair with ListStorageFiles to enumerate first.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "delete"
+      ]
     },
     "DisableTrigger": {
       "gen_function": "gen_disable_trigger",
@@ -1384,9 +1468,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Disable Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Disable Trigger.",
-      "_routing_review_needed": true
+      "description": "Disables an Orchestrator trigger by name.",
+      "use_when": "User wants to pause scheduled or queue-driven triggers temporarily; re-enable with EnableTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "trigger",
+        "disable"
+      ]
     },
     "DownloadFileFromUrl": {
       "gen_function": "gen_download_file_from_url",
@@ -1481,9 +1570,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Download File From Url activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Download File From Url.",
-      "_routing_review_needed": true
+      "description": "Downloads a file from an HTTP(S) URL to a local path.",
+      "use_when": "User wants a file fetched by URL; for authenticated APIs use NetHttpRequest with response-to-file.",
+      "_routing_review_needed": false,
+      "tags": [
+        "http",
+        "download",
+        "file"
+      ]
     },
     "DownloadStorageFile": {
       "gen_function": "gen_download_storage_file",
@@ -1567,9 +1661,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Download Storage File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Download Storage File.",
-      "_routing_review_needed": true
+      "description": "Downloads a file from an Orchestrator Storage Bucket to a local path.",
+      "use_when": "User wants a bucket-stored file locally; pair with UploadStorageFile for the inverse.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "download"
+      ]
     },
     "EnableTrigger": {
       "gen_function": "gen_enable_trigger",
@@ -1626,9 +1724,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Enable Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Enable Trigger.",
-      "_routing_review_needed": true
+      "description": "Enables a previously disabled Orchestrator trigger by name.",
+      "use_when": "User wants to resume a paused trigger; pair with DisableTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "trigger",
+        "enable"
+      ]
     },
     "EvaluateBusinessRule": {
       "gen_function": "gen_evaluate_business_rule",
@@ -1703,9 +1806,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Evaluate Business Rule activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Evaluate Business Rule.",
-      "_routing_review_needed": true
+      "description": "Evaluates a Business Rule from the Rules Catalog and returns its outcome / actions.",
+      "use_when": "User wants to delegate decisioning to a centrally-managed rule; for inline VB conditions use If.",
+      "_routing_review_needed": false,
+      "tags": [
+        "business-rules",
+        "decisioning"
+      ]
     },
     "ExecutePowerShell": {
       "gen_function": "gen_execute_power_shell",
@@ -1819,9 +1926,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Execute Power Shell activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Execute Power Shell.",
-      "_routing_review_needed": true
+      "description": "Runs a PowerShell script and captures its output.",
+      "use_when": "User wants to invoke Windows-side admin tasks; prefer dedicated activities (filesystem/registry) when one exists.",
+      "_routing_review_needed": false,
+      "tags": [
+        "powershell",
+        "script",
+        "windows"
+      ]
     },
     "ExtractDateTime": {
       "gen_function": "gen_extract_date_time",
@@ -1898,9 +2010,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Extract Date Time activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Extract Date Time.",
-      "_routing_review_needed": true
+      "description": "Parses a string into a DateTime using a culture-aware format pattern.",
+      "use_when": "User wants to convert a string to DateTime; for the inverse use FormatDateAsText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datetime",
+        "parse"
+      ]
     },
     "ExtractFiles": {
       "gen_function": "gen_extract_files",
@@ -2007,9 +2123,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Extract Files activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Extract Files.",
-      "_routing_review_needed": true
+      "description": "Extracts the contents of a ZIP archive to a target folder.",
+      "use_when": "User wants to unpack a ZIP; for compression use CompressFiles.",
+      "_routing_review_needed": false,
+      "tags": [
+        "zip",
+        "extract",
+        "archive"
+      ]
     },
     "ExtractText": {
       "gen_function": "gen_extract_text",
@@ -2107,9 +2228,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Extract Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Extract Text.",
-      "_routing_review_needed": true
+      "description": "Extracts a substring from a source string by regex or position.",
+      "use_when": "User wants a piece of a larger string; for find/replace use Replace; for splitting use SplitText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "extract",
+        "regex"
+      ]
     },
     "FileChangeTrigger": {
       "gen_function": "gen_file_change_trigger",
@@ -2179,9 +2305,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "File Change Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a watched file is created/modified/deleted.",
+      "use_when": "User wants to react to filesystem changes; v3 (FileChangeTriggerV3) is the latest stable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "file",
+        "filesystem"
+      ]
     },
     "FileChangeTriggerV2": {
       "gen_function": "gen_file_change_trigger_v2",
@@ -2265,9 +2396,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "File Change Trigger V2 activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger V2.",
-      "_routing_review_needed": true
+      "description": "v2 of FileChangeTrigger — superseded by FileChangeTriggerV3 in modern projects.",
+      "use_when": "User has a legacy spec referencing v2; new specs should use FileChangeTriggerV3.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "file",
+        "legacy"
+      ]
     },
     "FileChangeTriggerV3": {
       "gen_function": "gen_file_change_trigger_v3",
@@ -2348,9 +2484,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "File Change Trigger V3 activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via File Change Trigger V3.",
-      "_routing_review_needed": true
+      "description": "v3 of FileChangeTrigger — current stable file-watch trigger with extended event types.",
+      "use_when": "User wants to react to filesystem changes in a modern project; v1/v2 remain for backwards compatibility only.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "file",
+        "filesystem"
+      ]
     },
     "FileExistsX": {
       "gen_function": "gen_file_exists_x",
@@ -2416,9 +2557,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "File Exists X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via File Exists X.",
-      "_routing_review_needed": true
+      "description": "Returns True if a file exists at the given path.",
+      "use_when": "User wants a simple existence check; for folders use FolderExistsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "exists",
+        "guard"
+      ]
     },
     "FindAndReplace": {
       "gen_function": "gen_find_and_replace",
@@ -2495,9 +2641,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Find And Replace activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Find And Replace.",
-      "_routing_review_needed": true
+      "description": "Finds and replaces text in a file in place, optionally using regex.",
+      "use_when": "User wants to mutate file contents; for in-memory string replacement use Replace.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "text",
+        "replace"
+      ]
     },
     "FolderExistsX": {
       "gen_function": "gen_folder_exists_x",
@@ -2563,9 +2714,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Folder Exists X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Folder Exists X.",
-      "_routing_review_needed": true
+      "description": "Returns True if a folder exists at the given path.",
+      "use_when": "User wants a simple folder existence check; for files use FileExistsX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "exists",
+        "guard"
+      ]
     },
     "ForEachFolderX": {
       "gen_function": "gen_for_each_folder_x",
@@ -2622,9 +2778,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "For Each Folder X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via For Each Folder X.",
-      "_routing_review_needed": true
+      "description": "Iterates over folders matching a pattern under a root directory.",
+      "use_when": "User wants to walk a directory tree of folders; for files use ForEachFileX; for in-memory collections use ForEach.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "iterate",
+        "filesystem"
+      ]
     },
     "FormatDateAsText": {
       "gen_function": "gen_format_date_as_text",
@@ -2692,9 +2853,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Format Date As Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Format Date As Text.",
-      "_routing_review_needed": true
+      "description": "Formats a DateTime as a string using a culture-aware format pattern.",
+      "use_when": "User wants a stringified date; for parsing the inverse use ExtractDateTime.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datetime",
+        "format"
+      ]
     },
     "FormatValue": {
       "gen_function": "gen_format_value",
@@ -2751,9 +2916,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Format Value activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Format Value.",
-      "_routing_review_needed": true
+      "description": "Formats a numeric value using a format pattern (currency, decimal, percent).",
+      "use_when": "User wants a stringified number with explicit formatting; VB's String.Format suffices in expressions.",
+      "_routing_review_needed": false,
+      "tags": [
+        "number",
+        "format"
+      ]
     },
     "GetCurrentJobInfo": {
       "gen_function": "gen_get_current_job_info",
@@ -2810,9 +2979,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Current Job Info activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Current Job Info.",
-      "_routing_review_needed": true
+      "description": "Returns Orchestrator metadata about the currently-running job (id, robot, folder).",
+      "use_when": "User wants to read job-context properties for logging or correlation.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "job",
+        "context"
+      ]
     },
     "GetEnvironmentFolder": {
       "gen_function": "gen_get_environment_folder",
@@ -2871,9 +3045,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Environment Folder activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Environment Folder.",
-      "_routing_review_needed": true
+      "description": "Returns the path of a Windows special folder (Desktop, MyDocuments, etc.).",
+      "use_when": "User wants to write to a known user folder; for an environment variable use GetEnvironmentVariable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "environment",
+        "filesystem"
+      ]
     },
     "GetEnvironmentVariable": {
       "gen_function": "gen_get_environment_variable",
@@ -2939,9 +3117,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Environment Variable activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Environment Variable.",
-      "_routing_review_needed": true
+      "description": "Returns the value of a process-, user-, or machine-scoped environment variable.",
+      "use_when": "User wants to read a configured env var; for setting use SetEnvironmentVariable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "environment",
+        "variable"
+      ]
     },
     "GetFileInfoX": {
       "gen_function": "gen_get_file_info_x",
@@ -3007,9 +3189,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get File Info X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get File Info X.",
-      "_routing_review_needed": true
+      "description": "Returns metadata (size, created, modified) for a file as a FileInfo object.",
+      "use_when": "User wants file metadata for routing decisions; for folder metadata use GetFolderInfoX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "metadata"
+      ]
     },
     "GetFolderInfoX": {
       "gen_function": "gen_get_folder_info_x",
@@ -3077,9 +3263,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Folder Info X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Folder Info X.",
-      "_routing_review_needed": true
+      "description": "Returns metadata (size, created, modified) for a folder as a DirectoryInfo object.",
+      "use_when": "User wants folder metadata; for file metadata use GetFileInfoX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "metadata"
+      ]
     },
     "GetJobs": {
       "gen_function": "gen_get_jobs",
@@ -3172,9 +3362,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Jobs activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Jobs.",
-      "_routing_review_needed": true
+      "description": "Queries Orchestrator for jobs matching given filters.",
+      "use_when": "User wants to enumerate or correlate Orchestrator jobs; for the current job only use GetCurrentJobInfo.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "job",
+        "query"
+      ]
     },
     "GetLastDownloadedFile": {
       "gen_function": "gen_get_last_downloaded_file",
@@ -3256,9 +3451,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Last Downloaded File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Last Downloaded File.",
-      "_routing_review_needed": true
+      "description": "Returns the path of the most recently downloaded file from the active browser context.",
+      "use_when": "User wants to capture a download triggered by a browser interaction; pair with NClick on the download link.",
+      "_routing_review_needed": false,
+      "tags": [
+        "browser",
+        "download",
+        "file"
+      ]
     },
     "GetProcesses": {
       "gen_function": "gen_get_processes",
@@ -3324,9 +3524,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Processes activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Processes.",
-      "_routing_review_needed": true
+      "description": "Returns a list of currently-running Windows processes.",
+      "use_when": "User wants to enumerate processes for diagnostics or detect a running app; to terminate one use KillProcess.",
+      "_routing_review_needed": false,
+      "tags": [
+        "process",
+        "windows",
+        "enumerate"
+      ]
     },
     "GetQueueItems": {
       "gen_function": "gen_get_queue_items",
@@ -3458,9 +3663,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Queue Items activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Queue Items.",
-      "_routing_review_needed": true
+      "description": "Queries Orchestrator for queue items matching given filters (status, reference, dates).",
+      "use_when": "User wants to inspect or audit queue contents; for popping the next work item use GetQueueItem.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "query"
+      ]
     },
     "GetRowItem": {
       "gen_function": "gen_get_row_item",
@@ -3553,9 +3763,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Row Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Row Item.",
-      "_routing_review_needed": true
+      "description": "Reads a single column value from a DataRow by column name or index.",
+      "use_when": "User wants a typed cell value from a DataRow; usually the inline expression `row(\"Col\")` is more idiomatic.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "row",
+        "read"
+      ]
     },
     "GetSecret": {
       "gen_function": "gen_get_secret",
@@ -3630,9 +3845,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Secret activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Secret.",
-      "_routing_review_needed": true
+      "description": "Reads a secret value from a configured secret store (Orchestrator credentials, vault, etc.).",
+      "use_when": "User wants a secret without storing it in code or config; for credential pairs use GetRobotCredential.",
+      "_routing_review_needed": false,
+      "tags": [
+        "secret",
+        "secure"
+      ]
     },
     "GetTransactionItem": {
       "gen_function": "gen_get_transaction_item",
@@ -3718,9 +3937,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Transaction Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Transaction Item.",
-      "_routing_review_needed": true
+      "description": "Pops the next transaction from a queue, mirroring REFramework's Get Transaction Data step.",
+      "use_when": "User is hand-authoring a Performer; in REFramework this is wired automatically.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "transaction"
+      ]
     },
     "GetUsernamePasswordX": {
       "gen_function": "gen_get_username_password_x",
@@ -3807,9 +4031,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Get Username Password X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Get Username Password X.",
-      "_routing_review_needed": true
+      "description": "Reads a username/password pair from a Windows Credential Manager entry by name.",
+      "use_when": "User wants OS-level credentials; for Orchestrator-managed credentials use GetRobotCredential.",
+      "_routing_review_needed": false,
+      "tags": [
+        "credential",
+        "windows"
+      ]
     },
     "GlobalVariableChangedTrigger": {
       "gen_function": "gen_global_variable_changed_trigger",
@@ -3870,9 +4098,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Global Variable Changed Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Global Variable Changed Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a workflow Global Variable's value changes.",
+      "use_when": "User wants reactive flow on global state mutations; pair with NotifyGlobalVariableChanged from the producer side.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "global",
+        "reactive"
+      ]
     },
     "InterruptibleDoWhile": {
       "gen_function": "gen_interruptible_do_while",
@@ -3925,9 +4158,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Interruptible Do While activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Interruptible Do While.",
-      "_routing_review_needed": true
+      "description": "DoWhile loop that yields to interrupts (Stop, signals) at safe checkpoints between iterations.",
+      "use_when": "User wants long-running iteration that honors cooperative cancellation; for non-interruptible loops use DoWhile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "loop",
+        "interrupt",
+        "cooperative"
+      ]
     },
     "InterruptibleWhile": {
       "gen_function": "gen_interruptible_while",
@@ -3980,9 +4218,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Interruptible While activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Interruptible While.",
-      "_routing_review_needed": true
+      "description": "While loop that yields to interrupts at safe checkpoints between iterations.",
+      "use_when": "User wants long-running iteration with cooperative cancellation; for non-interruptible loops use While.",
+      "_routing_review_needed": false,
+      "tags": [
+        "loop",
+        "interrupt",
+        "cooperative"
+      ]
     },
     "InvokeComMethod": {
       "gen_function": "gen_invoke_com_method",
@@ -4068,9 +4311,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Invoke Com Method activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Invoke Com Method.",
-      "_routing_review_needed": true
+      "description": "Invokes a COM method on a registered COM object (e.g. Office automation).",
+      "use_when": "User wants to call COM-based APIs; for VB.NET methods use InvokeMethod; for inline code use InvokeCode.",
+      "_routing_review_needed": false,
+      "tags": [
+        "invoke",
+        "com",
+        "interop"
+      ]
     },
     "InvokeProcess": {
       "gen_function": "gen_invoke_process",
@@ -4154,9 +4402,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Invoke Process activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Invoke Process.",
-      "_routing_review_needed": true
+      "description": "Launches an external Windows process and optionally waits for its exit / captures stdout.",
+      "use_when": "User wants to run a CLI tool or executable; for PowerShell scripts use ExecutePowerShell.",
+      "_routing_review_needed": false,
+      "tags": [
+        "process",
+        "exec",
+        "windows"
+      ]
     },
     "InvokeVBScript": {
       "gen_function": "gen_invoke_vb_script",
@@ -4260,9 +4513,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Invoke VB Script activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Invoke VB Script.",
-      "_routing_review_needed": true
+      "description": "Runs a VBScript file with optional arguments and captures its output.",
+      "use_when": "User has a legacy .vbs script to call; for new scripting prefer ExecutePowerShell or InvokeCode.",
+      "_routing_review_needed": false,
+      "tags": [
+        "script",
+        "vbscript",
+        "legacy"
+      ]
     },
     "InvokeWorkflowInteractive": {
       "gen_function": "gen_invoke_workflow_interactive",
@@ -4344,9 +4602,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Invoke Workflow Interactive activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Invoke Workflow Interactive.",
-      "_routing_review_needed": true
+      "description": "Invokes a subworkflow in an interactive session (Picture-in-Picture / unattended elevation).",
+      "use_when": "User wants to run a child workflow with elevated UI access; for standard subworkflow calls use InvokeWorkflowFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "invoke",
+        "subworkflow",
+        "interactive"
+      ]
     },
     "IsMatch": {
       "gen_function": "gen_is_match",
@@ -4415,9 +4678,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Is Match activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Is Match.",
-      "_routing_review_needed": true
+      "description": "Returns True if a string matches a regex pattern.",
+      "use_when": "User wants a boolean regex check; for capturing matches use Matches; VB's Regex.IsMatch suffices in expressions.",
+      "_routing_review_needed": false,
+      "tags": [
+        "regex",
+        "match",
+        "boolean"
+      ]
     },
     "ListStorageFiles": {
       "gen_function": "gen_list_storage_files",
@@ -4503,9 +4771,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "List Storage Files activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via List Storage Files.",
-      "_routing_review_needed": true
+      "description": "Lists files in an Orchestrator Storage Bucket, optionally filtered by prefix.",
+      "use_when": "User wants to enumerate bucket contents; pair with DownloadStorageFile / DeleteStorageFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "list"
+      ]
     },
     "ManualTrigger": {
       "gen_function": "gen_manual_trigger",
@@ -4562,9 +4834,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Manual Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Manual Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when invoked manually (debug / dev-time only).",
+      "use_when": "User wants a hand-fired trigger for testing; production should use FileChange/Time/Queue triggers.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "manual",
+        "debug"
+      ]
     },
     "Matches": {
       "gen_function": "gen_matches",
@@ -4642,9 +4919,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Matches activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Matches.",
-      "_routing_review_needed": true
+      "description": "Returns the list of regex matches against a string.",
+      "use_when": "User wants captured matches; for a boolean check use IsMatch; VB's Regex.Matches suffices in expressions.",
+      "_routing_review_needed": false,
+      "tags": [
+        "regex",
+        "matches",
+        "extract"
+      ]
     },
     "ModifyDate": {
       "gen_function": "gen_modify_date",
@@ -4724,9 +5006,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Modify Date activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Modify Date.",
-      "_routing_review_needed": true
+      "description": "Returns a DateTime with selected components replaced (year, month, day, hour, etc.).",
+      "use_when": "User wants component-level date editing; for offset-based shifts use AddOrSubtractFromDate.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datetime",
+        "modify"
+      ]
     },
     "ModifyText": {
       "gen_function": "gen_modify_text",
@@ -4788,9 +5074,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Modify Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Modify Text.",
-      "_routing_review_needed": true
+      "description": "Applies a sequence of text transformations (trim, replace, case, encode) in one activity.",
+      "use_when": "User wants several string transforms in one step; for a single transform pick the specific activity (Replace, ChangeCase, etc.).",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "transform",
+        "compose"
+      ]
     },
     "MoveFolderX": {
       "gen_function": "gen_move_folder_x",
@@ -4858,9 +5149,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Move Folder X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Move Folder X.",
-      "_routing_review_needed": true
+      "description": "Moves a folder (recursive) from source to destination.",
+      "use_when": "User wants to relocate a folder; for non-destructive copy use CopyFolderX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "move",
+        "filesystem"
+      ]
     },
     "NotifyGlobalVariableChanged": {
       "gen_function": "gen_notify_global_variable_changed",
@@ -4917,9 +5213,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Notify Global Variable Changed activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Notify Global Variable Changed.",
-      "_routing_review_needed": true
+      "description": "Signals to subscribers that a Global Variable's value changed.",
+      "use_when": "User wants to manually fire a change notification; pair with GlobalVariableChangedTrigger on the consumer side.",
+      "_routing_review_needed": false,
+      "tags": [
+        "global",
+        "notify",
+        "reactive"
+      ]
     },
     "OrchestratorHttpRequest": {
       "gen_function": "gen_orchestrator_http_request",
@@ -5014,9 +5315,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Orchestrator Http Request activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Orchestrator Http Request.",
-      "_routing_review_needed": true
+      "description": "Performs an authenticated HTTP request against the Orchestrator API.",
+      "use_when": "User wants Orchestrator API calls without managing auth headers; for arbitrary REST APIs use NetHttpRequest.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "http",
+        "api"
+      ]
     },
     "Placeholder": {
       "gen_function": "gen_placeholder",
@@ -5066,9 +5372,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Placeholder activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Placeholder.",
-      "_routing_review_needed": true
+      "description": "Empty placeholder activity used as a generator stub during scaffolding.",
+      "use_when": "User wants to mark a TODO spot in a workflow; should be replaced with the real activity before publish.",
+      "_routing_review_needed": false,
+      "tags": [
+        "scaffolding",
+        "stub",
+        "todo"
+      ]
     },
     "PostponeTransactionItem": {
       "gen_function": "gen_postpone_transaction_item",
@@ -5143,9 +5454,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Postpone Transaction Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Postpone Transaction Item.",
-      "_routing_review_needed": true
+      "description": "Reschedules a queue transaction item to a later deadline.",
+      "use_when": "User wants to defer a transaction (rate-limit, retry-window); for outright failure use SetTransactionStatus(Failed).",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "postpone"
+      ]
     },
     "ProcessEndTrigger": {
       "gen_function": "gen_process_end_trigger",
@@ -5216,9 +5532,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Process End Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Process End Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a Windows process exits.",
+      "use_when": "User wants reactive flow on process termination; v2 (ProcessEndTriggerV2) is the latest stable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "process",
+        "windows"
+      ]
     },
     "ProcessEndTriggerV2": {
       "gen_function": "gen_process_end_trigger_v2",
@@ -5279,9 +5600,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Process End Trigger V2 activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Process End Trigger V2.",
-      "_routing_review_needed": true
+      "description": "v2 of ProcessEndTrigger — current stable process-exit trigger.",
+      "use_when": "User wants modern process-end watching; v1 remains for backwards compatibility.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "process",
+        "windows"
+      ]
     },
     "ProcessStartTrigger": {
       "gen_function": "gen_process_start_trigger",
@@ -5352,9 +5678,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Process Start Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Process Start Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a Windows process starts.",
+      "use_when": "User wants reactive flow on process launch; v2 (ProcessStartTriggerV2) is the latest stable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "process",
+        "windows"
+      ]
     },
     "ProcessStartTriggerV2": {
       "gen_function": "gen_process_start_trigger_v2",
@@ -5415,9 +5746,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Process Start Trigger V2 activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Process Start Trigger V2.",
-      "_routing_review_needed": true
+      "description": "v2 of ProcessStartTrigger — current stable process-start trigger.",
+      "use_when": "User wants modern process-start watching; v1 remains for backwards compatibility.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "process",
+        "windows"
+      ]
     },
     "ProcessTrackingScope": {
       "gen_function": "gen_process_tracking_scope",
@@ -5522,9 +5858,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Process Tracking Scope activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Process Tracking Scope.",
-      "_routing_review_needed": true
+      "description": "Scope wrapper that emits Process Mining tracking events for activities executed within.",
+      "use_when": "User wants Process Mining instrumentation; for ad-hoc analytics emission use TrackObject.",
+      "_routing_review_needed": false,
+      "tags": [
+        "analytics",
+        "tracking",
+        "scope"
+      ]
     },
     "QueueTrigger": {
       "gen_function": "gen_queue_trigger",
@@ -5603,9 +5944,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Queue Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Queue Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires when a queue item is added to a watched Orchestrator queue.",
+      "use_when": "User wants reactive Performers; for time-based use TimeTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "queue",
+        "orchestrator"
+      ]
     },
     "RaiseAlert": {
       "gen_function": "gen_raise_alert",
@@ -5673,9 +6019,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Raise Alert activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Raise Alert.",
-      "_routing_review_needed": true
+      "description": "Raises a Process Insights alert with a severity / message.",
+      "use_when": "User wants to surface a problem to ops dashboards; for plain log writes use LogMessage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "alert",
+        "insights",
+        "ops"
+      ]
     },
     "ReadStorageText": {
       "gen_function": "gen_read_storage_text",
@@ -5750,9 +6101,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Read Storage Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Read Storage Text.",
-      "_routing_review_needed": true
+      "description": "Reads the text content of a file in an Orchestrator Storage Bucket.",
+      "use_when": "User wants bucket-stored text without downloading first; for binary or large files use DownloadStorageFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "read",
+        "text"
+      ]
     },
     "RemoveDataRow": {
       "gen_function": "gen_remove_data_row",
@@ -5827,9 +6183,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Remove Data Row activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Remove Data Row.",
-      "_routing_review_needed": true
+      "description": "Removes a row from a DataTable by index or DataRow object.",
+      "use_when": "User wants to drop one row; for many-row removal by criteria use FilterDataTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "row",
+        "remove"
+      ]
     },
     "RenameFileX": {
       "gen_function": "gen_rename_file_x",
@@ -5915,9 +6276,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Rename File X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Rename File X.",
-      "_routing_review_needed": true
+      "description": "Renames a file (or moves it) preserving content.",
+      "use_when": "User wants to change a file's name; for moving across drives use Move File.",
+      "_routing_review_needed": false,
+      "tags": [
+        "file",
+        "rename",
+        "filesystem"
+      ]
     },
     "RenameFolderX": {
       "gen_function": "gen_rename_folder_x",
@@ -5983,9 +6349,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Rename Folder X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Rename Folder X.",
-      "_routing_review_needed": true
+      "description": "Renames a folder (or moves it) preserving content.",
+      "use_when": "User wants to change a folder's name; for moving across drives use MoveFolderX.",
+      "_routing_review_needed": false,
+      "tags": [
+        "folder",
+        "rename",
+        "filesystem"
+      ]
     },
     "RepeatNumberOfTimesX": {
       "gen_function": "gen_repeat_number_of_times_x",
@@ -6040,9 +6411,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Repeat Number Of Times X activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Repeat Number Of Times X.",
-      "_routing_review_needed": true
+      "description": "Loops a fixed number of times.",
+      "use_when": "User wants N-iteration repetition; for collection iteration use ForEach; for condition-driven use While.",
+      "_routing_review_needed": false,
+      "tags": [
+        "loop",
+        "fixed",
+        "control-flow"
+      ]
     },
     "RepeatTrigger": {
       "gen_function": "gen_repeat_trigger",
@@ -6103,9 +6479,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Repeat Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Repeat Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires on a fixed cadence relative to a base time.",
+      "use_when": "User wants periodic execution (e.g. every 5 minutes); for cron-style absolute times use TimeTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "repeat",
+        "cadence"
+      ]
     },
     "Replace": {
       "gen_function": "gen_replace",
@@ -6183,9 +6564,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Replace activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Replace.",
-      "_routing_review_needed": true
+      "description": "Replaces occurrences of a substring or regex with a replacement value.",
+      "use_when": "User wants string find/replace; for file in-place edits use FindAndReplace; VB's Replace / Regex.Replace suffices in expressions.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "replace"
+      ]
     },
     "ReportStatus": {
       "gen_function": "gen_report_status",
@@ -6233,9 +6618,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Report Status activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Report Status.",
-      "_routing_review_needed": true
+      "description": "Reports an interim status for the running job to Orchestrator dashboards.",
+      "use_when": "User wants progress visibility on long jobs; for terminal status use SetTransactionStatus.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "status",
+        "diagnostics"
+      ]
     },
     "ResetTimer": {
       "gen_function": "gen_reset_timer",
@@ -6292,9 +6682,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Reset Timer activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Reset Timer.",
-      "_routing_review_needed": true
+      "description": "Resets a named Timer activity's elapsed counter to zero.",
+      "use_when": "User wants to restart a timing measurement; pair with StartTimer / StopTimer.",
+      "_routing_review_needed": false,
+      "tags": [
+        "timer",
+        "diagnostics"
+      ]
     },
     "ResumeTimer": {
       "gen_function": "gen_resume_timer",
@@ -6351,9 +6745,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Resume Timer activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Resume Timer.",
-      "_routing_review_needed": true
+      "description": "Resumes a paused Timer activity.",
+      "use_when": "User wants to continue a paused measurement; pair with StartTimer / StopTimer / ResetTimer.",
+      "_routing_review_needed": false,
+      "tags": [
+        "timer",
+        "diagnostics"
+      ]
     },
     "Return": {
       "gen_function": "gen_return",
@@ -6401,9 +6799,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Return activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Return.",
-      "_routing_review_needed": true
+      "description": "Returns from the current workflow / scope, propagating an optional value.",
+      "use_when": "User wants an early exit from a subworkflow; for terminating the entire job use TerminateWorkflow.",
+      "_routing_review_needed": false,
+      "tags": [
+        "control-flow",
+        "return"
+      ]
     },
     "RunJob": {
       "gen_function": "gen_run_job",
@@ -6519,9 +6921,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Run Job activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Run Job.",
-      "_routing_review_needed": true
+      "description": "Triggers a job run against an Orchestrator process and optionally waits for completion.",
+      "use_when": "User wants to invoke another process from the current workflow; for fire-and-forget use StartJob.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "job",
+        "invoke"
+      ]
     },
     "SelectFile": {
       "gen_function": "gen_select_file",
@@ -6607,9 +7014,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Select File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Select File.",
-      "_routing_review_needed": true
+      "description": "Opens an OS file-picker dialog and returns the chosen path.",
+      "use_when": "User wants user-driven file selection (attended only); unattended runs should source paths from config.",
+      "_routing_review_needed": false,
+      "tags": [
+        "dialog",
+        "file",
+        "attended"
+      ]
     },
     "SelectFolder": {
       "gen_function": "gen_select_folder",
@@ -6666,9 +7078,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Select Folder activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Select Folder.",
-      "_routing_review_needed": true
+      "description": "Opens an OS folder-picker dialog and returns the chosen path.",
+      "use_when": "User wants user-driven folder selection (attended only); unattended runs should source paths from config.",
+      "_routing_review_needed": false,
+      "tags": [
+        "dialog",
+        "folder",
+        "attended"
+      ]
     },
     "SendEmailNotification": {
       "gen_function": "gen_send_email_notification",
@@ -6770,9 +7187,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Send Email Notification activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Send Email Notification.",
-      "_routing_review_needed": true
+      "description": "Sends a templated email notification (Orchestrator-configured SMTP) to one or more recipients.",
+      "use_when": "User wants ops-style notification email; for full mail control use SendOutlookMail / SendSMTPMail.",
+      "_routing_review_needed": false,
+      "tags": [
+        "mail",
+        "notification",
+        "ops"
+      ]
     },
     "SetAsset": {
       "gen_function": "gen_set_asset",
@@ -6847,9 +7269,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Asset activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Asset.",
-      "_routing_review_needed": true
+      "description": "Writes a value to a named Orchestrator asset.",
+      "use_when": "User wants to update a centrally-managed value; for credentials use SetCredential.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "asset",
+        "write"
+      ]
     },
     "SetCredential": {
       "gen_function": "gen_set_credential",
@@ -6942,9 +7369,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Credential activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Credential.",
-      "_routing_review_needed": true
+      "description": "Writes a username/password pair to a named Orchestrator credential asset.",
+      "use_when": "User wants to rotate or seed a credential asset; for non-credential values use SetAsset.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "credential",
+        "write"
+      ]
     },
     "SetEnvironmentVariable": {
       "gen_function": "gen_set_environment_variable",
@@ -7010,9 +7442,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Environment Variable activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Environment Variable.",
-      "_routing_review_needed": true
+      "description": "Sets a process- or user-scoped environment variable.",
+      "use_when": "User wants to inject env state for downstream tools; reads use GetEnvironmentVariable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "environment",
+        "variable",
+        "write"
+      ]
     },
     "SetSecret": {
       "gen_function": "gen_set_secret",
@@ -7096,9 +7533,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Secret activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Secret.",
-      "_routing_review_needed": true
+      "description": "Writes a secret value to a configured secret store.",
+      "use_when": "User wants to seed or rotate a secret; reads use GetSecret.",
+      "_routing_review_needed": false,
+      "tags": [
+        "secret",
+        "write"
+      ]
     },
     "SetTaskStatus": {
       "gen_function": "gen_set_task_status",
@@ -7164,9 +7605,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Task Status activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Task Status.",
-      "_routing_review_needed": true
+      "description": "Updates the status of a tracked task (Tasks app integration).",
+      "use_when": "User wants to mark a task complete / cancelled; for queue items use SetTransactionStatus.",
+      "_routing_review_needed": false,
+      "tags": [
+        "task",
+        "status"
+      ]
     },
     "SetTraceStatus": {
       "gen_function": "gen_set_trace_status",
@@ -7232,9 +7677,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Trace Status activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Trace Status.",
-      "_routing_review_needed": true
+      "description": "Sets a trace breadcrumb for distributed tracing of the current job.",
+      "use_when": "User wants OpenTelemetry-style traces in Insights; for ad-hoc logs use LogMessage.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trace",
+        "diagnostics"
+      ]
     },
     "SetTransactionProgress": {
       "gen_function": "gen_set_transaction_progress",
@@ -7309,9 +7758,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Transaction Progress activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Transaction Progress.",
-      "_routing_review_needed": true
+      "description": "Updates the progress percentage of a long-running queue transaction.",
+      "use_when": "User wants progress visibility on a transaction; for terminal status use SetTransactionStatus.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "progress"
+      ]
     },
     "SetTransactionStatus": {
       "gen_function": "gen_set_transaction_status",
@@ -7398,9 +7852,15 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Set Transaction Status activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Set Transaction Status.",
-      "_routing_review_needed": true
+      "description": "Marks a queue transaction Successful / Failed (with reason) at the end of processing.",
+      "use_when": "User wants to close out a Performer transaction; in REFramework the End Transaction state wires this automatically.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "transaction",
+        "status"
+      ]
     },
     "SplitText": {
       "gen_function": "gen_split_text",
@@ -7477,9 +7937,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Split Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Split Text.",
-      "_routing_review_needed": true
+      "description": "Splits a string into a list of substrings on a delimiter or regex.",
+      "use_when": "User wants tokenized string output; for joining the inverse use CombineText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "split"
+      ]
     },
     "StartJob": {
       "gen_function": "gen_start_job",
@@ -7585,9 +8049,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Start Job activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Start Job.",
-      "_routing_review_needed": true
+      "description": "Triggers a job run against an Orchestrator process and returns immediately (fire-and-forget).",
+      "use_when": "User wants asynchronous process invocation; for synchronous use RunJob.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "job",
+        "async"
+      ]
     },
     "StartTimer": {
       "gen_function": "gen_start_timer",
@@ -7644,9 +8113,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Start Timer activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Start Timer.",
-      "_routing_review_needed": true
+      "description": "Starts a named Timer activity for measuring elapsed time.",
+      "use_when": "User wants to measure how long a region takes; pair with StopTimer / ResetTimer.",
+      "_routing_review_needed": false,
+      "tags": [
+        "timer",
+        "diagnostics"
+      ]
     },
     "StartTriggers": {
       "gen_function": "gen_start_triggers",
@@ -7723,9 +8196,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Start Triggers activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Start Triggers.",
-      "_routing_review_needed": true
+      "description": "Starts all (or named) Orchestrator triggers attached to the current process.",
+      "use_when": "User wants to enable a trigger set; pair with StopTriggers.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "control"
+      ]
     },
     "StopJob": {
       "gen_function": "gen_stop_job",
@@ -7800,9 +8277,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Stop Job activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Stop Job.",
-      "_routing_review_needed": true
+      "description": "Stops a running Orchestrator job by ID (cooperative).",
+      "use_when": "User wants to abort a running job from another job; the target job should call ShouldStop at safe points.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "job",
+        "stop"
+      ]
     },
     "StopTimer": {
       "gen_function": "gen_stop_timer",
@@ -7859,9 +8341,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Stop Timer activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Stop Timer.",
-      "_routing_review_needed": true
+      "description": "Stops a named Timer activity and returns the elapsed time.",
+      "use_when": "User wants to capture a region's duration; pair with StartTimer.",
+      "_routing_review_needed": false,
+      "tags": [
+        "timer",
+        "diagnostics"
+      ]
     },
     "StopTriggers": {
       "gen_function": "gen_stop_triggers",
@@ -7911,9 +8397,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Stop Triggers activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Stop Triggers.",
-      "_routing_review_needed": true
+      "description": "Stops all (or named) Orchestrator triggers attached to the current process.",
+      "use_when": "User wants to pause a trigger set; pair with StartTriggers.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "control"
+      ]
     },
     "TextToLeftRight": {
       "gen_function": "gen_text_to_left_right",
@@ -7999,9 +8489,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Text To Left Right activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Text To Left Right.",
-      "_routing_review_needed": true
+      "description": "Splits a string at the first occurrence of a delimiter into (left, right) parts.",
+      "use_when": "User wants a one-shot split into two pieces; for n-way splits use SplitText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "string",
+        "split"
+      ]
     },
     "TimeTrigger": {
       "gen_function": "gen_time_trigger",
@@ -8170,9 +8664,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Time Trigger activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Time Trigger.",
-      "_routing_review_needed": true
+      "description": "Trigger that fires at scheduled times (cron-style).",
+      "use_when": "User wants scheduled execution; for relative cadence use RepeatTrigger.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "schedule",
+        "cron"
+      ]
     },
     "TimeoutScope": {
       "gen_function": "gen_timeout_scope",
@@ -8234,9 +8733,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Timeout Scope activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Timeout Scope.",
-      "_routing_review_needed": true
+      "description": "Aborts the activities inside the scope after a configurable timeout.",
+      "use_when": "User wants a hard upper bound on a region's duration; for retry-with-timeout use RetryScope.",
+      "_routing_review_needed": false,
+      "tags": [
+        "timeout",
+        "scope",
+        "control-flow"
+      ]
     },
     "TrackObject": {
       "gen_function": "gen_track_object",
@@ -8331,9 +8835,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Track Object activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Track Object.",
-      "_routing_review_needed": true
+      "description": "Emits an analytics event with a named object payload to Insights / Process Mining.",
+      "use_when": "User wants to record a typed event for analytics; for whole-process spans use ProcessTrackingScope.",
+      "_routing_review_needed": false,
+      "tags": [
+        "analytics",
+        "tracking"
+      ]
     },
     "TriggerScope": {
       "gen_function": "gen_trigger_scope",
@@ -8383,9 +8891,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Trigger Scope activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Trigger Scope.",
-      "_routing_review_needed": true
+      "description": "Scope wrapper hosting one or more triggers and their reactive bodies.",
+      "use_when": "User wants to author trigger-driven workflows; the scope manages start/stop lifecycle.",
+      "_routing_review_needed": false,
+      "tags": [
+        "trigger",
+        "scope"
+      ]
     },
     "UpdateRowItem": {
       "gen_function": "gen_update_row_item",
@@ -8469,9 +8981,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Update Row Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Update Row Item.",
-      "_routing_review_needed": true
+      "description": "Sets a single column value on a DataRow.",
+      "use_when": "User wants to mutate one cell in a DataTable; the inline expression `row(\"Col\") = value` is also idiomatic.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "row",
+        "write"
+      ]
     },
     "UploadStorageFile": {
       "gen_function": "gen_upload_storage_file",
@@ -8564,9 +9081,13 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Upload Storage File activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Upload Storage File.",
-      "_routing_review_needed": true
+      "description": "Uploads a local file to an Orchestrator Storage Bucket.",
+      "use_when": "User wants to publish artifacts to a bucket; pair with DownloadStorageFile / ListStorageFiles.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "upload"
+      ]
     },
     "WaitQueueItem": {
       "gen_function": "gen_wait_queue_item",
@@ -8652,9 +9173,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Wait Queue Item activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Wait Queue Item.",
-      "_routing_review_needed": true
+      "description": "Waits until a matching item appears on a watched Orchestrator queue.",
+      "use_when": "User wants to block until queue input is available; for non-blocking polling use GetQueueItems.",
+      "_routing_review_needed": false,
+      "tags": [
+        "orchestrator",
+        "queue",
+        "wait"
+      ]
     },
     "WriteStorageText": {
       "gen_function": "gen_write_storage_text",
@@ -8738,9 +9264,14 @@
       "conditional_attrs": {},
       "_review_needed": true,
       "category": "data_operations",
-      "description": "Write Storage Text activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Write Storage Text.",
-      "_routing_review_needed": true
+      "description": "Writes a text payload to a file in an Orchestrator Storage Bucket.",
+      "use_when": "User wants to persist generated text directly to a bucket; for binary or large files use UploadStorageFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "storage-bucket",
+        "write",
+        "text"
+      ]
     }
   }
 }

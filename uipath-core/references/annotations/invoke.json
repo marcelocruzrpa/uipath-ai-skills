@@ -59,8 +59,8 @@
       },
       "conditional_attrs": {},
       "category": "invoke",
-      "description": "Invoke Workflow File activity from the invoke category.",
-      "use_when": "User wants to invoke another workflow or piece of code via Invoke Workflow File.",
+      "description": "Invokes a separate .xaml workflow file as a subroutine, marshalling InArgument/OutArgument values across the boundary.",
+      "use_when": "User wants to call a reusable subworkflow stored on disk; for inline business logic in a single language use InvokeCode; for reflective static/instance method calls use InvokeMethod.",
       "alternatives": [
         {
           "activity": "InvokeCode",
@@ -71,7 +71,12 @@
           "use_instead_when": "You only need to call a single method on an existing .NET object via reflection, not run a whole workflow."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "invoke",
+        "subworkflow",
+        "decomposition"
+      ]
     },
     "InvokeCode": {
       "gen_function": "gen_invoke_code",
@@ -143,8 +148,8 @@
       },
       "conditional_attrs": {},
       "category": "invoke",
-      "description": "Invoke Code activity from the invoke category.",
-      "use_when": "User wants to invoke another workflow or piece of code via Invoke Code.",
+      "description": "Executes an inline VB.NET or C# code block with read/write access to declared In/Out arguments.",
+      "use_when": "User wants a short fragment of imperative code without authoring a full subworkflow; for shared subroutines use InvokeWorkflowFile; for calling existing CLR methods use InvokeMethod.",
       "alternatives": [
         {
           "activity": "InvokeWorkflowFile",
@@ -155,7 +160,13 @@
           "use_instead_when": "You just need to call one method on an existing object; reflection is lighter than a code block."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "invoke",
+        "code",
+        "vbnet",
+        "csharp"
+      ]
     },
     "InvokeMethod": {
       "gen_function": "gen_invoke_method",
@@ -240,8 +251,8 @@
       },
       "conditional_attrs": {},
       "category": "invoke",
-      "description": "Invoke Method activity from the invoke category.",
-      "use_when": "User wants to invoke another workflow or piece of code via Invoke Method.",
+      "description": "Reflectively calls a static or instance method on a CLR object, passing parameters and capturing the return value.",
+      "use_when": "User wants to call a single .NET method (e.g. String.Format, list.Add) without writing a full code block; for multi-statement logic use InvokeCode; for subworkflow reuse use InvokeWorkflowFile.",
       "alternatives": [
         {
           "activity": "InvokeCode",
@@ -252,7 +263,12 @@
           "use_instead_when": "The behavior is reusable enough to warrant its own XAML workflow with explicit arguments."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "invoke",
+        "method",
+        "reflection"
+      ]
     }
   }
 }

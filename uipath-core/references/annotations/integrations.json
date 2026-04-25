@@ -87,7 +87,13 @@
       "category": "integrations",
       "description": "Classic Workbook 'Read Range' — read a worksheet range into a DataTable without opening Excel.",
       "use_when": "User wants to read a sheet/range into a DataTable via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use ReadRangeX; for classic-with-Excel use ExcelReadRange.",
-      "tags": ["excel", "workbook", "classic", "read", "datatable"],
+      "tags": [
+        "excel",
+        "workbook",
+        "classic",
+        "read",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "ReadRangeX",
@@ -171,7 +177,13 @@
       "category": "integrations",
       "description": "Classic Workbook 'Write Range' — write a DataTable into a worksheet range without opening Excel.",
       "use_when": "User wants to push a DataTable to a sheet via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use WriteRangeX; to append rather than overwrite use AppendRange.",
-      "tags": ["excel", "workbook", "classic", "write", "datatable"],
+      "tags": [
+        "excel",
+        "workbook",
+        "classic",
+        "write",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "WriteRangeX",
@@ -256,7 +268,13 @@
       "category": "integrations",
       "description": "Classic Workbook 'Write Cell' — write a single value or formula into one cell without opening Excel.",
       "use_when": "User wants to set one cell via the classic Workbook API. For a whole DataTable use WriteRange; for modern Excel (X) projects use WriteCellX.",
-      "tags": ["excel", "workbook", "classic", "write", "cell"],
+      "tags": [
+        "excel",
+        "workbook",
+        "classic",
+        "write",
+        "cell"
+      ],
       "alternatives": [
         {
           "activity": "WriteRange",
@@ -330,7 +348,13 @@
       "category": "integrations",
       "description": "Classic Workbook 'Append Range' — append a DataTable below the existing data in a sheet without opening Excel.",
       "use_when": "User wants to add rows under existing data via the classic Workbook API. To overwrite from row 1 use WriteRange; for modern Excel (X) projects use AppendRangeX.",
-      "tags": ["excel", "workbook", "classic", "append", "datatable"],
+      "tags": [
+        "excel",
+        "workbook",
+        "classic",
+        "append",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "WriteRange",
@@ -404,7 +428,12 @@
       "category": "integrations",
       "description": "Extract embedded text from a PDF file into a String variable.",
       "use_when": "User wants the text layer of a digitally-generated PDF. For scanned/image PDFs use ReadPDFWithOCR; for the page count use GetPDFPageCount.",
-      "tags": ["pdf", "read", "text", "extract"],
+      "tags": [
+        "pdf",
+        "read",
+        "text",
+        "extract"
+      ],
       "alternatives": [
         {
           "activity": "ReadPDFWithOCR",
@@ -487,7 +516,12 @@
       "category": "integrations",
       "description": "Run OCR over a PDF (page-by-page rasterisation) and return the recognised text.",
       "use_when": "User wants text from a scanned or image-only PDF. For PDFs with an embedded text layer use ReadPDFText (faster, lossless).",
-      "tags": ["pdf", "read", "ocr", "scanned"],
+      "tags": [
+        "pdf",
+        "read",
+        "ocr",
+        "scanned"
+      ],
       "alternatives": [
         {
           "activity": "ReadPDFText",
@@ -628,7 +662,12 @@
       "category": "integrations",
       "description": "Send an email through an SMTP server (or Integration Service connection).",
       "use_when": "User wants to send mail via plain SMTP or an Integration Service mail connection. For Outlook desktop use SendOutlookMail; for Exchange Web Services use SendExchangeMail.",
-      "tags": ["mail", "send", "smtp", "integration-service"],
+      "tags": [
+        "mail",
+        "send",
+        "smtp",
+        "integration-service"
+      ],
       "alternatives": [
         {
           "activity": "SendOutlookMail",
@@ -753,7 +792,12 @@
       "category": "integrations",
       "description": "Read email messages from an IMAP mailbox folder into a List<MailMessage>.",
       "use_when": "User wants to fetch mail from an IMAP server (folders, server-side flags). For POP3 use GetPOP3MailMessages; for Exchange/EWS use GetExchangeMailMessages; for an Outlook desktop client use GetOutlookMailMessages.",
-      "tags": ["mail", "read", "imap", "integration-service"],
+      "tags": [
+        "mail",
+        "read",
+        "imap",
+        "integration-service"
+      ],
       "alternatives": [
         {
           "activity": "GetPOP3MailMessages",
@@ -851,7 +895,12 @@
       "category": "integrations",
       "description": "Save the attachments of a MailMessage to a folder on disk, optionally filtered by extension.",
       "use_when": "User has a MailMessage from any Get*MailMessages activity and wants its attachments written to disk. Pair with GetIMAPMailMessages, GetOutlookMailMessages, or GetExchangeMailMessages.",
-      "tags": ["mail", "attachment", "save", "file-system"],
+      "tags": [
+        "mail",
+        "attachment",
+        "save",
+        "file-system"
+      ],
       "_routing_review_needed": false
     },
     "DatabaseConnect": {
@@ -913,7 +962,11 @@
       "category": "integrations",
       "description": "Open a database connection from a connection string and return a DatabaseConnection variable for reuse.",
       "use_when": "User wants to share one connection across multiple subsequent ExecuteQuery / ExecuteNonQuery / BulkInsert / DatabaseTransaction calls. Always pair with DatabaseDisconnect; for one-off queries skip this and pass the connection string directly to ExecuteQuery.",
-      "tags": ["database", "connection", "open"],
+      "tags": [
+        "database",
+        "connection",
+        "open"
+      ],
       "alternatives": [
         {
           "activity": "DatabaseDisconnect",
@@ -1017,7 +1070,13 @@
       "category": "integrations",
       "description": "Run a SELECT query against a database and return the rows as a DataTable.",
       "use_when": "User wants result rows from a SQL SELECT (or any query that returns a row set). For INSERT/UPDATE/DELETE without a result set use ExecuteNonQuery; for high-volume bulk loads use BulkInsert.",
-      "tags": ["database", "sql", "query", "select", "datatable"],
+      "tags": [
+        "database",
+        "sql",
+        "query",
+        "select",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "ExecuteNonQuery",
@@ -1125,7 +1184,13 @@
       "category": "integrations",
       "description": "Run a SQL statement that does not return rows (INSERT/UPDATE/DELETE/DDL) and return the affected-row count.",
       "use_when": "User wants to mutate the database (insert/update/delete) or run DDL. For SELECT use ExecuteQuery; for batched loads use BulkInsert; to wrap several statements atomically use DatabaseTransaction.",
-      "tags": ["database", "sql", "non-query", "insert", "update"],
+      "tags": [
+        "database",
+        "sql",
+        "non-query",
+        "insert",
+        "update"
+      ],
       "alternatives": [
         {
           "activity": "ExecuteQuery",
@@ -1222,7 +1287,12 @@
       "category": "integrations",
       "description": "Bulk-load every row of a DataTable into a target database table using the provider's bulk-copy API.",
       "use_when": "User has a DataTable whose schema matches an existing table and needs the fastest insert path. Requires a prior DatabaseConnect. For row-by-row inserts use ExecuteNonQuery; to update existing rows use BulkUpdate; to insert one DataTable through the same code path use InsertDataTable.",
-      "tags": ["database", "bulk", "insert", "datatable"],
+      "tags": [
+        "database",
+        "bulk",
+        "insert",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "BulkUpdate",
@@ -1319,7 +1389,12 @@
       "category": "integrations",
       "description": "Bulk-update existing rows in a target database table from a DataTable matched on primary key.",
       "use_when": "User has a DataTable whose rows already exist in the target table and need their non-key columns refreshed. Requires a prior DatabaseConnect. To insert new rows use BulkInsert.",
-      "tags": ["database", "bulk", "update", "datatable"],
+      "tags": [
+        "database",
+        "bulk",
+        "update",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "BulkInsert",
@@ -1408,7 +1483,11 @@
       "category": "integrations",
       "description": "Insert every row of a DataTable into a target database table via parameterised INSERTs.",
       "use_when": "User wants to push a DataTable into a table without the provider-specific bulk-copy fast path. For high-volume loads use BulkInsert; for hand-written SQL use ExecuteNonQuery.",
-      "tags": ["database", "insert", "datatable"],
+      "tags": [
+        "database",
+        "insert",
+        "datatable"
+      ],
       "alternatives": [
         {
           "activity": "BulkInsert",
@@ -1464,7 +1543,12 @@
       "category": "integrations",
       "description": "Close a previously opened DatabaseConnection and release its underlying resources.",
       "use_when": "User wants to release a connection opened by DatabaseConnect (typically in a Finally block). To open the connection use DatabaseConnect.",
-      "tags": ["database", "connection", "close", "cleanup"],
+      "tags": [
+        "database",
+        "connection",
+        "close",
+        "cleanup"
+      ],
       "alternatives": [
         {
           "activity": "DatabaseConnect",
@@ -1542,7 +1626,12 @@
       "category": "integrations",
       "description": "Scope that runs nested database activities inside a single transaction (commit on success, rollback on error).",
       "use_when": "User wants several ExecuteNonQuery / ExecuteQuery / BulkInsert calls to commit or roll back atomically. For one-off statements skip the transaction wrapper.",
-      "tags": ["database", "transaction", "scope", "atomic"],
+      "tags": [
+        "database",
+        "transaction",
+        "scope",
+        "atomic"
+      ],
       "_routing_review_needed": false
     },
     "ExportPDFPageAsImage": {
@@ -1615,7 +1704,12 @@
       "category": "integrations",
       "description": "Render one page of a PDF to a PNG/JPG image file at the requested DPI.",
       "use_when": "User wants a single PDF page as a raster image (for thumbnails, OCR pre-processing, embedding in reports). For all images embedded inside the PDF use ExtractImagesFromPDF; for OCR text use ReadPDFWithOCR.",
-      "tags": ["pdf", "export", "image", "page"],
+      "tags": [
+        "pdf",
+        "export",
+        "image",
+        "page"
+      ],
       "alternatives": [
         {
           "activity": "ExtractImagesFromPDF",
@@ -1675,7 +1769,12 @@
       "category": "integrations",
       "description": "Save every embedded image in a PDF to files in an output folder.",
       "use_when": "User wants the original images embedded inside a PDF (logos, photographs, charts). For rasterised page snapshots use ExportPDFPageAsImage.",
-      "tags": ["pdf", "extract", "image", "embedded"],
+      "tags": [
+        "pdf",
+        "extract",
+        "image",
+        "embedded"
+      ],
       "alternatives": [
         {
           "activity": "ExportPDFPageAsImage",
@@ -1743,9 +1842,14 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Extract PDF Page Range activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Extract PDF Page Range.",
-      "_routing_review_needed": true
+      "description": "Extracts a contiguous page range from a PDF into a new PDF file.",
+      "use_when": "User wants a subset of pages saved as a separate PDF; for the entire page count use GetPDFPageCount; for OCR on extracted pages use ReadPDFWithOCR.",
+      "_routing_review_needed": false,
+      "tags": [
+        "pdf",
+        "extract",
+        "pages"
+      ]
     },
     "GetPDFPageCount": {
       "gen_function": null,
@@ -1797,9 +1901,14 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Get PDF Page Count activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Get PDF Page Count.",
-      "_routing_review_needed": true
+      "description": "Returns the total number of pages in a PDF document.",
+      "use_when": "User wants to size a loop or validate document length; for content extraction use ReadPDFText / ReadPDFWithOCR.",
+      "_routing_review_needed": false,
+      "tags": [
+        "pdf",
+        "metadata",
+        "pages"
+      ]
     },
     "JoinPDF": {
       "gen_function": null,
@@ -1851,9 +1960,14 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Join PDF activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Join PDF.",
-      "_routing_review_needed": true
+      "description": "Concatenates multiple PDF files into a single output PDF.",
+      "use_when": "User wants to merge several PDFs end-to-end; for a page-range subset of a single PDF use ExtractPDFPageRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "pdf",
+        "merge",
+        "join"
+      ]
     },
     "ManagePDFPassword": {
       "gen_function": null,
@@ -1924,9 +2038,14 @@
       "_review_needed": true,
       "note": "Password and OwnerPassword are surfaced in the Studio properties panel but omitted from the default XAML skeleton. Review required. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Manage PDF Password activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Manage PDF Password.",
-      "_routing_review_needed": true
+      "description": "Adds or removes the owner/user password on a PDF document.",
+      "use_when": "User wants to apply or strip a password from a PDF; the password value should come from a credential asset (GetRobotCredential), not be hardcoded.",
+      "_routing_review_needed": false,
+      "tags": [
+        "pdf",
+        "password",
+        "security"
+      ]
     },
     "ReadXPSText": {
       "gen_function": null,
@@ -1987,9 +2106,14 @@
       "_review_needed": true,
       "note": "XPS analog to ReadPDFText. Same namespace prefix (ui:). (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "integrations",
-      "description": "Read XPS Text activity from the integrations category.",
-      "use_when": "User wants to integrate with an external system using Read XPS Text.",
-      "_routing_review_needed": true
+      "description": "Reads text content from an XPS document into a string variable.",
+      "use_when": "User wants the text body of an XPS file; for PDF text use ReadPDFText; for OCR on scanned XPS use ReadXPSWithOCR.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xps",
+        "read",
+        "text"
+      ]
     },
     "ReadXPSWithOCR": {
       "gen_function": null,
@@ -2004,9 +2128,14 @@
       "_review_needed": true,
       "_unsupported_detail": "requires-ocr-engine-delegate; emit via gen_read_pdf_with_ocr pattern",
       "category": "integrations",
-      "description": "Read XPS With OCR (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Read XPS With OCR. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Reads text from an XPS document using an OCR engine for image-based pages.",
+      "use_when": "User has a scanned XPS where ReadXPSText returns nothing; pick an OCR engine (Tesseract / Google / Azure) appropriate to language and accuracy needs.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xps",
+        "ocr",
+        "read"
+      ]
     }
   }
 }

@@ -200,9 +200,15 @@
       },
       "conditional_attrs": {},
       "category": "http_json",
-      "description": "Net Http Request activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Net Http Request.",
-      "_routing_review_needed": true
+      "description": "Performs an HTTP request to a REST endpoint with configurable method, headers, body, and OAuth/Basic auth.",
+      "use_when": "User wants to call a REST API from a workflow; for SOAP/XPath responses also see ExecuteXPath; for the legacy WebAPI scope use HttpClient.",
+      "_routing_review_needed": false,
+      "tags": [
+        "http",
+        "rest",
+        "api",
+        "request"
+      ]
     },
     "DeserializeJson": {
       "gen_function": "gen_deserialize_json",
@@ -264,9 +270,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "http_json",
-      "description": "Deserialize Json activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Json.",
-      "_routing_review_needed": true
+      "description": "Parses a JSON object string into a JObject for property access via VB expressions.",
+      "use_when": "User has a JSON object and wants typed access to its fields; for JSON arrays use DeserializeJsonArray; for outbound serialization use SerializeJson.",
+      "_routing_review_needed": false,
+      "tags": [
+        "json",
+        "deserialize",
+        "jobject"
+      ]
     },
     "DeserializeJsonArray": {
       "gen_function": null,
@@ -319,9 +330,14 @@
       "_review_needed": true,
       "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Deserialize Json Array activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Json Array.",
-      "_routing_review_needed": true
+      "description": "Parses a JSON array string into a JArray for iteration with ForEach<JToken>.",
+      "use_when": "User has a JSON array and wants to iterate elements; for JSON objects use DeserializeJson.",
+      "_routing_review_needed": false,
+      "tags": [
+        "json",
+        "deserialize",
+        "jarray"
+      ]
     },
     "DeserializeXml": {
       "gen_function": null,
@@ -373,9 +389,14 @@
       "_review_needed": true,
       "note": "Self-closing. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Deserialize Xml activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Deserialize Xml.",
-      "_routing_review_needed": true
+      "description": "Parses an XML document string into an XDocument for LINQ to XML access.",
+      "use_when": "User has XML text and wants to query nodes via XPath/LINQ; for XPath-only queries use ExecuteXPath; for HTML scraping prefer browser activities.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xml",
+        "deserialize",
+        "xdocument"
+      ]
     },
     "ExecuteXPath": {
       "gen_function": null,
@@ -437,9 +458,14 @@
       "_review_needed": true,
       "note": "Pass exactly one of xml_string_variable or existing_xml_variable. Mutual-exclusion is not enforced by the generator yet — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Execute X Path activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Execute X Path.",
-      "_routing_review_needed": true
+      "description": "Runs an XPath query against an XDocument and returns the matching node value.",
+      "use_when": "User has XML and wants a single node value via XPath; for multi-node sets use GetNodes.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xml",
+        "xpath",
+        "query"
+      ]
     },
     "GetNodes": {
       "gen_function": null,
@@ -501,9 +527,14 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Get Nodes activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Get Nodes.",
-      "_routing_review_needed": true
+      "description": "Returns the list of XElement nodes matching an XPath expression against an XDocument.",
+      "use_when": "User wants every matching XML node; for a single value use ExecuteXPath; for attribute values use GetXMLNodeAttributes.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xml",
+        "xpath",
+        "nodes"
+      ]
     },
     "GetXMLNodes": {
       "gen_function": null,
@@ -563,9 +594,14 @@
       "_review_needed": true,
       "note": "GetNodes vs GetXMLNodes: GetNodes works on parsed XDocument path-queries, GetXMLNodes targets raw XML strings. Confirm semantics with Studio documentation — _review_needed. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Get XML Nodes activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Get XML Nodes.",
-      "_routing_review_needed": true
+      "description": "Alias of GetNodes for legacy spec compatibility — returns matching XElement nodes.",
+      "use_when": "User wrote an older spec referencing GetXMLNodes; new specs should use GetNodes.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xml",
+        "xpath",
+        "legacy"
+      ]
     },
     "GetXMLNodeAttributes": {
       "gen_function": null,
@@ -618,9 +654,14 @@
       "_review_needed": true,
       "note": "(dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Get XML Node Attributes activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Get XML Node Attributes.",
-      "_routing_review_needed": true
+      "description": "Returns the attribute values of the XML nodes matching an XPath expression.",
+      "use_when": "User wants attribute values from XML nodes; for the node text content use GetNodes.",
+      "_routing_review_needed": false,
+      "tags": [
+        "xml",
+        "xpath",
+        "attributes"
+      ]
     },
     "SerializeJson": {
       "gen_function": null,
@@ -673,9 +714,14 @@
       "_review_needed": true,
       "note": "Namespace uwaj: = clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities. Distinct from ui: prefix. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Serialize Json activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Serialize Json.",
-      "_routing_review_needed": true
+      "description": "Serializes a JObject / dictionary / typed object into a JSON string.",
+      "use_when": "User wants to produce a JSON payload to send to a REST API; for parsing inbound JSON use DeserializeJson / DeserializeJsonArray.",
+      "_routing_review_needed": false,
+      "tags": [
+        "json",
+        "serialize",
+        "outbound"
+      ]
     },
     "HttpClient": {
       "gen_function": null,
@@ -880,9 +926,15 @@
       "_review_needed": true,
       "note": "DEPRECATED. Prefer NetHttpRequest (same package, built-in retry, structured response, better auth). HttpClient emitted for legacy workflows only. Requires xmlns:scg namespace at XAML root. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "http_json",
-      "description": "Http Client activity from the http json category.",
-      "use_when": "User wants to perform an HTTP or JSON operation: Http Client.",
-      "_routing_review_needed": true
+      "description": "Legacy WebAPI HTTP client scope from UiPath.WebAPI.Activities; performs request with cookie / connection persistence inside the scope body.",
+      "use_when": "User has an existing WebAPI workflow that uses HttpClient; for new work prefer NetHttpRequest from UiPath.WebAPI.Activities (supports OAuth and modern auth).",
+      "_routing_review_needed": false,
+      "tags": [
+        "http",
+        "webapi",
+        "legacy",
+        "scope"
+      ]
     }
   }
 }

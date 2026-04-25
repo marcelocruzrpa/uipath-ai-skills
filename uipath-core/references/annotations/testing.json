@@ -65,9 +65,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Verifies a Boolean expression is true. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Verify Expression activity from the testing category.",
-      "use_when": "User wants to author or run a test via Verify Expression.",
-      "_routing_review_needed": true
+      "description": "Asserts that a boolean expression evaluates to True; fails the test step otherwise.",
+      "use_when": "User wants a simple True/False assertion; for comparator-based assertions (eq/lt/gt/contains) use VerifyExpressionWithOperator; for numeric-range checks use VerifyRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "assertion",
+        "verify"
+      ]
     },
     "VerifyExpressionWithOperator": {
       "gen_function": null,
@@ -160,9 +165,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Compares two expressions with a specified operator. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Verify Expression With Operator activity from the testing category.",
-      "use_when": "User wants to author or run a test via Verify Expression With Operator.",
-      "_routing_review_needed": true
+      "description": "Asserts that two expressions satisfy a comparator (Equals, NotEquals, GreaterThan, LessThan, Contains).",
+      "use_when": "User wants a typed comparator assertion; for raw boolean expressions use VerifyExpression; for numeric ranges use VerifyRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "assertion",
+        "comparator"
+      ]
     },
     "VerifyRange": {
       "gen_function": null,
@@ -257,9 +267,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Verifies a numeric expression falls within a range. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Verify Range activity from the testing category.",
-      "use_when": "User wants to author or run a test via Verify Range.",
-      "_routing_review_needed": true
+      "description": "Asserts that a numeric value falls within an inclusive [min, max] range.",
+      "use_when": "User wants to verify a number is between two bounds; for equality / comparator checks use VerifyExpressionWithOperator.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "assertion",
+        "range"
+      ]
     },
     "ComparePdfDocuments": {
       "gen_function": null,
@@ -356,9 +371,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Compares two PDF documents for differences. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Compare Pdf Documents activity from the testing category.",
-      "use_when": "User wants to author or run a test via Compare Pdf Documents.",
-      "_routing_review_needed": true
+      "description": "Compares two PDF documents and reports per-page differences using a comparison rule.",
+      "use_when": "User wants to verify that a generated PDF matches a baseline; for plain text comparison use CompareText.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "pdf",
+        "compare"
+      ]
     },
     "CompareText": {
       "gen_function": null,
@@ -453,9 +473,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Compares two text strings for differences. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Compare Text activity from the testing category.",
-      "use_when": "User wants to author or run a test via Compare Text.",
-      "_routing_review_needed": true
+      "description": "Compares two strings using a comparison rule (case-insensitive, whitespace-normalized, regex-aware).",
+      "use_when": "User wants to assert string equivalence with normalization options; for raw equality use VerifyExpressionWithOperator with the Equals operator.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "text",
+        "compare"
+      ]
     },
     "CreateComparisonRule": {
       "gen_function": null,
@@ -529,9 +554,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Creates a comparison rule for document comparison. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Create Comparison Rule activity from the testing category.",
-      "use_when": "User wants to author or run a test via Create Comparison Rule.",
-      "_routing_review_needed": true
+      "description": "Builds a reusable comparison rule object for ComparePdfDocuments / CompareText.",
+      "use_when": "User wants to share a normalization configuration (ignore whitespace, case-insensitive, regex masks) across multiple comparisons.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "rule",
+        "comparison"
+      ]
     },
     "GetTestDataQueueItem": {
       "gen_function": null,
@@ -600,9 +630,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Retrieves an item from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Get Test Data Queue Item activity from the testing category.",
-      "use_when": "User wants to author or run a test via Get Test Data Queue Item.",
-      "_routing_review_needed": true
+      "description": "Pops one test data row from a Test Data Queue and binds its fields to local variables.",
+      "use_when": "User wants the next row of test data in a data-driven test; for many rows in one call use GetTestDataQueueItems.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "data-queue",
+        "single"
+      ]
     },
     "GetTestDataQueueItems": {
       "gen_function": null,
@@ -686,9 +721,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Retrieves multiple items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Get Test Data Queue Items activity from the testing category.",
-      "use_when": "User wants to author or run a test via Get Test Data Queue Items.",
-      "_routing_review_needed": true
+      "description": "Returns a batch of test data rows from a Test Data Queue as a list.",
+      "use_when": "User wants several rows in one call (faster than looping GetTestDataQueueItem); for a single row use GetTestDataQueueItem.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "data-queue",
+        "batch"
+      ]
     },
     "BulkAddTestDataQueue": {
       "gen_function": null,
@@ -748,9 +788,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Bulk-adds rows from a DataTable to a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Bulk Add Test Data Queue activity from the testing category.",
-      "use_when": "User wants to author or run a test via Bulk Add Test Data Queue.",
-      "_routing_review_needed": true
+      "description": "Inserts many rows into a Test Data Queue from a DataTable in a single Orchestrator request.",
+      "use_when": "User wants to seed a Test Data Queue from an Excel sheet; for one row at a time use NewAddTestDataQueueItem.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "data-queue",
+        "bulk",
+        "seed"
+      ]
     },
     "DeleteTestDataQueueItems": {
       "gen_function": null,
@@ -801,9 +847,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Deletes items from a test data queue. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Delete Test Data Queue Items activity from the testing category.",
-      "use_when": "User wants to author or run a test via Delete Test Data Queue Items.",
-      "_routing_review_needed": true
+      "description": "Deletes test data items from a Test Data Queue by ID list or filter.",
+      "use_when": "User wants to clear a queue between test runs; pair with BulkAddTestDataQueue to refresh test data.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "data-queue",
+        "cleanup"
+      ]
     },
     "AttachDocument": {
       "gen_function": null,
@@ -854,9 +905,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Attaches a document to the current test case result. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Attach Document activity from the testing category.",
-      "use_when": "User wants to author or run a test via Attach Document.",
-      "_routing_review_needed": true
+      "description": "Attaches a file artifact (screenshot, log, evidence) to the current test result.",
+      "use_when": "User wants to include evidence in a Test Manager run; for inline log messages use LogMessage; for screenshots specifically use TakeScreenshotAndSave first.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "evidence",
+        "attachment"
+      ]
     },
     "RandomString": {
       "gen_function": null,
@@ -918,9 +974,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random string of specified length. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Random String activity from the testing category.",
-      "use_when": "User wants to author or run a test via Random String.",
-      "_routing_review_needed": true
+      "description": "Generates a random string of given length and character class for test data.",
+      "use_when": "User wants synthetic string input for a test; for numbers use RandomNumber; for human-shaped values (names, addresses) use GivenName / LastName / Address.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "string",
+        "synthetic"
+      ]
     },
     "RandomNumber": {
       "gen_function": null,
@@ -987,9 +1049,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random number within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Random Number activity from the testing category.",
-      "use_when": "User wants to author or run a test via Random Number.",
-      "_routing_review_needed": true
+      "description": "Generates a random integer or decimal within a specified range for test data.",
+      "use_when": "User wants synthetic numeric input; for a value drawn from an enum-like set use RandomValue.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "number",
+        "synthetic"
+      ]
     },
     "RandomDate": {
       "gen_function": null,
@@ -1047,9 +1115,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random date within the specified range. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Random Date activity from the testing category.",
-      "use_when": "User wants to author or run a test via Random Date.",
-      "_routing_review_needed": true
+      "description": "Generates a random DateTime within a specified [from, to] range.",
+      "use_when": "User wants synthetic date input; for a calendar-aware business-day variant authoring is custom.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "date",
+        "synthetic"
+      ]
     },
     "RandomValue": {
       "gen_function": null,
@@ -1098,9 +1172,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Picks a random value from a list or file. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Random Value activity from the testing category.",
-      "use_when": "User wants to author or run a test via Random Value.",
-      "_routing_review_needed": true
+      "description": "Returns a random element from a supplied list of candidate values.",
+      "use_when": "User wants a value picked from a fixed set (e.g. a category enum); for free-form strings use RandomString.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "enum",
+        "synthetic"
+      ]
     },
     "GivenName": {
       "gen_function": null,
@@ -1140,9 +1220,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random given/first name. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Given Name activity from the testing category.",
-      "use_when": "User wants to author or run a test via Given Name.",
-      "_routing_review_needed": true
+      "description": "Returns a random plausible given (first) name from a built-in dataset for test data.",
+      "use_when": "User wants realistic first-name input; pair with LastName + Address for a synthetic person record.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "name",
+        "synthetic"
+      ]
     },
     "LastName": {
       "gen_function": null,
@@ -1182,9 +1268,15 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random last/family name. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Last Name activity from the testing category.",
-      "use_when": "User wants to author or run a test via Last Name.",
-      "_routing_review_needed": true
+      "description": "Returns a random plausible family (last) name from a built-in dataset for test data.",
+      "use_when": "User wants realistic last-name input; pair with GivenName + Address for a synthetic person record.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "name",
+        "synthetic"
+      ]
     },
     "Address": {
       "gen_function": null,
@@ -1242,36 +1334,58 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. Generates a random address. (dispatched via gen_from_annotation; element_tag drives emission)",
       "category": "testing",
-      "description": "Address activity from the testing category.",
-      "use_when": "User wants to author or run a test via Address.",
-      "_routing_review_needed": true
+      "description": "Returns a random plausible street address from a built-in dataset for test data.",
+      "use_when": "User wants realistic address input; pair with GivenName / LastName for a synthetic person record.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "random",
+        "address",
+        "synthetic"
+      ]
     },
     "VerifyControlAttribute": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "VerifyControlAttribute wraps an ActivityAction+ActivityFunc pair; requires Studio wizard to configure the target activity.",
       "category": "testing",
-      "description": "Verify Control Attribute (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Verify Control Attribute. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Asserts that a UI element's attribute (Text, Enabled, Visible, etc.) matches an expected value.",
+      "use_when": "User wants a UI-bound assertion in a test; for non-UI value assertions use VerifyExpression.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "assertion",
+        "ui"
+      ]
     },
     "MockActivity": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "MockActivity wraps a Sequence child to replace a mocked activity; requires Studio configuration.",
       "category": "testing",
-      "description": "Mock Activity (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate Mock Activity. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Substitutes a mocked implementation for a wrapped activity at test time, returning a canned output.",
+      "use_when": "User wants to isolate code-under-test from a slow / flaky / external dependency; production specs should never include MockActivity.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "mock",
+        "isolation"
+      ]
     },
     "NewAddTestDataQueueItem": {
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "NewAddTestDataQueueItem uses an ItemInformation dictionary child that requires Studio wizard configuration.",
       "category": "testing",
-      "description": "New Add Test Data Queue Item (wizard-only) — must be configured through UiPath Studio's interactive wizard.",
-      "use_when": "Do not auto-generate New Add Test Data Queue Item. Direct the user to author it in UiPath Studio.",
-      "_routing_review_needed": true
+      "description": "Inserts a single row into a Test Data Queue with the given field values.",
+      "use_when": "User wants to add one test data row interactively; for batch loads from a DataTable use BulkAddTestDataQueue.",
+      "_routing_review_needed": false,
+      "tags": [
+        "test",
+        "data-queue",
+        "single",
+        "seed"
+      ]
     }
   }
 }

@@ -64,9 +64,14 @@
       },
       "conditional_attrs": {},
       "category": "navigation",
-      "description": "GoToURL activity from the navigation category.",
-      "use_when": "User wants to navigate within the host application: GoToURL.",
-      "_routing_review_needed": true
+      "description": "Navigates the active browser to the given URL within an NApplicationCard browser scope.",
+      "use_when": "User wants to change the active page inside an already-open browser; for opening a new browser use NApplicationCard; to read the current URL use NGetUrl.",
+      "_routing_review_needed": false,
+      "tags": [
+        "navigation",
+        "browser",
+        "url"
+      ]
     },
     "NGetUrl": {
       "gen_function": "gen_ngeturl",
@@ -118,9 +123,15 @@
       "conditional_attrs": {},
       "note": "Self-closing element, no children. Must be inside NApplicationCard scope.",
       "category": "navigation",
-      "description": "GetURL activity from the navigation category.",
-      "use_when": "User wants to navigate within the host application: GetURL.",
-      "_routing_review_needed": true
+      "description": "Reads the current URL of the active browser tab and assigns it to a variable.",
+      "use_when": "User wants to capture the page URL for logging or routing decisions; to navigate to a URL use NGoToUrl.",
+      "_routing_review_needed": false,
+      "tags": [
+        "navigation",
+        "browser",
+        "read",
+        "url"
+      ]
     },
     "NExtractDataGeneric": {
       "gen_function": "gen_nextractdata",
@@ -253,9 +264,14 @@
       },
       "conditional_attrs": {},
       "category": "navigation",
-      "description": "ExtractData activity from the navigation category.",
-      "use_when": "User wants to navigate within the host application: ExtractData.",
-      "_routing_review_needed": true
+      "description": "Wizard-only Extract Data Generic activity that emits a typed DataTable from a Studio-authored extraction definition.",
+      "use_when": "Do not auto-generate; direct user to Studio's Extract Data Wizard (Modern UI Automation ribbon) to build the table definition interactively.",
+      "_routing_review_needed": false,
+      "tags": [
+        "extract",
+        "datatable",
+        "wizard"
+      ]
     },
     "PickLoginValidation": {
       "gen_function": "gen_pick_login_validation",
@@ -439,9 +455,14 @@
       "child_elements": {},
       "conditional_attrs": {},
       "category": "navigation",
-      "description": "Pick Login Validation activity from the navigation category.",
-      "use_when": "User wants to navigate within the host application: Pick Login Validation.",
-      "_routing_review_needed": true
+      "description": "Pick activity with two branches that races a success selector against an error selector to detect login outcome.",
+      "use_when": "User wants to validate that a form submission succeeded vs surfaced a visible error message; for general n-way racing use Pick directly; for sequential retry use RetryScope.",
+      "_routing_review_needed": false,
+      "tags": [
+        "pick",
+        "login",
+        "validation"
+      ]
     }
   }
 }

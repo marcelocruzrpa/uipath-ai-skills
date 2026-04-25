@@ -70,8 +70,8 @@
       },
       "conditional_attrs": {},
       "category": "data_operations",
-      "description": "Assign activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Assign.",
+      "description": "Assigns the result of a single VB expression to a single variable / argument.",
+      "use_when": "User wants to set one value; for multiple assignments in one block use MultipleAssign; for declaring new variables in scope use VariablesBlock.",
       "alternatives": [
         {
           "activity": "MultipleAssign",
@@ -82,7 +82,12 @@
           "use_instead_when": "You are creating a DataTable with a fixed schema rather than assigning a scalar value."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "assign",
+        "variable",
+        "expression"
+      ]
     },
     "MultipleAssign": {
       "gen_function": "gen_multiple_assign",
@@ -128,8 +133,8 @@
       },
       "conditional_attrs": {},
       "category": "data_operations",
-      "description": "Multiple Assign activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Multiple Assign.",
+      "description": "Assigns a list of (target, expression) pairs in one activity, evaluated top-to-bottom.",
+      "use_when": "User wants to set several variables together (e.g. zeroing counters at start of a loop); for a single assignment use Assign.",
       "alternatives": [
         {
           "activity": "Assign",
@@ -140,7 +145,12 @@
           "use_instead_when": "The target is a tabular value with a fixed schema, not a set of scalars."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "assign",
+        "variable",
+        "batch"
+      ]
     },
     "VariablesBlock": {
       "gen_function": "gen_variables_block",
@@ -175,9 +185,14 @@
       "child_elements": {},
       "conditional_attrs": {},
       "category": "data_operations",
-      "description": "Variables Block activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Variables Block.",
-      "_routing_review_needed": true
+      "description": "Helper composite that emits a Sequence/Flowchart Variables declaration block.",
+      "use_when": "User is hand-authoring a generator and needs to declare local variables; the standard scaffolder does this automatically.",
+      "_routing_review_needed": false,
+      "tags": [
+        "variable",
+        "scope",
+        "helper"
+      ]
     },
     "BuildDataTable": {
       "gen_function": "gen_build_data_table",
@@ -238,8 +253,8 @@
       "conditional_attrs": {},
       "note": "Self-closing tag. TableInfo attribute contains XML-escaped XSD schema string.",
       "category": "data_operations",
-      "description": "Build Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Build Data Table.",
+      "description": "Constructs a typed DataTable from a column schema and optional initial rows.",
+      "use_when": "User wants an empty/seeded DataTable to fill via AddDataRow or to pass to ForEachRow; for reading a CSV/Excel into a DataTable use ReadCsvFile / ReadRange.",
       "alternatives": [
         {
           "activity": "Assign",
@@ -250,7 +265,12 @@
           "use_instead_when": "The source is a delimited string (CSV/TSV-style) that should be parsed into a table rather than typed in column-by-column."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "build",
+        "schema"
+      ]
     },
     "AddDataRow": {
       "gen_function": "gen_add_data_row",
@@ -302,9 +322,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Add Data Row activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Add Data Row.",
-      "_routing_review_needed": true
+      "description": "Appends a new row to a DataTable, taking values either as an array (positional) or a DataRow object.",
+      "use_when": "User wants to add one row to a DataTable; for many rows from another DataTable use MergeDataTable.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "row",
+        "append"
+      ]
     },
     "AddDataColumn": {
       "gen_function": "gen_add_data_column",
@@ -371,9 +396,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Add Data Column activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Add Data Column.",
-      "_routing_review_needed": true
+      "description": "Adds a new typed column to an existing DataTable.",
+      "use_when": "User wants to extend a DataTable's schema after construction; the cleaner pattern is to declare all columns in BuildDataTable upfront.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "column",
+        "schema"
+      ]
     },
     "RemoveDataColumn": {
       "gen_function": "gen_remove_data_column",
@@ -427,9 +457,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Remove Data Column activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Remove Data Column.",
-      "_routing_review_needed": true
+      "description": "Removes a column from a DataTable by name or DataColumn object.",
+      "use_when": "User wants to drop a column before exporting; for projecting to a new schema entirely consider Filter Data Table or LINQ.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "column",
+        "remove"
+      ]
     },
     "FilterDataTable": {
       "gen_function": "gen_filter_data_table",
@@ -522,8 +557,8 @@
       },
       "conditional_attrs": {},
       "category": "data_operations",
-      "description": "Filter Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Filter Data Table.",
+      "description": "Filters a DataTable in place using a list of column / operator / value rules.",
+      "use_when": "User wants to keep or remove rows by column criteria; for joins across tables use JoinDataTables; for a single-row lookup use LookupDataTable.",
       "alternatives": [
         {
           "activity": "LookupDataTable",
@@ -534,7 +569,12 @@
           "use_instead_when": "You need to combine columns from two tables on a key rather than filter rows of one table."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "filter",
+        "rows"
+      ]
     },
     "SortDataTable": {
       "gen_function": "gen_sort_data_table",
@@ -608,9 +648,13 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Sort Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Sort Data Table.",
-      "_routing_review_needed": true
+      "description": "Sorts a DataTable by one or more columns in ascending/descending order.",
+      "use_when": "User wants ordered rows for output or deduplication; pair with RemoveDuplicateRows to canonicalize before persisting.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "sort"
+      ]
     },
     "RemoveDuplicateRows": {
       "gen_function": "gen_remove_duplicate_rows",
@@ -660,9 +704,13 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Remove Duplicate Rows activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Remove Duplicate Rows.",
-      "_routing_review_needed": true
+      "description": "Removes duplicate rows from a DataTable (full-row equality across all columns).",
+      "use_when": "User wants a deduped table; for column-subset deduplication use a Filter Data Table chain or LINQ.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "deduplicate"
+      ]
     },
     "OutputDataTable": {
       "gen_function": "gen_output_data_table",
@@ -712,9 +760,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Output Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Output Data Table.",
-      "_routing_review_needed": true
+      "description": "Renders a DataTable as a formatted string (CSV-like) for logging or display.",
+      "use_when": "User wants a human-readable preview of a DataTable; for persisting to disk use WriteCsvFile.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "format",
+        "diagnostics"
+      ]
     },
     "JoinDataTables": {
       "gen_function": "gen_join_data_tables",
@@ -800,8 +853,8 @@
       },
       "conditional_attrs": {},
       "category": "data_operations",
-      "description": "Join Data Tables activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Join Data Tables.",
+      "description": "Joins two DataTables on equality of specified columns (Inner / Left / Full join).",
+      "use_when": "User wants relational-style joins between two tables; for filtering one table by criteria from another, FilterDataTable in a loop is simpler when one side is small.",
       "alternatives": [
         {
           "activity": "FilterDataTable",
@@ -812,7 +865,12 @@
           "use_instead_when": "You only need to fetch a single value for a key rather than produce a joined result table."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "join",
+        "merge"
+      ]
     },
     "LookupDataTable": {
       "gen_function": "gen_lookup_data_table",
@@ -898,8 +956,8 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Lookup Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Lookup Data Table.",
+      "description": "Looks up a single matching row in a DataTable by a key column value.",
+      "use_when": "User wants one row by key (Excel VLOOKUP-equivalent); for many matching rows use FilterDataTable.",
       "alternatives": [
         {
           "activity": "FilterDataTable",
@@ -910,7 +968,12 @@
           "use_instead_when": "You want all matching rows merged with their right-side columns, not just one looked-up scalar."
         }
       ],
-      "_routing_review_needed": true
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "lookup",
+        "single"
+      ]
     },
     "MergeDataTable": {
       "gen_function": "gen_merge_data_table",
@@ -974,9 +1037,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Merge Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Merge Data Table.",
-      "_routing_review_needed": true
+      "description": "Merges rows from a source DataTable into a destination DataTable, preserving the destination schema.",
+      "use_when": "User wants to append rows from another table with matching schema; for a single row use AddDataRow.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "merge",
+        "append"
+      ]
     },
     "GenerateDataTable": {
       "gen_function": "gen_generate_data_table",
@@ -1048,9 +1116,14 @@
       "conditional_attrs": {},
       "note": "Self-closing tag.",
       "category": "data_operations",
-      "description": "Generate Data Table activity from the data operations category.",
-      "use_when": "User wants to manipulate a DataTable or collection via Generate Data Table.",
-      "_routing_review_needed": true
+      "description": "Builds a DataTable by parsing a delimited string (e.g. raw text scraped from a UI element).",
+      "use_when": "User has captured tabular text from screen scraping and wants a typed DataTable; for proper CSV files use ReadCsvFile; for Excel use ReadRange.",
+      "_routing_review_needed": false,
+      "tags": [
+        "datatable",
+        "parse",
+        "scrape"
+      ]
     }
   }
 }

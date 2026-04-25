@@ -4,7 +4,7 @@ Auto-generated from `references/annotations/*.json` by
 `uipath-core/scripts/generate_routing_index.py`. Do not hand-edit — edit
 the annotation entries instead, then regenerate.
 
-**463 activities indexed** (supported: 445, wizard-only / unsupported: 18, routing wording review pending: 184).
+**463 activities indexed** (supported: 445, wizard-only / unsupported: 18, routing wording review pending: 0).
 
 ## UI automation (69)
 
@@ -93,10 +93,10 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `NExtractDataGeneric` 🛈 | `gen_nextractdata` | ExtractData activity from the navigation category. | User wants to navigate within the host application: ExtractData. |
-| `NGetUrl` 🛈 | `gen_ngeturl` | GetURL activity from the navigation category. | User wants to navigate within the host application: GetURL. |
-| `NGoToUrl` 🛈 | `gen_ngotourl` | GoToURL activity from the navigation category. | User wants to navigate within the host application: GoToURL. |
-| `PickLoginValidation` 🛈 | `gen_pick_login_validation` | Pick Login Validation activity from the navigation category. | User wants to navigate within the host application: Pick Login Validation. |
+| `NExtractDataGeneric` | `gen_nextractdata` | Wizard-only Extract Data Generic activity that emits a typed DataTable from a Studio-authored extraction definition. | Do not auto-generate; direct user to Studio's Extract Data Wizard (Modern UI Automation ribbon) to build the table definition interactively. |
+| `NGetUrl` | `gen_ngeturl` | Reads the current URL of the active browser tab and assigns it to a variable. | User wants to capture the page URL for logging or routing decisions; to navigate to a URL use NGoToUrl. |
+| `NGoToUrl` | `gen_ngotourl` | Navigates the active browser to the given URL within an NApplicationCard browser scope. | User wants to change the active page inside an already-open browser; for opening a new browser use NApplicationCard; to read the current URL use NGetUrl. |
+| `PickLoginValidation` | `gen_pick_login_validation` | Pick activity with two branches that races a success selector against an error selector to detect login outcome. | User wants to validate that a form submission succeeded vs surfaced a visible error message; for general n-way racing use Pick directly; for sequential retry use RetryScope. |
 
 ## Control flow (13)
 
@@ -120,134 +120,134 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `AddDataColumn` 🛈 | `gen_add_data_column` | Add Data Column activity from the data operations category. | User wants to manipulate a DataTable or collection via Add Data Column. |
-| `AddDataRow` 🛈 | `gen_add_data_row` | Add Data Row activity from the data operations category. | User wants to manipulate a DataTable or collection via Add Data Row. |
-| `AddOrSubtractFromDate` 🛈 | `gen_add_or_subtract_from_date` | Add Or Subtract From Date activity from the data operations category. | User wants to manipulate a DataTable or collection via Add Or Subtract From Date. |
-| `AddTransactionItem` 🛈 | `gen_add_transaction_item` | Add Transaction Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Add Transaction Item. |
-| `AppendLine` 🛈 | `gen_append_line` | Append Line activity from the data operations category. | User wants to manipulate a DataTable or collection via Append Line. |
-| `Assign` 🛈 | `gen_assign` | Assign activity from the data operations category. | User wants to manipulate a DataTable or collection via Assign. |
-| `Beep` 🛈 | `gen_beep` | Beep activity from the data operations category. | User wants to manipulate a DataTable or collection via Beep. |
-| `BeginProcess` 🛈 | `gen_begin_process` | Begin Process activity from the data operations category. | User wants to manipulate a DataTable or collection via Begin Process. |
-| `BuildDataTable` 🛈 | `gen_build_data_table` | Build Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Build Data Table. |
-| `ChangeCase` 🛈 | `gen_change_case` | Change Case activity from the data operations category. | User wants to manipulate a DataTable or collection via Change Case. |
-| `CheckFalse` 🛈 | `gen_check_false` | Check False activity from the data operations category. | User wants to manipulate a DataTable or collection via Check False. |
-| `CheckTrue` 🛈 | `gen_check_true` | Check True activity from the data operations category. | User wants to manipulate a DataTable or collection via Check True. |
-| `ClearDataTable` 🛈 | `gen_clear_data_table` | Clear Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Clear Data Table. |
-| `CombineText` 🛈 | `gen_combine_text` | Combine Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Combine Text. |
-| `CompressFiles` 🛈 | `gen_compress_files` | Compress Files activity from the data operations category. | User wants to manipulate a DataTable or collection via Compress Files. |
-| `CopyFolderX` 🛈 | `gen_copy_folder_x` | Copy Folder X activity from the data operations category. | User wants to manipulate a DataTable or collection via Copy Folder X. |
-| `CreateFile` 🛈 | `gen_create_file` | Create File activity from the data operations category. | User wants to manipulate a DataTable or collection via Create File. |
-| `CustomInput` 🛈 | `gen_custom_input` | Custom Input activity from the data operations category. | User wants to manipulate a DataTable or collection via Custom Input. |
-| `Delete` 🛈 | `gen_delete` | Delete activity from the data operations category. | User wants to manipulate a DataTable or collection via Delete. |
-| `DeleteFolderX` 🛈 | `gen_delete_folder_x` | Delete Folder X activity from the data operations category. | User wants to manipulate a DataTable or collection via Delete Folder X. |
-| `DeleteQueueItems` 🛈 | `gen_delete_queue_items` | Delete Queue Items activity from the data operations category. | User wants to manipulate a DataTable or collection via Delete Queue Items. |
-| `DeleteStorageFile` 🛈 | `gen_delete_storage_file` | Delete Storage File activity from the data operations category. | User wants to manipulate a DataTable or collection via Delete Storage File. |
-| `DisableTrigger` 🛈 | `gen_disable_trigger` | Disable Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Disable Trigger. |
-| `DownloadFileFromUrl` 🛈 | `gen_download_file_from_url` | Download File From Url activity from the data operations category. | User wants to manipulate a DataTable or collection via Download File From Url. |
-| `DownloadStorageFile` 🛈 | `gen_download_storage_file` | Download Storage File activity from the data operations category. | User wants to manipulate a DataTable or collection via Download Storage File. |
-| `EnableTrigger` 🛈 | `gen_enable_trigger` | Enable Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Enable Trigger. |
-| `EvaluateBusinessRule` 🛈 | `gen_evaluate_business_rule` | Evaluate Business Rule activity from the data operations category. | User wants to manipulate a DataTable or collection via Evaluate Business Rule. |
-| `ExecutePowerShell` 🛈 | `gen_execute_power_shell` | Execute Power Shell activity from the data operations category. | User wants to manipulate a DataTable or collection via Execute Power Shell. |
-| `ExtractDateTime` 🛈 | `gen_extract_date_time` | Extract Date Time activity from the data operations category. | User wants to manipulate a DataTable or collection via Extract Date Time. |
-| `ExtractFiles` 🛈 | `gen_extract_files` | Extract Files activity from the data operations category. | User wants to manipulate a DataTable or collection via Extract Files. |
-| `ExtractText` 🛈 | `gen_extract_text` | Extract Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Extract Text. |
-| `FileChangeTrigger` 🛈 | `gen_file_change_trigger` | File Change Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via File Change Trigger. |
-| `FileChangeTriggerV2` 🛈 | `gen_file_change_trigger_v2` | File Change Trigger V2 activity from the data operations category. | User wants to manipulate a DataTable or collection via File Change Trigger V2. |
-| `FileChangeTriggerV3` 🛈 | `gen_file_change_trigger_v3` | File Change Trigger V3 activity from the data operations category. | User wants to manipulate a DataTable or collection via File Change Trigger V3. |
-| `FileExistsX` 🛈 | `gen_file_exists_x` | File Exists X activity from the data operations category. | User wants to manipulate a DataTable or collection via File Exists X. |
-| `FilterDataTable` 🛈 | `gen_filter_data_table` | Filter Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Filter Data Table. |
-| `FindAndReplace` 🛈 | `gen_find_and_replace` | Find And Replace activity from the data operations category. | User wants to manipulate a DataTable or collection via Find And Replace. |
-| `FolderExistsX` 🛈 | `gen_folder_exists_x` | Folder Exists X activity from the data operations category. | User wants to manipulate a DataTable or collection via Folder Exists X. |
-| `ForEachFolderX` 🛈 | `gen_for_each_folder_x` | For Each Folder X activity from the data operations category. | User wants to manipulate a DataTable or collection via For Each Folder X. |
-| `FormatDateAsText` 🛈 | `gen_format_date_as_text` | Format Date As Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Format Date As Text. |
-| `FormatValue` 🛈 | `gen_format_value` | Format Value activity from the data operations category. | User wants to manipulate a DataTable or collection via Format Value. |
-| `GenerateDataTable` 🛈 | `gen_generate_data_table` | Generate Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Generate Data Table. |
-| `GetCurrentJobInfo` 🛈 | `gen_get_current_job_info` | Get Current Job Info activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Current Job Info. |
-| `GetEnvironmentFolder` 🛈 | `gen_get_environment_folder` | Get Environment Folder activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Environment Folder. |
-| `GetEnvironmentVariable` 🛈 | `gen_get_environment_variable` | Get Environment Variable activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Environment Variable. |
-| `GetFileInfoX` 🛈 | `gen_get_file_info_x` | Get File Info X activity from the data operations category. | User wants to manipulate a DataTable or collection via Get File Info X. |
-| `GetFolderInfoX` 🛈 | `gen_get_folder_info_x` | Get Folder Info X activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Folder Info X. |
-| `GetJobs` 🛈 | `gen_get_jobs` | Get Jobs activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Jobs. |
-| `GetLastDownloadedFile` 🛈 | `gen_get_last_downloaded_file` | Get Last Downloaded File activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Last Downloaded File. |
-| `GetProcesses` 🛈 | `gen_get_processes` | Get Processes activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Processes. |
-| `GetQueueItems` 🛈 | `gen_get_queue_items` | Get Queue Items activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Queue Items. |
-| `GetRowItem` 🛈 | `gen_get_row_item` | Get Row Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Row Item. |
-| `GetSecret` 🛈 | `gen_get_secret` | Get Secret activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Secret. |
-| `GetTransactionItem` 🛈 | `gen_get_transaction_item` | Get Transaction Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Transaction Item. |
-| `GetUsernamePasswordX` 🛈 | `gen_get_username_password_x` | Get Username Password X activity from the data operations category. | User wants to manipulate a DataTable or collection via Get Username Password X. |
-| `GlobalVariableChangedTrigger` 🛈 | `gen_global_variable_changed_trigger` | Global Variable Changed Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Global Variable Changed Trigger. |
-| `InterruptibleDoWhile` 🛈 | `gen_interruptible_do_while` | Interruptible Do While activity from the data operations category. | User wants to manipulate a DataTable or collection via Interruptible Do While. |
-| `InterruptibleWhile` 🛈 | `gen_interruptible_while` | Interruptible While activity from the data operations category. | User wants to manipulate a DataTable or collection via Interruptible While. |
-| `InvokeComMethod` 🛈 | `gen_invoke_com_method` | Invoke Com Method activity from the data operations category. | User wants to manipulate a DataTable or collection via Invoke Com Method. |
-| `InvokeProcess` 🛈 | `gen_invoke_process` | Invoke Process activity from the data operations category. | User wants to manipulate a DataTable or collection via Invoke Process. |
-| `InvokeVBScript` 🛈 | `gen_invoke_vb_script` | Invoke VB Script activity from the data operations category. | User wants to manipulate a DataTable or collection via Invoke VB Script. |
-| `InvokeWorkflowInteractive` 🛈 | `gen_invoke_workflow_interactive` | Invoke Workflow Interactive activity from the data operations category. | User wants to manipulate a DataTable or collection via Invoke Workflow Interactive. |
-| `IsMatch` 🛈 | `gen_is_match` | Is Match activity from the data operations category. | User wants to manipulate a DataTable or collection via Is Match. |
-| `JoinDataTables` 🛈 | `gen_join_data_tables` | Join Data Tables activity from the data operations category. | User wants to manipulate a DataTable or collection via Join Data Tables. |
-| `ListStorageFiles` 🛈 | `gen_list_storage_files` | List Storage Files activity from the data operations category. | User wants to manipulate a DataTable or collection via List Storage Files. |
-| `LookupDataTable` 🛈 | `gen_lookup_data_table` | Lookup Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Lookup Data Table. |
-| `ManualTrigger` 🛈 | `gen_manual_trigger` | Manual Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Manual Trigger. |
-| `Matches` 🛈 | `gen_matches` | Matches activity from the data operations category. | User wants to manipulate a DataTable or collection via Matches. |
-| `MergeDataTable` 🛈 | `gen_merge_data_table` | Merge Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Merge Data Table. |
-| `ModifyDate` 🛈 | `gen_modify_date` | Modify Date activity from the data operations category. | User wants to manipulate a DataTable or collection via Modify Date. |
-| `ModifyText` 🛈 | `gen_modify_text` | Modify Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Modify Text. |
-| `MoveFolderX` 🛈 | `gen_move_folder_x` | Move Folder X activity from the data operations category. | User wants to manipulate a DataTable or collection via Move Folder X. |
-| `MultipleAssign` 🛈 | `gen_multiple_assign` | Multiple Assign activity from the data operations category. | User wants to manipulate a DataTable or collection via Multiple Assign. |
-| `NotifyGlobalVariableChanged` 🛈 | `gen_notify_global_variable_changed` | Notify Global Variable Changed activity from the data operations category. | User wants to manipulate a DataTable or collection via Notify Global Variable Changed. |
-| `OrchestratorHttpRequest` 🛈 | `gen_orchestrator_http_request` | Orchestrator Http Request activity from the data operations category. | User wants to manipulate a DataTable or collection via Orchestrator Http Request. |
-| `OutputDataTable` 🛈 | `gen_output_data_table` | Output Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Output Data Table. |
-| `Placeholder` 🛈 | `gen_placeholder` | Placeholder activity from the data operations category. | User wants to manipulate a DataTable or collection via Placeholder. |
-| `PostponeTransactionItem` 🛈 | `gen_postpone_transaction_item` | Postpone Transaction Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Postpone Transaction Item. |
-| `ProcessEndTrigger` 🛈 | `gen_process_end_trigger` | Process End Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Process End Trigger. |
-| `ProcessEndTriggerV2` 🛈 | `gen_process_end_trigger_v2` | Process End Trigger V2 activity from the data operations category. | User wants to manipulate a DataTable or collection via Process End Trigger V2. |
-| `ProcessStartTrigger` 🛈 | `gen_process_start_trigger` | Process Start Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Process Start Trigger. |
-| `ProcessStartTriggerV2` 🛈 | `gen_process_start_trigger_v2` | Process Start Trigger V2 activity from the data operations category. | User wants to manipulate a DataTable or collection via Process Start Trigger V2. |
-| `ProcessTrackingScope` 🛈 | `gen_process_tracking_scope` | Process Tracking Scope activity from the data operations category. | User wants to manipulate a DataTable or collection via Process Tracking Scope. |
-| `QueueTrigger` 🛈 | `gen_queue_trigger` | Queue Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Queue Trigger. |
-| `RaiseAlert` 🛈 | `gen_raise_alert` | Raise Alert activity from the data operations category. | User wants to manipulate a DataTable or collection via Raise Alert. |
-| `ReadStorageText` 🛈 | `gen_read_storage_text` | Read Storage Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Read Storage Text. |
-| `RemoveDataColumn` 🛈 | `gen_remove_data_column` | Remove Data Column activity from the data operations category. | User wants to manipulate a DataTable or collection via Remove Data Column. |
-| `RemoveDataRow` 🛈 | `gen_remove_data_row` | Remove Data Row activity from the data operations category. | User wants to manipulate a DataTable or collection via Remove Data Row. |
-| `RemoveDuplicateRows` 🛈 | `gen_remove_duplicate_rows` | Remove Duplicate Rows activity from the data operations category. | User wants to manipulate a DataTable or collection via Remove Duplicate Rows. |
-| `RenameFileX` 🛈 | `gen_rename_file_x` | Rename File X activity from the data operations category. | User wants to manipulate a DataTable or collection via Rename File X. |
-| `RenameFolderX` 🛈 | `gen_rename_folder_x` | Rename Folder X activity from the data operations category. | User wants to manipulate a DataTable or collection via Rename Folder X. |
-| `RepeatNumberOfTimesX` 🛈 | `gen_repeat_number_of_times_x` | Repeat Number Of Times X activity from the data operations category. | User wants to manipulate a DataTable or collection via Repeat Number Of Times X. |
-| `RepeatTrigger` 🛈 | `gen_repeat_trigger` | Repeat Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Repeat Trigger. |
-| `Replace` 🛈 | `gen_replace` | Replace activity from the data operations category. | User wants to manipulate a DataTable or collection via Replace. |
-| `ReportStatus` 🛈 | `gen_report_status` | Report Status activity from the data operations category. | User wants to manipulate a DataTable or collection via Report Status. |
-| `ResetTimer` 🛈 | `gen_reset_timer` | Reset Timer activity from the data operations category. | User wants to manipulate a DataTable or collection via Reset Timer. |
-| `ResumeTimer` 🛈 | `gen_resume_timer` | Resume Timer activity from the data operations category. | User wants to manipulate a DataTable or collection via Resume Timer. |
-| `Return` 🛈 | `gen_return` | Return activity from the data operations category. | User wants to manipulate a DataTable or collection via Return. |
-| `RunJob` 🛈 | `gen_run_job` | Run Job activity from the data operations category. | User wants to manipulate a DataTable or collection via Run Job. |
-| `SelectFile` 🛈 | `gen_select_file` | Select File activity from the data operations category. | User wants to manipulate a DataTable or collection via Select File. |
-| `SelectFolder` 🛈 | `gen_select_folder` | Select Folder activity from the data operations category. | User wants to manipulate a DataTable or collection via Select Folder. |
-| `SendEmailNotification` 🛈 | `gen_send_email_notification` | Send Email Notification activity from the data operations category. | User wants to manipulate a DataTable or collection via Send Email Notification. |
-| `SetAsset` 🛈 | `gen_set_asset` | Set Asset activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Asset. |
-| `SetCredential` 🛈 | `gen_set_credential` | Set Credential activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Credential. |
-| `SetEnvironmentVariable` 🛈 | `gen_set_environment_variable` | Set Environment Variable activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Environment Variable. |
-| `SetSecret` 🛈 | `gen_set_secret` | Set Secret activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Secret. |
-| `SetTaskStatus` 🛈 | `gen_set_task_status` | Set Task Status activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Task Status. |
-| `SetTraceStatus` 🛈 | `gen_set_trace_status` | Set Trace Status activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Trace Status. |
-| `SetTransactionProgress` 🛈 | `gen_set_transaction_progress` | Set Transaction Progress activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Transaction Progress. |
-| `SetTransactionStatus` 🛈 | `gen_set_transaction_status` | Set Transaction Status activity from the data operations category. | User wants to manipulate a DataTable or collection via Set Transaction Status. |
-| `SortDataTable` 🛈 | `gen_sort_data_table` | Sort Data Table activity from the data operations category. | User wants to manipulate a DataTable or collection via Sort Data Table. |
-| `SplitText` 🛈 | `gen_split_text` | Split Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Split Text. |
-| `StartJob` 🛈 | `gen_start_job` | Start Job activity from the data operations category. | User wants to manipulate a DataTable or collection via Start Job. |
-| `StartTimer` 🛈 | `gen_start_timer` | Start Timer activity from the data operations category. | User wants to manipulate a DataTable or collection via Start Timer. |
-| `StartTriggers` 🛈 | `gen_start_triggers` | Start Triggers activity from the data operations category. | User wants to manipulate a DataTable or collection via Start Triggers. |
-| `StopJob` 🛈 | `gen_stop_job` | Stop Job activity from the data operations category. | User wants to manipulate a DataTable or collection via Stop Job. |
-| `StopTimer` 🛈 | `gen_stop_timer` | Stop Timer activity from the data operations category. | User wants to manipulate a DataTable or collection via Stop Timer. |
-| `StopTriggers` 🛈 | `gen_stop_triggers` | Stop Triggers activity from the data operations category. | User wants to manipulate a DataTable or collection via Stop Triggers. |
-| `TextToLeftRight` 🛈 | `gen_text_to_left_right` | Text To Left Right activity from the data operations category. | User wants to manipulate a DataTable or collection via Text To Left Right. |
-| `TimeoutScope` 🛈 | `gen_timeout_scope` | Timeout Scope activity from the data operations category. | User wants to manipulate a DataTable or collection via Timeout Scope. |
-| `TimeTrigger` 🛈 | `gen_time_trigger` | Time Trigger activity from the data operations category. | User wants to manipulate a DataTable or collection via Time Trigger. |
-| `TrackObject` 🛈 | `gen_track_object` | Track Object activity from the data operations category. | User wants to manipulate a DataTable or collection via Track Object. |
-| `TriggerScope` 🛈 | `gen_trigger_scope` | Trigger Scope activity from the data operations category. | User wants to manipulate a DataTable or collection via Trigger Scope. |
-| `UpdateRowItem` 🛈 | `gen_update_row_item` | Update Row Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Update Row Item. |
-| `UploadStorageFile` 🛈 | `gen_upload_storage_file` | Upload Storage File activity from the data operations category. | User wants to manipulate a DataTable or collection via Upload Storage File. |
-| `VariablesBlock` 🛈 | `gen_variables_block` | Variables Block activity from the data operations category. | User wants to manipulate a DataTable or collection via Variables Block. |
-| `WaitQueueItem` 🛈 | `gen_wait_queue_item` | Wait Queue Item activity from the data operations category. | User wants to manipulate a DataTable or collection via Wait Queue Item. |
-| `WriteStorageText` 🛈 | `gen_write_storage_text` | Write Storage Text activity from the data operations category. | User wants to manipulate a DataTable or collection via Write Storage Text. |
+| `AddDataColumn` | `gen_add_data_column` | Adds a new typed column to an existing DataTable. | User wants to extend a DataTable's schema after construction; the cleaner pattern is to declare all columns in BuildDataTable upfront. |
+| `AddDataRow` | `gen_add_data_row` | Appends a new row to a DataTable, taking values either as an array (positional) or a DataRow object. | User wants to add one row to a DataTable; for many rows from another DataTable use MergeDataTable. |
+| `AddOrSubtractFromDate` | `gen_add_or_subtract_from_date` | Returns a DateTime offset by N seconds/minutes/hours/days/months/years from an input date. | User wants date arithmetic; for formatting a date use FormatDateAsText; for parsing a string into DateTime use ExtractDateTime. |
+| `AddTransactionItem` | `gen_add_transaction_item` | Adds a new transaction item to an Orchestrator queue inside a long-running job context. | User wants to enqueue mid-process; for dispatcher-style bulk loading use BulkAddQueueItems. |
+| `AppendLine` | `gen_append_line` | Appends a line of text to an existing text file, creating it if missing. | User wants incremental log/audit writes; for one-shot text writes use Write Text File. |
+| `Assign` | `gen_assign` | Assigns the result of a single VB expression to a single variable / argument. | User wants to set one value; for multiple assignments in one block use MultipleAssign; for declaring new variables in scope use VariablesBlock. |
+| `Beep` | `gen_beep` | Plays a system beep at a given frequency and duration. | User wants an audible cue (developer/test only); avoid in unattended automations. |
+| `BeginProcess` | `gen_begin_process` | Marks the start of a logical process for tracking and analytics in Insights / Process Mining. | User wants to time a logical process span; pair with the corresponding end-of-process tracking. |
+| `BuildDataTable` | `gen_build_data_table` | Constructs a typed DataTable from a column schema and optional initial rows. | User wants an empty/seeded DataTable to fill via AddDataRow or to pass to ForEachRow; for reading a CSV/Excel into a DataTable use ReadCsvFile / ReadRange. |
+| `ChangeCase` | `gen_change_case` | Returns a string converted to upper, lower, or title case. | User wants a case transformation; for find/replace use Replace; for trim/split use ModifyText. |
+| `CheckFalse` | `gen_check_false` | Asserts that a condition is False, throwing on True. | User wants an inline negative assertion; for truthy assertion use CheckTrue; in tests prefer the Verify* family. |
+| `CheckTrue` | `gen_check_true` | Asserts that a condition is True, throwing on False. | User wants an inline positive assertion; for negative assertion use CheckFalse; in tests prefer the Verify* family. |
+| `ClearDataTable` | `gen_clear_data_table` | Removes all rows from a DataTable while preserving its column schema. | User wants to reset a DataTable for reuse; to drop the schema entirely just rebuild with BuildDataTable. |
+| `CombineText` | `gen_combine_text` | Concatenates multiple strings with an optional separator. | User wants to join strings (String.Join equivalent in activity form); for in-place expression use VB's String.Join. |
+| `CompressFiles` | `gen_compress_files` | Compresses one or more files / folders into a ZIP archive. | User wants to bundle artifacts for upload or email; for extraction use ExtractFiles. |
+| `CopyFolderX` | `gen_copy_folder_x` | Copies a folder (recursive) from source to destination, optionally overwriting. | User wants to duplicate a folder tree; for a single file use Copy File; for moving (not copying) use MoveFolderX. |
+| `CreateFile` | `gen_create_file` | Creates an empty file at the given path. | User wants a placeholder file; to write content use Write Text File or AppendLine. |
+| `CustomInput` | `gen_custom_input` | Displays a custom HTML form dialog and captures the user's response. | User wants a richer prompt than InputDialog; for simple text input use InputDialog. |
+| `Delete` | `gen_delete` | Deletes a file or folder at the given path. | User wants to remove a filesystem entry; for ZIP-and-delete patterns use CompressFiles then Delete. |
+| `DeleteFolderX` | `gen_delete_folder_x` | Deletes a folder (recursive). | User wants to remove a directory tree; for single files use Delete. |
+| `DeleteQueueItems` | `gen_delete_queue_items` | Deletes queue items from an Orchestrator queue by ID list or filter. | User wants to purge stale or successful items; pair with GetQueueItems to enumerate first. |
+| `DeleteStorageFile` | `gen_delete_storage_file` | Deletes a file from an Orchestrator Storage Bucket. | User wants to remove a bucket-stored file; pair with ListStorageFiles to enumerate first. |
+| `DisableTrigger` | `gen_disable_trigger` | Disables an Orchestrator trigger by name. | User wants to pause scheduled or queue-driven triggers temporarily; re-enable with EnableTrigger. |
+| `DownloadFileFromUrl` | `gen_download_file_from_url` | Downloads a file from an HTTP(S) URL to a local path. | User wants a file fetched by URL; for authenticated APIs use NetHttpRequest with response-to-file. |
+| `DownloadStorageFile` | `gen_download_storage_file` | Downloads a file from an Orchestrator Storage Bucket to a local path. | User wants a bucket-stored file locally; pair with UploadStorageFile for the inverse. |
+| `EnableTrigger` | `gen_enable_trigger` | Enables a previously disabled Orchestrator trigger by name. | User wants to resume a paused trigger; pair with DisableTrigger. |
+| `EvaluateBusinessRule` | `gen_evaluate_business_rule` | Evaluates a Business Rule from the Rules Catalog and returns its outcome / actions. | User wants to delegate decisioning to a centrally-managed rule; for inline VB conditions use If. |
+| `ExecutePowerShell` | `gen_execute_power_shell` | Runs a PowerShell script and captures its output. | User wants to invoke Windows-side admin tasks; prefer dedicated activities (filesystem/registry) when one exists. |
+| `ExtractDateTime` | `gen_extract_date_time` | Parses a string into a DateTime using a culture-aware format pattern. | User wants to convert a string to DateTime; for the inverse use FormatDateAsText. |
+| `ExtractFiles` | `gen_extract_files` | Extracts the contents of a ZIP archive to a target folder. | User wants to unpack a ZIP; for compression use CompressFiles. |
+| `ExtractText` | `gen_extract_text` | Extracts a substring from a source string by regex or position. | User wants a piece of a larger string; for find/replace use Replace; for splitting use SplitText. |
+| `FileChangeTrigger` | `gen_file_change_trigger` | Trigger that fires when a watched file is created/modified/deleted. | User wants to react to filesystem changes; v3 (FileChangeTriggerV3) is the latest stable. |
+| `FileChangeTriggerV2` | `gen_file_change_trigger_v2` | v2 of FileChangeTrigger — superseded by FileChangeTriggerV3 in modern projects. | User has a legacy spec referencing v2; new specs should use FileChangeTriggerV3. |
+| `FileChangeTriggerV3` | `gen_file_change_trigger_v3` | v3 of FileChangeTrigger — current stable file-watch trigger with extended event types. | User wants to react to filesystem changes in a modern project; v1/v2 remain for backwards compatibility only. |
+| `FileExistsX` | `gen_file_exists_x` | Returns True if a file exists at the given path. | User wants a simple existence check; for folders use FolderExistsX. |
+| `FilterDataTable` | `gen_filter_data_table` | Filters a DataTable in place using a list of column / operator / value rules. | User wants to keep or remove rows by column criteria; for joins across tables use JoinDataTables; for a single-row lookup use LookupDataTable. |
+| `FindAndReplace` | `gen_find_and_replace` | Finds and replaces text in a file in place, optionally using regex. | User wants to mutate file contents; for in-memory string replacement use Replace. |
+| `FolderExistsX` | `gen_folder_exists_x` | Returns True if a folder exists at the given path. | User wants a simple folder existence check; for files use FileExistsX. |
+| `ForEachFolderX` | `gen_for_each_folder_x` | Iterates over folders matching a pattern under a root directory. | User wants to walk a directory tree of folders; for files use ForEachFileX; for in-memory collections use ForEach. |
+| `FormatDateAsText` | `gen_format_date_as_text` | Formats a DateTime as a string using a culture-aware format pattern. | User wants a stringified date; for parsing the inverse use ExtractDateTime. |
+| `FormatValue` | `gen_format_value` | Formats a numeric value using a format pattern (currency, decimal, percent). | User wants a stringified number with explicit formatting; VB's String.Format suffices in expressions. |
+| `GenerateDataTable` | `gen_generate_data_table` | Builds a DataTable by parsing a delimited string (e.g. raw text scraped from a UI element). | User has captured tabular text from screen scraping and wants a typed DataTable; for proper CSV files use ReadCsvFile; for Excel use ReadRange. |
+| `GetCurrentJobInfo` | `gen_get_current_job_info` | Returns Orchestrator metadata about the currently-running job (id, robot, folder). | User wants to read job-context properties for logging or correlation. |
+| `GetEnvironmentFolder` | `gen_get_environment_folder` | Returns the path of a Windows special folder (Desktop, MyDocuments, etc.). | User wants to write to a known user folder; for an environment variable use GetEnvironmentVariable. |
+| `GetEnvironmentVariable` | `gen_get_environment_variable` | Returns the value of a process-, user-, or machine-scoped environment variable. | User wants to read a configured env var; for setting use SetEnvironmentVariable. |
+| `GetFileInfoX` | `gen_get_file_info_x` | Returns metadata (size, created, modified) for a file as a FileInfo object. | User wants file metadata for routing decisions; for folder metadata use GetFolderInfoX. |
+| `GetFolderInfoX` | `gen_get_folder_info_x` | Returns metadata (size, created, modified) for a folder as a DirectoryInfo object. | User wants folder metadata; for file metadata use GetFileInfoX. |
+| `GetJobs` | `gen_get_jobs` | Queries Orchestrator for jobs matching given filters. | User wants to enumerate or correlate Orchestrator jobs; for the current job only use GetCurrentJobInfo. |
+| `GetLastDownloadedFile` | `gen_get_last_downloaded_file` | Returns the path of the most recently downloaded file from the active browser context. | User wants to capture a download triggered by a browser interaction; pair with NClick on the download link. |
+| `GetProcesses` | `gen_get_processes` | Returns a list of currently-running Windows processes. | User wants to enumerate processes for diagnostics or detect a running app; to terminate one use KillProcess. |
+| `GetQueueItems` | `gen_get_queue_items` | Queries Orchestrator for queue items matching given filters (status, reference, dates). | User wants to inspect or audit queue contents; for popping the next work item use GetQueueItem. |
+| `GetRowItem` | `gen_get_row_item` | Reads a single column value from a DataRow by column name or index. | User wants a typed cell value from a DataRow; usually the inline expression `row("Col")` is more idiomatic. |
+| `GetSecret` | `gen_get_secret` | Reads a secret value from a configured secret store (Orchestrator credentials, vault, etc.). | User wants a secret without storing it in code or config; for credential pairs use GetRobotCredential. |
+| `GetTransactionItem` | `gen_get_transaction_item` | Pops the next transaction from a queue, mirroring REFramework's Get Transaction Data step. | User is hand-authoring a Performer; in REFramework this is wired automatically. |
+| `GetUsernamePasswordX` | `gen_get_username_password_x` | Reads a username/password pair from a Windows Credential Manager entry by name. | User wants OS-level credentials; for Orchestrator-managed credentials use GetRobotCredential. |
+| `GlobalVariableChangedTrigger` | `gen_global_variable_changed_trigger` | Trigger that fires when a workflow Global Variable's value changes. | User wants reactive flow on global state mutations; pair with NotifyGlobalVariableChanged from the producer side. |
+| `InterruptibleDoWhile` | `gen_interruptible_do_while` | DoWhile loop that yields to interrupts (Stop, signals) at safe checkpoints between iterations. | User wants long-running iteration that honors cooperative cancellation; for non-interruptible loops use DoWhile. |
+| `InterruptibleWhile` | `gen_interruptible_while` | While loop that yields to interrupts at safe checkpoints between iterations. | User wants long-running iteration with cooperative cancellation; for non-interruptible loops use While. |
+| `InvokeComMethod` | `gen_invoke_com_method` | Invokes a COM method on a registered COM object (e.g. Office automation). | User wants to call COM-based APIs; for VB.NET methods use InvokeMethod; for inline code use InvokeCode. |
+| `InvokeProcess` | `gen_invoke_process` | Launches an external Windows process and optionally waits for its exit / captures stdout. | User wants to run a CLI tool or executable; for PowerShell scripts use ExecutePowerShell. |
+| `InvokeVBScript` | `gen_invoke_vb_script` | Runs a VBScript file with optional arguments and captures its output. | User has a legacy .vbs script to call; for new scripting prefer ExecutePowerShell or InvokeCode. |
+| `InvokeWorkflowInteractive` | `gen_invoke_workflow_interactive` | Invokes a subworkflow in an interactive session (Picture-in-Picture / unattended elevation). | User wants to run a child workflow with elevated UI access; for standard subworkflow calls use InvokeWorkflowFile. |
+| `IsMatch` | `gen_is_match` | Returns True if a string matches a regex pattern. | User wants a boolean regex check; for capturing matches use Matches; VB's Regex.IsMatch suffices in expressions. |
+| `JoinDataTables` | `gen_join_data_tables` | Joins two DataTables on equality of specified columns (Inner / Left / Full join). | User wants relational-style joins between two tables; for filtering one table by criteria from another, FilterDataTable in a loop is simpler when one side is small. |
+| `ListStorageFiles` | `gen_list_storage_files` | Lists files in an Orchestrator Storage Bucket, optionally filtered by prefix. | User wants to enumerate bucket contents; pair with DownloadStorageFile / DeleteStorageFile. |
+| `LookupDataTable` | `gen_lookup_data_table` | Looks up a single matching row in a DataTable by a key column value. | User wants one row by key (Excel VLOOKUP-equivalent); for many matching rows use FilterDataTable. |
+| `ManualTrigger` | `gen_manual_trigger` | Trigger that fires when invoked manually (debug / dev-time only). | User wants a hand-fired trigger for testing; production should use FileChange/Time/Queue triggers. |
+| `Matches` | `gen_matches` | Returns the list of regex matches against a string. | User wants captured matches; for a boolean check use IsMatch; VB's Regex.Matches suffices in expressions. |
+| `MergeDataTable` | `gen_merge_data_table` | Merges rows from a source DataTable into a destination DataTable, preserving the destination schema. | User wants to append rows from another table with matching schema; for a single row use AddDataRow. |
+| `ModifyDate` | `gen_modify_date` | Returns a DateTime with selected components replaced (year, month, day, hour, etc.). | User wants component-level date editing; for offset-based shifts use AddOrSubtractFromDate. |
+| `ModifyText` | `gen_modify_text` | Applies a sequence of text transformations (trim, replace, case, encode) in one activity. | User wants several string transforms in one step; for a single transform pick the specific activity (Replace, ChangeCase, etc.). |
+| `MoveFolderX` | `gen_move_folder_x` | Moves a folder (recursive) from source to destination. | User wants to relocate a folder; for non-destructive copy use CopyFolderX. |
+| `MultipleAssign` | `gen_multiple_assign` | Assigns a list of (target, expression) pairs in one activity, evaluated top-to-bottom. | User wants to set several variables together (e.g. zeroing counters at start of a loop); for a single assignment use Assign. |
+| `NotifyGlobalVariableChanged` | `gen_notify_global_variable_changed` | Signals to subscribers that a Global Variable's value changed. | User wants to manually fire a change notification; pair with GlobalVariableChangedTrigger on the consumer side. |
+| `OrchestratorHttpRequest` | `gen_orchestrator_http_request` | Performs an authenticated HTTP request against the Orchestrator API. | User wants Orchestrator API calls without managing auth headers; for arbitrary REST APIs use NetHttpRequest. |
+| `OutputDataTable` | `gen_output_data_table` | Renders a DataTable as a formatted string (CSV-like) for logging or display. | User wants a human-readable preview of a DataTable; for persisting to disk use WriteCsvFile. |
+| `Placeholder` | `gen_placeholder` | Empty placeholder activity used as a generator stub during scaffolding. | User wants to mark a TODO spot in a workflow; should be replaced with the real activity before publish. |
+| `PostponeTransactionItem` | `gen_postpone_transaction_item` | Reschedules a queue transaction item to a later deadline. | User wants to defer a transaction (rate-limit, retry-window); for outright failure use SetTransactionStatus(Failed). |
+| `ProcessEndTrigger` | `gen_process_end_trigger` | Trigger that fires when a Windows process exits. | User wants reactive flow on process termination; v2 (ProcessEndTriggerV2) is the latest stable. |
+| `ProcessEndTriggerV2` | `gen_process_end_trigger_v2` | v2 of ProcessEndTrigger — current stable process-exit trigger. | User wants modern process-end watching; v1 remains for backwards compatibility. |
+| `ProcessStartTrigger` | `gen_process_start_trigger` | Trigger that fires when a Windows process starts. | User wants reactive flow on process launch; v2 (ProcessStartTriggerV2) is the latest stable. |
+| `ProcessStartTriggerV2` | `gen_process_start_trigger_v2` | v2 of ProcessStartTrigger — current stable process-start trigger. | User wants modern process-start watching; v1 remains for backwards compatibility. |
+| `ProcessTrackingScope` | `gen_process_tracking_scope` | Scope wrapper that emits Process Mining tracking events for activities executed within. | User wants Process Mining instrumentation; for ad-hoc analytics emission use TrackObject. |
+| `QueueTrigger` | `gen_queue_trigger` | Trigger that fires when a queue item is added to a watched Orchestrator queue. | User wants reactive Performers; for time-based use TimeTrigger. |
+| `RaiseAlert` | `gen_raise_alert` | Raises a Process Insights alert with a severity / message. | User wants to surface a problem to ops dashboards; for plain log writes use LogMessage. |
+| `ReadStorageText` | `gen_read_storage_text` | Reads the text content of a file in an Orchestrator Storage Bucket. | User wants bucket-stored text without downloading first; for binary or large files use DownloadStorageFile. |
+| `RemoveDataColumn` | `gen_remove_data_column` | Removes a column from a DataTable by name or DataColumn object. | User wants to drop a column before exporting; for projecting to a new schema entirely consider Filter Data Table or LINQ. |
+| `RemoveDataRow` | `gen_remove_data_row` | Removes a row from a DataTable by index or DataRow object. | User wants to drop one row; for many-row removal by criteria use FilterDataTable. |
+| `RemoveDuplicateRows` | `gen_remove_duplicate_rows` | Removes duplicate rows from a DataTable (full-row equality across all columns). | User wants a deduped table; for column-subset deduplication use a Filter Data Table chain or LINQ. |
+| `RenameFileX` | `gen_rename_file_x` | Renames a file (or moves it) preserving content. | User wants to change a file's name; for moving across drives use Move File. |
+| `RenameFolderX` | `gen_rename_folder_x` | Renames a folder (or moves it) preserving content. | User wants to change a folder's name; for moving across drives use MoveFolderX. |
+| `RepeatNumberOfTimesX` | `gen_repeat_number_of_times_x` | Loops a fixed number of times. | User wants N-iteration repetition; for collection iteration use ForEach; for condition-driven use While. |
+| `RepeatTrigger` | `gen_repeat_trigger` | Trigger that fires on a fixed cadence relative to a base time. | User wants periodic execution (e.g. every 5 minutes); for cron-style absolute times use TimeTrigger. |
+| `Replace` | `gen_replace` | Replaces occurrences of a substring or regex with a replacement value. | User wants string find/replace; for file in-place edits use FindAndReplace; VB's Replace / Regex.Replace suffices in expressions. |
+| `ReportStatus` | `gen_report_status` | Reports an interim status for the running job to Orchestrator dashboards. | User wants progress visibility on long jobs; for terminal status use SetTransactionStatus. |
+| `ResetTimer` | `gen_reset_timer` | Resets a named Timer activity's elapsed counter to zero. | User wants to restart a timing measurement; pair with StartTimer / StopTimer. |
+| `ResumeTimer` | `gen_resume_timer` | Resumes a paused Timer activity. | User wants to continue a paused measurement; pair with StartTimer / StopTimer / ResetTimer. |
+| `Return` | `gen_return` | Returns from the current workflow / scope, propagating an optional value. | User wants an early exit from a subworkflow; for terminating the entire job use TerminateWorkflow. |
+| `RunJob` | `gen_run_job` | Triggers a job run against an Orchestrator process and optionally waits for completion. | User wants to invoke another process from the current workflow; for fire-and-forget use StartJob. |
+| `SelectFile` | `gen_select_file` | Opens an OS file-picker dialog and returns the chosen path. | User wants user-driven file selection (attended only); unattended runs should source paths from config. |
+| `SelectFolder` | `gen_select_folder` | Opens an OS folder-picker dialog and returns the chosen path. | User wants user-driven folder selection (attended only); unattended runs should source paths from config. |
+| `SendEmailNotification` | `gen_send_email_notification` | Sends a templated email notification (Orchestrator-configured SMTP) to one or more recipients. | User wants ops-style notification email; for full mail control use SendOutlookMail / SendSMTPMail. |
+| `SetAsset` | `gen_set_asset` | Writes a value to a named Orchestrator asset. | User wants to update a centrally-managed value; for credentials use SetCredential. |
+| `SetCredential` | `gen_set_credential` | Writes a username/password pair to a named Orchestrator credential asset. | User wants to rotate or seed a credential asset; for non-credential values use SetAsset. |
+| `SetEnvironmentVariable` | `gen_set_environment_variable` | Sets a process- or user-scoped environment variable. | User wants to inject env state for downstream tools; reads use GetEnvironmentVariable. |
+| `SetSecret` | `gen_set_secret` | Writes a secret value to a configured secret store. | User wants to seed or rotate a secret; reads use GetSecret. |
+| `SetTaskStatus` | `gen_set_task_status` | Updates the status of a tracked task (Tasks app integration). | User wants to mark a task complete / cancelled; for queue items use SetTransactionStatus. |
+| `SetTraceStatus` | `gen_set_trace_status` | Sets a trace breadcrumb for distributed tracing of the current job. | User wants OpenTelemetry-style traces in Insights; for ad-hoc logs use LogMessage. |
+| `SetTransactionProgress` | `gen_set_transaction_progress` | Updates the progress percentage of a long-running queue transaction. | User wants progress visibility on a transaction; for terminal status use SetTransactionStatus. |
+| `SetTransactionStatus` | `gen_set_transaction_status` | Marks a queue transaction Successful / Failed (with reason) at the end of processing. | User wants to close out a Performer transaction; in REFramework the End Transaction state wires this automatically. |
+| `SortDataTable` | `gen_sort_data_table` | Sorts a DataTable by one or more columns in ascending/descending order. | User wants ordered rows for output or deduplication; pair with RemoveDuplicateRows to canonicalize before persisting. |
+| `SplitText` | `gen_split_text` | Splits a string into a list of substrings on a delimiter or regex. | User wants tokenized string output; for joining the inverse use CombineText. |
+| `StartJob` | `gen_start_job` | Triggers a job run against an Orchestrator process and returns immediately (fire-and-forget). | User wants asynchronous process invocation; for synchronous use RunJob. |
+| `StartTimer` | `gen_start_timer` | Starts a named Timer activity for measuring elapsed time. | User wants to measure how long a region takes; pair with StopTimer / ResetTimer. |
+| `StartTriggers` | `gen_start_triggers` | Starts all (or named) Orchestrator triggers attached to the current process. | User wants to enable a trigger set; pair with StopTriggers. |
+| `StopJob` | `gen_stop_job` | Stops a running Orchestrator job by ID (cooperative). | User wants to abort a running job from another job; the target job should call ShouldStop at safe points. |
+| `StopTimer` | `gen_stop_timer` | Stops a named Timer activity and returns the elapsed time. | User wants to capture a region's duration; pair with StartTimer. |
+| `StopTriggers` | `gen_stop_triggers` | Stops all (or named) Orchestrator triggers attached to the current process. | User wants to pause a trigger set; pair with StartTriggers. |
+| `TextToLeftRight` | `gen_text_to_left_right` | Splits a string at the first occurrence of a delimiter into (left, right) parts. | User wants a one-shot split into two pieces; for n-way splits use SplitText. |
+| `TimeoutScope` | `gen_timeout_scope` | Aborts the activities inside the scope after a configurable timeout. | User wants a hard upper bound on a region's duration; for retry-with-timeout use RetryScope. |
+| `TimeTrigger` | `gen_time_trigger` | Trigger that fires at scheduled times (cron-style). | User wants scheduled execution; for relative cadence use RepeatTrigger. |
+| `TrackObject` | `gen_track_object` | Emits an analytics event with a named object payload to Insights / Process Mining. | User wants to record a typed event for analytics; for whole-process spans use ProcessTrackingScope. |
+| `TriggerScope` | `gen_trigger_scope` | Scope wrapper hosting one or more triggers and their reactive bodies. | User wants to author trigger-driven workflows; the scope manages start/stop lifecycle. |
+| `UpdateRowItem` | `gen_update_row_item` | Sets a single column value on a DataRow. | User wants to mutate one cell in a DataTable; the inline expression `row("Col") = value` is also idiomatic. |
+| `UploadStorageFile` | `gen_upload_storage_file` | Uploads a local file to an Orchestrator Storage Bucket. | User wants to publish artifacts to a bucket; pair with DownloadStorageFile / ListStorageFiles. |
+| `VariablesBlock` | `gen_variables_block` | Helper composite that emits a Sequence/Flowchart Variables declaration block. | User is hand-authoring a generator and needs to declare local variables; the standard scaffolder does this automatically. |
+| `WaitQueueItem` | `gen_wait_queue_item` | Waits until a matching item appears on a watched Orchestrator queue. | User wants to block until queue input is available; for non-blocking polling use GetQueueItems. |
+| `WriteStorageText` | `gen_write_storage_text` | Writes a text payload to a file in an Orchestrator Storage Bucket. | User wants to persist generated text directly to a bucket; for binary or large files use UploadStorageFile. |
 
 ## Excel (103)
 
@@ -418,16 +418,16 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `DeserializeJson` 🛈 | `gen_deserialize_json` | Deserialize Json activity from the http json category. | User wants to perform an HTTP or JSON operation: Deserialize Json. |
-| `DeserializeJsonArray` 🛈 | `DeserializeJsonArray` (data-driven) | Deserialize Json Array activity from the http json category. | User wants to perform an HTTP or JSON operation: Deserialize Json Array. |
-| `DeserializeXml` 🛈 | `DeserializeXml` (data-driven) | Deserialize Xml activity from the http json category. | User wants to perform an HTTP or JSON operation: Deserialize Xml. |
-| `ExecuteXPath` 🛈 | `ExecuteXPath` (data-driven) | Execute X Path activity from the http json category. | User wants to perform an HTTP or JSON operation: Execute X Path. |
-| `GetNodes` 🛈 | `GetNodes` (data-driven) | Get Nodes activity from the http json category. | User wants to perform an HTTP or JSON operation: Get Nodes. |
-| `GetXMLNodeAttributes` 🛈 | `GetXMLNodeAttributes` (data-driven) | Get XML Node Attributes activity from the http json category. | User wants to perform an HTTP or JSON operation: Get XML Node Attributes. |
-| `GetXMLNodes` 🛈 | `GetXMLNodes` (data-driven) | Get XML Nodes activity from the http json category. | User wants to perform an HTTP or JSON operation: Get XML Nodes. |
-| `HttpClient` 🛈 | `HttpClient` (data-driven) | Http Client activity from the http json category. | User wants to perform an HTTP or JSON operation: Http Client. |
-| `NetHttpRequest` 🛈 | `gen_net_http_request` | Net Http Request activity from the http json category. | User wants to perform an HTTP or JSON operation: Net Http Request. |
-| `SerializeJson` 🛈 | `SerializeJson` (data-driven) | Serialize Json activity from the http json category. | User wants to perform an HTTP or JSON operation: Serialize Json. |
+| `DeserializeJson` | `gen_deserialize_json` | Parses a JSON object string into a JObject for property access via VB expressions. | User has a JSON object and wants typed access to its fields; for JSON arrays use DeserializeJsonArray; for outbound serialization use SerializeJson. |
+| `DeserializeJsonArray` | `DeserializeJsonArray` (data-driven) | Parses a JSON array string into a JArray for iteration with ForEach<JToken>. | User has a JSON array and wants to iterate elements; for JSON objects use DeserializeJson. |
+| `DeserializeXml` | `DeserializeXml` (data-driven) | Parses an XML document string into an XDocument for LINQ to XML access. | User has XML text and wants to query nodes via XPath/LINQ; for XPath-only queries use ExecuteXPath; for HTML scraping prefer browser activities. |
+| `ExecuteXPath` | `ExecuteXPath` (data-driven) | Runs an XPath query against an XDocument and returns the matching node value. | User has XML and wants a single node value via XPath; for multi-node sets use GetNodes. |
+| `GetNodes` | `GetNodes` (data-driven) | Returns the list of XElement nodes matching an XPath expression against an XDocument. | User wants every matching XML node; for a single value use ExecuteXPath; for attribute values use GetXMLNodeAttributes. |
+| `GetXMLNodeAttributes` | `GetXMLNodeAttributes` (data-driven) | Returns the attribute values of the XML nodes matching an XPath expression. | User wants attribute values from XML nodes; for the node text content use GetNodes. |
+| `GetXMLNodes` | `GetXMLNodes` (data-driven) | Alias of GetNodes for legacy spec compatibility — returns matching XElement nodes. | User wrote an older spec referencing GetXMLNodes; new specs should use GetNodes. |
+| `HttpClient` | `HttpClient` (data-driven) | Legacy WebAPI HTTP client scope from UiPath.WebAPI.Activities; performs request with cookie / connection persistence inside the scope body. | User has an existing WebAPI workflow that uses HttpClient; for new work prefer NetHttpRequest from UiPath.WebAPI.Activities (supports OAuth and modern auth). |
+| `NetHttpRequest` | `gen_net_http_request` | Performs an HTTP request to a REST endpoint with configurable method, headers, body, and OAuth/Basic auth. | User wants to call a REST API from a workflow; for SOAP/XPath responses also see ExecuteXPath; for the legacy WebAPI scope use HttpClient. |
+| `SerializeJson` | `SerializeJson` (data-driven) | Serializes a JObject / dictionary / typed object into a JSON string. | User wants to produce a JSON payload to send to a REST API; for parsing inbound JSON use DeserializeJson / DeserializeJsonArray. |
 
 ## Dialogs (2)
 
@@ -449,35 +449,35 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `InvokeCode` 🛈 | `gen_invoke_code` | Invoke Code activity from the invoke category. | User wants to invoke another workflow or piece of code via Invoke Code. |
-| `InvokeMethod` 🛈 | `gen_invoke_method` | Invoke Method activity from the invoke category. | User wants to invoke another workflow or piece of code via Invoke Method. |
-| `InvokeWorkflowFile` 🛈 | `gen_invoke_workflow` | Invoke Workflow File activity from the invoke category. | User wants to invoke another workflow or piece of code via Invoke Workflow File. |
+| `InvokeCode` | `gen_invoke_code` | Executes an inline VB.NET or C# code block with read/write access to declared In/Out arguments. | User wants a short fragment of imperative code without authoring a full subworkflow; for shared subroutines use InvokeWorkflowFile; for calling existing CLR methods use InvokeMethod. |
+| `InvokeMethod` | `gen_invoke_method` | Reflectively calls a static or instance method on a CLR object, passing parameters and capturing the return value. | User wants to call a single .NET method (e.g. String.Format, list.Add) without writing a full code block; for multi-statement logic use InvokeCode; for subworkflow reuse use InvokeWorkflowFile. |
+| `InvokeWorkflowFile` | `gen_invoke_workflow` | Invokes a separate .xaml workflow file as a subroutine, marshalling InArgument/OutArgument values across the boundary. | User wants to call a reusable subworkflow stored on disk; for inline business logic in a single language use InvokeCode; for reflective static/instance method calls use InvokeMethod. |
 
 ## Orchestrator (5)
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `AddQueueItem` 🛈 | `gen_add_queue_item` | Add Queue Item activity from the orchestrator category. | User wants to interact with UiPath Orchestrator via Add Queue Item. |
-| `BulkAddQueueItems` 🛈 | `gen_bulk_add_queue_items` | Bulk Add Queue Items activity from the orchestrator category. | User wants to interact with UiPath Orchestrator via Bulk Add Queue Items. |
-| `GetQueueItem` 🛈 | `gen_get_queue_item` | Get Queue Item activity from the orchestrator category. | User wants to interact with UiPath Orchestrator via Get Queue Item. |
-| `GetRobotAsset` 🛈 | `gen_get_robot_asset` | Get Robot Asset activity from the orchestrator category. | User wants to interact with UiPath Orchestrator via Get Robot Asset. |
-| `GetRobotCredential` 🛈 | `gen_getrobotcredential` | Get Robot Credential activity from the orchestrator category. | User wants to interact with UiPath Orchestrator via Get Robot Credential. |
+| `AddQueueItem` | `gen_add_queue_item` | Enqueues a single transaction item into an Orchestrator queue, optionally with reference, deadline, priority, and SpecificContent. | User wants to push one item to a queue from a dispatcher; for many items in a batch use BulkAddQueueItems to avoid per-item HTTP overhead. |
+| `BulkAddQueueItems` | `gen_bulk_add_queue_items` | Enqueues multiple transaction items in a single Orchestrator request from a list of SpecificContent dictionaries. | User wants to push many items at once (faster than looping AddQueueItem); for a single item use AddQueueItem. |
+| `GetQueueItem` | `gen_get_queue_item` | Pops the next available queue item from an Orchestrator queue and assigns it to a QueueItem variable. | User wants the next transaction in a Performer; for adding items use AddQueueItem; in REFramework use the built-in Get Transaction Data state instead of calling this directly. |
+| `GetRobotAsset` | `gen_get_robot_asset` | Reads a typed asset (text, integer, boolean, json) from Orchestrator and assigns its value to a local variable. | User wants a configuration value held centrally in Orchestrator; for username+password pairs use GetRobotCredential. |
+| `GetRobotCredential` | `gen_getrobotcredential` | Reads a credential asset from Orchestrator and outputs username + secure password into local variables. | User wants to retrieve a credential by asset name; for non-credential assets (text/int/bool/json) use GetRobotAsset. |
 
 ## Logging & helpers (11)
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `AddLogFields` 🛈 | `gen_add_log_fields` | Add Log Fields activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Add Log Fields. |
-| `Break` 🛈 | `gen_break` | Break activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Break. |
-| `Comment` 🛈 | `gen_comment` | Comment activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Comment. |
-| `CommentOut` 🛈 | `gen_comment_out` | Comment Out activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Comment Out. |
-| `Continue` 🛈 | `gen_continue` | Continue activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Continue. |
-| `KillProcess` 🛈 | `gen_kill_process` | Kill Process activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Kill Process. |
-| `LogMessage` 🛈 | `gen_logmessage` | Log Message activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Log Message. |
-| `RemoveLogFields` 🛈 | `gen_remove_log_fields` | Remove Log Fields activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Remove Log Fields. |
-| `ShouldStop` 🛈 | `gen_should_stop` | Should Stop activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Should Stop. |
-| `TakeScreenshotAndSave` 🛈 | `gen_take_screenshot_and_save` | Take Screenshot And Save activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Take Screenshot And Save. |
-| `TerminateWorkflow` 🛈 | `gen_terminate_workflow` | Terminate Workflow activity from the logging misc category. | User wants to log or perform a miscellaneous helper task: Terminate Workflow. |
+| `AddLogFields` | `gen_add_log_fields` | Attaches structured key/value fields to every subsequent LogMessage call within the workflow scope. | User wants to enrich logs with correlation IDs / business keys for downstream filtering; remove with RemoveLogFields when scope ends. |
+| `Break` | `gen_break` | Exits the enclosing loop (ForEach / While / DoWhile) immediately. | User wants to terminate iteration once a condition is met; for skipping the rest of the current iteration only use Continue. |
+| `Comment` | `gen_comment` | Inserts an inline comment annotation in the workflow surface — no runtime effect. | User wants to document intent inline next to activities; for disabling a block of activities use CommentOut. |
+| `CommentOut` | `gen_comment_out` | Disables a block of activities at design-time without deleting them — they remain visible but are skipped at runtime. | User wants to temporarily disable activities while keeping them visible for context; for inline notes use Comment. |
+| `Continue` | `gen_continue` | Skips to the next iteration of the enclosing loop, bypassing remaining activities in the current iteration. | User wants to skip the rest of the current iteration; for terminating the loop entirely use Break. |
+| `KillProcess` | `gen_kill_process` | Forcibly terminates a Windows process by name or process object. | User wants to close a hung application that won't respond to graceful shutdown; for graceful close use NApplicationCard's CloseDialog action when available. |
+| `LogMessage` | `gen_logmessage` | Writes a message to the robot log at the chosen level (Trace/Info/Warn/Error/Fatal). | User wants to record progress or a diagnostic message; for permanent log enrichment use AddLogFields; for raising alerts use RaiseAlert. |
+| `RemoveLogFields` | `gen_remove_log_fields` | Removes previously-added structured log fields by key list. | User wants to clear log context attached by AddLogFields when leaving a scope. |
+| `ShouldStop` | `gen_should_stop` | Returns True if the user has requested the job to stop via Orchestrator's Stop button. | User wants to honor cooperative stop signals at safe checkpoints; long loops should check ShouldStop and exit cleanly. |
+| `TakeScreenshotAndSave` | `gen_take_screenshot_and_save` | Composite that captures a screenshot and persists it to the supplied path in one step. | User wants a quick capture-and-save in error handlers or evidence trails; for take-only into a variable use NTakeScreenshot then SaveImage. |
+| `TerminateWorkflow` | `gen_terminate_workflow` | Terminates the running workflow with a status (Successful / Faulted / Cancelled) and optional exception. | User wants to abort the workflow with a definitive outcome; for raising a recoverable exception use Throw inside a TryCatch. |
 
 ## External integrations (24)
 
@@ -493,16 +493,16 @@ the annotation entries instead, then regenerate.
 | `ExecuteQuery` | `gen_execute_query` | Run a SELECT query against a database and return the rows as a DataTable. | User wants result rows from a SQL SELECT (or any query that returns a row set). For INSERT/UPDATE/DELETE without a result set use ExecuteNonQuery; for high-volume bulk loads use BulkInsert. |
 | `ExportPDFPageAsImage` | `ExportPDFPageAsImage` (data-driven) | Render one page of a PDF to a PNG/JPG image file at the requested DPI. | User wants a single PDF page as a raster image (for thumbnails, OCR pre-processing, embedding in reports). For all images embedded inside the PDF use ExtractImagesFromPDF; for OCR text use ReadPDFWithOCR. |
 | `ExtractImagesFromPDF` | `ExtractImagesFromPDF` (data-driven) | Save every embedded image in a PDF to files in an output folder. | User wants the original images embedded inside a PDF (logos, photographs, charts). For rasterised page snapshots use ExportPDFPageAsImage. |
-| `ExtractPDFPageRange` 🛈 | `ExtractPDFPageRange` (data-driven) | Extract PDF Page Range activity from the integrations category. | User wants to integrate with an external system using Extract PDF Page Range. |
+| `ExtractPDFPageRange` | `ExtractPDFPageRange` (data-driven) | Extracts a contiguous page range from a PDF into a new PDF file. | User wants a subset of pages saved as a separate PDF; for the entire page count use GetPDFPageCount; for OCR on extracted pages use ReadPDFWithOCR. |
 | `GetIMAPMailMessages` | `gen_get_imap_mail` | Read email messages from an IMAP mailbox folder into a List<MailMessage>. | User wants to fetch mail from an IMAP server (folders, server-side flags). For POP3 use GetPOP3MailMessages; for Exchange/EWS use GetExchangeMailMessages; for an Outlook desktop client use GetOutlookMailMessages. |
-| `GetPDFPageCount` 🛈 | `GetPDFPageCount` (data-driven) | Get PDF Page Count activity from the integrations category. | User wants to integrate with an external system using Get PDF Page Count. |
+| `GetPDFPageCount` | `GetPDFPageCount` (data-driven) | Returns the total number of pages in a PDF document. | User wants to size a loop or validate document length; for content extraction use ReadPDFText / ReadPDFWithOCR. |
 | `InsertDataTable` | `InsertDataTable` (data-driven) | Insert every row of a DataTable into a target database table via parameterised INSERTs. | User wants to push a DataTable into a table without the provider-specific bulk-copy fast path. For high-volume loads use BulkInsert; for hand-written SQL use ExecuteNonQuery. |
-| `JoinPDF` 🛈 | `JoinPDF` (data-driven) | Join PDF activity from the integrations category. | User wants to integrate with an external system using Join PDF. |
-| `ManagePDFPassword` 🛈 | `ManagePDFPassword` (data-driven) | Manage PDF Password activity from the integrations category. | User wants to integrate with an external system using Manage PDF Password. |
+| `JoinPDF` | `JoinPDF` (data-driven) | Concatenates multiple PDF files into a single output PDF. | User wants to merge several PDFs end-to-end; for a page-range subset of a single PDF use ExtractPDFPageRange. |
+| `ManagePDFPassword` | `ManagePDFPassword` (data-driven) | Adds or removes the owner/user password on a PDF document. | User wants to apply or strip a password from a PDF; the password value should come from a credential asset (GetRobotCredential), not be hardcoded. |
 | `ReadPDFText` | `gen_read_pdf_text` | Extract embedded text from a PDF file into a String variable. | User wants the text layer of a digitally-generated PDF. For scanned/image PDFs use ReadPDFWithOCR; for the page count use GetPDFPageCount. |
 | `ReadPDFWithOCR` | `gen_read_pdf_with_ocr` | Run OCR over a PDF (page-by-page rasterisation) and return the recognised text. | User wants text from a scanned or image-only PDF. For PDFs with an embedded text layer use ReadPDFText (faster, lossless). |
 | `ReadRange` | `gen_read_range` | Classic Workbook 'Read Range' — read a worksheet range into a DataTable without opening Excel. | User wants to read a sheet/range into a DataTable via the classic Workbook API (no ExcelApplicationScope). For modern Excel (X) projects use ReadRangeX; for classic-with-Excel use ExcelReadRange. |
-| `ReadXPSText` 🛈 | `ReadXPSText` (data-driven) | Read XPS Text activity from the integrations category. | User wants to integrate with an external system using Read XPS Text. |
+| `ReadXPSText` | `ReadXPSText` (data-driven) | Reads text content from an XPS document into a string variable. | User wants the text body of an XPS file; for PDF text use ReadPDFText; for OCR on scanned XPS use ReadXPSWithOCR. |
 | `SaveMailAttachments` | `gen_save_mail_attachments` | Save the attachments of a MailMessage to a folder on disk, optionally filtered by extension. | User has a MailMessage from any Get*MailMessages activity and wants its attachments written to disk. Pair with GetIMAPMailMessages, GetOutlookMailMessages, or GetExchangeMailMessages. |
 | `SendMail` | `gen_send_mail` | Send an email through an SMTP server (or Integration Service connection). | User wants to send mail via plain SMTP or an Integration Service mail connection. For Outlook desktop use SendOutlookMail; for Exchange Web Services use SendExchangeMail. |
 | `WriteCell` | `gen_write_cell` | Classic Workbook 'Write Cell' — write a single value or formula into one cell without opening Excel. | User wants to set one cell via the classic Workbook API. For a whole DataTable use WriteRange; for modern Excel (X) projects use WriteCellX. |
@@ -512,24 +512,24 @@ the annotation entries instead, then regenerate.
 
 | Activity | Generator | Description | Use when |
 |---|---|---|---|
-| `Address` 🛈 | `Address` (data-driven) | Address activity from the testing category. | User wants to author or run a test via Address. |
-| `AttachDocument` 🛈 | `AttachDocument` (data-driven) | Attach Document activity from the testing category. | User wants to author or run a test via Attach Document. |
-| `BulkAddTestDataQueue` 🛈 | `BulkAddTestDataQueue` (data-driven) | Bulk Add Test Data Queue activity from the testing category. | User wants to author or run a test via Bulk Add Test Data Queue. |
-| `ComparePdfDocuments` 🛈 | `ComparePdfDocuments` (data-driven) | Compare Pdf Documents activity from the testing category. | User wants to author or run a test via Compare Pdf Documents. |
-| `CompareText` 🛈 | `CompareText` (data-driven) | Compare Text activity from the testing category. | User wants to author or run a test via Compare Text. |
-| `CreateComparisonRule` 🛈 | `CreateComparisonRule` (data-driven) | Create Comparison Rule activity from the testing category. | User wants to author or run a test via Create Comparison Rule. |
-| `DeleteTestDataQueueItems` 🛈 | `DeleteTestDataQueueItems` (data-driven) | Delete Test Data Queue Items activity from the testing category. | User wants to author or run a test via Delete Test Data Queue Items. |
-| `GetTestDataQueueItem` 🛈 | `GetTestDataQueueItem` (data-driven) | Get Test Data Queue Item activity from the testing category. | User wants to author or run a test via Get Test Data Queue Item. |
-| `GetTestDataQueueItems` 🛈 | `GetTestDataQueueItems` (data-driven) | Get Test Data Queue Items activity from the testing category. | User wants to author or run a test via Get Test Data Queue Items. |
-| `GivenName` 🛈 | `GivenName` (data-driven) | Given Name activity from the testing category. | User wants to author or run a test via Given Name. |
-| `LastName` 🛈 | `LastName` (data-driven) | Last Name activity from the testing category. | User wants to author or run a test via Last Name. |
-| `RandomDate` 🛈 | `RandomDate` (data-driven) | Random Date activity from the testing category. | User wants to author or run a test via Random Date. |
-| `RandomNumber` 🛈 | `RandomNumber` (data-driven) | Random Number activity from the testing category. | User wants to author or run a test via Random Number. |
-| `RandomString` 🛈 | `RandomString` (data-driven) | Random String activity from the testing category. | User wants to author or run a test via Random String. |
-| `RandomValue` 🛈 | `RandomValue` (data-driven) | Random Value activity from the testing category. | User wants to author or run a test via Random Value. |
-| `VerifyExpression` 🛈 | `VerifyExpression` (data-driven) | Verify Expression activity from the testing category. | User wants to author or run a test via Verify Expression. |
-| `VerifyExpressionWithOperator` 🛈 | `VerifyExpressionWithOperator` (data-driven) | Verify Expression With Operator activity from the testing category. | User wants to author or run a test via Verify Expression With Operator. |
-| `VerifyRange` 🛈 | `VerifyRange` (data-driven) | Verify Range activity from the testing category. | User wants to author or run a test via Verify Range. |
+| `Address` | `Address` (data-driven) | Returns a random plausible street address from a built-in dataset for test data. | User wants realistic address input; pair with GivenName / LastName for a synthetic person record. |
+| `AttachDocument` | `AttachDocument` (data-driven) | Attaches a file artifact (screenshot, log, evidence) to the current test result. | User wants to include evidence in a Test Manager run; for inline log messages use LogMessage; for screenshots specifically use TakeScreenshotAndSave first. |
+| `BulkAddTestDataQueue` | `BulkAddTestDataQueue` (data-driven) | Inserts many rows into a Test Data Queue from a DataTable in a single Orchestrator request. | User wants to seed a Test Data Queue from an Excel sheet; for one row at a time use NewAddTestDataQueueItem. |
+| `ComparePdfDocuments` | `ComparePdfDocuments` (data-driven) | Compares two PDF documents and reports per-page differences using a comparison rule. | User wants to verify that a generated PDF matches a baseline; for plain text comparison use CompareText. |
+| `CompareText` | `CompareText` (data-driven) | Compares two strings using a comparison rule (case-insensitive, whitespace-normalized, regex-aware). | User wants to assert string equivalence with normalization options; for raw equality use VerifyExpressionWithOperator with the Equals operator. |
+| `CreateComparisonRule` | `CreateComparisonRule` (data-driven) | Builds a reusable comparison rule object for ComparePdfDocuments / CompareText. | User wants to share a normalization configuration (ignore whitespace, case-insensitive, regex masks) across multiple comparisons. |
+| `DeleteTestDataQueueItems` | `DeleteTestDataQueueItems` (data-driven) | Deletes test data items from a Test Data Queue by ID list or filter. | User wants to clear a queue between test runs; pair with BulkAddTestDataQueue to refresh test data. |
+| `GetTestDataQueueItem` | `GetTestDataQueueItem` (data-driven) | Pops one test data row from a Test Data Queue and binds its fields to local variables. | User wants the next row of test data in a data-driven test; for many rows in one call use GetTestDataQueueItems. |
+| `GetTestDataQueueItems` | `GetTestDataQueueItems` (data-driven) | Returns a batch of test data rows from a Test Data Queue as a list. | User wants several rows in one call (faster than looping GetTestDataQueueItem); for a single row use GetTestDataQueueItem. |
+| `GivenName` | `GivenName` (data-driven) | Returns a random plausible given (first) name from a built-in dataset for test data. | User wants realistic first-name input; pair with LastName + Address for a synthetic person record. |
+| `LastName` | `LastName` (data-driven) | Returns a random plausible family (last) name from a built-in dataset for test data. | User wants realistic last-name input; pair with GivenName + Address for a synthetic person record. |
+| `RandomDate` | `RandomDate` (data-driven) | Generates a random DateTime within a specified [from, to] range. | User wants synthetic date input; for a calendar-aware business-day variant authoring is custom. |
+| `RandomNumber` | `RandomNumber` (data-driven) | Generates a random integer or decimal within a specified range for test data. | User wants synthetic numeric input; for a value drawn from an enum-like set use RandomValue. |
+| `RandomString` | `RandomString` (data-driven) | Generates a random string of given length and character class for test data. | User wants synthetic string input for a test; for numbers use RandomNumber; for human-shaped values (names, addresses) use GivenName / LastName / Address. |
+| `RandomValue` | `RandomValue` (data-driven) | Returns a random element from a supplied list of candidate values. | User wants a value picked from a fixed set (e.g. a category enum); for free-form strings use RandomString. |
+| `VerifyExpression` | `VerifyExpression` (data-driven) | Asserts that a boolean expression evaluates to True; fails the test step otherwise. | User wants a simple True/False assertion; for comparator-based assertions (eq/lt/gt/contains) use VerifyExpressionWithOperator; for numeric-range checks use VerifyRange. |
+| `VerifyExpressionWithOperator` | `VerifyExpressionWithOperator` (data-driven) | Asserts that two expressions satisfy a comparator (Equals, NotEquals, GreaterThan, LessThan, Contains). | User wants a typed comparator assertion; for raw boolean expressions use VerifyExpression; for numeric ranges use VerifyRange. |
+| `VerifyRange` | `VerifyRange` (data-driven) | Asserts that a numeric value falls within an inclusive [min, max] range. | User wants to verify a number is between two bounds; for equality / comparator checks use VerifyExpressionWithOperator. |
 
 ## Don't auto-generate (18)
 
@@ -548,15 +548,15 @@ them in Studio rather than calling the dispatcher.
 | `ForEachEmailX` | wizard-only | StudioX For Each Email iterator (wizard-only) over a mailbox folder. |
 | `ForEachSheetX` | wizard-only | StudioX For Each Sheet (wizard-only) - iterates over each worksheet of the workbook with a CurrentSheet + CurrentIndex body. |
 | `GetAttribute` | wizard-only | Read a named UI element attribute (innertext, aaname, etc.) into an output variable (wizard-only). |
-| `MockActivity` | wizard-only | Mock Activity (wizard-only) — must be configured through UiPath Studio's interactive wizard. |
+| `MockActivity` | wizard-only | Substitutes a mocked implementation for a wrapped activity at test time, returning a canned output. |
 | `NAccessibilityCheck` | wizard-only | Run an accessibility audit (axe-core) against the current browser/app state (wizard-only). |
-| `NewAddTestDataQueueItem` | wizard-only | New Add Test Data Queue Item (wizard-only) — must be configured through UiPath Studio's interactive wizard. |
+| `NewAddTestDataQueueItem` | wizard-only | Inserts a single row into a Test Data Queue with the given field values. |
 | `NExtractFormDataGeneric` | wizard-only | Extract form-field values from a captured form using AI (wizard-only). |
 | `NSetValue` | wizard-only | Update a UI element value using AI-driven element resolution (wizard-only). |
 | `OutlookApplicationCard` | wizard-only | Modern Use Outlook scope (wizard-only) - pins an Outlook account for nested mail activities. |
-| `ReadXPSWithOCR` | wizard-only | Read XPS With OCR (wizard-only) — must be configured through UiPath Studio's interactive wizard. |
+| `ReadXPSWithOCR` | wizard-only | Reads text from an XPS document using an OCR engine for image-based pages. |
 | `UpdateChartX` | wizard-only | StudioX 'Update Chart' (wizard-only) - updates the data range or properties of an existing chart. |
-| `VerifyControlAttribute` | wizard-only | Verify Control Attribute (wizard-only) — must be configured through UiPath Studio's interactive wizard. |
+| `VerifyControlAttribute` | wizard-only | Asserts that a UI element's attribute (Text, Enabled, Visible, etc.) matches an expected value. |
 
 ## Alternatives (84)
 
@@ -726,5 +726,5 @@ trigger that picks the substitute over the canonical activity.
 
 
 ---
-_Index footer:_ 463 activities, 16 categories, 18 unsupported, 184 review-pending. Regenerate with `python uipath-core/scripts/generate_routing_index.py`.
+_Index footer:_ 463 activities, 16 categories, 18 unsupported, 0 review-pending. Regenerate with `python uipath-core/scripts/generate_routing_index.py`.
 
