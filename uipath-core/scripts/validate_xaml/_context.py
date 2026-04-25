@@ -42,10 +42,12 @@ class ValidationResult:
 
 class FileContext:
     """Holds file content read once and shared across all validators/lints."""
-    __slots__ = ('filepath', 'content', 'tree', 'lines', 'active_content')
+    __slots__ = ('filepath', 'content', 'tree', 'lines', 'active_content',
+                 'target_version_band')
 
     def __init__(self, filepath: str, content: str | None = None,
-                 tree: ET.Element | None = None):
+                 tree: ET.Element | None = None,
+                 target_version_band: str | None = None):
         self.filepath = filepath
         if content is None:
             try:
@@ -60,3 +62,4 @@ class FileContext:
         # active_content strips CommentOut blocks so lint rules don't
         # false-positive on disabled/commented-out activities.
         self.active_content = _RE_COMMENT_OUT_BLOCK.sub('', self.content) if self.content else ""
+        self.target_version_band = target_version_band

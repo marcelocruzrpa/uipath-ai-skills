@@ -15,6 +15,7 @@ from . import lints_hallucinations  # rules 17,22,23,25,30,33,70,71,73,78,83,85,
 from . import lints_variables     # rules 5,16,28,67,81,82
 from . import lints_framework     # rules 39,59,62,63,64,65,66,68,69,74,75,77,100
 from . import lints_types         # rules 18,24,40,87,93,95,99
+from . import lints_version_compat  # rules 120,121,122
 
 # Re-export the public API
 from ._orchestration import validate_xaml_file, validate_project  # noqa: F401

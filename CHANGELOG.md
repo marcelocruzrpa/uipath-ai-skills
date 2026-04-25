@@ -35,7 +35,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Internal
 
 - Lint test suite expanded with 8 new `*_project_version_compat*` fixtures (105 fixtures total under `uipath-core/assets/lint-test-cases/`)
-- `pytest uipath-core/tests/` now reports **157 passed** (no skips, no xfails)
+- New `test_lints_version_compat_integration.py` drives the real `validate_project()` pipeline against the fixtures and asserts lints 120/121/122 fire (and stay silent) end-to-end. Without it, breakage between the lint dispatcher and the version-compat lint module would not be caught by the existing helper-level tests.
+- Wired `lints_version_compat` into `validate_xaml/__init__.py` so lints 120/121/122 register with `_LINT_REGISTRY` on package import. Added `target_version_band` to `FileContext.__slots__` and propagated `versionBand` from `project.json` through `validate_project()` / `validate_xaml_file()` so the lints actually run against real projects (the unit tests passed previously by importing helpers directly; the dispatcher path was dead).
+- `pytest uipath-core/tests/` now reports **166 passed** (no skips, no xfails)
+
+### Migration
+
+- **Plugin API v1 → v2.** Out-of-tree plugins that explicitly declare `REQUIRED_API_VERSION = 1` will now fail to load with `API version mismatch: plugin wants v1, core provides v2`. Plugins that do not declare `REQUIRED_API_VERSION` are unaffected. To upgrade: bump `REQUIRED_API_VERSION` to `2` (no API surface was removed; v2 only adds `register_version_profile` / `register_band_profile_mapping` and their getters). The in-tree `uipath-tasks` plugin was bumped in the same commit as the core change.
+- **Sparse band-26 profiles are intentional.** `UiPath.System.Activities/26.2.json` ships only the activities whose XAML differs from `25.10.json` (currently `InvokeCode`, `InvokeWorkflowFile`, `LogMessage`); other activities inherit their `version_attrs` from `25.10.json` via the canonical-version walk in `_build_band_expected_versions`. UIAutomation has no 26.x stable yet, so cross-band UIAutomation drift is not currently checked. This is the documented fallback path — not a missing-profile bug.
 
 ---
 
