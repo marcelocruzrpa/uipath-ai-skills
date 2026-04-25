@@ -302,6 +302,3837 @@
       "_unsupported_reason": "wizard-only",
       "_review_needed": false,
       "note": "ForEachEmailX iterates over emails with a dual-argument ActivityAction body requiring Studio configuration."
+    },
+    "ArchiveMailX": {
+      "gen_function": "gen_archive_mail_x",
+      "element_tag": "umab:ArchiveMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "CreateDraft": {
+      "gen_function": "gen_create_draft",
+      "element_tag": "ui:CreateDraft",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "from": {
+          "attr": "From",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "name": {
+          "attr": "Name",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "resource_attachment_list": {
+          "attr": "ResourceAttachmentList",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "resource_attachments": {
+          "attr": "ResourceAttachments",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AttachmentInputMode": "FilePaths",
+        "AuthenticationMode": "UserNameAndPassword",
+        "ExchangeVersion": "Exchange2007_SP1",
+        "IsBodyHtml": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "CreateHtmlContent": {
+      "gen_function": "gen_create_html_content",
+      "element_tag": "umab:CreateHtmlContent",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "html_content": {
+          "attr": "HtmlContent",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "DeleteImapMailMessage": {
+      "gen_function": "gen_delete_imap_mail_message",
+      "element_tag": "ui:DeleteImapMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "client_name": {
+          "attr": "ClientName",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "client_version": {
+          "attr": "ClientVersion",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email": {
+          "attr": "Email",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "from_folder": {
+          "attr": "FromFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "port": {
+          "attr": "Port",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "use_o_auth": {
+          "attr": "UseOAuth",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ConnectionMode": "Undefined",
+        "IgnoreCRL": "False",
+        "SecureConnection": "Auto",
+        "UseISConnection": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "DeleteLotusNotesMailMessage": {
+      "gen_function": "gen_delete_lotus_notes_mail_message",
+      "element_tag": "umla:DeleteLotusNotesMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "from_folder": {
+          "attr": "FromFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "DeleteMail": {
+      "gen_function": "gen_delete_mail",
+      "element_tag": "ui:DeleteMail",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AuthenticationMode": "UserNameAndPassword",
+        "DeleteMode": "MoveToDeletedItems",
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "DeleteMailX": {
+      "gen_function": "gen_delete_mail_x",
+      "element_tag": "umab:DeleteMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "DeleteOutlookMailMessage": {
+      "gen_function": "gen_delete_outlook_mail_message",
+      "element_tag": "ui:DeleteOutlookMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "PermanentlyDelete": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ExchangeScope": {
+      "gen_function": "gen_exchange_scope",
+      "element_tag": "ui:ExchangeScope",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "exchange_service": {
+          "attr": "ExchangeService",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "existing_exchange_service": {
+          "attr": "ExistingExchangeService",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        }
+      },
+      "fixed_attrs": {
+        "AuthenticationMode": "UserNameAndPassword",
+        "ContinueOnError": "True",
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "child_elements": {
+        "ExchangeScope.Body": {
+          "type": "activity_action",
+          "content": "ActivityAction x:TypeArguments='x:Object' with DelegateInArgument WSSessionData and Sequence Do body"
+        }
+      },
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ForwardMailX": {
+      "gen_function": "gen_forward_mail_x",
+      "element_tag": "umab:ForwardMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "html_body_from_text": {
+          "attr": "HtmlBodyFromText",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "new_subject": {
+          "attr": "NewSubject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "MaxBodyDocumentSizeMB": "2",
+        "UseDocumentAsBody": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetEmailById": {
+      "gen_function": "gen_get_email_by_id",
+      "element_tag": "umab:GetEmailById",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_id": {
+          "attr": "EmailId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetExchangeMailMessages": {
+      "gen_function": "gen_get_exchange_mail_messages",
+      "element_tag": "ui:GetExchangeMailMessages",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_by_message_ids": {
+          "attr": "FilterByMessageIds",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_expression": {
+          "attr": "FilterExpression",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "messages": {
+          "attr": "Messages",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "shared_mailbox": {
+          "attr": "SharedMailbox",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AuthenticationMode": "UserNameAndPassword",
+        "CustomFolder": "Inbox",
+        "ExchangeVersion": "Exchange2007_SP1",
+        "GetAttachements": "False",
+        "IsBodyHtml": "False",
+        "MailFolder": "Calendar",
+        "MarkAsRead": "False",
+        "OnlyUnreadMessages": "True",
+        "OrderByDate": "NewestFirst",
+        "Top": "30"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetLotusNotesMailMessages": {
+      "gen_function": "gen_get_lotus_notes_mail_messages",
+      "element_tag": "umla:GetLotusNotesMailMessages",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "messages": {
+          "attr": "Messages",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ConnectionMode": "Undefined",
+        "GetAttachments": "False",
+        "MailFolder": "($Inbox)",
+        "Top": "30",
+        "UseISConnection": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetMailMessageFromFile": {
+      "gen_function": "gen_get_mail_message_from_file",
+      "element_tag": "ui:GetMailMessageFromFile",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "email_file": {
+          "attr": "EmailFile",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "GetPOP3MailMessages": {
+      "gen_function": "gen_get_pop3_mail_messages",
+      "element_tag": "ui:GetPOP3MailMessages",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "email": {
+          "attr": "Email",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "messages": {
+          "attr": "Messages",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "port": {
+          "attr": "Port",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "use_o_auth": {
+          "attr": "UseOAuth",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ConnectionMode": "Undefined",
+        "DeleteMessages": "False",
+        "EnableSSL": "False",
+        "IgnoreCRL": "False",
+        "SecureConnection": "Auto",
+        "Top": "30",
+        "UseISConnection": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MarkMailAsReadX": {
+      "gen_function": "gen_mark_mail_as_read_x",
+      "element_tag": "umab:MarkMailAsReadX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "MarkAs": "Read"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MarkOutlookMailAsRead": {
+      "gen_function": "gen_mark_outlook_mail_as_read",
+      "element_tag": "ui:MarkOutlookMailAsRead",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "MarkAs": "Read"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MoveIMAPMailMessageToFolder": {
+      "gen_function": "gen_move_imap_mail_message_to_folder",
+      "element_tag": "ui:MoveIMAPMailMessageToFolder",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "client_name": {
+          "attr": "ClientName",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "client_version": {
+          "attr": "ClientVersion",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email": {
+          "attr": "Email",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "from_folder": {
+          "attr": "FromFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "port": {
+          "attr": "Port",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "use_o_auth": {
+          "attr": "UseOAuth",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ConnectionMode": "Undefined",
+        "EnableSSL": "True",
+        "IgnoreCRL": "False",
+        "SecureConnection": "Auto",
+        "UseISConnection": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MoveLotusNotesMailMessage": {
+      "gen_function": "gen_move_lotus_notes_mail_message",
+      "element_tag": "umla:MoveLotusNotesMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "from_folder": {
+          "attr": "FromFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MoveMailX": {
+      "gen_function": "gen_move_mail_x",
+      "element_tag": "umab:MoveMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "MoveMessageToFolder": {
+      "gen_function": "gen_move_message_to_folder",
+      "element_tag": "ui:MoveMessageToFolder",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_folder": {
+          "attr": "MailFolder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "shared_mailbox": {
+          "attr": "SharedMailbox",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AuthenticationMode": "UserNameAndPassword",
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "NewIMAPEmailReceivedTrigger": {
+      "gen_function": "gen_new_imap_email_received_trigger",
+      "element_tag": "umai:NewIMAPEmailReceivedTrigger",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "connection_account_name": {
+          "attr": "ConnectionAccountName",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "connection_id": {
+          "attr": "ConnectionId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter": {
+          "attr": "Filter",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "filter_expression": {
+          "attr": "FilterExpression",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "job_data": {
+          "attr": "JobData",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "result": {
+          "attr": "Result",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ui_path_event": {
+          "attr": "UiPathEvent",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ui_path_event_connector": {
+          "attr": "UiPathEventConnector",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ui_path_event_object_id": {
+          "attr": "UiPathEventObjectId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "ui_path_event_object_type": {
+          "attr": "UiPathEventObjectType",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "IncludeAttachments": "False",
+        "MailFolder": "INBOX",
+        "MarkAsRead": "False",
+        "UseConnectionService": "True",
+        "WithAttachmentsOnly": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "OutlookMailMessagesTrigger": {
+      "gen_function": "gen_outlook_mail_messages_trigger",
+      "element_tag": "umao:OutlookMailMessagesTrigger",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body_filter": {
+          "attr": "BodyFilter",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "from": {
+          "attr": "From",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject_filter": {
+          "attr": "SubjectFilter",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "BodyIsBuilderTabModified": "False",
+        "BodyRegexOption": "None",
+        "Enabled": "True",
+        "Importance": "Any",
+        "MailFolder": "Inbox",
+        "MarkAsRead": "False",
+        "SchedulingMode": "Sequential",
+        "SubjectIsBuilderTabModified": "False",
+        "SubjectRegexOption": "None",
+        "TriggerId": "727b169b-d51a-41a8-99c5-10a745a96b87",
+        "WhenOutlookIsClosed": "Open"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ReplyToMailX": {
+      "gen_function": "gen_reply_to_mail_x",
+      "element_tag": "umab:ReplyToMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "additional_cc": {
+          "attr": "AdditionalCc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "additional_to": {
+          "attr": "AdditionalTo",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "html_body_from_text": {
+          "attr": "HtmlBodyFromText",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "new_subject": {
+          "attr": "NewSubject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "MaxBodyDocumentSizeMB": "2",
+        "ReplyToAll": "False",
+        "UseDocumentAsBody": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "ReplyToOutlookMailMessage": {
+      "gen_function": "gen_reply_to_outlook_mail_message",
+      "element_tag": "ui:ReplyToOutlookMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "add_bcc": {
+          "attr": "AddBcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "add_cc": {
+          "attr": "AddCc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "add_to": {
+          "attr": "AddTo",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "new_subject": {
+          "attr": "NewSubject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "reply_from": {
+          "attr": "ReplyFrom",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Importance": "Normal",
+        "ReplyAll": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SaveExchangeAttachements": {
+      "gen_function": "gen_save_exchange_attachements",
+      "element_tag": "ui:SaveExchangeAttachements",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "files": {
+          "attr": "Files",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "folder_path": {
+          "attr": "FolderPath",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "resource_attachments": {
+          "attr": "ResourceAttachments",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AuthenticationMode": "UserNameAndPassword",
+        "ExchangeVersion": "Exchange2007_SP1"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SaveMail": {
+      "gen_function": "gen_save_mail",
+      "element_tag": "ui:SaveMail",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "email": {
+          "attr": "Email",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "file_path": {
+          "attr": "FilePath",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SaveMailAttachmentsX": {
+      "gen_function": "gen_save_mail_attachments_x",
+      "element_tag": "umab:SaveMailAttachmentsX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "attachments": {
+          "attr": "Attachments",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "folder_path": {
+          "attr": "FolderPath",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "message": {
+          "attr": "Message",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ExcludeInlineAttachments": "True",
+        "OverwriteExisting": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SaveMailX": {
+      "gen_function": "gen_save_mail_x",
+      "element_tag": "umab:SaveMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "file_name": {
+          "attr": "FileName",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "folder_path": {
+          "attr": "FolderPath",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SaveOutlookMailMessage": {
+      "gen_function": "gen_save_outlook_mail_message",
+      "element_tag": "ui:SaveOutlookMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "file_name": {
+          "attr": "FileName",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "folder": {
+          "attr": "Folder",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ReplaceExisting": "False",
+        "SaveAsType": "OutlookMessageFormatUnicode"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SendCalendarInviteX": {
+      "gen_function": "gen_send_calendar_invite_x",
+      "element_tag": "umab:SendCalendarInviteX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "description": {
+          "attr": "Description",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "end_date": {
+          "attr": "EndDate",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "location": {
+          "attr": "Location",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "optional_attendees": {
+          "attr": "OptionalAttendees",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "required_attendees": {
+          "attr": "RequiredAttendees",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "start_date": {
+          "attr": "StartDate",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "start_time": {
+          "attr": "StartTime",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AlertInterval": "00:15:00",
+        "AllDayEvent": "False",
+        "BusyStatus": "Busy",
+        "DailyRecurrenceStep": "1",
+        "DailyRecurrenceType": "EveryWeekDay",
+        "Duration": "00:30:00",
+        "IsRecurring": "False",
+        "MaxBodyDocumentSizeMB": "2",
+        "MonthlyRecurrenceDay": "Day",
+        "MonthlyRecurrenceDayIndex": "1",
+        "MonthlyRecurrenceStep": "1",
+        "MonthlyRecurrenceType": "EveryNthDayOnEveryXthMonth",
+        "MonthlyRecurrenceWeek": "First",
+        "RecurrenceEndType": "NoEndDate",
+        "RecurrencePatternType": "Daily",
+        "RecurrenceTotalOccurrences": "1",
+        "SaveWithoutSending": "True",
+        "WeeklyRecurrenceDays": "None",
+        "WeeklyRecurrenceStep": "1",
+        "YearlyRecurrenceDay": "Day",
+        "YearlyRecurrenceDayIndex": "1",
+        "YearlyRecurrenceMonth": "January",
+        "YearlyRecurrenceStep": "1",
+        "YearlyRecurrenceType": "EveryNthDayOfMonth",
+        "YearlyRecurrenceWeek": "First"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SendExchangeMail": {
+      "gen_function": "gen_send_exchange_mail",
+      "element_tag": "ui:SendExchangeMail",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "application_id": {
+          "attr": "ApplicationId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "directory_id": {
+          "attr": "DirectoryId",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "domain": {
+          "attr": "Domain",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "email_autodiscover": {
+          "attr": "EmailAutodiscover",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "from": {
+          "attr": "From",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "name": {
+          "attr": "Name",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "resource_attachment_list": {
+          "attr": "ResourceAttachmentList",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "resource_attachments": {
+          "attr": "ResourceAttachments",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "server": {
+          "attr": "Server",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "user": {
+          "attr": "User",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "AttachmentInputMode": "FilePaths",
+        "AuthenticationMode": "UserNameAndPassword",
+        "ExchangeVersion": "Exchange2007_SP1",
+        "IsBodyHtml": "False",
+        "IsDraft": "False",
+        "SaveCopy": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SendLotusNotesMailMessage": {
+      "gen_function": "gen_send_lotus_notes_mail_message",
+      "element_tag": "umla:SendLotusNotesMailMessage",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "continue_on_error": {
+          "attr": "ContinueOnError",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "password": {
+          "attr": "Password",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "secure_password": {
+          "attr": "SecurePassword",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "timeout_ms": {
+          "attr": "TimeoutMS",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "use_rich_text_editor": {
+          "attr": "UseRichTextEditor",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "ConnectionMode": "Undefined",
+        "IsBodyHtml": "False",
+        "UseISConnection": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SendMailX": {
+      "gen_function": "gen_send_mail_x",
+      "element_tag": "umab:SendMailX",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "account": {
+          "attr": "Account",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "bcc": {
+          "attr": "Bcc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "body": {
+          "attr": "Body",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "cc": {
+          "attr": "Cc",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "html_body_from_text": {
+          "attr": "HtmlBodyFromText",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "reply_to": {
+          "attr": "ReplyTo",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "subject": {
+          "attr": "Subject",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "to": {
+          "attr": "To",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {
+        "Importance": "Normal",
+        "MaxBodyDocumentSizeMB": "2",
+        "Sensitivity": "Normal",
+        "UseDocumentAsBody": "False"
+      },
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
+    },
+    "SetOutlookMailCategories": {
+      "gen_function": "gen_set_outlook_mail_categories",
+      "element_tag": "ui:SetOutlookMailCategories",
+      "params": {
+        "display_name": {
+          "attr": "DisplayName",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": "xml",
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "id_ref": {
+          "attr": "sap2010:WorkflowViewState.IdRef",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "id_ref"
+        },
+        "scope_id": {
+          "attr": "ScopeIdentifier",
+          "required": true,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "scope_id"
+        },
+        "categories": {
+          "attr": "Categories",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "mail_message": {
+          "attr": "MailMessage",
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "string"
+        },
+        "obj_repo": {
+          "attr": null,
+          "required": false,
+          "default": null,
+          "enum": null,
+          "escape": null,
+          "bracket_wrap": false,
+          "type": "obj_repo_param"
+        }
+      },
+      "fixed_attrs": {},
+      "child_elements": {},
+      "conditional_attrs": {},
+      "_review_needed": true
     }
   }
 }
