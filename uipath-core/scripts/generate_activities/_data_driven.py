@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from ._helpers import _hs, _escape_xml_attr
+from ._helpers import _hs, _escape_xml_attr, _escape_vb_expr
 from ._xml_utils import _selector_xml
 
 
@@ -359,7 +359,7 @@ def gen_from_annotation(
         if escape == "xml":
             value_str = _escape_xml_attr(str(value))
         elif bracket_wrap:
-            value_str = f"[{value}]"
+            value_str = f"[{_escape_vb_expr(str(value))}]"
         else:
             value_str = str(value)
 
