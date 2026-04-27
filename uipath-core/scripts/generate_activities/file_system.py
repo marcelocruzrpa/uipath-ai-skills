@@ -1,5 +1,5 @@
 """File system activity generators."""
-from ._helpers import _hs, _uuid, _escape_xml_attr
+from ._helpers import _hs, _uuid, _escape_xml_attr, _escape_vb_expr
 from ._xml_utils import _viewstate_block
 
 
@@ -18,9 +18,9 @@ def gen_copy_file(source_path, destination_path, id_ref,
     # For variables, caller passes: 'strFilePath'
     return (
         f'{i}<ui:CopyFile ContinueOnError="{{x:Null}}" DestinationResource="{{x:Null}}" '
-        f'PathResource="{{x:Null}}" Destination="[{destination_path}]" '
+        f'PathResource="{{x:Null}}" Destination="[{_escape_vb_expr(destination_path)}]" '
         f'DisplayName="{dn}" Overwrite="{overwrite}" '
-        f'Path="[{_escape_xml_attr(source_path)}]" sap2010:WorkflowViewState.IdRef="CopyFile_{id_ref}" />'
+        f'Path="[{_escape_vb_expr(source_path)}]" sap2010:WorkflowViewState.IdRef="CopyFile_{id_ref}" />'
     )
 
 
@@ -35,9 +35,9 @@ def gen_move_file(source_variable, destination_variable, id_ref,
     i = indent
     return (
         f'{i}<ui:MoveFile ContinueOnError="{{x:Null}}" DestinationResource="{{x:Null}}" '
-        f'PathResource="{{x:Null}}" Destination="[{destination_variable}]" '
+        f'PathResource="{{x:Null}}" Destination="[{_escape_vb_expr(destination_variable)}]" '
         f'DisplayName="{dn}" Overwrite="{overwrite}" '
-        f'Path="[{source_variable}]" sap2010:WorkflowViewState.IdRef="MoveFile_{id_ref}" />'
+        f'Path="[{_escape_vb_expr(source_variable)}]" sap2010:WorkflowViewState.IdRef="MoveFile_{id_ref}" />'
     )
 
 
@@ -54,7 +54,7 @@ def gen_delete_file(path_variable, id_ref,
     """
     dn = _escape_xml_attr(display_name)
     i = indent
-    return f'{i}<ui:DeleteFileX DisplayName="{dn}" Path="[{path_variable}]" sap2010:WorkflowViewState.IdRef="DeleteFileX_{id_ref}" />'
+    return f'{i}<ui:DeleteFileX DisplayName="{dn}" Path="[{_escape_vb_expr(path_variable)}]" sap2010:WorkflowViewState.IdRef="DeleteFileX_{id_ref}" />'
 
 
 # ---------------------------------------------------------------------------
@@ -73,8 +73,8 @@ def gen_path_exists(path_variable, result_variable, id_ref,
     dn = _escape_xml_attr(display_name)
     i = indent
     return (
-        f'{i}<ui:PathExists DisplayName="{dn}" Path="[{path_variable}]" '
-        f'PathType="{path_type}" Result="[{result_variable}]" '
+        f'{i}<ui:PathExists DisplayName="{dn}" Path="[{_escape_vb_expr(path_variable)}]" '
+        f'PathType="{path_type}" Result="[{_escape_vb_expr(result_variable)}]" '
         f'sap2010:WorkflowViewState.IdRef="PathExists_{id_ref}" />'
     )
 
@@ -90,7 +90,7 @@ def gen_create_directory(path_variable, id_ref,
     i = indent
     return (
         f'{i}<ui:CreateDirectory ContinueOnError="{{x:Null}}" Output="{{x:Null}}" '
-        f'DisplayName="{dn}" Path="[{path_variable}]" '
+        f'DisplayName="{dn}" Path="[{_escape_vb_expr(path_variable)}]" '
         f'sap2010:WorkflowViewState.IdRef="CreateDirectory_{id_ref}" />'
     )
 
@@ -117,7 +117,7 @@ def gen_read_text_file(output_variable, id_ref, display_name="Read Text File",
 
     if path_variable:
         f_attr = 'File="{x:Null}"'
-        fn_attr = f' FileName="[{path_variable}]"'
+        fn_attr = f' FileName="[{_escape_vb_expr(path_variable)}]"'
     else:
         f_attr = f'File="{_escape_xml_attr(file_path)}"'
         fn_attr = ""
@@ -127,7 +127,7 @@ def gen_read_text_file(output_variable, id_ref, display_name="Read Text File",
         enc_attr = f' Encoding="{encoding}"'
 
     return (
-        f'{indent}<ui:ReadTextFile {f_attr} Content="[{output_variable}]" '
+        f'{indent}<ui:ReadTextFile {f_attr} Content="[{_escape_vb_expr(output_variable)}]" '
         f'DisplayName="{dn}"{enc_attr}{fn_attr} {hs} '
         f'sap2010:WorkflowViewState.IdRef="{id_ref}" />'
     )
@@ -155,7 +155,7 @@ def gen_write_text_file(text_variable, id_ref, display_name="Write Text File",
 
     if path_variable:
         f_attr = 'File="{x:Null}"'
-        fn_attr = f' FileName="[{path_variable}]"'
+        fn_attr = f' FileName="[{_escape_vb_expr(path_variable)}]"'
     else:
         f_attr = f'File="{_escape_xml_attr(file_path)}"'
         fn_attr = ""
@@ -167,7 +167,7 @@ def gen_write_text_file(text_variable, id_ref, display_name="Write Text File",
     return (
         f'{indent}<ui:WriteTextFile {f_attr} Output="{{x:Null}}" '
         f'DisplayName="{dn}"{enc_attr}{fn_attr} {hs} '
-        f'sap2010:WorkflowViewState.IdRef="{id_ref}" Text="[{text_variable}]" />'
+        f'sap2010:WorkflowViewState.IdRef="{id_ref}" Text="[{_escape_vb_expr(text_variable)}]" />'
     )
 
 
@@ -198,7 +198,7 @@ def gen_read_csv(output_datatable, id_ref, display_name="Read CSV",
 
     if path_variable:
         fp_attr = 'FilePath="{x:Null}"'
-        pr_attr = f' PathResource="[{path_variable}]"'
+        pr_attr = f' PathResource="[{_escape_vb_expr(path_variable)}]"'
     else:
         fp_attr = f'FilePath="{_escape_xml_attr(file_path)}"'
         pr_attr = ""
@@ -212,7 +212,7 @@ def gen_read_csv(output_datatable, id_ref, display_name="Read CSV",
         enc_attr = f' Encoding="{encoding}"'
 
     return (
-        f'{indent}<ui:ReadCsvFile {fp_attr} DataTable="[{output_datatable}]" '
+        f'{indent}<ui:ReadCsvFile {fp_attr} DataTable="[{_escape_vb_expr(output_datatable)}]" '
         f'Delimitator="{delimiter}" DelimitatorForViewModel="{delimiter}" '
         f'DisplayName="{dn}"{enc_attr}{hh_attr} {hs} '
         f'sap2010:WorkflowViewState.IdRef="{id_ref}"{pr_attr} />'
@@ -250,7 +250,7 @@ def gen_write_csv(input_datatable, id_ref, display_name="Write CSV",
 
     if path_variable:
         fp_attr = 'FilePath="{x:Null}"'
-        pr_attr = f' PathResource="[{path_variable}]"'
+        pr_attr = f' PathResource="[{_escape_vb_expr(path_variable)}]"'
     else:
         fp_attr = f'FilePath="{_escape_xml_attr(file_path)}"'
         pr_attr = ""
@@ -260,7 +260,7 @@ def gen_write_csv(input_datatable, id_ref, display_name="Write CSV",
 
     return (
         f'{indent}<ui:AppendWriteCsvFile {fp_attr} AddHeaders="{ah}" '
-        f'CsvAction="{csv_action}" DataTable="[{input_datatable}]" '
+        f'CsvAction="{csv_action}" DataTable="[{_escape_vb_expr(input_datatable)}]" '
         f'Delimitator="{delimiter}" DelimitatorForViewModel="{delimiter}" '
         f'DisplayName="{dn}" {hs} '
         f'sap2010:WorkflowViewState.IdRef="{id_ref}"{pr_attr} ShouldQuote="{sq}" />'

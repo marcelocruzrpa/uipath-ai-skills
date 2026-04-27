@@ -39,7 +39,7 @@ def gen_add_queue_item(queue_name_config, id_ref, item_fields=None,
     ii3 = ii + "    "
 
     folder = f'FolderPath="[{_escape_xml_attr(folder_path_config)}]"' if folder_path_config else 'FolderPath="{x:Null}"'
-    ref = f'Reference="[{reference_variable}]"' if reference_variable else ""
+    ref = f'Reference="[{_escape_vb_expr(reference_variable)}]"' if reference_variable else ""
     queue = f'QueueType="[{_escape_xml_attr(queue_name_config)}]"'
 
     # ItemInformation children — bare InArgument elements, NO Dictionary wrapper
@@ -106,7 +106,7 @@ def gen_bulk_add_queue_items(queue_name, datatable_variable, id_ref,
         f'DisplayName="{dn}" '
         f'{_hs("BulkAddQueueItems")} '
         f'sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_{id_ref}" '
-        f'QueueItemsDataTable="[{datatable_variable}]" '
+        f'QueueItemsDataTable="[{_escape_vb_expr(datatable_variable)}]" '
         f'QueueName="[{_escape_vb_expr(queue_name)}]" />'
     )
 
@@ -152,7 +152,7 @@ def gen_get_queue_item(queue_name_config, transaction_item_variable, id_ref,
     folder = f'FolderPath="[{_escape_xml_attr(folder_path_config)}]"' if folder_path_config else 'FolderPath="{x:Null}"'
     queue = f'QueueType="[{_escape_xml_attr(queue_name_config)}]"'
 
-    get_xml = f"""{ii}<ui:GetQueueItem ContinueOnError="{{x:Null}}" DisplayName="{dn}" {folder} {_hs("GetQueueItem")} sap2010:WorkflowViewState.IdRef="GetQueueItem_{id_ref}" {queue} TransactionItem="[{transaction_item_variable}]">
+    get_xml = f"""{ii}<ui:GetQueueItem ContinueOnError="{{x:Null}}" DisplayName="{dn}" {folder} {_hs("GetQueueItem")} sap2010:WorkflowViewState.IdRef="GetQueueItem_{id_ref}" {queue} TransactionItem="[{_escape_vb_expr(transaction_item_variable)}]">
 {ii2}<ui:GetQueueItem.Reference>
 {ii3}<InArgument x:TypeArguments="x:String" />
 {ii2}</ui:GetQueueItem.Reference>
@@ -176,7 +176,7 @@ def gen_getrobotcredential(asset_name_variable, username_variable, password_vari
     hs = _hs("GetRobotCredential")
     dn = _escape_xml_attr(display_name)
     i = indent
-    return f'{i}<ui:GetRobotCredential TimeoutMS="{{x:Null}}" AssetName="[{asset_name_variable}]" CacheStrategy="None" DisplayName="{dn}" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" Password="[{password_variable}]" Username="[{username_variable}]" />'
+    return f'{i}<ui:GetRobotCredential TimeoutMS="{{x:Null}}" AssetName="[{_escape_vb_expr(asset_name_variable)}]" CacheStrategy="None" DisplayName="{dn}" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" Password="[{_escape_vb_expr(password_variable)}]" Username="[{_escape_vb_expr(username_variable)}]" />'
 
 
 def gen_get_robot_asset(asset_name, output_variable, id_ref,

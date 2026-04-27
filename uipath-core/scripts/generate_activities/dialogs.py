@@ -1,5 +1,5 @@
 """Dialog activity generators."""
-from ._helpers import _hs, _uuid, _escape_xml_attr
+from ._helpers import _hs, _uuid, _escape_xml_attr, _escape_vb_expr
 from ._xml_utils import _viewstate_block
 
 
@@ -45,5 +45,5 @@ def gen_message_box(text_variable, id_ref, display_name="Message Box", indent=" 
         f'{i}<ui:MessageBox Caption="{{x:Null}}" ChosenButton="{{x:Null}}" '
         f'AutoCloseAfter="00:00:00" DisplayName="{dn}" '
         f'sap2010:WorkflowViewState.IdRef="MessageBox_{id_ref}" '
-        f'Text="[{text_variable}]" />'
+        f'Text="[{_escape_vb_expr(text_variable)}]" />'
     )

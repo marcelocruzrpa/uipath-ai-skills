@@ -27,11 +27,11 @@ def gen_napplicationcard_open(display_name, url_variable, out_ui_element, scope_
     # to resolve URL binding (without it: "File path is required" validation error)
     browser_type = detect_browser_type(selector)
     bt_attr = f' BrowserType="{browser_type}"' if browser_type else ""
-    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InteractionMode="Simulate" IsIncognito="True" OpenMode="Always" OutUiElement="[{out_ui_element}]" ScopeGuid="{scope_guid}" Version="V2">
+    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InteractionMode="Simulate" IsIncognito="True" OpenMode="Always" OutUiElement="[{_escape_vb_expr(out_ui_element)}]" ScopeGuid="{scope_guid}" Version="V2">
 {body}
 {ocr}
 {i2}<uix:NApplicationCard.TargetApp>
-{i3}<uix:TargetApp Area="0, 0, 0, 0"{bt_attr}{obj_repo_app_attrs} Selector="{esc_sel}" Url="[{url_variable}]" Version="V2">
+{i3}<uix:TargetApp Area="0, 0, 0, 0"{bt_attr}{obj_repo_app_attrs} Selector="{esc_sel}" Url="[{_escape_vb_expr(url_variable)}]" Version="V2">
 {i4}<uix:TargetApp.Arguments>
 {i5}<InArgument x:TypeArguments="x:String" />
 {i4}</uix:TargetApp.Arguments>
@@ -73,7 +73,7 @@ def gen_napplicationcard_attach(display_name, ui_element_variable, scope_guid,
     ocr = _ocr_engine_block(i2, i3, i4, i5)
     ta = (_target_app_with_selector(target_app_selector, i2, i3, i4, i5)
           if target_app_selector else _target_app_empty(i2, i3, i4, i5))
-    return f"""{i}<uix:NApplicationCard AttachMode="{attach_mode}" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{ui_element_variable}]" InteractionMode="{interaction_mode}"{incognito_attr} OpenMode="Never" OutUiElement="[{ui_element_variable}]" ScopeGuid="{scope_guid}" Version="V2">
+    return f"""{i}<uix:NApplicationCard AttachMode="{attach_mode}" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{_escape_vb_expr(ui_element_variable)}]" InteractionMode="{interaction_mode}"{incognito_attr} OpenMode="Never" OutUiElement="[{_escape_vb_expr(ui_element_variable)}]" ScopeGuid="{scope_guid}" Version="V2">
 {body}
 {ocr}
 {ta}
@@ -98,7 +98,7 @@ def gen_napplicationcard_close(ui_element_variable, scope_guid, id_ref,
     ocr = _ocr_engine_block(i2, i3, i4, i5)
     ta = (_target_app_with_selector(target_app_selector, i2, i3, i4, i5)
           if target_app_selector else _target_app_empty(i2, i3, i4, i5))
-    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{ui_element_variable}]" InteractionMode="Simulate"{incognito_attr} OpenMode="Never" OutUiElement="[{ui_element_variable}]" ScopeGuid="{scope_guid}" Version="V2">
+    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{_escape_vb_expr(ui_element_variable)}]" InteractionMode="Simulate"{incognito_attr} OpenMode="Never" OutUiElement="[{_escape_vb_expr(ui_element_variable)}]" ScopeGuid="{scope_guid}" Version="V2">
 {body}
 {ocr}
 {ta}
@@ -144,13 +144,11 @@ def gen_napplicationcard_desktop_open(display_name, file_path_variable, out_ui_e
             obj_repo_app_attrs += f' ContentHash="{obj_repo_app["content_hash"]}"'
         if obj_repo_app.get("reference"):
             obj_repo_app_attrs += f' Reference="{obj_repo_app["reference"]}"'
-    fp_expr = _escape_xml_attr(f"[{_escape_vb_expr(file_path_variable)}]")
-
-    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" OpenMode="Always" OutUiElement="[{out_ui_element}]" ScopeGuid="{scope_guid}" Version="V2">
+    return f"""{i}<uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="{dn}" HealingAgentBehavior="Job" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" OpenMode="Always" OutUiElement="[{_escape_vb_expr(out_ui_element)}]" ScopeGuid="{scope_guid}" Version="V2">
 {body}
 {ocr}
 {i2}<uix:NApplicationCard.TargetApp>
-{i3}<uix:TargetApp Area="0, 0, 0, 0" FilePath="{fp_expr}"{obj_repo_app_attrs} Selector="{esc_sel}" Version="V2">
+{i3}<uix:TargetApp Area="0, 0, 0, 0" FilePath="[{_escape_vb_expr(file_path_variable)}]"{obj_repo_app_attrs} Selector="{esc_sel}" Version="V2">
 {i4}<uix:TargetApp.Arguments>
 {i5}<InArgument x:TypeArguments="x:String" />
 {i4}</uix:TargetApp.Arguments>

@@ -1,5 +1,5 @@
 """Navigation and data extraction generators."""
-from ._helpers import _hs, _uuid, _escape_xml_attr
+from ._helpers import _hs, _uuid, _escape_xml_attr, _escape_vb_expr
 from ._xml_utils import _selector_xml, _viewstate_block
 
 
@@ -7,7 +7,7 @@ def gen_ngotourl(url_variable, id_ref, scope_id, display_name="Go To URL", inden
     hs = _hs("NGoToUrl")
     dn = _escape_xml_attr(display_name)
     i, i2 = indent, indent+"  "
-    return f"""{i}<uix:NGoToUrl DisplayName="{dn}" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" ScopeIdentifier="{scope_id}" Url="[{url_variable}]" Version="V3">
+    return f"""{i}<uix:NGoToUrl DisplayName="{dn}" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" ScopeIdentifier="{scope_id}" Url="[{_escape_vb_expr(url_variable)}]" Version="V3">
 {i2}{_viewstate_block(id_ref, is_expanded=True)}
 {i}</uix:NGoToUrl>"""
 
@@ -20,7 +20,7 @@ def gen_ngeturl(output_variable, id_ref, display_name="Get URL", indent="    "):
     dn = _escape_xml_attr(display_name)
     i = indent
     return (
-        f'{i}<uix:NGetUrl CurrentUrl="[{output_variable}]" DisplayName="{dn}" '
+        f'{i}<uix:NGetUrl CurrentUrl="[{_escape_vb_expr(output_variable)}]" DisplayName="{dn}" '
         f'sap2010:WorkflowViewState.IdRef="NGetUrl_{id_ref}" Version="V4" />'
     )
 
@@ -100,11 +100,11 @@ def gen_nextractdata(display_name, output_variable, id_ref, scope_id,
     children = "\n".join(filter(None, [next_link, target]))
 
     if children:
-        return f"""{i}<uix:NExtractDataGeneric x:TypeArguments="sd2:DataTable" ContinueOnError="True" DisplayName="{dn}"{settings_attr} ExtractedData="[{output_variable}]"{meta_attr} HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,138" sap2010:WorkflowViewState.IdRef="{idref}" LimitExtractionTo="{limit_extraction_to}" MaximumResults="{max_results}" ScopeIdentifier="{scope_id}" Version="V5">
+        return f"""{i}<uix:NExtractDataGeneric x:TypeArguments="sd2:DataTable" ContinueOnError="True" DisplayName="{dn}"{settings_attr} ExtractedData="[{_escape_vb_expr(output_variable)}]"{meta_attr} HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,138" sap2010:WorkflowViewState.IdRef="{idref}" LimitExtractionTo="{limit_extraction_to}" MaximumResults="{max_results}" ScopeIdentifier="{scope_id}" Version="V5">
 {children}
 {i}</uix:NExtractDataGeneric>"""
     else:
-        return f'{i}<uix:NExtractDataGeneric x:TypeArguments="sd2:DataTable" ContinueOnError="True" DisplayName="{dn}"{settings_attr} ExtractedData="[{output_variable}]"{meta_attr} HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,138" sap2010:WorkflowViewState.IdRef="{idref}" LimitExtractionTo="{limit_extraction_to}" MaximumResults="{max_results}" ScopeIdentifier="{scope_id}" Version="V5" />'
+        return f'{i}<uix:NExtractDataGeneric x:TypeArguments="sd2:DataTable" ContinueOnError="True" DisplayName="{dn}"{settings_attr} ExtractedData="[{_escape_vb_expr(output_variable)}]"{meta_attr} HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,138" sap2010:WorkflowViewState.IdRef="{idref}" LimitExtractionTo="{limit_extraction_to}" MaximumResults="{max_results}" ScopeIdentifier="{scope_id}" Version="V5" />'
 
 
 def gen_pick_login_validation(

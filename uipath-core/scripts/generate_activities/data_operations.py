@@ -213,7 +213,7 @@ def gen_build_data_table(datatable_variable, columns, id_ref,
     )
 
     return (
-        f'{i}<ui:BuildDataTable DataTable="[{datatable_variable}]" '
+        f'{i}<ui:BuildDataTable DataTable="[{_escape_vb_expr(datatable_variable)}]" '
         f'DisplayName="{dn}" '
         f'sap:VirtualizedContainerService.HintSize="600,92" '
         f'sap2010:WorkflowViewState.IdRef="BuildDataTable_{id_ref}" '
@@ -249,7 +249,7 @@ def gen_add_data_row(datatable_variable, array_values, id_ref,
         raw = f"New Object() {raw}"
     arr = _escape_xml_attr(raw)
 
-    return f'{i}<ui:AddDataRow DataRow="{{x:Null}}" ArrayRow="[{arr}]" DataTable="[{datatable_variable}]" DisplayName="{dn}" sap2010:WorkflowViewState.IdRef="AddDataRow_{id_ref}" />'
+    return f'{i}<ui:AddDataRow DataRow="{{x:Null}}" ArrayRow="[{arr}]" DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" sap2010:WorkflowViewState.IdRef="AddDataRow_{id_ref}" />'
 
 
 def gen_add_data_column(datatable_variable, column_name, id_ref,
@@ -272,7 +272,7 @@ def gen_add_data_column(datatable_variable, column_name, id_ref,
         f'{i}<ui:AddDataColumn x:TypeArguments="{column_type}" '
         f'AllowDBNull="{{x:Null}}" AutoIncrement="{{x:Null}}" Column="{{x:Null}}" '
         f'DefaultValue="{{x:Null}}" MaxLength="{{x:Null}}" Unique="{{x:Null}}" '
-        f'ColumnName="{cn}" DataTable="[{datatable_variable}]" '
+        f'ColumnName="{cn}" DataTable="[{_escape_vb_expr(datatable_variable)}]" '
         f'DisplayName="{dn}" sap2010:WorkflowViewState.IdRef="AddDataColumn_{id_ref}" />'
     )
 
@@ -298,7 +298,7 @@ def gen_remove_data_column(datatable_variable, column_name, id_ref,
 
     return (
         f'{i}<ui:RemoveDataColumn Column="{{x:Null}}" ColumnIndex="{{x:Null}}" '
-        f'ColumnName="{cn}" DataTable="[{datatable_variable}]" '
+        f'ColumnName="{cn}" DataTable="[{_escape_vb_expr(datatable_variable)}]" '
         f'DisplayName="{dn}" {_hs("RemoveDataColumn")} '
         f'sap2010:WorkflowViewState.IdRef="RemoveDataColumn_{id_ref}" />'
     )
@@ -396,7 +396,7 @@ def gen_filter_data_table(datatable_variable, filters, id_ref,
     filters_xml = "\n".join(filter_entries)
     capacity = max(len(filters), 4)
 
-    return f"""{i}<ui:FilterDataTable DataTable="[{datatable_variable}]" DisplayName="{dn}" FilterRowsMode="{filter_rows_mode}" sap2010:WorkflowViewState.IdRef="FilterDataTable_{id_ref}" OutputDataTable="[{out_var}]" SelectColumnsMode="{select_columns_mode}">
+    return f"""{i}<ui:FilterDataTable DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" FilterRowsMode="{filter_rows_mode}" sap2010:WorkflowViewState.IdRef="FilterDataTable_{id_ref}" OutputDataTable="[{_escape_vb_expr(out_var)}]" SelectColumnsMode="{select_columns_mode}">
 {i2}<ui:FilterDataTable.Filters>
 {i3}<scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="{capacity}">
 {filters_xml}
@@ -430,7 +430,7 @@ def gen_sort_data_table(datatable_variable, column_name, id_ref,
     return (
         f'{i}<ui:SortDataTable ColumnIndex="{{x:Null}}" DataColumn="{{x:Null}}" '
         f'ColumnName="{cn}" SortOrder="{sort_order}" '
-        f'DataTable="[{datatable_variable}]" OutputDataTable="[{out_var}]" '
+        f'DataTable="[{_escape_vb_expr(datatable_variable)}]" OutputDataTable="[{_escape_vb_expr(out_var)}]" '
         f'DisplayName="{dn}" sap2010:WorkflowViewState.IdRef="SortDataTable_{id_ref}" />'
     )
 
@@ -443,7 +443,7 @@ def gen_remove_duplicate_rows(datatable_variable, id_ref,
     dn = _escape_xml_attr(display_name)
     out_var = output_variable or datatable_variable
     i = indent
-    return f'{i}<ui:RemoveDuplicateRows DataTable="[{datatable_variable}]" DisplayName="{dn}" OutputDataTable="[{out_var}]" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_{id_ref}" />'
+    return f'{i}<ui:RemoveDuplicateRows DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" OutputDataTable="[{_escape_vb_expr(out_var)}]" sap2010:WorkflowViewState.IdRef="RemoveDuplicateRows_{id_ref}" />'
 
 
 def gen_output_data_table(datatable_variable, output_variable, id_ref,
@@ -455,7 +455,7 @@ def gen_output_data_table(datatable_variable, output_variable, id_ref,
     """
     dn = _escape_xml_attr(display_name)
     i = indent
-    return f'{i}<ui:OutputDataTable DataTable="[{datatable_variable}]" DisplayName="{dn}" Text="[{output_variable}]" sap2010:WorkflowViewState.IdRef="OutputDataTable_{id_ref}" />'
+    return f'{i}<ui:OutputDataTable DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" Text="[{_escape_vb_expr(output_variable)}]" sap2010:WorkflowViewState.IdRef="OutputDataTable_{id_ref}" />'
 
 
 def gen_join_data_tables(datatable1_variable, datatable2_variable, output_variable,
@@ -492,7 +492,7 @@ def gen_join_data_tables(datatable1_variable, datatable2_variable, output_variab
     rules_xml = "\n".join(rule_entries)
     capacity = max(len(join_rules), 4)
 
-    return f"""{i}<ui:JoinDataTables DataTable1="[{datatable1_variable}]" DataTable2="[{datatable2_variable}]" DisplayName="{dn}" JoinType="{join_type}" OutputDataTable="[{output_variable}]" sap2010:WorkflowViewState.IdRef="JoinDataTables_{id_ref}">
+    return f"""{i}<ui:JoinDataTables DataTable1="[{_escape_vb_expr(datatable1_variable)}]" DataTable2="[{_escape_vb_expr(datatable2_variable)}]" DisplayName="{dn}" JoinType="{join_type}" OutputDataTable="[{_escape_vb_expr(output_variable)}]" sap2010:WorkflowViewState.IdRef="JoinDataTables_{id_ref}">
 {i2}<ui:JoinDataTables.JoinRules>
 {i3}<scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="{capacity}">
 {rules_xml}
@@ -518,10 +518,10 @@ def gen_lookup_data_table(datatable_variable, lookup_value_variable,
     dn = _escape_xml_attr(display_name)
     i = indent
     return (
-        f'{i}<ui:LookupDataTable CellValue="[{cell_value_variable}]" '
-        f'DataTable="[{datatable_variable}]" DisplayName="{dn}" '
-        f'LookupValue="[{lookup_value_variable}]" '
-        f'RowIndex="[{row_index_variable}]" '
+        f'{i}<ui:LookupDataTable CellValue="[{_escape_vb_expr(cell_value_variable)}]" '
+        f'DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" '
+        f'LookupValue="[{_escape_vb_expr(lookup_value_variable)}]" '
+        f'RowIndex="[{_escape_vb_expr(row_index_variable)}]" '
         f'TargetColumnName="{_escape_xml_attr(target_column_name)}" '
         f'LookupColumnName="{_escape_xml_attr(lookup_column_name)}" '
         f'sap2010:WorkflowViewState.IdRef="LookupDataTable_{id_ref}" />'
@@ -542,9 +542,9 @@ def gen_merge_data_table(source_variable, destination_variable, id_ref,
     dn = _escape_xml_attr(display_name)
     i = indent
     return (
-        f'{i}<ui:MergeDataTable Destination="[{destination_variable}]" '
+        f'{i}<ui:MergeDataTable Destination="[{_escape_vb_expr(destination_variable)}]" '
         f'DisplayName="{dn}" MissingSchemaAction="{missing_schema_action}" '
-        f'Source="[{source_variable}]" '
+        f'Source="[{_escape_vb_expr(source_variable)}]" '
         f'sap2010:WorkflowViewState.IdRef="MergeDataTable_{id_ref}" />'
     )
 
@@ -559,8 +559,8 @@ def gen_generate_data_table(input_variable, output_variable, id_ref,
     i = indent
     return (
         f'{i}<ui:GenerateDataTable ColumnSeparators="[{{&quot;{sep}&quot;c}}]" '
-        f'DataTable="[{output_variable}]" DisplayName="{dn}" '
-        f'Input="[{input_variable}]" NewLineSeparator="\\n" '
+        f'DataTable="[{_escape_vb_expr(output_variable)}]" DisplayName="{dn}" '
+        f'Input="[{_escape_vb_expr(input_variable)}]" NewLineSeparator="\\n" '
         f'UseColumnHeader="{use_column_header}" AutoDetect="True" '
         f'sap2010:WorkflowViewState.IdRef="GenerateDataTable_{id_ref}" />'
     )

@@ -146,6 +146,13 @@ def auto_fix_file(filepath: str, dry_run: bool = False) -> list[str]:
             fixes.append(f"lint 7: replaced '{fqdn}' with '{short}' in Throw expression")
 
     # Lint 99: Fully-qualified CLR types → xmlns-prefixed form
+    #
+    # Applied as regex with a trailing non-identifier boundary so we do NOT
+    # consume a longer name that starts with the same FQDN. In particular,
+    # `System.Object` must not eat the `Model` in `System.ObjectModel`, which
+    # appears verbatim inside `<AssemblyReference>System.ObjectModel</AssemblyReference>`
+    # on every scaffolded XAML — Studio refuses to load the file when the
+    # assembly name gets corrupted to `x:ObjectModel`.
     FQDN_FIX = {
         "System.Exception": "s:Exception",
         "System.String": "x:String",
@@ -158,8 +165,10 @@ def auto_fix_file(filepath: str, dry_run: bool = False) -> list[str]:
         "UiPath.Core.Activities.BusinessRuleException": "ui:BusinessRuleException",
     }
     for fqdn, prefixed in FQDN_FIX.items():
-        if fqdn in content:
-            content = content.replace(fqdn, prefixed)
+        pattern = re.compile(rf'{re.escape(fqdn)}(?![A-Za-z0-9_.])')
+        hits = pattern.findall(content)
+        if hits:
+            content = pattern.sub(prefixed, content)
             fixes.append(f"lint 99: replaced '{fqdn}' with '{prefixed}'")
 
     # Lint 54: QueueName → QueueType on AddQueueItem/GetQueueItem

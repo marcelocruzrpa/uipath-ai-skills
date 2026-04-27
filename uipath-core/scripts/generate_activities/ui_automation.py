@@ -8,7 +8,7 @@ def gen_ntypeinto(display_name, selector, text_variable, id_ref, scope_id,
                   obj_repo=None, indent="            "):
     if not (empty_field_mode in ("SingleLine", "MultiLine", "None")):
         raise ValueError(f"Invalid EmptyFieldMode '{empty_field_mode}'")
-    text_attr = f'SecureText="[{text_variable}]"' if is_secure else f'Text="[{text_variable}]"'
+    text_attr = f'SecureText="[{_escape_vb_expr(text_variable)}]"' if is_secure else f'Text="[{_escape_vb_expr(text_variable)}]"'
     target = _selector_xml(selector, obj_repo=obj_repo)
     hs = _hs("NTypeInto")
     dn = _escape_xml_attr(display_name)
@@ -225,9 +225,9 @@ def gen_ngettext(display_name, output_variable, id_ref, scope_id,
     dn = _escape_xml_attr(display_name)
     i, i2, i3 = indent, indent+"  ", indent+"    "
     if in_ui_element:
-        return f'{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{in_ui_element}]" ScopeIdentifier="{scope_id}" TextString="[{output_variable}]" Version="V5" />'
+        return f'{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" InUiElement="[{_escape_vb_expr(in_ui_element)}]" ScopeIdentifier="{scope_id}" TextString="[{_escape_vb_expr(output_variable)}]" Version="V5" />'
     target = _selector_xml(selector, obj_repo=obj_repo)
-    return f"""{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" ScopeIdentifier="{scope_id}" TextString="[{output_variable}]" Version="V5">
+    return f"""{i}<uix:NGetText DisplayName="{dn}" HealingAgentBehavior="SameAsCard" {hs} sap2010:WorkflowViewState.IdRef="{id_ref}" ScopeIdentifier="{scope_id}" TextString="[{_escape_vb_expr(output_variable)}]" Version="V5">
 {i2}<uix:NGetText.Target>
 {i3}{target}
 {i2}</uix:NGetText.Target>
@@ -244,7 +244,7 @@ def gen_ncheckstate(display_name, selector, id_ref, scope_id,
                     out_ui_element="",
                     obj_repo=None, indent="            "):
     target = _selector_xml(selector, obj_repo=obj_repo)
-    out_attr = f' OutUiElement="[{out_ui_element}]"' if out_ui_element else ""
+    out_attr = f' OutUiElement="[{_escape_vb_expr(out_ui_element)}]"' if out_ui_element else ""
     hs = _hs("NCheckState")
     dn = _escape_xml_attr(display_name)
     i, i2, i3, i4 = indent, indent+"  ", indent+"    ", indent+"      "

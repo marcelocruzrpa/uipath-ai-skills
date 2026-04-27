@@ -1,5 +1,5 @@
 """Control flow activity generators."""
-from ._helpers import _hs, _uuid, _escape_xml_attr, _normalize_type_arg
+from ._helpers import _hs, _uuid, _escape_xml_attr, _escape_vb_expr, _normalize_type_arg
 from ._xml_utils import _viewstate_block
 
 
@@ -190,7 +190,7 @@ def gen_foreach(collection_variable, id_ref, body_content, body_sequence_idref,
     i, i2, i3, i4, i5, i6 = (indent, indent+"  ", indent+"    ",
                                indent+"      ", indent+"        ", indent+"          ")
 
-    return f"""{i}<ui:ForEach x:TypeArguments="{item_type}" CurrentIndex="{{x:Null}}" DisplayName="{dn}" {_hs("ForEach")} Values="[{collection_variable}]" sap2010:WorkflowViewState.IdRef="ForEach_{id_ref}">
+    return f"""{i}<ui:ForEach x:TypeArguments="{item_type}" CurrentIndex="{{x:Null}}" DisplayName="{dn}" {_hs("ForEach")} Values="[{_escape_vb_expr(collection_variable)}]" sap2010:WorkflowViewState.IdRef="ForEach_{id_ref}">
 {i2}<ui:ForEach.Body>
 {i3}<ActivityAction x:TypeArguments="{item_type}">
 {i4}<ActivityAction.Argument>
@@ -227,7 +227,7 @@ def gen_foreach_row(datatable_variable, id_ref, body_content,
     i, i2, i3, i4, i5, i6 = (indent, indent+"  ", indent+"    ",
                                indent+"      ", indent+"        ", indent+"          ")
 
-    return f"""{i}<ui:ForEachRow DisplayName="{dn}" DataTable="[{datatable_variable}]" {_hs("ForEachRow")} sap2010:WorkflowViewState.IdRef="ForEachRow_{id_ref}">
+    return f"""{i}<ui:ForEachRow DisplayName="{dn}" DataTable="[{_escape_vb_expr(datatable_variable)}]" {_hs("ForEachRow")} sap2010:WorkflowViewState.IdRef="ForEachRow_{id_ref}">
 {i2}<ui:ForEachRow.Body>
 {i3}<ActivityAction x:TypeArguments="sd:DataRow">
 {i4}<ActivityAction.Argument>
@@ -268,7 +268,7 @@ def gen_foreach_file(folder_variable, id_ref, body_content, body_sequence_idref,
     i, i2, i3, i4, i5, i6 = (indent, indent+"  ", indent+"    ",
                                indent+"      ", indent+"        ", indent+"          ")
 
-    return f"""{i}<ui:ForEachFileX DisplayName="{dn}" Folder="[{folder_variable}]" {_hs("ForEachFileX")} sap2010:WorkflowViewState.IdRef="ForEachFileX_{id_ref}" IncludeSubDirectories="{include_subdirs}" OrderBy="{order_by}">
+    return f"""{i}<ui:ForEachFileX DisplayName="{dn}" Folder="[{_escape_vb_expr(folder_variable)}]" {_hs("ForEachFileX")} sap2010:WorkflowViewState.IdRef="ForEachFileX_{id_ref}" IncludeSubDirectories="{include_subdirs}" OrderBy="{order_by}">
 {i2}<ui:ForEachFileX.Body>
 {i3}<ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
 {i4}<ActivityAction.Argument1>
@@ -545,7 +545,7 @@ def gen_state_machine(states: list[dict], initial_state_ref: str,
                 for tr in transitions:
                     cond = ""
                     if tr.get("condition"):
-                        cond = f' Condition="[{tr["condition"]}]"'
+                        cond = f' Condition="[{_escape_vb_expr(tr["condition"])}]"'
                     lines.append(
                         f'{i4}<Transition DisplayName="{_escape_xml_attr(tr["display_name"])}"{cond} '
                         f'{_hs("Transition")}>'
@@ -583,7 +583,7 @@ def gen_parallel(branches_xml: list[str], completion_condition: str = "",
     i2 = indent + "  "
     cc = ""
     if completion_condition:
-        cc = f' CompletionCondition="[{completion_condition}]"'
+        cc = f' CompletionCondition="[{_escape_vb_expr(completion_condition)}]"'
 
     lines = [
         f'{indent}<Parallel DisplayName="{_escape_xml_attr(display_name)}"{cc} '
@@ -618,7 +618,7 @@ def gen_parallel_foreach(type_argument: str, values_expression: str,
     i4 = i3 + "  "
     return "\n".join([
         f'{indent}<ParallelForEach x:TypeArguments="{type_argument}" '
-        f'DisplayName="{_escape_xml_attr(display_name)}" Values="[{values_expression}]" '
+        f'DisplayName="{_escape_xml_attr(display_name)}" Values="[{_escape_vb_expr(values_expression)}]" '
         f'{_hs("ParallelForEach")} sap2010:WorkflowViewState.IdRef="{id_ref}">',
         f'{i2}<ParallelForEach.Body>',
         f'{i3}<ActivityAction x:TypeArguments="{type_argument}">',

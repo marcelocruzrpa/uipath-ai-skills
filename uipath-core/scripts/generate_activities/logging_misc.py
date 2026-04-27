@@ -108,7 +108,7 @@ def gen_should_stop(result_variable, id_ref, display_name="Should Stop", indent=
     """
     return (
         f'{indent}<ui:ShouldStop DisplayName="{_escape_xml_attr(display_name)}" '
-        f'Result="[{result_variable}]" {_hs("ShouldStop")} '
+        f'Result="[{_escape_vb_expr(result_variable)}]" {_hs("ShouldStop")} '
         f'sap2010:WorkflowViewState.IdRef="{id_ref}" />'
     )
 
@@ -187,7 +187,7 @@ def gen_take_screenshot_and_save(screenshot_variable, save_path_variable, id_ref
     dn2 = _escape_xml_attr(display_name_save)
     i, i2, i3 = indent, indent+"  ", indent+"    "
 
-    take = f"""{i}<ui:TakeScreenshot WaitBefore="{{x:Null}}" DisplayName="{dn1}" Screenshot="[{screenshot_variable}]" sap2010:WorkflowViewState.IdRef="TakeScreenshot_{id_ref}">
+    take = f"""{i}<ui:TakeScreenshot WaitBefore="{{x:Null}}" DisplayName="{dn1}" Screenshot="[{_escape_vb_expr(screenshot_variable)}]" sap2010:WorkflowViewState.IdRef="TakeScreenshot_{id_ref}">
 {i2}<ui:TakeScreenshot.Target>
 {i3}<ui:Target ClippingRegion="{{x:Null}}" Element="{{x:Null}}" Selector="{{x:Null}}" WaitForReady="INTERACTIVE" />
 {i2}</ui:TakeScreenshot.Target>
@@ -195,7 +195,7 @@ def gen_take_screenshot_and_save(screenshot_variable, save_path_variable, id_ref
 
     save = (
         f'{i}<ui:SaveImage DisplayName="{dn2}" '
-        f'FileName="[{save_path_variable}]" Image="[{screenshot_variable}]" '
+        f'FileName="[{_escape_vb_expr(save_path_variable)}]" Image="[{_escape_vb_expr(screenshot_variable)}]" '
         f'sap2010:WorkflowViewState.IdRef="SaveImage_{id_ref}" />'
     )
 

@@ -71,10 +71,10 @@ def gen_net_http_request(method, request_url_variable, result_variable, id_ref,
     null_attrs = " ".join(f'{p}="{{x:Null}}"' for p in null_props)
 
     # Conditional attributes
-    oauth = f'OAuthToken="[{oauth_token_variable}]"' if auth_type == "OAuthToken" else 'OAuthToken="{x:Null}"'
+    oauth = f'OAuthToken="[{_escape_vb_expr(oauth_token_variable)}]"' if auth_type == "OAuthToken" else 'OAuthToken="{x:Null}"'
     headers = f'Headers="[{_escape_xml_attr(headers_expr)}]"' if headers_expr else 'Headers="{x:Null}"'
     params = f'Parameters="[{_escape_xml_attr(parameters_expr)}]"' if parameters_expr else 'Parameters="{x:Null}"'
-    payload = f'TextPayload="[{text_payload_variable}]"' if text_payload_variable else 'TextPayload=""'
+    payload = f'TextPayload="[{_escape_vb_expr(text_payload_variable)}]"' if text_payload_variable else 'TextPayload=""'
 
     form_data_parts = ('FormDataParts="[New List (Of FormDataPart) From _'
                        '&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;'
@@ -101,7 +101,7 @@ def gen_net_http_request(method, request_url_variable, result_variable, id_ref,
         f'InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" '
         f'Method="{method}" Multiplier="2" '
         f'PreferRetryAfterValue="True" RequestBodyType="Text" '
-        f'RequestUrl="[{request_url_variable}]" Result="[{result_variable}]" '
+        f'RequestUrl="[{_escape_vb_expr(request_url_variable)}]" Result="[{_escape_vb_expr(result_variable)}]" '
         f'RetryCount="{retry_count}" RetryPolicyType="{retry_policy}" '
         f'{retry_codes} '
         f'SaveRawRequestResponse="False" SaveResponseAsFile="False" '
@@ -146,7 +146,7 @@ def gen_deserialize_json(json_string_variable, output_variable, id_ref,
         f'DisplayName="{dn}" '
         f'{_hs("DeserializeJson")} '
         f'sap2010:WorkflowViewState.IdRef="DeserializeJson_{id_ref}" '
-        f'JsonObject="[{output_variable}]" '
+        f'JsonObject="[{_escape_vb_expr(output_variable)}]" '
         f'JsonSample="" '
-        f'JsonString="[{json_string_variable}]" />'
+        f'JsonString="[{_escape_vb_expr(json_string_variable)}]" />'
     )

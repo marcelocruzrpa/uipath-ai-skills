@@ -22,10 +22,10 @@ def gen_read_range(workbook_path_variable, sheet_name, output_variable, id_ref,
 
     return (
         f'{i}<ui:ReadRange {range_attr} WorkbookPathResource="{{x:Null}}" '
-        f'AddHeaders="{add_headers}" DataTable="[{output_variable}]" '
+        f'AddHeaders="{add_headers}" DataTable="[{_escape_vb_expr(output_variable)}]" '
         f'DisplayName="{dn}" '
         f'sap2010:WorkflowViewState.IdRef="ReadRange_{id_ref}" '
-        f'SheetName="{_escape_xml_attr(sheet)}" WorkbookPath="[{workbook_path_variable}]" />'
+        f'SheetName="{_escape_xml_attr(sheet)}" WorkbookPath="[{_escape_vb_expr(workbook_path_variable)}]" />'
     )
 
 
@@ -47,9 +47,9 @@ def gen_write_range(workbook_path_variable, sheet_name, datatable_variable, id_r
 
     return (
         f'{i}<ui:WriteRange {cell} WorkbookPathResource="{{x:Null}}" '
-        f'DataTable="[{datatable_variable}]" DisplayName="{dn}" '
+        f'DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" '
         f'sap2010:WorkflowViewState.IdRef="WriteRange_{id_ref}" '
-        f'SheetName="{_escape_xml_attr(sheet_name)}" WorkbookPath="[{workbook_path_variable}]" />'
+        f'SheetName="{_escape_xml_attr(sheet_name)}" WorkbookPath="[{_escape_vb_expr(workbook_path_variable)}]" />'
     )
 
 
@@ -73,7 +73,7 @@ def gen_write_cell(workbook_path_variable, sheet_name, cell_expression,
         f'DisplayName="{dn}" '
         f'sap2010:WorkflowViewState.IdRef="WriteCell_{id_ref}" '
         f'SheetName="{_escape_xml_attr(sheet_name)}" '
-        f'Text="[{text_variable}]" WorkbookPath="[{workbook_path_variable}]" />'
+        f'Text="[{_escape_vb_expr(text_variable)}]" WorkbookPath="[{_escape_vb_expr(workbook_path_variable)}]" />'
     )
 
 
@@ -101,10 +101,10 @@ def gen_append_range(workbook_path_variable, sheet_name, datatable_variable, id_
 
     return (
         f'{i}<ui:AppendRange WorkbookPathResource="{{x:Null}}" '
-        f'DataTable="[{datatable_variable}]" DisplayName="{dn}" '
+        f'DataTable="[{_escape_vb_expr(datatable_variable)}]" DisplayName="{dn}" '
         f'{_hs("AppendRange")} '
         f'sap2010:WorkflowViewState.IdRef="AppendRange_{id_ref}" '
-        f'SheetName="[{_escape_xml_attr(sheet_name)}]" WorkbookPath="[{workbook_path_variable}]" />'
+        f'SheetName="[{_escape_xml_attr(sheet_name)}]" WorkbookPath="[{_escape_vb_expr(workbook_path_variable)}]" />'
     )
 
 
@@ -127,10 +127,10 @@ def gen_read_pdf_text(filename_variable, output_variable, id_ref,
     i = indent
     return (
         f'{i}<ui:ReadPDFText PreserveFormatting="{{x:Null}}" '
-        f'DisplayName="{dn}" FileName="[{filename_variable}]" '
+        f'DisplayName="{dn}" FileName="[{_escape_vb_expr(filename_variable)}]" '
         f'{_hs("ReadPDFText")} '
         f'sap2010:WorkflowViewState.IdRef="ReadPDFText_{id_ref}" '
-        f'Range="{page_range}" Text="[{output_variable}]" />'
+        f'Range="{page_range}" Text="[{_escape_vb_expr(output_variable)}]" />'
     )
 
 
@@ -165,7 +165,7 @@ def gen_read_pdf_with_ocr(filename_variable, output_variable, id_ref,
     i, i2, i3, i4, i5 = (indent, indent+"  ", indent+"    ",
                            indent+"      ", indent+"        ")
 
-    return f"""{i}<ui:ReadPDFWithOCR DegreeOfParallelism="-1" DisplayName="{dn}" FileName="[{filename_variable}]" {_hs("ReadPDFWithOCR")} sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_{id_ref}" ImageDpi="{image_dpi}" Range="{page_range}" Text="[{output_variable}]">
+    return f"""{i}<ui:ReadPDFWithOCR DegreeOfParallelism="-1" DisplayName="{dn}" FileName="[{_escape_vb_expr(filename_variable)}]" {_hs("ReadPDFWithOCR")} sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_{id_ref}" ImageDpi="{image_dpi}" Range="{page_range}" Text="[{_escape_vb_expr(output_variable)}]">
 {i2}<ui:ReadPDFWithOCR.OCREngine>
 {i3}<ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
 {i4}<ActivityFunc.Argument>
@@ -216,11 +216,11 @@ def gen_send_mail(to_variable, subject_variable, body_variable, id_ref,
     i, i2, i3, i4, i5 = (indent, indent+"  ", indent+"    ",
                            indent+"      ", indent+"        ")
 
-    cc = f'Cc="[{cc_variable}]"' if cc_variable else 'Cc="{x:Null}"'
-    bcc = f'Bcc="[{bcc_variable}]"' if bcc_variable else 'Bcc="{x:Null}"'
-    attach = f'ResourceAttachments="[{attachments_variable}]"' if attachments_variable else 'ResourceAttachments="{x:Null}"'
+    cc = f'Cc="[{_escape_vb_expr(cc_variable)}]"' if cc_variable else 'Cc="{x:Null}"'
+    bcc = f'Bcc="[{_escape_vb_expr(bcc_variable)}]"' if bcc_variable else 'Bcc="{x:Null}"'
+    attach = f'ResourceAttachments="[{_escape_vb_expr(attachments_variable)}]"' if attachments_variable else 'ResourceAttachments="{x:Null}"'
 
-    return f"""{i}<ui:SendMail {bcc} {cc} ContinueOnError="{{x:Null}}" Email="{{x:Null}}" From="{{x:Null}}" IgnoreCRL="{{x:Null}}" MailMessage="{{x:Null}}" Name="{{x:Null}}" Password="{{x:Null}}" Port="{{x:Null}}" ReplyTo="{{x:Null}}" ResourceAttachmentList="{{x:Null}}" Result="{{x:Null}}" SecurePassword="{{x:Null}}" Server="{{x:Null}}" TimeoutMS="{{x:Null}}" UseOAuth="{{x:Null}}" AttachmentInputMode="Existing" Body="[{body_variable}]" ConnectionMode="IntegrationService" DisplayName="{dn}" EnableSSL="True" IsBodyHtml="{is_body_html}" {attach} SecureConnection="Auto" Subject="[{subject_variable}]" To="[{to_variable}]" UseISConnection="True" UseRichTextEditor="True" sap2010:WorkflowViewState.IdRef="SendMail_{id_ref}">
+    return f"""{i}<ui:SendMail {bcc} {cc} ContinueOnError="{{x:Null}}" Email="{{x:Null}}" From="{{x:Null}}" IgnoreCRL="{{x:Null}}" MailMessage="{{x:Null}}" Name="{{x:Null}}" Password="{{x:Null}}" Port="{{x:Null}}" ReplyTo="{{x:Null}}" ResourceAttachmentList="{{x:Null}}" Result="{{x:Null}}" SecurePassword="{{x:Null}}" Server="{{x:Null}}" TimeoutMS="{{x:Null}}" UseOAuth="{{x:Null}}" AttachmentInputMode="Existing" Body="[{_escape_vb_expr(body_variable)}]" ConnectionMode="IntegrationService" DisplayName="{dn}" EnableSSL="True" IsBodyHtml="{is_body_html}" {attach} SecureConnection="Auto" Subject="[{_escape_vb_expr(subject_variable)}]" To="[{_escape_vb_expr(to_variable)}]" UseISConnection="True" UseRichTextEditor="True" sap2010:WorkflowViewState.IdRef="SendMail_{id_ref}">
 {i2}<ui:SendMail.AttachmentsBackup>
 {i3}<usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
 {i4}<usau:BackupSlot.BackupValues>
@@ -281,9 +281,9 @@ def gen_get_imap_mail(messages_variable, id_ref,
     dn = _escape_xml_attr(display_name)
     i, i2, i3, i4, i5 = indent, indent+"  ", indent+"    ", indent+"      ", indent+"        "
 
-    filter_attr = f'FilterExpression="[{filter_expression_variable}]"' if filter_expression_variable else 'FilterExpression="{x:Null}"'
+    filter_attr = f'FilterExpression="[{_escape_vb_expr(filter_expression_variable)}]"' if filter_expression_variable else 'FilterExpression="{x:Null}"'
 
-    return f"""{i}<ui:GetIMAPMailMessages ClientName="{{x:Null}}" ClientVersion="{{x:Null}}" DeleteMessages="{{x:Null}}" Email="{{x:Null}}" MarkAsRead="{{x:Null}}" Password="{{x:Null}}" Port="{{x:Null}}" SecurePassword="{{x:Null}}" Server="{{x:Null}}" TimeoutMS="{{x:Null}}" UseOAuth="{{x:Null}}" ConnectionMode="IntegrationService" DisplayName="{dn}" EnableSSL="True" {filter_attr} FilterExpressionCharacterSet="US-ASCII" IgnoreCRL="False" MailFolder="{_escape_xml_attr(mail_folder)}" Messages="[{messages_variable}]" OnlyUnreadMessages="{only_unread}" OrderByDate="{order_by_date}" SecureConnection="Auto" Top="{top}" UseISConnection="True" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_{id_ref}">
+    return f"""{i}<ui:GetIMAPMailMessages ClientName="{{x:Null}}" ClientVersion="{{x:Null}}" DeleteMessages="{{x:Null}}" Email="{{x:Null}}" MarkAsRead="{{x:Null}}" Password="{{x:Null}}" Port="{{x:Null}}" SecurePassword="{{x:Null}}" Server="{{x:Null}}" TimeoutMS="{{x:Null}}" UseOAuth="{{x:Null}}" ConnectionMode="IntegrationService" DisplayName="{dn}" EnableSSL="True" {filter_attr} FilterExpressionCharacterSet="US-ASCII" IgnoreCRL="False" MailFolder="{_escape_xml_attr(mail_folder)}" Messages="[{_escape_vb_expr(messages_variable)}]" OnlyUnreadMessages="{only_unread}" OrderByDate="{order_by_date}" SecureConnection="Auto" Top="{top}" UseISConnection="True" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_{id_ref}">
 {i2}<ui:GetIMAPMailMessages.ConnectionDetailsBackupSlot>
 {i3}<usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="IntegrationService">
 {i4}<usau:BackupSlot.BackupValues>
@@ -322,7 +322,7 @@ def gen_save_mail_attachments(message_variable, folder_path_variable, id_ref,
     dn = _escape_xml_attr(display_name)
     i = indent
 
-    attach = f'Attachments="[{attachments_variable}]"' if attachments_variable else 'Attachments="{x:Null}"'
+    attach = f'Attachments="[{_escape_vb_expr(attachments_variable)}]"' if attachments_variable else 'Attachments="{x:Null}"'
 
     return (
         f'{i}<ui:SaveMailAttachments ResourceAttachments="{{x:Null}}" '
@@ -330,8 +330,8 @@ def gen_save_mail_attachments(message_variable, folder_path_variable, id_ref,
         f'DisplayName="{dn}" '
         f'ExcludeInlineAttachments="False" '
         f'Filter="{_escape_xml_attr(file_filter)}" '
-        f'FolderPath="[{folder_path_variable}]" '
-        f'Message="[{message_variable}]" '
+        f'FolderPath="[{_escape_vb_expr(folder_path_variable)}]" '
+        f'Message="[{_escape_vb_expr(message_variable)}]" '
         f'OverwriteExisting="{overwrite}" '
         f'sap2010:WorkflowViewState.IdRef="SaveMailAttachments_{id_ref}" />'
     )
@@ -360,8 +360,8 @@ def gen_database_connect(connection_variable, output_variable, id_ref,
     return (
         f'{i}<ui:DatabaseConnect DisplayName="{dn}" '
         f'ProviderName="{provider}" '
-        f'ConnectionSecureString="[{connection_variable}]" '
-        f'DatabaseConnection="[{output_variable}]" '
+        f'ConnectionSecureString="[{_escape_vb_expr(connection_variable)}]" '
+        f'DatabaseConnection="[{_escape_vb_expr(output_variable)}]" '
         f'sap2010:WorkflowViewState.IdRef="DatabaseConnect_{id_ref}" />'
     )
 
@@ -393,8 +393,8 @@ def gen_execute_query(sql, output_variable, id_ref, connection_variable="",
     sql_esc = _escape_xml_attr(sql)
     i, i2, i3 = indent, indent+"  ", indent+"    "
 
-    conn = f'ExistingDbConnection="[{connection_variable}]" ConnectionSecureString="{{x:Null}}"' if connection_variable else \
-           f'ExistingDbConnection="{{x:Null}}" ConnectionSecureString="[{connection_string_variable}]"'
+    conn = f'ExistingDbConnection="[{_escape_vb_expr(connection_variable)}]" ConnectionSecureString="{{x:Null}}"' if connection_variable else \
+           f'ExistingDbConnection="{{x:Null}}" ConnectionSecureString="[{_escape_vb_expr(connection_string_variable)}]"'
 
     if parameters:
         param_lines = []
@@ -403,7 +403,7 @@ def gen_execute_query(sql, output_variable, id_ref, connection_variable="",
                 f'{i3}<InArgument x:TypeArguments="{ptype}" x:Key="{key}">[{pvar}]</InArgument>'
             )
         params_xml = "\n".join(param_lines)
-        return f"""{i}<ui:ExecuteQuery ContinueOnError="{{x:Null}}" {conn} TimeoutMS="{{x:Null}}" DataTable="[{output_variable}]" DisplayName="{dn}" ProviderName="{provider}" Sql="{sql_esc}" sap2010:WorkflowViewState.IdRef="ExecuteQuery_{id_ref}">
+        return f"""{i}<ui:ExecuteQuery ContinueOnError="{{x:Null}}" {conn} TimeoutMS="{{x:Null}}" DataTable="[{_escape_vb_expr(output_variable)}]" DisplayName="{dn}" ProviderName="{provider}" Sql="{sql_esc}" sap2010:WorkflowViewState.IdRef="ExecuteQuery_{id_ref}">
 {i2}<ui:ExecuteQuery.Parameters>
 {i3}<scg:Dictionary x:TypeArguments="x:String, p:Argument">
 {params_xml}
@@ -413,7 +413,7 @@ def gen_execute_query(sql, output_variable, id_ref, connection_variable="",
     else:
         return (
             f'{i}<ui:ExecuteQuery ContinueOnError="{{x:Null}}" {conn} TimeoutMS="{{x:Null}}" '
-            f'DataTable="[{output_variable}]" DisplayName="{dn}" '
+            f'DataTable="[{_escape_vb_expr(output_variable)}]" DisplayName="{dn}" '
             f'ProviderName="{provider}" Sql="{sql_esc}" '
             f'sap2010:WorkflowViewState.IdRef="ExecuteQuery_{id_ref}" />'
         )
@@ -439,9 +439,9 @@ def gen_execute_non_query(sql, id_ref, connection_variable="",
     sql_esc = _escape_xml_attr(sql)
     i, i2, i3 = indent, indent+"  ", indent+"    "
 
-    conn = f'ExistingDbConnection="[{connection_variable}]"' if connection_variable else \
-           f'ConnectionSecureString="[{connection_string_variable}]"'
-    affected = f'AffectedRecords="[{affected_records_variable}]"' if affected_records_variable else 'AffectedRecords="{x:Null}"'
+    conn = f'ExistingDbConnection="[{_escape_vb_expr(connection_variable)}]"' if connection_variable else \
+           f'ConnectionSecureString="[{_escape_vb_expr(connection_string_variable)}]"'
+    affected = f'AffectedRecords="[{_escape_vb_expr(affected_records_variable)}]"' if affected_records_variable else 'AffectedRecords="{x:Null}"'
 
     if parameters:
         param_lines = []
